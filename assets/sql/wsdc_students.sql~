@@ -1,0 +1,115 @@
+-- phpMyAdmin SQL Dump
+-- version 3.5.2.2
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: Mar 21, 2014 at 08:55 PM
+-- Server version: 5.5.27
+-- PHP Version: 5.4.7
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `wsdc_students`
+--
+CREATE DATABASE `wsdc_students` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `wsdc_students`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_auth`
+--
+
+CREATE TABLE IF NOT EXISTS `student_auth` (
+  `userid` int(11) NOT NULL,
+  `username` varchar(32) NOT NULL,
+  `password` varchar(256) NOT NULL,
+  `permissions` int(11) DEFAULT '1',
+  `active` int(2) NOT NULL DEFAULT '0',
+  `profile_edited` int(2) NOT NULL DEFAULT '0',
+  `activation_link` varchar(256) NOT NULL DEFAULT '',
+  `access_count` int(2) DEFAULT '0',
+  `access_location` varchar(32) DEFAULT '0.0.0.0',
+  `access_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY `userid` (`userid`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_data`
+--
+
+CREATE TABLE IF NOT EXISTS `student_data` (
+  `userid` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(32) NOT NULL,
+  `password` varchar(256) NOT NULL,
+  `name` varchar(64) NOT NULL,
+  `roll_number` varchar(10) DEFAULT NULL,
+  `registration_number` varchar(10) DEFAULT NULL,
+  `current_section` varchar(4) NOT NULL,
+  `current_year` varchar(4) NOT NULL,
+  `joining_year` varchar(4) NOT NULL,
+  `course` varchar(10) NOT NULL,
+  `branch` varchar(10) NOT NULL,
+  `gender` char(1) NOT NULL,
+  `email` varchar(64) NOT NULL,
+  `birthday` date NOT NULL,
+  `country` varchar(32) NOT NULL,
+  `mobile` varchar(16) NOT NULL,
+  `emergency_contact` varchar(16) NOT NULL,
+  `sbh_account` varchar(32) DEFAULT NULL,
+  `passport` varchar(20) DEFAULT NULL,
+  `hostel_room` varchar(10) NOT NULL,
+  `hostel` varchar(10) NOT NULL,
+  `mess` varchar(10) NOT NULL,
+  `created_location` varchar(32) NOT NULL,
+  `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`userid`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `roll_number` (`roll_number`),
+  UNIQUE KEY `registration_number` (`registration_number`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21451 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_feedback`
+--
+
+CREATE TABLE IF NOT EXISTS `student_feedback` (
+  `userid` int(11) NOT NULL,
+  `feedback` char(15) DEFAULT '000000000000000',
+  `cgpa` bigint(20) NOT NULL DEFAULT '0',
+  UNIQUE KEY `userid` (`userid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `student_auth`
+--
+ALTER TABLE `student_auth`
+  ADD CONSTRAINT `student_auth_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `student_data` (`userid`);
+
+--
+-- Constraints for table `student_feedback`
+--
+ALTER TABLE `student_feedback`
+  ADD CONSTRAINT `student_feedback_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `student_data` (`userid`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
