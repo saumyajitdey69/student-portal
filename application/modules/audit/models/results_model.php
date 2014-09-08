@@ -53,6 +53,18 @@ class Results_model extends CI_Model {
 			// }
 			$register_db = $this->load->database('registration', TRUE);
 			$query = $register_db->select()->where('roll', $rollno)->get('registered');
+			if($query->num_rows() == 0)
+			{
+				//may be 1st year
+				$student_db = $this->load->database('default', TRUE);
+				$query2=$student_db->get_where($this->tables['student'],array("userid"=>$userid));
+				if($query2->num_rows()==1)
+				{
+				$regno=$query2->row()->registration_number;
+				$register_db = $this->load->database('registration', TRUE);
+				$query = $register_db->select()->where('roll', $regno)->get('registered');
+				}
+			}
 			$registered = $query->result('array');
 			$register_db->close();
 			$rcount = 0;
