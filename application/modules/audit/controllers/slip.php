@@ -20,9 +20,83 @@ class Slip extends MX_Controller {
 		}
 		$this->load->helper('language');
 		$this->load->model('slip_model');
-
+		$this->load->model('feedback_model');
 	}
+
 	public function index()
+	{
+		
+		$userid=$this->nativesession->get('userid');
+		$roll = $this->feedback_model->get_roll($userid);
+		$data=$this->getSlipData($roll);
+		$this->_render_page('registration/slip_new',$data);
+	}
+	public function getSlipData($roll)
+	{
+		$rows_data = $this->slip_model->get_registered_detail($roll);
+		$data['title'] = "Registration Slip";
+		
+		$data['regular_courses']['reg_course_id'] = array();
+		$data['regular_courses']['reg_course_name'] = array();
+		$data['regular_courses']['reg_course_credit'] = array();
+		$data['regular_courses']['reg_study_exam'] = array();
+
+		$data['backlog_courses']['reg_course_id'] = array();
+		$data['backlog_courses']['reg_course_name'] = array();
+		$data['backlog_courses']['reg_course_credit'] = array();
+		$data['backlog_courses']['reg_study_exam'] = array();
+		if(empty($rows_data))
+		{
+			$this->session->set_flashdata('danger', 'Student is not yet registered for this session (i.e July 2014)');
+			redirect('audit/home');
+			return;
+		}
+		$count = 0;
+		$data['reg_credits_study']=0;
+		$data['reg_credits_study_exam']=0;
+		foreach($rows_data as $raw_data)
+		{
+			$data['roll_number'] = $raw_data['roll']; // this is required to delete, please do not rename the variable or do not remove it @awachat
+			if($raw_data['backlog']==0)
+			{
+				$data['reg_roll'] = $raw_data['roll'];
+				$data['reg_name'] = $raw_data['name'];
+				$data['reg_branch'] = $raw_data['branch_name'];
+				$data['reg_semester'] = $raw_data['sem'];
+				$data['reg_course'] = $raw_data['class_name'];
+				$data['reg_section'] = $raw_data['sec'];
+				$data['reg_credits_study'] += $raw_data['scredits'];
+				$data['reg_credits_study_exam'] += $raw_data['secredits'];
+				for ($i=1; $i <= 15 ; $i++)
+				{
+					if(empty($raw_data['c'.$i])) break;
+					$data['regular_courses']['reg_course_id'][$i-1] = $raw_data['c'.$i];
+					$data['regular_courses']['reg_course_name'][$i-1] = $raw_data['name'.$i];
+					$data['regular_courses']['reg_course_credit'][$i-1] = $raw_data['credit'.$i];
+					$data['regular_courses']['reg_study_exam'][$i-1] = $raw_data['type'.$i];
+				}
+			}
+			else
+			{
+				for ($i=1; $i <= 15 ; $i++)
+				{
+					if(empty($raw_data['c'.$i])) break;
+					
+					$data['reg_credits_study'] += $raw_data['scredits'];
+					$data['reg_credits_study_exam'] += $raw_data['secredits'];
+					$data['backlog_courses']['reg_course_id'][$count] = $raw_data['c'.$i];
+					$data['backlog_courses']['reg_course_name'][$count] = $raw_data['name'.$i];
+					$data['backlog_courses']['reg_course_credit'][$count] = $raw_data['credit'.$i];
+					$data['backlog_courses']['reg_study_exam'][$count] = $raw_data['type'.$i];
+					$count++;
+				}
+			}
+		}
+		$data['current_section'] = 'registration';
+		$data['current_page'] = "slip";
+		return $data;
+	}
+	public function index2()
 	{
 		$data['current_page'] = 'slip';
 		$userid=$this->nativesession->get('userid');

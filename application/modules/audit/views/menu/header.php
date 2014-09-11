@@ -14,7 +14,7 @@
       </li>
       <hr>
       <li <?php echo $current_page === "attendance" ? "class='active'" : ""?>>
-        <a href="<?php echo base_url('attendance'); ?>">ATTENDANCE <span class="label label-danger">new</span>
+        <a href="<?php echo base_url('attendance'); ?>">ATTENDANCE <span class="label label-danger">new</span></a>
       </li>
       <hr>
       <li>FEEDBACK</li>
@@ -40,11 +40,11 @@
         </a>
       </li>
       <hr>
-      <!-- <li <?php echo $current_page === "slip" ? "class='active'" : ""?> class="tips" title="Registration slip not avalilable">
+      <li <?php echo $current_page === "slip" ? "class='active'" : ""?> class="tips" title="Registration slip not avalilable">
         <a href="#" target="_blank">
-          <span class="glyphicon glyphicon-file"></span> Registration Slip
+          <span class="glyphicon glyphicon-file"></span> Registration Slip <span class="label label-danger">new</span>
         </a>
-      </li> -->
+      </li>
       <li <?php echo $current_page === "calendar" ? "class='active'" : ""?>>
         <a href="<?php echo base_url('audit/calendar'); ?>">
           <span class="glyphicon glyphicon-calendar"></span> Academic Calender 2014
