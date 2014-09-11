@@ -13,10 +13,6 @@
         </a>
       </li>
       <hr>
-      <li <?php echo $current_page === "attendance" ? "class='active'" : ""?>>
-        <a href="<?php echo base_url('attendance'); ?>">ATTENDANCE <span class="label label-danger">new</span>
-      </li>
-      <hr>
       <li>FEEDBACK</li>
       <li <?php echo $current_page === "feedback" ? "class='active'" : ""?>>
         <a href="<?php echo base_url('audit/feedback'); ?>">

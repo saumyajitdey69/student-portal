@@ -12,7 +12,7 @@ class Slip_model extends CI_Model {
 
 	public function not_registered_check($roll)
 	{
-		$this->db_reg = $this->load->database('registration',TRUE);
+		$this->db_reg = $this->load->database('reg',TRUE);
 		$query = $this->db_reg->where('roll',$roll)
 							  ->get($this->tables['registered']);
 		if($query->num_rows()<1){
@@ -23,16 +23,14 @@ class Slip_model extends CI_Model {
 	}
 	public function get_registered_detail($roll)
 	{
-		$this->db_reg = $this->load->database('registration',TRUE);
+		$this->db_reg = $this->load->database('reg',TRUE);
 		$query = $this->db_reg->where('roll',$roll)
-							  ->limit(1)
 							  ->get($this->tables['registered']);
 		if($query->num_rows()<1){
 			return FALSE;
 		}else{
 			$result = $query->result_array();
-			$data = $result[0];
-			return $data;
+			return $result;
 		}
 	}
 }

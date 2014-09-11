@@ -7,7 +7,7 @@
 <meta name="author" content="WSDC">
 <head>
 	<title><?php if(!empty($title)) echo $title; else echo 'WSDC'; ?></title>
-	<link href="<?php echo asset_url()."css/flat-bootstrap.min.css" ?> " rel="stylesheet">
+	<link href="<?php echo asset_url()."css/cerulean.bootstrap.min.css" ?> " rel="stylesheet">
 	<link href="<?php echo asset_url()."css/introjs.min.css" ?>" rel="stylesheet">
 	<link href="<?php echo asset_url()."css/offcanvas.css" ?>" rel="stylesheet">
 	<!-- Notify CSS -->
@@ -30,7 +30,7 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="navbar navbar-fixed-top navbar-default hidden-print" role="navigation">
+		<div class="navbar navbar-fixed-top navbar-inverse hidden-print" role="navigation">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">

@@ -23,3 +23,5 @@ $config['tables']['student_feedback']='student_feedback';
 $config['tables']['missing_courses']='cfid_missing';
 $config['tables']['exit_feedback']='exit_feedback';
 $config['tables']['results_odd']='results_odd_2013';
+$config['tables']['attendance_record']='attendance_record';
+$config['tables']['attendance_dates']='attendance_dates';
