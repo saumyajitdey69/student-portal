@@ -69,18 +69,19 @@ class Attendance_model extends CI_Model {
 		{
 			//classes held
 			$details['status']=2;
-			$details['no_classes']=sizeof($classes_held);
-			$details['no_classes_attended']=sizeof($classes_held);
+			$details['no_classes']=0;
+			$details['no_classes_attended']=0;
 			foreach ($classes_held as $key => $value) {
 				$uid=$classes_held[$key]['id'];
+				$details['no_classes']+=$classes_held[$key]['no_hours'];
 				$check=$db_register->select()
 									->from($this->tables['attendance_record'])
 									->where(array('id'=>$uid,'rollno'=>$roll))
 									->limit(1)
 									->get();
-				if($check->num_rows()==1)
+				if($check->num_rows()==0)
 				{
-					$details['no_classes_attended']--;
+					$details['no_classes_attended']+=$classes_held[$key]['no_hours'];
 				}
 			}
 			return $details;
