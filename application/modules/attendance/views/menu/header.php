@@ -36,7 +36,7 @@
         </a>
       </li>
       <hr>
-      <!-- <li <?php echo $current_page === "slip" ? "class='active'" : ""?> class="tips" title="Registration slip not avalilable">
+      <!-- <li <?php echo $current_page === "slip" ? "class='active'" : ""?> class="tips" title="Registration slip avalilable">
         <a href="#" target="_blank">
           <span class="glyphicon glyphicon-file"></span> Registration Slip
         </a>

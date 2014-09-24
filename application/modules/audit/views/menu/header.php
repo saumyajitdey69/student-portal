@@ -40,7 +40,7 @@
         </a>
       </li>
       <hr>
-      <li <?php echo $current_page === "slip" ? "class='active'" : ""?> class="tips" title="Registration slip not avalilable">
+      <li <?php echo $current_page === "slip" ? "class='active'" : ""?> class="tips" title="Registration slip avalilable">
         <a href="<?php echo base_url('audit/slip'); ?>" target="_blank">
           <span class="glyphicon glyphicon-file"></span> Registration Slip <span class="label label-danger">new</span>
         </a>
