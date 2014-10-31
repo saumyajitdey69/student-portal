@@ -36,5 +36,20 @@ define('FOPEN_READ_WRITE_CREATE',				'a+b');
 define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
+
+/* 
+|
+|----------------------------------------------------------------------
+|Registration WSDC
+|----------------------------------------------------------------------
+|
+| These constants are defined for registration. Number_of_course is the number of courses our database supports :)
+|
+*/
+define('NUMBER_OF_COURSES', '18');
+define('DEAN_CAN_REGISTER', TRUE);
+define('HOD_CAN_REGISTER', FALSE);
+define('FACULTY_ADVISER_CAN_REGISTER', TRUE);
+
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

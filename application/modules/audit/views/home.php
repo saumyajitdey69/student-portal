@@ -21,6 +21,7 @@ if($this->session->flashdata('danger') == TRUE)
 <div class="well">
 	<h1>Academic Audit</h1>
 	<p>Academic Feedback | Academic Results | Academic Calender</p>
+	<h2><a href="http://goo.gl/CcOVYj">Click here to avail mobile banking services</a></h2>
 </div>
 
 

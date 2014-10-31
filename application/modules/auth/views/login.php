@@ -26,9 +26,9 @@
     <a href="#" onclick="$('#resend-form').toggleClass('hidden');">Resend my activation link</a>
 </div>
 
-<div class="form-group">
+<!-- <div class="form-group">
     <a href="<?php echo base_url('auth/register') ?>">Create an account</a>
-</div>
+</div> -->
 </form>
 
 <form class="form form-forgot hidden" id="forgot-form" method="post">
