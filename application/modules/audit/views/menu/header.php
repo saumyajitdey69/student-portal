@@ -1,20 +1,21 @@
-<div class="row" style="margin-top:1%;" >
-  <div class="col-xs-12 col-sm-3 col-md-2 hidden-print" id="sidebar" role="navigation">
+<div class="row">
+
+  <div class="col-sm-3 col-md-2 hidden-print sidebar" role="navigation">
     <div class="bs-sidebar hidden-print affix" role="complementary">
-     <ul class="nav bs-sidenav">
+     <ul class="nav nav-sidenav"><br>
       <li <?php echo $current_page === "home" ? "class='active'" : ""?>>
         <a href="<?php echo base_url('audit/home'); ?>">
-          <span class="glyphicon glyphicon-home"></span> HOME
+          <span class="glyphicon glyphicon-home"></span> Home
         </a>
       </li>
-      <li <?php echo $current_page === "profile" ? "class='active'" : ""?>>
+      <!-- <li <?php echo $current_page === "profile" ? "class='active'" : ""?>>
         <a href="<?php echo base_url('audit/profile'); ?>">
           <span class="glyphicon glyphicon-user"></span> Profile
         </a>
-      </li>
+      </li> -->
       <hr>
       <li <?php echo $current_page === "attendance" ? "class='active'" : ""?>>
-        <a href="<?php echo base_url('attendance'); ?>">ATTENDANCE <span class="label label-danger">new</span></a>
+        <a href="<?php echo base_url('attendance'); ?>"><span class="glyphicon glyphicon-calendar"></span> Attendance <span class="label label-danger">new</span></a>
       </li>
       <hr>
       <li>FEEDBACK</li>
@@ -54,5 +55,5 @@
   </div><!--/span-->
 </div>
 <div class="clearfix visible-xs hidden-print"></div>
-<div class="col-xs-12 col-sm-9 col-md-10">
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <br>
