@@ -59,10 +59,10 @@ $lang['group_delete_unsuccessful'] 	= 'Unable to delete group';
 $lang['group_name_required'] 		= 'Group name is a required field';
 
 // Activation Email
-$lang['email_activation_subject']            = 'Account Activation';
-$lang['email_activate_heading']    = 'Activate account for %s';
+$lang['email_activation_subject']            = 'Student Portal Account Activation';
+$lang['email_activate_heading']    = 'Activate account(Username: %s)';
 $lang['email_activate_subheading'] = 'Please click this link to %s.';
-$lang['email_activate_link']       = 'Activate Your Account';
+$lang['email_activate_link']       = 'Activate Your Student Portal Account';
 
 // Forgot Password Email
 $lang['email_forgotten_password_subject']    = 'Forgotten Password Verification';

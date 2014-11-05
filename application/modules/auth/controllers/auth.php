@@ -68,18 +68,18 @@ class Auth extends CI_Controller {
 			$status=$this->ion_auth->send_activation_mail($email);
 			if($status==FALSE)
 			{
-				$data['message']='Activation mail sending failed.<br>Enter registered email-id correctly.<hr>';
+				$this->session->set_flashdata('danger', 'Activation mail sending failed.<br>Enter registered email-id correctly.');
 			}
 			else if($status==100)
 			{
-				$data['message']='Account already Activated.<br>Click on forgot password to reset your password.<hr>';
+				$this->session->set_flashdata('warning', 'Account already Activated.<br>Click on forgot password to reset your password.');
 			}
 			else
 			{
-				$data['message']='Activation mail sent.<br>Check your email inbox and spam folder too!!.<hr>';
+				$this->session->set_flashdata('success', 'Activation mail sent.<br>Check your email inbox and spam folder too!!.');
 
 			}
-			$this->_render_page('auth/login',$data);
+			redirect('auth/login','location', 301);
 		}
 		else
 		{
@@ -384,7 +384,7 @@ class Auth extends CI_Controller {
 			else
 			{
 				// do we have a valid request?
-				if ($this->_valid_csrf_nonce() === FALSE || $user->id != $this->input->post('user_id'))
+				if ($user->id != $this->input->post('user_id'))
 				{
 
 					//something fishy might be up
@@ -472,7 +472,7 @@ class Auth extends CI_Controller {
 			if ($this->input->post('confirm') == 'yes')
 			{
 				// do we have a valid request?
-				if ($this->_valid_csrf_nonce() === FALSE || $id != $this->input->post('id'))
+				if ($id != $this->input->post('id'))
 				{
 					show_error($this->lang->line('error_csrf'));
 				}
@@ -756,7 +756,7 @@ class Auth extends CI_Controller {
 		if (isset($_POST) && !empty($_POST))
 		{
 			// do we have a valid request?
-			if ($this->_valid_csrf_nonce() === FALSE || $id != $this->input->post('id'))
+			if ($id != $this->input->post('id'))
 			{
 				show_error($this->lang->line('error_csrf'));
 			}

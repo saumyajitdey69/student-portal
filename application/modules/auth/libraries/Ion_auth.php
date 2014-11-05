@@ -380,6 +380,11 @@ class Ion_auth
 	public function send_activation_mail($email)
 	{
 			$user = $this->ion_auth_model->get_user($email);
+			// var_dump($user);
+			if($user==FALSE) //no user found with given mail id
+			{
+				return FALSE;
+			}
 			if($user->active==1)
 				return 100;
 			$activation_code =$user->activation_code;

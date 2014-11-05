@@ -5,6 +5,19 @@
   <?php if(!empty($message)): ?>
     <div class="text-danger fade in"><?php echo $message;?></div>
   <?php else: ?>
+  <?php 
+if($this->session->flashdata('success') == TRUE) 
+  echo '<div class="alert alert-success"><a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>'.$this->session->flashdata('success').'</div>';
+
+if($this->session->flashdata('warning') == TRUE) 
+  echo '<div class="alert alert-warning"><a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>'.$this->session->flashdata('warning').'</div>';
+
+if($this->session->flashdata('info') == TRUE)
+  echo '<div class="alert alert-info"><a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>'.$this->session->flashdata('info').'</div>';
+
+if($this->session->flashdata('danger') == TRUE)
+  echo '<div class="alert alert-danger"><a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>'.$this->session->flashdata('danger').'</div>';
+?>
     <p class="text-info fade in">Please login with your registered Email/User Id and password</p>
   <?php endif; ?>
   <div class="form-group">
@@ -17,13 +30,15 @@
     <button type="submit" name="submit" class="btn btn-md btn-primary ">Login</button>
   </div>
 
+</form>
+<div class="row" style="padding:15px;">
   <div class="form-group">
     <a  class="text-danger" href="<?php echo base_url('auth/forgot_password') ?>"  >Forgot password of your account?</a>
   </div>
   <div class="form-group">
     <a  class="text-danger" href="<?php echo base_url('auth/activation_mail') ?>"  >Get Activation Link</a>
   </div>
-</form>
+  </div>
 <div class="row" style="padding:15px;">
 	<legend>Create account</legend>
 	<a href="<?php echo base_url('auth/create_general_user') ?>" role="" class="btn btn-warning">Register</a>
