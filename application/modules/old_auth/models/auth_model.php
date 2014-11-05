@@ -5,16 +5,17 @@ class Auth_model extends CI_Model {
     public function __construct()
     {
         parent::__construct();
+        $this->old_db=$this->load->database('old_student',TRUE,TRUE);
     }
 
     public function verify_credentials($credentials) {
         $credentials['password']=md5($credentials['password']);
-        $query=$this->db->get_where('student_auth',$credentials);
+        $query=$this->old_db->get_where('student_auth',$credentials);
         if ($query->num_rows() == 1) {
             return $query->first_row();
         } else {
-            $this->db->select('')->from('student_auth')->where(array('username' => $credentials['username']))->limit(1);
-            $query = $this->db->get();
+            $this->old_db->select('')->from('student_auth')->where(array('username' => $credentials['username']))->limit(1);
+            $query = $this->old_db->get();
             if ($query->num_rows() == 0) {
                 return 0;
             } else {
@@ -24,15 +25,15 @@ class Auth_model extends CI_Model {
     }
 
     public function update_ip($credentials) {
-        $this->db->where('username',$credentials['username']);
-        $this->db->set('access_count','access_count+1',FALSE);
-        $this->db->set('access_location',$credentials['access_location']);
-        $this->db->update('student_auth');
+        $this->old_db->where('username',$credentials['username']);
+        $this->old_db->set('access_count','access_count+1',FALSE);
+        $this->old_db->set('access_location',$credentials['access_location']);
+        $this->old_db->update('student_auth');
     }
 
     public function get($userid) {
-        $this->db->select()->from('student_data')->where(array('userid' => $userid))->limit(1);
-        $query = $this->db->get();
+        $this->old_db->select()->from('student_data')->where(array('userid' => $userid))->limit(1);
+        $query = $this->old_db->get();
         if ($query->num_rows() == 1) {
             return $query->first_row();
         } else {
@@ -42,8 +43,8 @@ class Auth_model extends CI_Model {
 
 
     public function get_userid_actlink($id) {
-        $this->db->select("userid")->from('student_auth')->where(array('activation_link' => $id))->limit(1);
-        $query = $this->db->get();
+        $this->old_db->select("userid")->from('student_auth')->where(array('activation_link' => $id))->limit(1);
+        $query = $this->old_db->get();
         if ($query->num_rows() == 1) {
             return $query->first_row()->userid;
         } else {
@@ -52,10 +53,10 @@ class Auth_model extends CI_Model {
     }
 
     public function set_new_password($activation_link,$password){
-        $this->db->update('student_auth',
+        $this->old_db->update('student_auth',
             array('password' => md5($password), 'activation_link' => ''),
             array('activation_link' => $activation_link));
-        if ($this->db->affected_rows() === 1){
+        if ($this->old_db->affected_rows() === 1){
             return true;
         } else {
             return false;
@@ -63,8 +64,8 @@ class Auth_model extends CI_Model {
     }
 
     public function get_userid_email($email) {
-        $this->db->select('userid')->from('student_data')->where(array('email' => $email))->limit(1);
-        $query = $this->db->get();
+        $this->old_db->select('userid')->from('student_data')->where(array('email' => $email))->limit(1);
+        $query = $this->old_db->get();
         if ($query->num_rows() == 1) {
             return $query->first_row()->userid;
         } else {
@@ -74,8 +75,8 @@ class Auth_model extends CI_Model {
 
     // public function get_roll_number($userid)
     // {
-    //     $this->db->select('roll_number')->from('student_data')->where(array('userid' => $userid))->limit(1);
-    //     $query = $this->db->get();
+    //     $this->old_db->select('roll_number')->from('student_data')->where(array('userid' => $userid))->limit(1);
+    //     $query = $this->old_db->get();
     //     if ($query->num_rows() == 1) {
     //         return $query->first_row()->roll_number;
     //     } else {
@@ -85,8 +86,8 @@ class Auth_model extends CI_Model {
 
     public function activation($activation_link)
     {
-        $this->db->update('student_auth', array('active' => 1), array('activation_link' => $activation_link));
-        if ($this->db->affected_rows() === 1) {
+        $this->old_db->update('student_auth', array('active' => 1), array('activation_link' => $activation_link));
+        if ($this->old_db->affected_rows() === 1) {
             return true;
         } else {
             return false;
@@ -95,7 +96,7 @@ class Auth_model extends CI_Model {
 
     // public function get_courses($roll_number, $arr = '')
     // {
-    //     $query = $this->db->select()->from('registration_list')->where(array('roll_number' => $roll_number))->limit(1);
+    //     $query = $this->old_db->select()->from('registration_list')->where(array('roll_number' => $roll_number))->limit(1);
     //     if ($query->num_rows() == 1) {
     //         return $query->first_row($arr);
     //     } else {
@@ -107,14 +108,14 @@ class Auth_model extends CI_Model {
     {
         $link = time().md5(mt_rand(1000000, 9999999));
         $data = array('activation_link' => $link);
-        $this->db->update('student_auth', $data, array('userid' => $userid));
+        $this->old_db->update('student_auth', $data, array('userid' => $userid));
         return $link;
     }
 
     public function get_account_status($value,$param='userid'){
         // returns the active state of the userid account
-        $this->db->select('active')->from('student_auth')->where(array("$param" =>$value))->limit(1);
-        $query = $this->db->get();
+        $this->old_db->select('active')->from('student_auth')->where(array("$param" =>$value))->limit(1);
+        $query = $this->old_db->get();
         return $query->first_row()->active;
     }
 
@@ -122,8 +123,8 @@ class Auth_model extends CI_Model {
     {
         $data["active"] = 1;
         $data["activation_link"] = "";
-        $this->db->update('student_auth', $data, array('activation_link' => $link));
-        if ($this->db->affected_rows() === 1) {
+        $this->old_db->update('student_auth', $data, array('activation_link' => $link));
+        if ($this->old_db->affected_rows() === 1) {
             return true;
         } else {
             return false;
@@ -132,15 +133,15 @@ class Auth_model extends CI_Model {
 
     public function activate_account($link)
     {
-        $this->db->select()->from('student_auth')->where(array('activation_link'=>$link));
-        $query=$this->db->get();
+        $this->old_db->select()->from('student_auth')->where(array('activation_link'=>$link));
+        $query=$this->old_db->get();
         if ($query->num_rows() != 1) {
             return "No such Activation Link";
         } else {
             foreach ($query->result() as $row) {
-                $this->db->where(array('activation_link'=>$row->activation_link,'userid' => $row->userid));
-                $query2=$this->db->update('student_auth',array('active'=>1,'activation_link'=>''));
-                if($this->db->affected_rows() == 1){
+                $this->old_db->where(array('activation_link'=>$row->activation_link,'userid' => $row->userid));
+                $query2=$this->old_db->update('student_auth',array('active'=>1,'activation_link'=>''));
+                if($this->old_db->affected_rows() == 1){
                     return "success";
                 }else{
                     return "Database Error";
@@ -150,9 +151,9 @@ class Auth_model extends CI_Model {
     }
     public function verify_username_exists($username){
         // return "return by check username";
-        // $query = $this->db->from('student_auth')->where("username" => "$username")->get();
-        $this->db->select()->from('student_data')->where(array('username' => $username));
-        $query = $this->db->get();
+        // $query = $this->old_db->from('student_auth')->where("username" => "$username")->get();
+        $this->old_db->select()->from('student_data')->where(array('username' => $username));
+        $query = $this->old_db->get();
         // return "Funtime".$query->num_rows();
         if($query->num_rows() == 1 ){
             return true;
@@ -172,13 +173,13 @@ class Auth_model extends CI_Model {
             $status['message'] = "Username already exists. Please try a different one";
         }
 
-        if($this->db->insert('student_data', $details)){
+        if($this->old_db->insert('student_data', $details)){
             $student_data_insert = true;
         } else {
-            if($this->db->_error_number()==1062){
+            if($this->old_db->_error_number()==1062){
                 //in case of duplicate entries for one of the unique key columns
                 $status['message'] = "Please verify the details you have entered. Some of the fields already exist";
-                // $dtatus['message'] .=  $this->db->_error_message();
+                // $dtatus['message'] .=  $this->old_db->_error_message();
                 return $status;
             } else {
                 //for all other types of errors during inserting
@@ -186,7 +187,7 @@ class Auth_model extends CI_Model {
                 return $status;
             }
         }
-        $userid = $this->db->insert_id();
+        $userid = $this->old_db->insert_id();
         $activation_link = md5(uniqid(rand(),true));
         $authDetails = array(
             'userid' => $userid,
@@ -195,10 +196,10 @@ class Auth_model extends CI_Model {
             'activation_link' => $activation_link
             );
         $status['activationLink'] = $activation_link;
-        if($this->db->insert('student_auth', $authDetails)){
+        if($this->old_db->insert('student_auth', $authDetails)){
             $student_auth_insert = true;
         } else {
-            if($this->db->_error_number()==1062){
+            if($this->old_db->_error_number()==1062){
                 //in case of duplicate entries for one of the unique key columns
                 $status['message'] = "Please verify the details you have entered";
                 return $status;
@@ -208,7 +209,7 @@ class Auth_model extends CI_Model {
                 return $status;
             }
         }
-        $this->db->insert('student_feedback', array('userid' => $userid));
+        $this->old_db->insert('student_feedback', array('userid' => $userid));
         $status['status'] = true;
         return $status;
     }
@@ -216,8 +217,8 @@ class Auth_model extends CI_Model {
     public function changepasswd($userid, $currentpasswd, $newpasswd)
     {
         $data = array('password' => $newpasswd );
-        $this->db->update('student_auth', $data, array('userid' => $userid, 'password' => $currentpasswd));
-        if ($this->db->affected_rows() === 1) {
+        $this->old_db->update('student_auth', $data, array('userid' => $userid, 'password' => $currentpasswd));
+        if ($this->old_db->affected_rows() === 1) {
             return true;
         } else {
             return false;

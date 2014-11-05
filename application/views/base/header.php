@@ -63,11 +63,11 @@
 								<span class="glyphicon glyphicon-cutlery"></span> <span class="hidden-sm"> Hostel &amp; Mess</span>
 							</a>
 						</li>
-						<li data-placement="bottom" class=" tips <?php echo ($current_section === 'form')?'active':''; ?>"  title="WSDC Online Applications">
+						<!-- <li data-placement="bottom" class=" tips <?php echo ($current_section === 'form')?'active':''; ?>"  title="WSDC Online Applications">
 							<a href="<?php echo base_url('apply'); ?>">
 								<span class="glyphicon glyphicon-share-alt"></span> <span class="hidden-sm"> WSDC Applications</span>
 							</a>
-						</li>
+						</li> -->
 						<!-- <li data-placement="bottom" class=" tips <?php echo ($current_section === 'form')?'active':''; ?>"  title="tz Application">
 							<a href="<?php echo base_url('forms'); ?>">
 								<span class="glyphicon glyphicon-floppy-disk"></span> <span class="hidden-sm"> tz Application</span>

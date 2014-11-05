@@ -28,7 +28,12 @@
         <div class="row">
         <div class="alert alert-info">
             <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
-            <p class="text-center">The student portal authentication has been changed. First years can create account now.Don't forget to check your SPAM folder for mails. Drop a mail to wsdc.nitw@gmail.com if you face any issues.
+            <p class="text-center">The student portal authentication has been changed. 
+            You can login with your correct old credentials.
+            </p>
+            <p class="text-danger text-center">In case you have forgot your password or account was not activated,<a href="../old_auth/auth">Click here</a></p>
+            <p class="text-center">
+            First years can create account now.Don't forget to check your SPAM folder for mails. Drop a mail to wsdc.nitw@gmail.com if you face any issues.
             </p>
         </div>
             <div class="hidden-xs col-md-8 col-sm-7 col-lg-8">

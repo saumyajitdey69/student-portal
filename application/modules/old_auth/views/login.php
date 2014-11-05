@@ -1,5 +1,7 @@
+<a role="button" href="<?php echo base_url('auth'); ?>" class="btn btn-lg btn-success">Back to Student Portal</a>
+<hr>
 <form class="form well" role="form" id="signin-form" accept-charset="utf-8" method="post">
-  <legend>Student Portal Login</legend>
+  <legend>Old Student Portal</legend>
   <?php 
   if(isset($message))
   {
@@ -7,7 +9,7 @@
   }
   ?>
   <div class="" id="status-signin"></div>
-  <p class="text-info fade in">Please login with your username and password</p>
+<!--   <p class="text-info fade in">Please login with your username and password</p>
   <div class="form-group">
     <input required type="text" id="inputUserName-signin" name="username" class="form-control" placeholder="Username" autofocus>
 </div>
@@ -16,7 +18,7 @@
 </div>
 <div class="form-group">
     <button type="submit" class="btn btn-md btn-primary btn-login" data-loading-text="Verifying">Login</button>
-</div>
+</div> -->
 <div class="clearfix"></div>
 <br>
 <div class="form-group">

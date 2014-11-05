@@ -18,11 +18,11 @@ class Auth extends MX_Controller {
 
     public function index()
     {
-        if ($this->is_logged_in()) {
-            redirect(base_url("audit"), "location", 301);
-            // redirect(base_url("audit/home"), "location", 301);
-            return;
-        }
+        // if ($this->is_logged_in()) {
+        //     redirect(base_url("audit"), "location", 301);
+        //     // redirect(base_url("audit/home"), "location", 301);
+        //     return;
+        // }
         #script included in modules/auth/view/menu/footer.php
         $data[] = '';
         $this->_render_page('login', $data);
@@ -46,7 +46,7 @@ class Auth extends MX_Controller {
 
      return $ipaddress; 
     }
-    public function login()
+    /*public function login()
     {
         $formData = $this->input->post('formData');
         $formData = json_decode($formData);
@@ -128,7 +128,7 @@ class Auth extends MX_Controller {
             $stat['message'] = "Account creation failed : ".$creationStatus['message'];
         }
         echo json_encode($stat);
-    }
+    }*/
 
     public function activate($id)
     {
@@ -142,7 +142,7 @@ class Auth extends MX_Controller {
             $stat['message']=$status;
             $stat['activated']=false;
         }
-        $this->_render_page('auth/activate', $stat, FALSE);
+        $this->_render_page('old_auth/activate', $stat, FALSE);
     }
 
     public function forgot(){
@@ -167,7 +167,7 @@ class Auth extends MX_Controller {
 
                 Your username is '.$username.'
 
-                To reset your password click on this '.base_url("auth/reset/".$activationLink).'
+                To reset your password click on this '.base_url("old_auth/auth/reset/".$activationLink).'
                 For doubts contact: wsdc.nitw@gmail.com.
                 
                 Cheers,
@@ -201,7 +201,7 @@ class Auth extends MX_Controller {
                 $mailDetails['to'] = $email;
                 $mailDetails['subject'] = "Activation Link";
                 $mailDetails['message'] = '
-                To activate your account click on this <a href="'.base_url("auth/activate/".$activationLink).'">link</a>. Or copy paste the following link in the browser: '.base_url("auth/activate/".$activationLink).'. \r\n\r\nFor doubts contact: wsdc.nitw@gmail.com\r\nCheers,\r\nTeam WSDC';
+                To activate your account click on this <a href="'.base_url("old_auth/auth/activate/".$activationLink).'">link</a>. Or copy paste the following link in the browser: '.base_url("auth/activate/".$activationLink).'. \r\n\r\nFor doubts contact: wsdc.nitw@gmail.com\r\nCheers,\r\nTeam WSDC';
                 if ($this->myemail->send($mailDetails)) {
                     $stat['message'] = "Mail Sent Successfully with a new Activation link";
                     $stat['status']="success";
@@ -305,7 +305,7 @@ class Auth extends MX_Controller {
         }
         $data['userid']=$userid;
         $data["activation_link"]=$id;
-        $this->_render_page("auth/reset",$data,FALSE);
+        $this->_render_page("old_auth/reset",$data,FALSE);
     }
 
     public function logout() {
@@ -317,9 +317,9 @@ class Auth extends MX_Controller {
     function _render_page($view, $data=null, $render=false)
     {
         $view_html = array( 
-            $this->load->view('auth/menu/header', $data, $render),
+            $this->load->view('old_auth/menu/header', $data, $render),
             $this->load->view($view, $data, $render),  
-            $this->load->view('auth/menu/footer', $data, $render),
+            $this->load->view('old_auth/menu/footer', $data, $render),
             );
         if (!$render) return $view_html;
     }
@@ -327,9 +327,9 @@ class Auth extends MX_Controller {
     function _render_register_page($view, $data=null, $render=false)
     {
         $view_html = array( 
-            $this->load->view('auth/menu/register_header', $data, $render),
+            $this->load->view('old_auth/menu/register_header', $data, $render),
             $this->load->view($view, $data, $render),  
-            $this->load->view('auth/menu/footer', $data, $render),
+            $this->load->view('old_auth/menu/footer', $data, $render),
             );
         if (!$render) return $view_html;
     }
