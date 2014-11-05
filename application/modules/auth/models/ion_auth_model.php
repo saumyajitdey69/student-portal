@@ -1333,6 +1333,7 @@ class Ion_auth_model extends CI_Model
 	 **/
 	public function get_users_groups($id=FALSE)
 	{
+		$this->load->database('default',TRUE,TRUE);
 		$this->trigger_events('get_users_group');
 
 		//if no id was passed use the current users id

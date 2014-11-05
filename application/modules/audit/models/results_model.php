@@ -29,7 +29,8 @@ class Results_model extends CI_Model {
 
 	public function check_feedback($userid = '', $rollno='')
 	{
-		$query = $this->db->select('feedback, final_year')
+		$old_db=$this->load->database('old_student',TRUE,TRUE);
+		$query = $old_db->select('feedback, final_year')
 		->where(array('userid' => $userid))
 		->from($this->tables['feedback'])
 		->get();
