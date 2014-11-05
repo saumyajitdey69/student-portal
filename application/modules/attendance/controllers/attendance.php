@@ -1,15 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Attendance extends MX_Controller {
+class Attendance extends MY_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('auth/auth_model', '', TRUE);
-		if ($this->nativesession->get('userid') === null)
-		{
-			redirect(base_url('auth'), 'location', 301);
-			return false;
-		}
 		$this->load->model('attendance_model');
 	}
 	public function index()
@@ -18,7 +12,7 @@ class Attendance extends MX_Controller {
 		$data['current_section'] = 'audit';
 		$data['current_page'] = "attendance";
 		// load registered data
-		$userid=$this->nativesession->get('userid');
+		$userid=$this->user_id;
 		$this->load->model('audit/feedback_model');
 		$this->load->model('audit/slip_model');
 		$this->load->model('attendance/attendance_model');

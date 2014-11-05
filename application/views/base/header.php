@@ -39,12 +39,20 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="<?php echo base_url() ?>"> <span class="glyphicon glyphicon-user"></span> STUDENT PORTAL</a>
+					<a class="navbar-brand" href="<?php echo base_url('audit/home') ?>"> <span class="glyphicon glyphicon-user"></span> STUDENT PORTAL</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse navbar-ex1-collapse">
 					<ul class="nav navbar-nav">
+						<?php if(isset($admin_logged) && $admin_logged==1) { ?>
+                        <li class="tips <?php echo ($current_section === 'profile')?'active':''; ?>" title="Admin authentication">
+                            <a href="<?php echo base_url('auth/'); ?>">
+                                <span class="glyphicon glyphicon-user"></span> <span class="hidden-sm">Authentication</span>
+                            </a>
+                        </li>
+                        <?php } ?>
+
 						<li class="tips <?php echo ($current_section === 'audit')?'active':''; ?>" title="Academic Audit : Results, Feedback, Registration">
 							<a href="<?php echo base_url('audit/home'); ?>">
 								<span class="glyphicon glyphicon-list-alt"></span> <span class="hidden-sm">Academic Audit</span>
@@ -52,7 +60,7 @@
 						</li>
 						<li data-placement="bottom" class=" tips <?php echo ($current_section === 'hostels')?'active':''; ?>"  title="Online Hostel Allotment">
 							<a href="<?php echo base_url('hostels'); ?>">
-								<span class="glyphicon glyphicon-cutlery"></span> <span class="hidden-sm"> Hostel & Mess</span>
+								<span class="glyphicon glyphicon-cutlery"></span> <span class="hidden-sm"> Hostel &amp; Mess</span>
 							</a>
 						</li>
 						<li data-placement="bottom" class=" tips <?php echo ($current_section === 'form')?'active':''; ?>"  title="WSDC Online Applications">
@@ -87,7 +95,7 @@
 						<span class="glyphicon glyphicon-cog"></span> <!-- Settings <b class="caret"></b> --> &nbsp;
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="<?php echo base_url('auth/changepasswd') ?>"><span class="glyphicon glyphicon-barcode"></span> Change Password</a> </li>
+						<li><a href="<?php echo base_url('auth/change_password') ?>"><span class="glyphicon glyphicon-barcode"></span> Change Password</a> </li>
 						<li><a href="<?php echo base_url('auth/logout') ?>"><span class="glyphicon glyphicon-off"></span> Logout</a> </li>
 					</ul>
 				</li>

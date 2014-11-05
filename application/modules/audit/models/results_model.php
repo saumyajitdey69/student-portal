@@ -180,6 +180,17 @@ class Results_model extends CI_Model {
 			return false;
 		}
 	}
+	public function get_old_user_id($roll)
+	{
+		$old_db=$this->load->database('old_student',TRUE,TRUE);
+		$old_db->select('userid')->from('student_data')->where(array('roll_number' => $roll))->limit(1);
+		$query = $old_db->get();
+		if ($query->num_rows() == 1) {
+			return $query->first_row()->userid;
+		} else {
+			return false;
+		}
+	}
 
 // public function get_subjects($reference_id)
 // {

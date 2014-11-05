@@ -5,20 +5,12 @@ $ewc_charge = 4500;
 $allowed_student_types = array(71,72,73,74,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,95,94,102,103,39,47,55,63,41,49,57,65,104,43,51,59,67,107,45,53,61,69,40,48,56,64,42,50,58,66,105,44,52,60,68,106,46,46,54,62,70,46,94,95,102,103,108);
 
 $iccr_ids = array(55,56,57,58,59,60,61,62,108);
-class Hostels extends CI_Controller {
+class Hostels extends MY_Controller {
 
     function __construct(){
         parent::__construct();
-        {
-            $this->load->model('auth/auth_model', '', TRUE);
-            if ($this->nativesession->get('userid') === null)
-            {
-                redirect(base_url('audit'), 'location', 301);
-                return false;
-            }
-        }
         $this->load->model('audit/audit_model');
-        if ($this->audit_model->profile_edited($this->nativesession->get('userid')) === false)
+        if ($this->audit_model->profile_edited($this->user_id) === false)
         {
             $this->session->set_flashdata('danger', 'Complete your profile');
             redirect(base_url('audit/profile'), 'location', 301);
@@ -37,7 +29,7 @@ class Hostels extends CI_Controller {
         }
         $data['title'] = 'Online Hostel & Mess Allotment';
         $data['error'] = array();
-        $regno = $this->hostelmodel->userid_to_regno($this->nativesession->get('userid'));
+        $regno = $this->hostelmodel->userid_to_regno($this->user_id);
         $student_detail = $this->studentmodel->get_student_detail($regno);
         if($student_detail){
             if($student_detail['blocked']==1){
@@ -92,7 +84,7 @@ class Hostels extends CI_Controller {
 
     public function _is_neft()
     {
-        $regno = $this->hostelmodel->userid_to_regno($this->nativesession->get('userid'));
+        $regno = $this->hostelmodel->userid_to_regno($this->user_id);
         return $this->studentmodel->has_neft($regno);
     }
 
@@ -192,7 +184,7 @@ class Hostels extends CI_Controller {
     public function hostel_slip(){
         $data['title'] = 'Hostel/Mess allotment slip';
         $data['error'] = array();
-        $regno = $this->hostelmodel->userid_to_regno($this->nativesession->get('userid'));
+        $regno = $this->hostelmodel->userid_to_regno($this->user_id);
         $student_detail = $this->studentmodel->get_student_detail($regno);
         //var_dump($this->_is_alloted_hostel());
         //var_dump($this->_is_alloted_mess());
@@ -259,7 +251,7 @@ class Hostels extends CI_Controller {
     }
 
     public function _get_allowed_mess_hostel($payment_detail){
-        $userId = $this->nativesession->get('userid');
+        $userId = $this->user_id;
         $hostel_mess = $this->hostelmodel->get_hostel_mess_list_student($userId);
         $mess_due = $this->get_mess_due();
         if($payment_detail['messtransactions'] && $hostel_mess['mess']){
@@ -295,12 +287,12 @@ class Hostels extends CI_Controller {
     }
 
     public function _get_allowed_mess_hostel_summer($payment_detail){
-        $userId = $this->nativesession->get('userid');
+        $userId = $this->user_id;
         $hostel_mess = $this->hostelmodel->get_hostel_mess_list_student($userId);
         $mess_due_arr = $this->get_mess_due();
         $mess_due = $mess_due_arr[0]['due'];
         //for iccr check
-        $regno = $this->hostelmodel->userid_to_regno($this->nativesession->get('userid'));
+        $regno = $this->hostelmodel->userid_to_regno($this->user_id);
         $student_detail = $this->studentmodel->get_student_detail($regno);
         $iccr = false;
         if(in_array(intval($student_detail['hosteltypeid']), $GLOBALS['iccr_ids'])){
@@ -348,37 +340,37 @@ class Hostels extends CI_Controller {
     }
 
 public function get_mess_due(){
-    $userId = $this->nativesession->get('userid');
+    $userId = $this->user_id;
     $mess_due = $this->hostelmodel->get_mess_due($userId);
     return $mess_due;
 }
 public function payment_detail_check() {
-    $userId = $this->nativesession->get('userid');
+    $userId = $this->user_id;
     $payment_detail = $this->hostelmodel->payment_detail_check($userId);
     return $payment_detail;
 }
 public function _is_alloted_hostel() {
-    $userId = $this->nativesession->get('userid');
+    $userId = $this->user_id;
     $hostel = $this->hostelmodel->is_alloted_hostel($userId);
     return $hostel;
 }
 public function _is_alloted_mess() {
-    $userId = $this->nativesession->get('userid');
+    $userId = $this->user_id;
     $mess = $this->hostelmodel->is_alloted_mess($userId);
     return $mess;
 }
 public function _is_alloted_hostel_summer() {
-    $userId = $this->nativesession->get('userid');
+    $userId = $this->user_id;
     $hostel = $this->hostelmodel->is_alloted_hostel($userId);
     return $hostel;
 }
 public function _is_alloted_mess_summer() {
-    $userId = $this->nativesession->get('userid');
+    $userId = $this->user_id;
     $mess = $this->hostelmodel->is_alloted_mess($userId);
     return $mess;
 }
 public function allotment ($type='') {
-    $regno = $this->hostelmodel->userid_to_regno($this->nativesession->get('userid'));
+    $regno = $this->hostelmodel->userid_to_regno($this->user_id);
     $student_detail = $this->studentmodel->get_student_detail($regno);
     if($student_detail){
         if($student_detail['blocked']==1){
@@ -394,7 +386,7 @@ public function allotment ($type='') {
         header("location: /student/hostels/allotment/room/");
     }
     $data = array();
-    $regno = $this->hostelmodel->userid_to_regno($this->nativesession->get('userid'));
+    $regno = $this->hostelmodel->userid_to_regno($this->user_id);
     $data['studenttransactions'] = $this->studentmodel->get_student_transactions($regno);
     $payment_detail = $data['studenttransactions'][0];
     $hostel_mess = $this->_get_allowed_mess_hostel_summer($payment_detail);
@@ -438,7 +430,7 @@ public function get_room_list_JSON($hostelId='',$floor=''){
 }
 
 public function single_room() {
-    $regno = $this->hostelmodel->userid_to_regno($this->nativesession->get('userid'));
+    $regno = $this->hostelmodel->userid_to_regno($this->user_id);
     $student_detail = $this->studentmodel->get_student_detail($regno);
     if($student_detail){
         if($student_detail['blocked']==1){
@@ -451,8 +443,8 @@ public function single_room() {
     }
     $room_id = $this->input->post('roomId');
     $hostel_id = $this->input->post('hostelId');
-    $userId = $this->nativesession->get('userid');
-    $regno = $this->hostelmodel->userid_to_regno($this->nativesession->get('userid'));
+    $userId = $this->user_id;
+    $regno = $this->hostelmodel->userid_to_regno($this->user_id);
     $data['studenttransactions'] = $this->studentmodel->get_student_transactions($regno);
     $payment_detail = $data['studenttransactions'][0];
     if($payment_detail=='blocked'){
@@ -498,7 +490,7 @@ public function single_room() {
 }
 
 public function single_mess() {
-    $regno = $this->hostelmodel->userid_to_regno($this->nativesession->get('userid'));
+    $regno = $this->hostelmodel->userid_to_regno($this->user_id);
     $student_detail = $this->studentmodel->get_student_detail($regno);
     if($student_detail){
         if($student_detail['blocked']==1){
@@ -511,8 +503,8 @@ public function single_mess() {
     }
     $mess_id = $this->input->post('messId');
     $hostel_id = $this->input->post('hostelId');
-    $userId = $this->nativesession->get('userid');
-    $regno = $this->hostelmodel->userid_to_regno($this->nativesession->get('userid'));
+    $userId = $this->user_id;
+    $regno = $this->hostelmodel->userid_to_regno($this->user_id);
     $data['studenttransactions'] = $this->studentmodel->get_student_transactions($regno);
     $payment_detail = $data['studenttransactions'][0];
     if($payment_detail=='blocked'){
@@ -567,12 +559,12 @@ public function single_mess() {
         $data['current_nav'] = 'group';
         $data['title'] = 'Manage Group';
         $data['scripts'] = array('hostel_group.js');
-        $userId = $this->nativesession->get('userid');
+        $userId = $this->user_id;
         $data['group_info'] = $this->hostelmodel->fetch_group_info($userId);
         $this->_render_page('hostel/group', $data);
     }
     public function create_group() {
-        $userId = $this->nativesession->get('userid');
+        $userId = $this->user_id;
         if(empty($userId)) return print('error');
         $group = $this->hostelmodel->create_group($userId);
         switch ($group) {

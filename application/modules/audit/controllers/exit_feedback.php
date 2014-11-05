@@ -1,16 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Exit_feedback extends MX_Controller {
+class Exit_feedback extends MY_Controller {
 	
 	public function __construct() {
 		parent::__construct();
-		$this->load->model('auth/auth_model', '', TRUE);
-		if ($this->nativesession->get('userid') === null) {
-			redirect(base_url('auth'), 'location', 301);
-			return false;
-		}
 		$this->load->model('audit/audit_model');
-		if ($this->audit_model->profile_edited($this->nativesession->get('userid')) === false) 
+		if ($this->audit_model->profile_edited($this->user_id) === false) 
 		{
 			$this->session->set_flashdata('danger', 'Complete your profile');
 			redirect(base_url('audit/profile'), 'location', 301);
@@ -28,7 +23,7 @@ class Exit_feedback extends MX_Controller {
 		// redirect('audit');
 		$this->load->library('form_validation');
 		//////// allowed feedback code ///////////
-		$userid = $this->nativesession->get('userid');
+		$userid = $this->user_id;
 
 		$this->load->model('audit/results_model', 'results_model');
 		$roll = $this->results_model->get_roll_number($userid);
@@ -94,7 +89,7 @@ class Exit_feedback extends MX_Controller {
 		else
 		{
 			$this->load->model('audit/exit_feedback_model');
-			$this->exit_feedback_model->insert_exit_feedback_data($this->nativesession->get('userid'),$this->input->post());
+			$this->exit_feedback_model->insert_exit_feedback_data($this->user_id,$this->input->post());
 			$data['msg']="Exit feedback submitted successfully.";
 			$this->_render_page('audit/exit_feedback/msg',$data);
 		}
@@ -102,7 +97,7 @@ class Exit_feedback extends MX_Controller {
 	
 	function _render_page($view, $data=null, $render=false) {
 		// $this->load->model('audit/exit_feedback_model');
-		// $data['exit_feedback_tab']=$this->exit_feedback_model->is_final_year($this->nativesession->get('userid'));
+		// $data['exit_feedback_tab']=$this->exit_feedback_model->is_final_year($this->user_id);
 		$view_html = array( 
 			$this->load->view('base/header', $data, $render),
 			$this->load->view('audit/menu/header', $data, $render),

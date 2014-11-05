@@ -1,18 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Slip extends MX_Controller {
+class Slip extends MY_Controller {
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('auth/auth_model', '', TRUE);
-		if ($this->nativesession->get('userid') === null)
-		{
-			redirect(base_url('auth'), 'location', 301);
-			return false;
-		}
 		$this->load->model('audit_model');
-		if ($this->audit_model->profile_edited($this->nativesession->get('userid')) === false)
+		if ($this->audit_model->profile_edited($this->user_id) === false)
 		{
 			$this->session->set_flashdata('danger', 'Complete your profile');
 			redirect(base_url('audit/profile'), 'location', 301);
@@ -26,7 +20,7 @@ class Slip extends MX_Controller {
 	public function index()
 	{
 		
-		$userid=$this->nativesession->get('userid');
+		$userid=$this->user_id;
 		$roll = $this->feedback_model->get_roll($userid);
 		$data=$this->getSlipData($roll);
 		$this->_render_page('registration/slip_new',$data);
@@ -99,7 +93,7 @@ class Slip extends MX_Controller {
 	public function index2()
 	{
 		$data['current_page'] = 'slip';
-		$userid=$this->nativesession->get('userid');
+		$userid=$this->user_id;
 		$this->load->model('feedback_model');
 		$roll = $this->feedback_model->get_roll($userid);
 		$this->load->helper(array('form', 'url'));

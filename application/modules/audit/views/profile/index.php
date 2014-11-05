@@ -56,7 +56,7 @@ else if(!empty($submitted))
         </div>
       </div>
       <div class="form-group">
-        <label for="inputRegistration_number" class="col-sm-4 control-label">Registraion Number</label>
+        <label for="inputRegistration_number" class="col-sm-4 control-label">Registration Number</label>
         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
           <input type="text" name="registration_number" id="inputRegistration_number"  class="form-control input-sm" value="" required="required" title="" placeholder="First year roll number" >
         </div>
@@ -274,8 +274,8 @@ else if(!empty($submitted))
  document.form_profile.phone_number.value = '<?php echo $details->mobile; ?>';
  document.form_profile.emergency_contact.value = '<?php echo $details->emergency_contact; ?>';
  document.form_profile.sbh_account.value = '<?php echo $details->sbh_account; ?>';
- document.form_profile.hostel.value = '<?php echo $details->hostel; ?>';
- document.form_profile.room_number.value = '<?php echo $details->hostel_room; ?>';
- document.form_profile.mess.value = '<?php echo $details->mess; ?>';
+ // document.form_profile.hostel.value = '<?php echo $details->hostel; ?>';
+ // document.form_profile.room_number.value = '<?php echo $details->hostel_room; ?>';
+ // document.form_profile.mess.value = '<?php echo $details->mess; ?>';
 
 </script>
