@@ -1,6 +1,6 @@
-	$('#search-item-input').on('focusout', function (argument) {
-		clearSearchResult();
-	});
+	// $('#search-item-input').on('focusout', function (argument) {
+	// 	clearSearchResult();
+	// });
 
 	function clearSearchResult () {
 		$('#search-item-output').html("");
@@ -32,7 +32,8 @@
 		// console.log(searchResult)
 		for (var i = searchResult.length - 1; i >= 0; i--) {
 			// console.log(searchResult[i]['name'])
-			item = '<a href="'+searchResult[i]["username"]+'" class="list-group-item">'+toTitleCase(searchResult[i]['name'])+'</a>'
+			item = '<div class="media search-media list-group-item search-list-item"> <a class="media-left" href="#"> <img src="/gitlab/student-portal/assets/images/profile-img.png" width="36" alt="profile_img"></a><div class="media-body"><h5 class="media-heading">'+toTitleCase(searchResult[i]['name'])+'</h5>'+ '<small>'+searchResult[i]['roll_number']+ ' &middot; ' + searchResult[i]['branch'].toUpperCase()+ ' &middot; ' + searchResult[i]['joining_year'].toLowerCase() + ' &middot; ' + searchResult[i]['email'].toLowerCase()+' </small></div></div>';
+			// item = '<a href="'+searchResult[i]["username"]+'" class="list-group-item">'++'</a>'
 			$('#search-item-output').append(item);
 		};
 	}

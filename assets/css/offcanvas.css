@@ -449,3 +449,11 @@ body {
   height: 52px;
 }
 .navbar-nav > li > a {padding-top:15px !important; padding-bottom:15px !important;}
+
+.search-list-item{
+  padding: 2px;
+}
+
+.search-media{
+  margin-top: 0;
+}
