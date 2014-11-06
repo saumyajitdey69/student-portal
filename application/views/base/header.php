@@ -45,12 +45,12 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse navbar-ex1-collapse">
 					<div class="col-md-5 col-xs-12">
-						<form class="navbar-form" role="search" style="width:100%">
-						<div class="right-inner-addon ">
-    <i class="icon-search"></i>
-							<input type="search" class="form-control" placeholder="Search students" id="search-item-input" name="search-item" style="width:100%">
+						<form onsubmit="return false;" class="navbar-form" role="search" style="width:100%">
+							<div class="right-inner-addon ">
+								<i class="icon-search"></i>
+								<input type="search" class="form-control" placeholder="Search students" id="search-item-input" oninput="OnInput(this.value)" autocomplete="off" name="search-item" style="width:100%">
 							</div>
-							 <div class="list-group" id="serch-item-output" style="position:absolute; width:450px; box-sizing:border-box">
+							<div class="list-group" id="search-item-output" style="position:absolute; width:450px; box-sizing:border-box">
 								<!-- <a href="#" class="list-group-item">Item 1</a>
 								<a href="#" class="list-group-item">Item 1</a>
 								<a href="#" class="list-group-item">Item 1</a>

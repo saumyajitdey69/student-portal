@@ -1,4 +1,33 @@
-$(document).ready(function() {
+	$('#search-item-input').on('focusout', function (argument) {
+		clearSearchResult();
+	});
+
+	function clearSearchResult () {
+		$('#search-item-output').html("");
+	}
+
+	function OnInput(value){
+		var inputString = $.trim(value);
+		// console.log("keypressed. NEw string: " + inputString)
+		$.ajax({
+			url: '../message/get_details',
+			type: 'post',
+			data: {'rolls':inputString},
+			success: formatSearchData
+		});
+	};
+
+	function formatSearchData(data, textStatus, XMLHttpRequest) {
+		$('#search-item-output').html("");
+		var searchResult = JSON.parse(data);
+		// console.log(searchResult)
+		for (var i = searchResult.length - 1; i >= 0; i--) {
+			// console.log(searchResult[i]['name'])
+			item = '<a href="#" class="list-group-item">'+toTitleCase(searchResult[i]['name'])+'</a>'
+			$('#search-item-output').append(item);
+		};
+	}
+
 	$('.helper_modal').click(function (e) {
 		var source = $(this).data('src');
 		var title = $(this).data('heading');
@@ -46,4 +75,9 @@ $(document).ready(function() {
 		if(e.ctrlKey && e.which == 17)
 			introJs().start();
 	});
-});
+
+
+function toTitleCase(str)
+{
+	return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}

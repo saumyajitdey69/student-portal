@@ -22,6 +22,11 @@ class Audit extends MX_Controller {
 
 	}
 
+	public function getSearchData(){
+		$searchStr = $this->input->post('search-string');
+		return $this->audit_model->getSeachItem($searchStr, true, '5');
+	}
+
 	public function index()
 	{
 		$this->home();
