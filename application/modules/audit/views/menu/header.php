@@ -5,7 +5,7 @@
      <ul class="nav nav-sidenav"><br>
       <li <?php echo $current_page === "home" ? "class='active'" : ""?>>
         <a href="<?php echo base_url('audit/home'); ?>">
-          <span class="glyphicon glyphicon-home"></span> Home
+          ACADEMIC SECTION
         </a>
       </li>
       <!-- <li <?php echo $current_page === "profile" ? "class='active'" : ""?>>
@@ -13,46 +13,40 @@
           <span class="glyphicon glyphicon-user"></span> Profile
         </a>
       </li> -->
-      <hr>
+      <!-- <hr> -->
       <li <?php echo $current_page === "attendance" ? "class='active'" : ""?>>
-        <a href="<?php echo base_url('attendance'); ?>"><span class="glyphicon glyphicon-calendar"></span> Attendance <span class="label label-danger">new</span></a>
+        <a href="<?php echo base_url('attendance'); ?>">
+          Attendance
+        </a>
       </li>
-      <hr>
-      <li>FEEDBACK</li>
       <li <?php echo $current_page === "feedback" ? "class='active'" : ""?>>
         <a href="<?php echo base_url('audit/feedback'); ?>">
-          <span class="glyphicon glyphicon-check"></span> Feedback (April 2014)
-        </a>
-      </li>
-      
-      <li <?php echo $current_page === "exit_feedback" ? "class='active'" : ""?>>
-        <a href="<?php echo base_url('audit/exit_feedback'); ?>">
-          <span class="glyphicon glyphicon-check"></span> Exit Feedback
-        </a>
-      </li>
+         Student Feedback
+       </a>
+     </li>
 
-      <hr>
-      <li>
-        RESULTS
-      </li>
-      <li <?php echo $current_page === "result" ? "class='active'" : ""?>>
-        <a href="<?php echo base_url('audit/results') ?>">
-          <span class="glyphicon glyphicon-list"></span> April 2014 (Even Sem)
-        </a>
-      </li>
-      <hr>
-      <li <?php echo $current_page === "slip" ? "class='active'" : ""?> class="tips" title="Registration slip avalilable">
-        <a href="<?php echo base_url('audit/slip'); ?>" target="_blank">
-          <span class="glyphicon glyphicon-file"></span> Registration Slip <span class="label label-danger">new</span>
-        </a>
-      </li>
-      <li <?php echo $current_page === "calendar" ? "class='active'" : ""?>>
-        <a href="<?php echo base_url('audit/calendar'); ?>">
-          <span class="glyphicon glyphicon-calendar"></span> Academic Calender 2014
-        </a>
-      </li>
-     </ul>
-  </div><!--/span-->
+     <li <?php echo $current_page === "exit_feedback" ? "class='active'" : ""?>>
+      <a href="<?php echo base_url('audit/exit_feedback'); ?>">
+       Exit Feedback
+     </a>
+   </li>
+   <li <?php echo $current_page === "result" ? "class='active'" : ""?>>
+    <a href="<?php echo base_url('audit/results') ?>">
+      April 2014 (Even Sem)
+    </a>
+  </li>
+  <li <?php echo $current_page === "slip" ? "class='active'" : ""?> class="tips" title="Registration slip avalilable">
+    <a href="<?php echo base_url('audit/slip'); ?>" target="_blank">
+      Registration Slip
+    </a>
+  </li>
+  <li <?php echo $current_page === "calendar" ? "class='active'" : ""?>>
+    <a href="<?php echo base_url('audit/calendar'); ?>">
+      Academic Calender 2014-15
+    </a>
+  </li>
+</ul>
+</div><!--/span-->
 </div>
 <div class="clearfix visible-xs hidden-print"></div>
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
