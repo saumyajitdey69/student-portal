@@ -29,7 +29,7 @@
         <div class="alert alert-info">
             <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
             <p class="text-center">The student portal authentication has been changed. 
-            You can login with your correct old credentials.
+            You can login with your correct old account credentials.
             </p>
             <p class="text-danger text-center">In case you have forgot your password or account was not activated,<a href="../old_auth/auth">Click here</a></p>
             <p class="text-center">
