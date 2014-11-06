@@ -57,7 +57,7 @@ public function get_details() {
                 if(ctype_digit($detail))
                 {
                     if(strlen($detail) > 6){
-                            // then its may be a phonr number
+                            // then its may be a phone number
                         $field_name = "mobile";
                     }
                     else{
@@ -65,14 +65,14 @@ public function get_details() {
                     }
                 }
                 else
-                    // else (ctype_alpha($detail))
                 {
-                    $field_name = "name";
+                    if(strstr($detail, '@')){
+                        $field_name = "email";
+                    }
+                    else{
+                        $field_name = "name";
+                    }
                 }
-                    // else
-                    // {
-                    //     $field_name = "registration_number";
-                    // }
                 $field_value = $detail;
             }
             else
@@ -88,7 +88,7 @@ public function get_details() {
         // return;
     $this->load->model('message/students_model', 'students_model', TRUE);
         // $students_data = $this->students_model->get_details($rolls);
-    $students_data = $this->students_model->get_details_advance($search_query, '10');
+    $students_data = $this->students_model->get_details_advance($search_query, '6');
     print_r(json_encode($students_data));
 }
 

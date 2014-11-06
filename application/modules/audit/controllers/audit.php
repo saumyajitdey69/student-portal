@@ -37,7 +37,7 @@ class Audit extends MX_Controller {
 		$data['title'] = "Audit | Home";
 		$data['current_section'] = 'audit';
 		$data['current_page'] = "home";
-		$data['title'] = 'Academic Audit ';
+		$data['title'] = 'Student Portal | Academic Section ';
 		$this->_render_page('audit/home', $data);
 	}
 	

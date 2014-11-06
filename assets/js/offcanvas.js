@@ -4,6 +4,12 @@
 
 	function clearSearchResult () {
 		$('#search-item-output').html("");
+		$('#search-item-output').hide();
+	}
+
+	function showSearchResult () {
+		$('#search-item-output').html("");
+		$('#search-item-output').show();
 	}
 
 	function OnInput(value){
@@ -18,12 +24,15 @@
 	};
 
 	function formatSearchData(data, textStatus, XMLHttpRequest) {
-		$('#search-item-output').html("");
+		
 		var searchResult = JSON.parse(data);
+		if(searchResult.length > 0){
+			showSearchResult();
+		}
 		// console.log(searchResult)
 		for (var i = searchResult.length - 1; i >= 0; i--) {
 			// console.log(searchResult[i]['name'])
-			item = '<a href="#" class="list-group-item">'+toTitleCase(searchResult[i]['name'])+'</a>'
+			item = '<a href="'+searchResult[i]["username"]+'" class="list-group-item">'+toTitleCase(searchResult[i]['name'])+'</a>'
 			$('#search-item-output').append(item);
 		};
 	}

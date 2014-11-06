@@ -434,3 +434,18 @@ body {
     padding: 10px 12px;
     pointer-events: none;
 }
+.search-bar{
+  height: 35px;
+}
+
+#search-item-output{
+  border-radius: 5px;
+  border: 1px solid silver;
+  display: none;
+}
+
+.navbar{
+  min-height: 50px;
+  height: 52px;
+}
+.navbar-nav > li > a {padding-top:15px !important; padding-bottom:15px !important;}
