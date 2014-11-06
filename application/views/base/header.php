@@ -39,17 +39,29 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="<?php echo base_url() ?>"> <span class="glyphicon glyphicon-user"></span> STUDENT PORTAL</a>
+					<a class="navbar-brand" href="<?php echo base_url() ?>"> <span class="glyphicon glyphicon-user"></span> Student Portal</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse navbar-ex1-collapse">
 					<div class="col-md-5 col-xs-12">
 						<form class="navbar-form" role="search" style="width:100%">
-							<input type="text" class="form-control" placeholder="Search students" name="search-item" style="width:100%">
-						</form></div>
-						<ul class="nav navbar-nav">
-							
+						<div class="right-inner-addon ">
+    <i class="icon-search"></i>
+							<input type="search" class="form-control" placeholder="Search students" id="search-item-input" name="search-item" style="width:100%">
+							</div>
+							 <div class="list-group" id="serch-item-output" style="position:absolute; width:450px; box-sizing:border-box">
+								<!-- <a href="#" class="list-group-item">Item 1</a>
+								<a href="#" class="list-group-item">Item 1</a>
+								<a href="#" class="list-group-item">Item 1</a>
+								<a href="#" class="list-group-item">Item 2</a>
+								<a href="#" class="list-group-item">Item 3</a> -->
+							</div> 
+						</form>
+						
+					</div>
+					<ul class="nav navbar-nav">
+
 						<!-- <li data-placement="bottom" class=" tips <?php echo ($current_section === 'form')?'active':''; ?>"  title="tz Application">
 							<a href="<?php echo base_url('forms'); ?>">
 								<span class="glyphicon glyphicon-floppy-disk"></span> <span class="hidden-sm"> tz Application</span>
