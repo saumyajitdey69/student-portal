@@ -51,11 +51,7 @@
 								<input type="search" class="form-control search-bar" placeholder="Search students" id="search-item-input" oninput="OnInput(this.value)" autocomplete="off" name="search-item" style="width:100%">
 							</div>
 							<div class="list-group" id="search-item-output" style="position:absolute; width:450px; box-sizing:border-box">
-								<!-- <a href="#" class="list-group-item">Item 1</a>
-								<a href="#" class="list-group-item">Item 1</a>
-								<a href="#" class="list-group-item">Item 1</a>
-								<a href="#" class="list-group-item">Item 2</a>
-								<a href="#" class="list-group-item">Item 3</a> -->
+								
 							</div> 
 						</form>						
 					</div>

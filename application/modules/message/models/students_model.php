@@ -26,7 +26,7 @@ class Students_model extends CI_Model {
 			return FALSE;
 	}
 
-	public function get_details_advance($search_query, $result_count = '5')
+	public function get_details_advance($search_query, $result_count = '5', $order_by_col = 'name')
 	{
 		$db_students=$this->load->database("student", TRUE);
 		$db_students->from("student_data");
@@ -36,7 +36,13 @@ class Students_model extends CI_Model {
 			if(is_array($query) && array_key_exists("name", $query))
 			{
 				// $db_students->like('name', $query['name']);
+				if(strlen($query['name']) === 1){
+				$query['name'] = $db_students->escape($query['name']."%");
+			}else
+			{
 				$query['name'] = $db_students->escape("%".$query['name']."%");
+
+			}
 				$query_string .= "( "."name"." LIKE ".$query['name'];
 				// unset($query['name']);
 			}
@@ -77,7 +83,7 @@ class Students_model extends CI_Model {
 			$db_students->or_where($query_string);
 		}	
 		
-		$query=$db_students->limit($result_count)->get();
+		$query=$db_students->limit($result_count)->order_by($order_by_col)->get();
 		if($query->num_rows()>0)
 			return $query->result();
 		else
