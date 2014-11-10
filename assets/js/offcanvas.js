@@ -80,7 +80,7 @@
 	function box_content (data) {
 		return '<div class="media search-media list-group-item search-list-item">\
 		<a class="media-left" href="#">\
-		<img src="http://graph.facebook.com/v2.2/100002451127231/picture" width="36" alt="profile_img">\
+		<img class="img" src="http://graph.facebook.com/v2.2/100002451127231/picture" width="36" alt="profile_img">\
 		</a>\
 		<div class="media-body">\
 		<h5 class="media-heading">'+
