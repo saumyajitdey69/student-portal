@@ -1,74 +1,38 @@
 <div class="row">
 
   <div class="col-sm-3 col-md-2 hidden-print sidebar" role="navigation">
-    <!-- <div class="bs-sidebar hidden-print affix" role="complementary">
-     <ul class="nav nav-sidenav"><br>
-      <li <?php echo $current_page === "home" ? "class='active'" : ""?>>
-        <a href="<?php echo base_url('audit/home'); ?>">
-          ACADEMIC SECTION
-        </a>
+    <ul class="list-group">
+      <li class="list-group-header">ACADEMIC SECTION</li>
+      <li class="list-group-item <?php echo $current_page === "home" ? "active" : ""?>">
+        <a href="<?php echo base_url('audit/home'); ?>">Home</a>
       </li>
-      <li <?php echo $current_page === "attendance" ? "class='active'" : ""?>>
-        <a href="<?php echo base_url('attendance'); ?>">
-          Attendance
-        </a>
+      <li class="list-group-item <?php echo $current_page === "attendance" ? "active" : ""?>"> 
+        <a href="<?php echo base_url('attendance'); ?>">Attendance</a>
       </li>
-      <li <?php echo $current_page === "feedback" ? "class='active'" : ""?>>
-        <a href="<?php echo base_url('audit/feedback'); ?>">
-         Student Feedback
-       </a>
+      <li class="list-group-item <?php echo $current_page === "feedback" ? "active" : ""?>">
+       <a href="<?php echo base_url('audit/feedback'); ?>">Feedback</a>
      </li>
-
-     <li <?php echo $current_page === "exit_feedback" ? "class='active'" : ""?>>
+     <li class="list-group-item <?php echo $current_page === "exit_feedback" ? "active" : ""?>">
       <a href="<?php echo base_url('audit/exit_feedback'); ?>">
        Exit Feedback
      </a>
    </li>
-   <li <?php echo $current_page === "result" ? "class='active'" : ""?>>
+   <li  class="list-group-item <?php echo $current_page === "result" ? "active" : ""?>">
     <a href="<?php echo base_url('audit/results') ?>">
       April 2014 (Even Sem)
     </a>
   </li>
-  <li <?php echo $current_page === "slip" ? "class='active'" : ""?> class="tips" title="Registration slip avalilable">
+  <li  class="list-group-item <?php echo $current_page === "slip" ? "active" : ""?>" >
     <a href="<?php echo base_url('audit/slip'); ?>" target="_blank">
       Registration Slip
     </a>
   </li>
-  <li <?php echo $current_page === "calendar" ? "class='active'" : ""?>>
+  <li  class="list-group-item <?php echo $current_page === "calendar" ? "active" : ""?>">
     <a href="<?php echo base_url('audit/calendar'); ?>">
-      Academic Calender 2014-15
+      Academic Calendar
     </a>
   </li>
-</ul>
-</div> --><!--/span-->
-
-<ul class="list-group">
-  <li class="list-group-header">ACADEMIC SECTION</li>
-  <li class="list-group-item <?php echo $current_page === "home" ? "active" : ""?>"><a href="<?php echo base_url('audit/home'); ?>">Home</a></li>
-  <li class="list-group-item <?php echo $current_page === "attendance" ? "active" : ""?>"> <a href="<?php echo base_url('attendance'); ?>">Attendance</a></li>
-  <li class="list-group-item <?php echo $current_page === "feedback" ? "active" : ""?>"> <a href="<?php echo base_url('audit/feedback'); ?>">Feedback</a></li>
-
-  <li  class="list-group-item <?php echo $current_page === "exit_feedback" ? "active" : ""?>">
-    <a href="<?php echo base_url('audit/exit_feedback'); ?>">
-     Exit Feedback
-   </a>
- </li>
- <li  class="list-group-item <?php echo $current_page === "result" ? "active" : ""?>">
-  <a href="<?php echo base_url('audit/results') ?>">
-    April 2014 (Even Sem)
-  </a>
-</li>
-<li  class="list-group-item <?php echo $current_page === "slip" ? "active" : ""?>" >
-  <a href="<?php echo base_url('audit/slip'); ?>" target="_blank">
-    Registration Slip
-  </a>
-</li>
-<li  class="list-group-item <?php echo $current_page === "calendar" ? "active" : ""?>">
-  <a href="<?php echo base_url('audit/calendar'); ?>">
-  Academic Calendar
-  </a>
-</li>
-<!-- <li class="list-group-header">Another list header</li> -->
+  <!-- <li class="list-group-header">Another list header</li> -->
   <!-- <li class="list-group-item">
     <span class="collapse-caret collapsed dropdown-toggle" data-toggle="collapse" data-target="#profile"></span>
     <div class="list-group-item-wrapper">
@@ -190,8 +154,6 @@
  <!--  <li class="divider"></li>
  <li class="list-group-item"><a href="#">Help</a></li> -->
 </ul>
-
-
 </div>
 <div class="clearfix visible-xs hidden-print"></div>
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

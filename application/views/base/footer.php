@@ -1,18 +1,17 @@
        <!-- <div class="container">  </div> -->
-        <div class="row hidden-print">
-          <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <hr>
-            <footer>
-             <span data-step="10" data-intro="Contact WSDC for any queries, feedback, suggestions">
-               <div class="fb-like" data-href="https://www.facebook.com/wsdc.nitw" data-layout="standard" data-action="like" data-show-faces="false" data-share="true">
-               </div>
-               <div class="clearfix visible-sm visible-xs">
-              </div>
-              <a href="http://wsdc.nitw.ac.in" target="_blank">wsdc.nitw.ac.in</a> | 
-              <span class="glyphicon glyphicon-envelope"> </span> <a href="mailto: wsdc.nitw@gmail.com" target="_blank"> wsdc.nitw@gmail.com</a> | 
-              <!-- <span class="tips" title="Gopi Krishna, 4/4 Btech CSE"> <span class="glyphicon glyphicon-phone"> </span> +91-9704176445</span> | -->
-              <span class="glyphicon glyphicon-copyright-mark"></span> <a target="_blank" href="http://www.nitw.ac.in/wsdc">Web & Software Development Cell, NITW </a> &nbsp;
-            </span>
+       <div class="row hidden-print">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+          <hr>
+          <footer>
+            <div class="fb-like pull-right" data-href="https://www.facebook.com/wsdc.nitw" data-layout="button" data-action="like" data-show-faces="false" data-share="true">
+            </div>
+            <div class="clearfix visible-sm visible-xs">
+            </div>
+            <small data-step="10" data-intro="Contact WSDC for any queries, feedback, suggestions">
+            <span class="glyphicon glyphicon-copyright-mark"></span> <a class="tips" title="Web & Software Development Cell, NIT Warangal" target="_blank" href="http://www.nitw.ac.in/wsdc">WSDC, NITW </a> 
+              | <a href="http://wsdc.nitw.ac.in" target="_blank">wsdc.nitw.ac.in</a> | 
+              <span class="glyphicon glyphicon-envelope"> </span> <a href="mailto:wsdc@nitw.ac.in" target="_blank"> wsdc@nitw.ac.in</a>
+            </small>
           </footer>
         </div>
       </div> <!-- /row with hidden print closes -->

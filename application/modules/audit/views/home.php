@@ -19,7 +19,7 @@ if($this->session->flashdata('danger') == TRUE)
 }
 ?>
 
-<div class="row">
+<!-- <div class="row">
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="page-header">
 			<h1>Academic Section <br>	<small class="hidden-xs"> feedback | results | attendance | calendar</small></h1>
@@ -42,7 +42,7 @@ if($this->session->flashdata('danger') == TRUE)
 				<iframe src="http://172.20.0.202/nitw_prm/archiveNews.aspx" height="300px" width="100%" frameborder="0"></iframe>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	
 	<!-- 	<h2><a href="http://goo.gl/CcOVYj">Click here to avail mobile banking services</a></h2> -->
 

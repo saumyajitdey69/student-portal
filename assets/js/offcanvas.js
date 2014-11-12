@@ -1,10 +1,9 @@
-	// $('#search-item-input').on('focusout', function (argument) {
-	// 	clearSearchResult();
-	// });
-
+	$(document).on('click', function (argument) {
+		clearSearchResult();
+	});
 	function clearSearchResult () {
 		$('#search-item-output').html("");
-		$('#search-item-output').hide();
+		$('#search-item-output').fadeOut("slow");
 	}
 
 	function showSearchResult () {
@@ -13,7 +12,19 @@
 	}
 
 	function check_branch (inputString) {
-		var branch_reg = {'civil':'civil', 'mech':'mech', 'ece' :'ece', 'cse':'cse', 'eee':'eee', 'electronics':'ece', 'che':'che', 'chemical':'che', 'bio':'biotech', 'biotech':'biotech'};
+		var branch_reg = {
+						  'civil':'civil', 
+						  'mech':'mech', 
+						  'ece' :'ece', 
+						  'cse':'cse', 
+						  'eee':'eee', 
+						  'electronics':'ece', 
+						  'che':'che', 
+						  'chemical':'che', 
+						  'bio':'biotech', 
+						  'biotech':'biotech', 
+						  'chemistry':'chem'
+						};
 		var inputStrings = inputString.split(" ");
 		console.log(inputStrings);
 		for(var i = 0;i<inputStrings.length; i++){
@@ -80,7 +91,7 @@
 	function box_content (data) {
 		return '<div class="media search-media list-group-item search-list-item">\
 		<a class="media-left" href="#">\
-		<img class="img" src="http://graph.facebook.com/v2.2/100002451127231/picture" width="36" alt="profile_img">\
+		<img class="img google-search-progile-img" src="http://graph.facebook.com/v2.2/100002451127231/picture" width="36" alt="profile_img">\
 		</a>\
 		<div class="media-body">\
 		<h5 class="media-heading">'+

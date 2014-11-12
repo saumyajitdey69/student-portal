@@ -460,6 +460,22 @@ body {
   margin-top: 0;
 }
 
+.search-result-box{
+  position:absolute; 
+  width:450px; 
+  box-sizing:border-box;
+}
+
+.search-result-box small,.search-result-box small a{
+  color:rgb(154, 154, 154);
+}
+.search-result-box small a{
+  text-decoration: none;
+}
+.search-result-box small a:hover{
+  text-decoration: underline;
+  color:rgb(160,160,160);
+}
 .google-header-center{
   padding-top:10px;
   padding-bottom:10px;
@@ -477,4 +493,37 @@ padding-top:3px;
 }
 .google-profile-img .img{
   height:100%;
+}
+
+.google-header-form{
+  padding-left:0px; 
+  margin-left:-15px;
+  height:30px;
+  width:450px;
+}
+
+.google-search-bar, .google-search-btn{
+  height:30px !important;
+}
+
+.google-search-size{
+  width: 450px !important;
+}
+
+.google-input-group{
+  height:30px;
+  width:100%;
+}
+
+.google .input-form:focus, .google input:focus,.google .input-form:hover, .google input:hover{
+ -webkit-box-shadow:none !important;
+ box-shadow: none;
+}
+
+.google-search-btn span{
+  padding:0 15px;
+}
+
+.google-search-progile-img{
+  padding:2px;
 }
