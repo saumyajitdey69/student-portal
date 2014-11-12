@@ -1,51 +1,45 @@
-<form class="form well" role="form" id="signin-form" accept-charset="utf-8" method="post">
-  <legend>Student Portal Login</legend>
+<form class="form form-signin" role="form" method="post" accept-charset="utf-8">
+<legend> Login</legend>
+
+  <!-- <div class="alert alert-danger">The website is under maintenance. Inconvenience is deeply regretted. <br> -Abhishek Singh, WSDC Gen. Sec</div> -->
+  <?php if(!empty($message)): ?>
+    <div class="text-danger fade in"><?php echo $message;?></div>
+  <?php else: ?>
   <?php 
-  if(isset($message))
-  {
-      echo '<div class="alert alert-danger"><a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>'.$message.'</div>';
-  }
-  ?>
-  <div class="" id="status-signin"></div>
-  <p class="text-info fade in">Please login with your username and password</p>
+if($this->session->flashdata('success') == TRUE) 
+  echo '<div class="alert alert-success"><a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>'.$this->session->flashdata('success').'</div>';
+
+if($this->session->flashdata('warning') == TRUE) 
+  echo '<div class="alert alert-warning"><a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>'.$this->session->flashdata('warning').'</div>';
+
+if($this->session->flashdata('info') == TRUE)
+  echo '<div class="alert alert-info"><a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>'.$this->session->flashdata('info').'</div>';
+
+if($this->session->flashdata('danger') == TRUE)
+  echo '<div class="alert alert-danger"><a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>'.$this->session->flashdata('danger').'</div>';
+?>
+    <p class="text-info fade in">Please login with your registered Email/User Id and password</p>
+  <?php endif; ?>
   <div class="form-group">
-    <input required type="text" id="inputUserName-signin" name="username" class="form-control" placeholder="Username" autofocus>
-</div>
-<div class="form-group">
-    <input required type="password" id="inputPassword-signin" name="password" class="form-control" placeholder="Password">
-</div>
-<div class="form-group">
-    <button type="submit" class="btn btn-md btn-primary btn-login" data-loading-text="Verifying">Login</button>
-</div>
-<div class="clearfix"></div>
-<br>
-<div class="form-group">
-    <a href="#" onclick="$('#forgot-form').toggleClass('hidden');">Forgot my password/username </a>
-</div>
-<div class="form-group">
-    <a href="#" onclick="$('#resend-form').toggleClass('hidden');">Resend my activation link</a>
-</div>
+    <input required="required" type="text" id="identity" name="identity" class="form-control" placeholder="Email" autofocus>
+  </div>
+  <div class="form-group">
+    <input required="required" type="password" id="password" name="password" class="form-control" placeholder="Password">
+  </div>
+  <div class="form-group">
+    <button type="submit" name="submit" class="btn btn-md btn-primary ">Login</button>
+  </div>
 
-<!-- <div class="form-group">
-    <a href="<?php echo base_url('auth/register') ?>">Create an account</a>
-</div> -->
 </form>
-
-<form class="form form-forgot hidden" id="forgot-form" method="post">
-    <div class="forn-group">
-        <input required type="email" id="inputEmail-forgot" name="email" class="form-control" placeholder="Enter registered email id" autofocus>
-    </div>
-    <div class="form-group">
-        <button class="btn btn-md btn-block btn-warning " type="submit">Reset password</button>
-    </div>
-</form>
-
-<form action="" class="form form-forgot hidden" id="resend-form" method="post">
-    <br>
-    <div class="form-group">
-        <input required type="email" class="form-control" id="inputEmail-resend" placeholder="Enter registered email id" autofocus>
-    </div>
-    <div class="form-group">
-        <button class="btn  btn-md btn-warning btn-block">Resend Activation Link</button>
-    </div>
-</form>
+<div class="row" style="padding:15px;">
+  <div class="form-group">
+    <a  class="text-danger" href="<?php echo base_url('auth/forgot_password') ?>"  >Forgot password of your account?</a>
+  </div>
+  <div class="form-group">
+    <a  class="text-danger" href="<?php echo base_url('auth/activation_mail') ?>"  >Get Activation Link</a>
+  </div>
+  </div>
+<div class="row" style="padding:15px;">
+	<legend>Create account</legend>
+	<a href="<?php echo base_url('auth/create_general_user') ?>" role="" class="btn btn-warning">Register</a>
+</div>

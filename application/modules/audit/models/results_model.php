@@ -29,7 +29,8 @@ class Results_model extends CI_Model {
 
 	public function check_feedback($userid = '', $rollno='')
 	{
-		$query = $this->db->select('feedback, final_year')
+		$old_db=$this->load->database('old_student',TRUE,TRUE);
+		$query = $old_db->select('feedback, final_year')
 		->where(array('userid' => $userid))
 		->from($this->tables['feedback'])
 		->get();
@@ -176,6 +177,17 @@ class Results_model extends CI_Model {
 		$query = $this->db->get();
 		if ($query->num_rows() == 1) {
 			return $query->first_row()->roll_number;
+		} else {
+			return false;
+		}
+	}
+	public function get_old_user_id($roll)
+	{
+		$old_db=$this->load->database('old_student',TRUE,TRUE);
+		$old_db->select('userid')->from('student_data')->where(array('roll_number' => $roll))->limit(1);
+		$query = $old_db->get();
+		if ($query->num_rows() == 1) {
+			return $query->first_row()->userid;
 		} else {
 			return false;
 		}

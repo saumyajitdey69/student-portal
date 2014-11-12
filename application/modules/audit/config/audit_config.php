@@ -19,6 +19,7 @@ $config['tables']['registered'] = "registered";
 $config['tables']['feedback_comments'] = "feedback_comments";
 $config['tables']['feedback'] = "feedback";
 $config['tables']['student_data']='student_data';
+$config['tables']['student_auth']='users';
 $config['tables']['student_feedback']='student_feedback';
 $config['tables']['missing_courses']='cfid_missing';
 $config['tables']['exit_feedback']='exit_feedback';

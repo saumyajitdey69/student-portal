@@ -1,19 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Audit extends MX_Controller {
+class Audit extends MY_Controller {
 
 	public function __construct()
 	{
 		parent::__construct();
-
-		$this->load->model('auth/auth_model', '', TRUE);
-		if ($this->nativesession->get('userid') === null)
-		{
-			redirect(base_url('auth'), 'location', 301);
-			return false;
-		}
 		$this->load->model('audit_model');
-		if ($this->audit_model->profile_edited($this->nativesession->get('userid')) === false)
+		if ($this->audit_model->profile_edited($this->user_id) === false)
 		{
 			$this->session->set_flashdata('danger', 'Complete your profile');
 			redirect(base_url('audit/profile'), 'location', 301);
@@ -41,9 +34,9 @@ class Audit extends MX_Controller {
 		$flag = '1';
 		$this->load->model('results_model');
 		$data = array();
-		$roll_number = $this->results_model->get_roll_number($this->nativesession->get('userid'));
+		$roll_number = $this->results_model->get_roll_number($this->user_id);
 		$feedback =array();
-		$feedback = $this->results_model->check_feedback($this->nativesession->get('userid'), $roll_number);
+		$feedback = $this->results_model->check_feedback($this->user_id, $roll_number);
 
 		if($feedback['code'] === TRUE)
 		{
@@ -76,9 +69,10 @@ class Audit extends MX_Controller {
 		$flag = '1';
 		$this->load->model('results_model');
 		$data = array();
-		$roll_number = $this->results_model->get_roll_number($this->nativesession->get('userid'));
+		$roll_number = $this->results_model->get_roll_number($this->user_id);
+		$old_user_id=$this->results_model->get_old_user_id($roll_number);
 		$feedback =array();
-		$feedback = $this->results_model->check_feedback($this->nativesession->get('userid'), $roll_number);
+		$feedback = $this->results_model->check_feedback($old_user_id, $roll_number);
 		if($feedback['code'] === TRUE)
 		{
 			$data['results'] = $this->results_model->list_all_results($roll_number);
@@ -104,41 +98,10 @@ class Audit extends MX_Controller {
 		$this->_render_page('results/index', $data);
 	}
 
-	public function slip()
-	{
-		$data = array();
-		$data['title'] = "Audit - Registration Slip";
-		$data['current_page'] = 'slip';
-		$user_id = $this->nativesession->get('userid');
-		$roll=$this->student->get_roll_number($userid);
-		$data['user_id']=$user_id;
-		$raw_data = $this->registration->get_student_details($roll);
-		$data['reg_roll'] = $raw_data['roll_number'];
-		$data['reg_name'] = $raw_data['name'];
-		$data['reg_branch'] = $raw_data['branch'];
-		$data['reg_semester'] = $raw_data['semester'];
-		$data['reg_course'] = $raw_data['class'];
-		$data['reg_section'] = $raw_data['section'];
-		$data['reg_credits_study'] = $raw_data['study_credits'];
-		$data['reg_credits_study_exam'] = $raw_data['study_exam_credits'];
-		$NUMBER_OF_COURSES=15;
-		for ($i=1; $i <= $NUMBER_OF_COURSES ; $i++)
-		{
-			if(empty($raw_data['course_'.$i])) break;
-			$data['reg_course_id'][$i-1] = $raw_data['course_'.$i];
-			$data['reg_course_name'][$i-1] = $raw_data['name_'.$i];
-			$data['reg_course_credit'][$i-1] = $raw_data['credit_'.$i];
-			$data['reg_study_exam'][$i-1] = $raw_data['islab_'.$i];
-		}
-		$data['current_section'] = 'audit';
-		$data['current_page'] = "regslip";
-		$this->_render_page('registration/slip', $data);
-	}
-
 	public function calendar()
 	{
 		$data = array();
-		$data['title'] = "Academic Calender 2013-14";
+		$data['title'] = "Academic Calender 2014-15";
 		$data['current_section'] = 'audit';
 		$data['current_page'] = 'calendar';
 		$this->_render_page('calendar/index', $data);
@@ -147,6 +110,7 @@ class Audit extends MX_Controller {
 	function _render_page($view, $data=null, $render=false)
 	{
 		$data['current_section'] = 'audit';
+		$data['admin_logged']=$this->ion_auth->is_admin();
 		$view_html = array(
 			$this->load->view('base/header', $data, $render),
 			$this->load->view('audit/menu/header', $data, $render),

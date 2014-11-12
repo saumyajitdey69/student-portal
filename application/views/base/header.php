@@ -39,17 +39,17 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="<?php echo base_url() ?>"> <span class="glyphicon glyphicon-user"></span> STUDENT PORTAL</a>
+					<a class="navbar-brand" href="<?php echo base_url('audit/home') ?>"> <span class="glyphicon glyphicon-user"></span> STUDENT PORTAL</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse navbar-ex1-collapse">
+
 					<div class="col-md-5 col-xs-12">
 						<form class="navbar-form" role="search" style="width:100%">
 							<input type="text" class="form-control" placeholder="Search students" name="search-item" style="width:100%">
 						</form></div>
 						<ul class="nav navbar-nav">
-							
 						<!-- <li data-placement="bottom" class=" tips <?php echo ($current_section === 'form')?'active':''; ?>"  title="tz Application">
 							<a href="<?php echo base_url('forms'); ?>">
 								<span class="glyphicon glyphicon-floppy-disk"></span> <span class="hidden-sm"> tz Application</span>
@@ -99,7 +99,7 @@
 						<span class="glyphicon glyphicon-cog"></span> <!-- Settings <b class="caret"></b> --> &nbsp;
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="<?php echo base_url('auth/changepasswd') ?>"><span class="glyphicon glyphicon-barcode"></span> Change Password</a> </li>
+						<li><a href="<?php echo base_url('auth/change_password') ?>"><span class="glyphicon glyphicon-barcode"></span> Change Password</a> </li>
 						<li><a href="<?php echo base_url('auth/logout') ?>"><span class="glyphicon glyphicon-off"></span> Logout</a> </li>
 					</ul>
 				</li>

@@ -7,14 +7,35 @@
 <title>Login | Student Portal</title>
 
 <head>
-    <title>Student Login</title>
-    <link href="<?php echo asset_url(); ?>css/0.bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo asset_url(); ?>css/signin.css" rel="stylesheet">
-</head>
+    <title>Faculty Login</title>
+    <link href="<?php echo base_url(); ?>assets/css/0.bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/css/signin.css" rel="stylesheet">
+    <script src="<?php echo base_url("assets/js/jquery.js"); ?>"></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
+        ga('create', 'UA-46078676-1', 'auto');
+        ga('require', 'displayfeatures');
+        ga('send', 'pageview');
+
+    </script>
+</head>
 <body>
     <div class="container">
         <div class="row">
+        <div class="alert alert-info">
+            <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+            <p class="text-center">The student portal authentication has been changed. 
+            You can login with your correct old account credentials.
+            </p>
+            <p class="text-danger text-center">In case you have forgot your password or account was not activated,<a href="../old_auth/auth">Click here</a></p>
+            <p class="text-center">
+            First years can create account now.Don't forget to check your SPAM folder for mails. Drop a mail to wsdc.nitw@gmail.com if you face any issues.
+            </p>
+        </div>
             <div class="hidden-xs col-md-8 col-sm-7 col-lg-8">
                 <div id="center">
                     <div id="main_name">

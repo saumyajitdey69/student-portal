@@ -6,7 +6,7 @@
 		} 
 		?>
 
-		<iframe src="<?php echo base_url('../') ?>/nitw/pdfs/Acad_Calendar_2014-15.pdf" height="1200px" width="100%" frameborder="0"></iframe>
+		<iframe src="<?php echo base_url('../') ?>/nitw/pdfs/Academic_Calender_2014-2015_Revised.pdf" height="1200px" width="100%" frameborder="0"></iframe>
 	</div>
 
 </div>

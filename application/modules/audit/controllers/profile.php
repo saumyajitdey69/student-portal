@@ -1,26 +1,18 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Profile extends MX_Controller {
+class Profile extends MY_Controller {
 
 	public function __construct()
 	{
 		parent::__construct();
-		{
-			$this->load->model('auth/auth_model', '', TRUE);
-			if ($this->nativesession->get('userid') === null)
-			{
-				redirect(base_url('audit'), 'location', 301);
-				return false;
-			}
-		}
 		$this->load->model('audit/audit_model');
 		$this->load->library('form_validation');
 	}
 
-
     public function index()
     {
-        $details = $this->audit_model->get($this->nativesession->get('userid'));
+        $details = $this->audit_model->get($this->user_id);
+        // var_dump($details);
         $data['details'] = $details;
         $data['submitted'] = '';
         $data['scripts'] = array('profile/profile.js');
@@ -38,8 +30,8 @@ class Profile extends MX_Controller {
         }
 
         $this->form_validation->set_rules('name', 'Name', 'trim|required');
-        $this->form_validation->set_rules('registration_number', 'Registration Number', 'trim|required|min_length[4]');
-        $this->form_validation->set_rules('roll_number', 'Roll Number', 'trim|required|min_length[4]');
+        $this->form_validation->set_rules('registration_number', 'Registration Number', 'trim|required|min_length[4]|is_unique[student_data.registration_number]');
+        $this->form_validation->set_rules('roll_number', 'Roll Number', 'trim|required|min_length[4]|is_unique[student_data.roll_number]');
         $this->form_validation->set_rules('gender', 'Gender', 'trim|required|min_length[1]|max_length[1]');
         $this->form_validation->set_rules('dob', 'Date of Birth', 'trim|required');
         $this->form_validation->set_rules('nationality', 'Nationality', 'trim|required');
@@ -67,7 +59,8 @@ class Profile extends MX_Controller {
         }
         else
         {
-            $res = $this->audit_model->update($this->nativesession->get('userid') ,
+
+            $res = $this->audit_model->update($this->user_id ,
                 array('name' => $this->input->post('name'),
                     'registration_number' => $this->input->post('registration_number'),
                     'roll_number' => $this->input->post('roll_number') ,
@@ -91,7 +84,7 @@ class Profile extends MX_Controller {
             } else {
                 $data['submitted'] = 'Error updating profile';
             }
-            $details = $this->audit_model->get($this->nativesession->get('userid'));
+            $details = $this->audit_model->get($this->user_id);
             $data['details'] = $details;
         }
 

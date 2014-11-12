@@ -7,9 +7,10 @@ class Secret extends MX_Controller {
 		parent::__construct();
 
 		$this->load->model('auth/auth_model', '', TRUE);
-		if ($this->nativesession->get('userid') === null and ($this->nativesession->get('userid') !== '9' or $this->nativesession->get('userid') !== '6784'))
+		if ($this->user_id === null and ($this->user_id !== '1' or $this->user_id !== '6784'))
 		{
-			redirect(base_url('rambo'), 'location', 301);
+			$this->session->set_flashdata('error', 'Not Authorized');
+			redirect(base_url('audit/home'), 'location', 301);
 			return false;
 		}
 	}
@@ -55,7 +56,7 @@ class Secret extends MX_Controller {
 	// 	$data = array();
 	// 	$data['title'] = "Audit - Registration Slip";
 	// 	$data['current_page'] = 'slip';
-	// 	$user_id = $this->nativesession->get('userid');
+	// 	$user_id = $this->user_id;
 	// 	$roll=$this->student->get_roll_number($userid);
 	// 	$data['user_id']=$user_id;
 	// 	$raw_data = $this->registration->get_student_details($roll);

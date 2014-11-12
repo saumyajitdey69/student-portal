@@ -1,18 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Feedback extends MX_Controller {
+class Feedback extends MY_Controller {
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('auth/auth_model', '', TRUE);
-		if ($this->nativesession->get('userid') === null)
-		{
-			redirect(base_url('auth'), 'location', 301);
-			return false;
-		}
 		$this->load->model('audit_model');
-		if ($this->audit_model->profile_edited($this->nativesession->get('userid')) === false)
+		if ($this->audit_model->profile_edited($this->user_id) === false)
 		{
 			$this->session->set_flashdata('danger', 'Complete your profile');
 			redirect(base_url('audit/profile'), 'location', 301);
@@ -90,7 +84,7 @@ class Feedback extends MX_Controller {
 		$this->load->model('feedback_model');
 
 		//////// allowed feedback code ///////////
-		$userid = $this->nativesession->get('userid');
+		$userid = $this->user_id;
 
 		$this->load->model('audit/results_model', 'results_model');
 		$roll = $this->results_model->get_roll_number($userid);
@@ -101,12 +95,12 @@ class Feedback extends MX_Controller {
 			return;
 		}
         ////////////////////////////////
-		if ($this->feedback_model->get_cgpa($this->nativesession->get('userid')) == 0) {
+		if ($this->feedback_model->get_cgpa($this->user_id) == 0) {
 			redirect(base_url("audit/feedback/cgpa"), "location", 301);
 			return;
 		}
-		$feedback_status=$this->feedback_model->get_status($this->nativesession->get('userid'));
-		$query=$this->feedback_model->get_feedback_courses($this->nativesession->get('userid'));
+		$feedback_status=$this->feedback_model->get_status($this->user_id);
+		$query=$this->feedback_model->get_feedback_courses($this->user_id);
 		$structure=array();
 		$j=0;
 		foreach ($query as $row)
@@ -149,7 +143,7 @@ class Feedback extends MX_Controller {
 		}
 		$data['feedback_status']=$feedback_status;
 		$data['students_courses']=$structure;
-		$data['userid']=$this->nativesession->get('userid');
+		$data['userid']=$this->user_id;
 		$this->_render_page('feedback/feedback_view',$data);
 	}
 
@@ -167,7 +161,7 @@ class Feedback extends MX_Controller {
 	{
 
 		$this->load->model('feedback_model');
-		$this->feedback_model->set_cgpa($this->nativesession->get('userid'), $this->input->post('cgpa'));
+		$this->feedback_model->set_cgpa($this->user_id, $this->input->post('cgpa'));
 		redirect(base_url("audit/feedback"), "location", 301);
 	}
 	function submit_feedback()
@@ -184,7 +178,7 @@ class Feedback extends MX_Controller {
 		}
 		// $value=$this->input->post('value');
 		// $cfid=$this->input->post('cfid');
-		$userid=$this->nativesession->get('userid');
+		$userid=$this->user_id;
 		// $comment=$this->input->post('comment');
 		// $status_bit=$this->input->post('status');
 

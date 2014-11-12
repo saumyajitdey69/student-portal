@@ -11,7 +11,7 @@ class Audit_model extends CI_Model {
 
 	public function get($userid)
 	{
-		$this->db->select()->from('student_data')->where(array('userid' => $userid))->limit(1);
+		$this->db->select()->from($this->tables['student_data'])->where(array('userid' => $userid))->limit(1);
 		$query = $this->db->get();
 		if ($query->num_rows() == 1) {
 			return $query->first_row();
@@ -22,9 +22,9 @@ class Audit_model extends CI_Model {
 
 	public function update($userid, $details)
 	{
-		$query = $this->db->update('student_data', $details, array('userid' => $userid));
+		$query = $this->db->update($this->tables['student_data'], $details, array('userid' => $userid));
 		if ($this->db->affected_rows() >= 0) {
-			$this->db->update('student_auth', array('profile_edited' => 1), array('userid' => $userid));
+			$this->db->update($this->tables['student_auth'], array('profile_edited' => 1), array('id' => $userid));
 			if ($this->db->affected_rows() >= 0) {
 				return true;
 			} else {
@@ -37,7 +37,7 @@ class Audit_model extends CI_Model {
 	
 	public function profile_edited($userid)
 	{
-		$this->db->select('')->from('student_auth')->where(array('userid' => $userid, 'profile_edited' => 1))->limit(1);
+		$this->db->select('')->from($this->tables['student_auth'])->where(array('id' => $userid, 'profile_edited' => 1))->limit(1);
 		$query = $this->db->get();
 		if ($query->num_rows() === 1) {
 			return true;
