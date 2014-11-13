@@ -9,8 +9,10 @@ class Profile extends MY_Controller {
 		$this->load->library('form_validation');
 	}
 
-    public function index()
+    public function index($username = '')
     {
+        if(empty($username)) 
+            $username = $this->session->userdata('username');
         $details = $this->audit_model->get($this->user_id);
         // var_dump($details);
         $data['details'] = $details;

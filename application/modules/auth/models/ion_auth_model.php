@@ -1652,6 +1652,7 @@ class Ion_auth_model extends CI_Model
 			'identity'             => $user->{$this->identity_column},
 			'username'             => $user->username,
 			'email'                => $user->email,
+			'first_name'		   => $user->first_name,
 		    'user_id'              => $user->id, //everyone likes to overwrite id so we'll use user_id
 		    'old_last_login'       => $user->last_login
 		    );
@@ -1736,7 +1737,7 @@ class Ion_auth_model extends CI_Model
 
 		//get the user
 		$this->trigger_events('extra_where');
-		$query = $this->db->select($this->identity_column.', id, username, email, last_login')
+		$query = $this->db->select($this->identity_column.', id, first_name, username, email, last_login')
 		->where($this->identity_column, get_cookie('identity'))
 		->where('remember_code', get_cookie('remember_code'))
 		->limit(1)

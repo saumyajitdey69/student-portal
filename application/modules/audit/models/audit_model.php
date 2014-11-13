@@ -29,7 +29,7 @@ class Audit_model extends CI_Model {
 		else{
 			$data = array();
 			$data['roll_number'] = "000000";
-			$data['name'] = 'No Inpur String';
+			$data['name'] = 'No Input String';
 		}
 		if($json){
 			return json_encode($data);
@@ -55,9 +55,10 @@ class Audit_model extends CI_Model {
 		}
 	}
 	
-	public function profile_edited($userid)
+	public function profile_edited($userid = '')
 	{
-		$this->db->select('')->from($this->tables['student_auth'])->where(array('id' => $userid, 'profile_edited' => 1))->limit(1);
+		if(empty($userid)) return false; // need to make some changes here @awachat like passing proper information with cause
+		$this->db->select('id')->from($this->tables['student_auth'])->where(array('id' => $userid, 'profile_edited' => 1))->limit(1);
 		$query = $this->db->get();
 		if ($query->num_rows() === 1) {
 			return true;
