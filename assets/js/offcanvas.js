@@ -26,9 +26,9 @@
 						  'chemistry':'chem'
 						};
 		var inputStrings = inputString.split(" ");
-		console.log(inputStrings);
+		// console.log(inputStrings);
 		for(var i = 0;i<inputStrings.length; i++){
-			inputStrings[i] = inputStrings[i].replace(",", "");
+			// inputStrings[i] = inputStrings[i].replace(",", "");
 			if(inputStrings[i] in branch_reg){
 				// search the code
 				console.log(inputStrings[i] + " in if")

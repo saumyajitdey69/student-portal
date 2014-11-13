@@ -1,5 +1,4 @@
 <div class="row">
-
   <div class="col-sm-3 col-md-2 hidden-print sidebar" role="navigation">
     <ul class="list-group">
       <li class="list-group-header">ACADEMIC SECTION</li>

@@ -4,11 +4,11 @@ class Message extends MX_Controller {
 
     public function __construct()
     {
-     parent::__construct();
+       parent::__construct();
 
-     $this->load->model('auth/auth_model', '', TRUE);
-     if ($this->nativesession->get('userid') === null)
-     {
+       $this->load->model('auth/auth_model', '', TRUE);
+       if ($this->nativesession->get('userid') === null)
+       {
         redirect(base_url('auth'), 'location', 301);
         return false;
     }

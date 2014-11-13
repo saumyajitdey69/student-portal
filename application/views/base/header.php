@@ -3,7 +3,7 @@
 <html lang="en">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Edit profile of faculty of NITW">
+<meta name="description" content="Student Protal for students of NIT Warangal developed by WSDC">
 <meta name="author" content="WSDC">
 <head>
 	<title><?php if(!empty($title)) echo $title; else echo 'WSDC'; ?></title>
@@ -13,10 +13,18 @@
 	<link href="<?php echo asset_url()."css/offcanvas.css" ?>" rel="stylesheet">
 	<!-- Notify CSS -->
 	<link href="<?php echo asset_url()."css/bootstrap-notify.css" ?>" rel="stylesheet">
-
 	<!-- Custom Styles -->
 	<link href="<?php echo asset_url()."css/alert-bangtidy.css" ?>" rel="stylesheet">
 	<link href="<?php echo asset_url()."css/alert-blackgloss.css" ?>" rel="stylesheet">
+	<?php
+	if (isset($css)) {
+		foreach ($css as $index => $c) {
+			?>
+			<script src="<?php echo asset_url()."css/".$c; ?>"></script>
+			<?php
+		}
+	}
+	?>
 </head>
 <body class="google">
 	<!-- <div class="container-fluid"> -->
@@ -87,8 +95,5 @@
 				</div>	
 			</div>
 		</div>
-
-
-
 	</div>
 
