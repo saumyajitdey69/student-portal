@@ -5,22 +5,14 @@ class Profile extends MY_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('audit/audit_model');
+		$this->load->model('audit/audit_model', 'audit_model');
 		$this->load->library('form_validation');
+        $this->load->helper('url');
 	}
 
-    public function index($username = '')
+    public function index()
     {
-        if(empty($username)) 
-            $username = $this->session->userdata('username');
-        $details = $this->audit_model->get($this->user_id);
-        // var_dump($details);
-        $data['details'] = $details;
-        $data['submitted'] = '';
-        $data['scripts'] = array('profile/profile.js');
-        $data['title'] = "Profile";
-        $data['current_page'] = "profile";
-        $this->_render_page('profile/index', $data);
+        //$this->view($this->session->userdata('username'));
     }
 
     public function validate()

@@ -22,26 +22,15 @@ class Audit_model extends CI_Model {
 
 	// @author: Vaibhav Awachat
 
-	public function get_public_profile($search_query = "")
+	public function get_public_profile($username = "")
 	{
 		$this->db->select('first_name, last_name, email, phone, roll_number, registration_number, joining_year, branch');
-
-		foreach ($search_query as $key => $query) {
-			$query= trim($query);
-			if($query != ""){
-				$name = $query.split(' ');
-				foreach ($name as $key => $value) {
-					$this->db->or_like('first_name', $value);
-					$this->db->or_like('last_name', $value);
-				}
-				$this->db->or_like('roll_number', $query);				
-				$this->db->or_like('registration_number', $query);				
-			}
-		}
-
-		$query=$this->db->get();
+		$query=$this->db->join($this->tables['student_auth'].' as auth ', 'auth.id = data.userid')
+					    ->limit(1)
+					    ->where('username', $username)
+					    ->get($this->tables['student_data'].' as data');
 		if($query->num_rows()>0)
-			return $query->result();
+			return $query->first_row();
 		else
 			return FALSE;
 	}

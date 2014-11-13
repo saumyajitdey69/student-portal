@@ -15,6 +15,20 @@ class Audit extends MY_Controller {
 
 	}
 
+	 public function view($username = '')
+    {
+		$this->load->library('form_validation');
+    	
+        $details = $this->audit_model->get_public_profile($username);
+        // var_dump($details);
+        $data['details'] = $details;
+        $data['submitted'] = '';
+        $data['scripts'] = array('profile/profile.js');
+        $data['title'] = "Profile";
+        $data['current_page'] = "profile";
+        $this->_render_page('profile/index', $data);
+    }
+
 	public function getSearchData(){
 		$searchStr = $this->input->post('search-string');
 		return $this->audit_model->getSeachItem($searchStr, true, '5');
