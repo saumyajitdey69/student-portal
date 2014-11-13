@@ -20,6 +20,26 @@ class Audit_model extends CI_Model {
 		}
 	}
 
+	public function getSeachItem($searchStr = "", $json = true, $count = 5)
+	{
+		if(!empty($searchStr)){
+
+
+		}
+		else{
+			$data = array();
+			$data['roll_number'] = "000000";
+			$data['name'] = 'No Inpur String';
+		}
+		if($json){
+			return json_encode($data);
+		}
+		else{
+			return $data;
+		}
+
+	}
+
 	public function update($userid, $details)
 	{
 		$query = $this->db->update($this->tables['student_data'], $details, array('userid' => $userid));

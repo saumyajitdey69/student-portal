@@ -1,58 +1,158 @@
 <div class="row">
-
   <div class="col-sm-3 col-md-2 hidden-print sidebar" role="navigation">
-    <div class="bs-sidebar hidden-print affix" role="complementary">
-     <ul class="nav nav-sidenav"><br>
-      <li <?php echo $current_page === "home" ? "class='active'" : ""?>>
-        <a href="<?php echo base_url('audit/home'); ?>">
-          <span class="glyphicon glyphicon-home"></span> Home
-        </a>
+    <ul class="list-group">
+      <li class="list-group-header">ACADEMIC SECTION</li>
+      <li class="list-group-item <?php echo $current_page === "home" ? "active" : ""?>">
+        <a href="<?php echo base_url('audit/home'); ?>">Home</a>
       </li>
-      <!-- <li <?php echo $current_page === "profile" ? "class='active'" : ""?>>
-        <a href="<?php echo base_url('audit/profile'); ?>">
-          <span class="glyphicon glyphicon-user"></span> Profile
-        </a>
-      </li> -->
-      <hr>
-      <li <?php echo $current_page === "attendance" ? "class='active'" : ""?>>
-        <a href="<?php echo base_url('attendance'); ?>"><span class="glyphicon glyphicon-calendar"></span> Attendance <span class="label label-danger">new</span></a>
+      <li class="list-group-item <?php echo $current_page === "attendance" ? "active" : ""?>"> 
+        <a href="<?php echo base_url('attendance'); ?>">Attendance</a>
       </li>
-      <hr>
-      <li>FEEDBACK</li>
-      <li <?php echo $current_page === "feedback" ? "class='active'" : ""?>>
-        <a href="<?php echo base_url('audit/feedback'); ?>">
-          <span class="glyphicon glyphicon-check"></span> Feedback (April 2014)
-        </a>
-      </li>
-      
-      <li <?php echo $current_page === "exit_feedback" ? "class='active'" : ""?>>
-        <a href="<?php echo base_url('audit/exit_feedback'); ?>">
-          <span class="glyphicon glyphicon-check"></span> Exit Feedback
-        </a>
-      </li>
+      <li class="list-group-item <?php echo $current_page === "feedback" ? "active" : ""?>">
+       <a href="<?php echo base_url('audit/feedback'); ?>">Feedback</a>
+     </li>
+     <li class="list-group-item <?php echo $current_page === "exit_feedback" ? "active" : ""?>">
+      <a href="<?php echo base_url('audit/exit_feedback'); ?>">
+       Exit Feedback
+     </a>
+   </li>
+   <li  class="list-group-item <?php echo $current_page === "result" ? "active" : ""?>">
+    <a href="<?php echo base_url('audit/results') ?>">
+      April 2014 (Even Sem)
+    </a>
+  </li>
+  <li  class="list-group-item <?php echo $current_page === "slip" ? "active" : ""?>" >
+    <a href="<?php echo base_url('audit/slip'); ?>" target="_blank">
+      Registration Slip
+    </a>
+  </li>
+  <li  class="list-group-item <?php echo $current_page === "calendar" ? "active" : ""?>">
+    <a href="<?php echo base_url('audit/calendar'); ?>">
+      Academic Calendar
+    </a>
+  </li>
+  <!-- <li class="list-group-header">Another list header</li> -->
+  <!-- <li class="list-group-item">
+    <span class="collapse-caret collapsed dropdown-toggle" data-toggle="collapse" data-target="#profile"></span>
+    <div class="list-group-item-wrapper">
+      <div class="dropdown pull-right">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+        <ul role="menu" class="dropdown-menu">
+          <li><a href="#">Action</a></li>
+          <li><a href="#">Another action</a></li>
+          <li><a href="#">Something else here</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Separated link</a></li>
+        </ul>
+      </div>
+      <a href="#">Profile</a>
+    </div>
 
-      <hr>
-      <li>
-        RESULTS
-      </li>
-      <li <?php echo $current_page === "result" ? "class='active'" : ""?>>
-        <a href="<?php echo base_url('audit/results') ?>">
-          <span class="glyphicon glyphicon-list"></span> April 2014 (Even Sem)
-        </a>
-      </li>
-      <hr>
-      <li <?php echo $current_page === "slip" ? "class='active'" : ""?> class="tips" title="Registration slip avalilable">
-        <a href="<?php echo base_url('audit/slip'); ?>" target="_blank">
-          <span class="glyphicon glyphicon-file"></span> Registration Slip <span class="label label-danger">new</span>
-        </a>
-      </li>
-      <li <?php echo $current_page === "calendar" ? "class='active'" : ""?>>
-        <a href="<?php echo base_url('audit/calendar'); ?>">
-          <span class="glyphicon glyphicon-calendar"></span> Academic Calender 2014
-        </a>
-      </li>
-     </ul>
-  </div><!--/span-->
+    <div id="profile" class="collapse">
+      <ul role="menu" class="list-group-item-menu">
+        <li class="list-group-item">
+          <div class="list-group-item-wrapper">
+            <div class="dropdown pull-right">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+              <ul role="menu" class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+            </div>
+
+            <a href="#">Action</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </li>
+  <li class="list-group-item">
+    <span class="collapse-caret collapsed dropdown-toggle" data-toggle="collapse" data-target="#settings"></span>
+    <div class="list-group-item-wrapper">
+      <div class="dropdown pull-right">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+        <ul role="menu" class="dropdown-menu">
+          <li><a href="#">Action</a></li>
+          <li><a href="#">Another action</a></li>
+          <li><a href="#">Something else here</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Separated link</a></li>
+        </ul>
+      </div>
+
+      <a href="#">
+        Settings
+      </a>
+    </div>
+
+    <div id="settings" class="collapse">
+      <ul role="menu" class="list-group-item-menu">
+        <li class="list-group-item">
+          <div class="list-group-item-wrapper">
+            <div class="dropdown pull-right">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+              <ul role="menu" class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+            </div>
+
+            <a href="#">Action</a>
+          </div>
+        </li>
+        <li class="divider"></li>
+        <li class="list-group-item">
+          <span class="dropdown-toggle collapse-caret collapsed" data-toggle="collapse" data-target="#sub-settings"></span>
+          <div class="list-group-item-wrapper">
+            <div class="dropdown pull-right">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+              <ul role="menu" class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+            </div>
+
+            <a href="#">
+              Separated link
+            </a>
+          </div>
+
+          <div class="collapse" id="sub-settings">
+            <ul role="menu" class="list-group-item-menu">
+              <li class="list-group-item">
+                <div class="list-group-item-wrapper">
+                  <div class="dropdown pull-right">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+                    <ul role="menu" class="dropdown-menu">
+                      <li><a href="#">Action</a></li>
+                      <li><a href="#">Another action</a></li>
+                      <li><a href="#">Something else here</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Separated link</a></li>
+                    </ul>
+                  </div>
+
+                  <a href="#">Action 1</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </li> -->
+ <!--  <li class="divider"></li>
+ <li class="list-group-item"><a href="#">Help</a></li> -->
+</ul>
 </div>
 <div class="clearfix visible-xs hidden-print"></div>
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
