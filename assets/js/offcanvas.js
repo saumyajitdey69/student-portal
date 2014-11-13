@@ -3,7 +3,7 @@
 	});
 	function clearSearchResult () {
 		$('#search-item-output').html("");
-		$('#search-item-output').fadeOut("slow");
+		$('#search-item-output').hide();
 	}
 
 	function showSearchResult () {
@@ -64,8 +64,13 @@
 	function OnInput(value){
 		var inputString = $.trim(value);
 		// console.log("keypressed. NEw string: " + inputString)
+		if(inputString.length>0)
 		inputString = check_branch(inputString);
-
+		else
+		{
+		  clearSearchResult();
+		  return;
+		}
 		$.ajax({
 			url: '../message/get_details',
 			type: 'post',
