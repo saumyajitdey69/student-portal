@@ -7,8 +7,8 @@ class Students_model extends CI_Model {
 	
 	public function get_details($search_query)
 	{
+		$this->load->model('audit/audit_model');
 		$db_students=$this->load->database("student", TRUE);
-
 		$db_students->from("student_data");
 		foreach ($search_query as $key => $query) {
 			$query= trim($query);
@@ -26,11 +26,13 @@ class Students_model extends CI_Model {
 			return FALSE;
 	}
 
-	public function get_details_advance($search_query, $result_count = '5', $order_by_col = 'name')
+	public function get_details_advance($search_query, $result_count = '5', $order_by_col = 'first_name')
 	{
 		$db_students=$this->load->database("student", TRUE);
-		$db_students->from("student_data");
-		
+
+		$db_students->select('first_name, last_name ,username , email, phone, branch, registration_number, roll_number, joining_year')->from("student_data as data");
+
+		$db_students->join("users as auth",'auth.id = data.userid', 'inner');
 		foreach ($search_query as $key => $query) {
 			$query_string = "";
 			if(is_array($query) && array_key_exists("name", $query))
@@ -43,7 +45,8 @@ class Students_model extends CI_Model {
 				$query['name'] = $db_students->escape("%".$query['name']."%");
 
 			}
-				$query_string .= "( "."name"." LIKE ".$query['name'];
+				$query_string .= "((( "."first_name"." LIKE ".$query['name'];
+				$query_string .= ") OR ( "."last_name"." LIKE ".$query['name'].'))';
 				// unset($query['name']);
 			}
 			if(is_array($query) && count($query) > 0)  //this will run always

@@ -12,6 +12,7 @@ class MY_Controller extends CI_Controller {
         }
         $this->user_id = $this->ion_auth->get_user_id();
         $this->user_name = $this->session->userdata('username');
+        $this->name = $this->session->userdata('first_name');
     }
 
 }

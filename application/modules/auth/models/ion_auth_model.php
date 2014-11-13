@@ -918,7 +918,7 @@ class Ion_auth_model extends CI_Model
 		}
 
 		$this->trigger_events('extra_where');
-		$query = $this->db->select($this->identity_column . ', username, email, id, password, active, last_login')
+		$query = $this->db->select($this->identity_column . ', username, email, id, password, active, last_login, first_name')
 		->where($this->identity_column, $this->db->escape_str($identity))
 		                  ->or_where('email', $this->db->escape_str($identity)) // so that email can also be used for aloging along with username
 		                  ->limit(1)
@@ -1652,7 +1652,7 @@ class Ion_auth_model extends CI_Model
 			'identity'             => $user->{$this->identity_column},
 			'username'             => $user->username,
 			'email'                => $user->email,
-			'first_name'		   => $user->first_name,
+			'name'		   		   => $user->first_name,
 		    'user_id'              => $user->id, //everyone likes to overwrite id so we'll use user_id
 		    'old_last_login'       => $user->last_login
 		    );
@@ -1660,7 +1660,6 @@ class Ion_auth_model extends CI_Model
 		$this->session->set_userdata($session_data);
 
 		$this->trigger_events('post_set_session');
-
 		return TRUE;
 	}
 
@@ -1737,7 +1736,7 @@ class Ion_auth_model extends CI_Model
 
 		//get the user
 		$this->trigger_events('extra_where');
-		$query = $this->db->select($this->identity_column.', id, first_name, username, email, last_login')
+		$query = $this->db->select($this->identity_column.', id, username, email, last_login,  first_name')
 		->where($this->identity_column, get_cookie('identity'))
 		->where('remember_code', get_cookie('remember_code'))
 		->limit(1)
@@ -1747,7 +1746,6 @@ class Ion_auth_model extends CI_Model
 		if ($query->num_rows() == 1)
 		{
 			$user = $query->row();
-
 			$this->update_last_login($user->id);
 
 			$this->set_session($user);

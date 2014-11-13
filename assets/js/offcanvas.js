@@ -94,6 +94,9 @@
 	}
 
 	function box_content (data) {
+
+		data['name'] = data['first_name']+ " " + data['last_name'];
+
 		return '<div class="media search-media list-group-item search-list-item">\
 		<a class="media-left" href="#">\
 		<img class="img google-search-progile-img" src="http://graph.facebook.com/v2.2/100002451127231/picture" width="36" alt="profile_img">\
