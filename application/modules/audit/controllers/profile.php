@@ -30,8 +30,8 @@ class Profile extends MY_Controller {
         }
 
         $this->form_validation->set_rules('name', 'Name', 'trim|required');
-        $this->form_validation->set_rules('registration_number', 'Registration Number', 'trim|required|min_length[4]|is_unique[student_data.registration_number]');
-        $this->form_validation->set_rules('roll_number', 'Roll Number', 'trim|required|min_length[4]|is_unique[student_data.roll_number]');
+        // $this->form_validation->set_rules('registration_number', 'Registration Number', 'trim|required|min_length[4]|is_unique[student_data.registration_number]');
+        // $this->form_validation->set_rules('roll_number', 'Roll Number', 'trim|required|min_length[4]|is_unique[student_data.roll_number]');
         $this->form_validation->set_rules('gender', 'Gender', 'trim|required|min_length[1]|max_length[1]');
         $this->form_validation->set_rules('dob', 'Date of Birth', 'trim|required');
         $this->form_validation->set_rules('nationality', 'Nationality', 'trim|required');
@@ -62,8 +62,8 @@ class Profile extends MY_Controller {
 
             $res = $this->audit_model->update($this->user_id ,
                 array('name' => $this->input->post('name'),
-                    'registration_number' => $this->input->post('registration_number'),
-                    'roll_number' => $this->input->post('roll_number') ,
+                    // 'registration_number' => $this->input->post('registration_number'),
+                    // 'roll_number' => $this->input->post('roll_number') ,
                     'gender' => $this->input->post('gender'),
                     'birthday'=> $this->input->post('dob'),
                     'country' => $this->input->post('nationality') ,
