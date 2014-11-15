@@ -186,7 +186,7 @@ class Feedback_model extends CI_Model {
             'feedback'=>$status
             );
         $db_feedback->where('userid',$userid);
-        return $this->db->update($this->tables['student_feedback'],$data);
+        return $db_feedback->update($this->tables['student_feedback'],$data);
     }
     public function get_status($userid)
     {

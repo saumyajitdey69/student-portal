@@ -23,8 +23,8 @@
           <span class="glyphicon glyphicon-check"></span> Feedback (December 2014)<span class="label label-danger">new</span>
         </a>
       </li> -->
-      <li <?php echo $current_page === "feedback" ? "class='active'" : ""?> class="tips" title="Feedback will start from 17th November">FEEDBACK
-        <a href="javascript:void(0);">
+      <li <?php echo $current_page === "feedback" ? "class='active'" : ""?> class="tips" title="Feedback">FEEDBACK
+       <a href="<?php echo base_url('audit/feedback'); ?>">
           <span class="glyphicon glyphicon-check"></span> Feedback (December 2014)<span class="label label-danger">new</span>
         </a>
       </li>
