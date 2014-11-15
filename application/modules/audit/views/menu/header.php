@@ -20,15 +20,15 @@
       <li>FEEDBACK</li>
       <li <?php echo $current_page === "feedback" ? "class='active'" : ""?>>
         <a href="<?php echo base_url('audit/feedback'); ?>">
-          <span class="glyphicon glyphicon-check"></span> Feedback (April 2014)
+          <span class="glyphicon glyphicon-check"></span> Feedback (December 2014)<span class="label label-danger">new</span>
         </a>
       </li>
       
-      <li <?php echo $current_page === "exit_feedback" ? "class='active'" : ""?>>
+     <!-- <li <?php echo $current_page === "exit_feedback" ? "class='active'" : ""?>>
         <a href="<?php echo base_url('audit/exit_feedback'); ?>">
           <span class="glyphicon glyphicon-check"></span> Exit Feedback
         </a>
-      </li>
+      </li>-->
 
       <hr>
       <li>
