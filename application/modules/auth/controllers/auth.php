@@ -510,6 +510,13 @@ class Auth extends CI_Controller {
 		if ($this->form_validation->run() == true)
 		{
 			$username = $this->input->post('user_id');
+			$this->load->model('import_data');
+			$check_username=$this->import_data->check_username($username);
+			if($check_username==FALSE)
+			{
+				$this->session->set_flashdata('danger', "Username already exists");
+				redirect("auth/create_general_user", 'refresh');
+			}
 			$email    = strtolower($this->input->post('email'));
 			$password = $this->input->post('password');
 
