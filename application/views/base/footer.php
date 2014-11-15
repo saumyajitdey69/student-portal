@@ -1,6 +1,6 @@
        <!-- <div class="container">  </div> -->
        <div class="row hidden-print">
-        <div class="col-sm-7 col-sm-offset-3 col-md-8 col-md-offset-2">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
           <hr>
           <footer>
             <div class="fb-like pull-right" data-href="https://www.facebook.com/wsdc.nitw" data-layout="button" data-action="like" data-show-faces="false" data-share="true">

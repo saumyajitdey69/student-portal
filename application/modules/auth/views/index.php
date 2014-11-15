@@ -1,5 +1,5 @@
-<h1><?php echo lang('index_heading');?></h1>
-<p><?php echo lang('index_subheading');?></p>
+<!-- <legend><?php echo lang('index_heading');?></legend>
+<small><?php echo lang('index_subheading');?></small> -->
 <div class="row">
     <!-- <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> -->
         <?php 
@@ -18,15 +18,15 @@
     <!-- </div> -->
 </div>
 <?php if(!empty($message)): ?>
-	<div id="infoMessage" class="alert alert-danger"><?php echo $message;?></div>
+	<div id="infoMessage" class="alert"><?php echo $message;?></div>
 <?php endif; ?>
 
-<table class="table table-hover table-condensed table-striped" id="example">
+<table class="table table-hover table-condensed" id="example">
 	<thead>
 		<tr>
 		<th>User ID</th>
-			<th><?php echo lang('index_fname_th');?></th>
-			<th style="width:100px;"><?php echo lang('index_email_th');?></th>
+			<th><?php echo lang('index_dname_th');?></th>
+			<th><?php echo lang('index_email_th');?></th>
 			<th>Phone</th>
 			<!-- <th>Department</th> -->
 			<!-- <th>Designation</th> -->
@@ -39,7 +39,7 @@
 		<?php $i=0; foreach ($users as $user):?>
 			<tr>
 				<td><?php echo $user->id ?></td>
-				<td><?php echo $user->first_name;?></td>
+				<td><?php echo $user->first_name;?> <?php echo $user->last_name;?></td>
 				<td><?php echo $user->email;?></td>
 				<td><?php echo $user->phone ?></td>
 				<!-- <td><?php //echo $user->department ?></td> -->
@@ -55,9 +55,4 @@
 		<?php $i++; endforeach;?>
 	</tbody>
 </table>
-<hr>
-
-<div class="hidden-print">
-	<?php //echo anchor('auth/create_group', lang('index_create_group_link'))?>
-	<?php //echo anchor('auth/create_user', lang('index_create_user_link'))?>
 </div>
