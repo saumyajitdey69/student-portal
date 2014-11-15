@@ -94,7 +94,12 @@ class Feedback extends MY_Controller {
 
 		$this->load->model('audit/results_model', 'results_model');
 		$roll = $this->feedback_model->get_roll($userid);
-//print_r($roll);
+
+		//close feedback
+		// $this->session->set_flashdata('danger', 'Feedback will start from 17th November');
+		// redirect('audit');
+
+		//print_r($roll);
 		//if($this->results_model->_is_allowed_for_feedback($roll) === FALSE)
 		//{	
 		//	$this->session->set_flashdata('danger', 'Feedback is closed. If you did not fill the feedback please contact Associate Dean Academic Audit. <br> After the approval of Dean it takes 2-3 days for receiving the results and	activating feedback. <br> Please do not contact WSDC for this issue.');

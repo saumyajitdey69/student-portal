@@ -17,13 +17,17 @@
         <a href="<?php echo base_url('attendance'); ?>">ATTENDANCE <span class="label label-danger">new</span></a>
       </li>
       <hr>
-      <li>FEEDBACK</li>
+      <!-- <li>FEEDBACK</li>
       <li <?php echo $current_page === "feedback" ? "class='active'" : ""?>>
-        <a href="<?php echo base_url('audit/feedback'); ?>">
+        <a href="<?php //echo base_url('audit/feedback'); ?>">
+          <span class="glyphicon glyphicon-check"></span> Feedback (December 2014)<span class="label label-danger">new</span>
+        </a>
+      </li> -->
+      <li <?php echo $current_page === "feedback" ? "class='active'" : ""?> class="tips" title="Feedback will start from 17th November">FEEDBACK
+        <a href="javascript:void(0);">
           <span class="glyphicon glyphicon-check"></span> Feedback (December 2014)<span class="label label-danger">new</span>
         </a>
       </li>
-      
      <!-- <li <?php echo $current_page === "exit_feedback" ? "class='active'" : ""?>>
         <a href="<?php echo base_url('audit/exit_feedback'); ?>">
           <span class="glyphicon glyphicon-check"></span> Exit Feedback
