@@ -503,7 +503,7 @@ class Auth extends CI_Controller {
 		$this->form_validation->set_rules('regno', $this->lang->line('create_user_validation_regno_label'), 'xss_clean|required|is_unique['.$tables['student_data'].'.registration_number]');
 		$this->form_validation->set_rules('rollno', $this->lang->line('create_user_validation_rollno_label'), 'xss_clean|required|is_unique['.$tables['student_data'].'.roll_number]');
 		
-		$this->form_validation->set_rules('phone', $this->lang->line('create_user_validation_phone_label'), 'required|min_length[10]|xss_clean');
+		$this->form_validation->set_rules('phone', $this->lang->line('create_user_validation_phone_label'), 'required|min_length[10]|xss_clean|is_unique['.$tables['student_data'].'.mobile]');
 		$this->form_validation->set_rules('password', $this->lang->line('create_user_validation_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
 		$this->form_validation->set_rules('password_confirm', $this->lang->line('create_user_validation_password_confirm_label'), 'required');
 
@@ -737,7 +737,26 @@ class Auth extends CI_Controller {
 			$this->_render_wsdc_page('auth/create_user', $data);
 		}
 	}
-
+	public function delete_user($id)
+	{
+		
+		if ($this->ion_auth->is_admin())
+		{
+			$this->load->model('auth/ion_auth_model');
+			if($this->ion_auth_model->delete_user($id)==TRUE)
+			{
+				$this->session->set_flashdata('message', "User Deleted");
+			}
+			else
+				$this->session->set_flashdata('message', "User not Deleted");
+			redirect('auth', 'refresh');
+		}
+		else
+		{
+			$this->session->set_flashdata('message', "Permission denied");
+			redirect('/', 'refresh');
+		}
+	}
 	//edit a user
 	function edit_user($id)
 	{
@@ -843,13 +862,13 @@ class Auth extends CI_Controller {
 			'type'  => 'text',
 			'value' => $this->form_validation->set_value('last_name', $user->last_name),
 			);
-		$data['company'] = array(
-			'name'  => 'company',
-			'id'    => 'company',
-			'class' => 'form-control',
-			'type'  => 'text',
-			'value' => $this->form_validation->set_value('company', $user->company),
-			);
+		// $data['company'] = array(
+		// 	'name'  => 'company',
+		// 	'id'    => 'company',
+		// 	'class' => 'form-control',
+		// 	'type'  => 'text',
+		// 	'value' => $this->form_validation->set_value('company', $user->company),
+		// 	);
 		$data['phone'] = array(
 			'name'  => 'phone',
 			'id'    => 'phone',
