@@ -494,8 +494,8 @@ class Auth extends CI_Controller {
 	{
 		$data['title'] = "Create Account";
 		$tables = $this->config->item('tables','ion_auth');
-
 		//validate form input
+
 		$this->form_validation->set_rules('first_name', $this->lang->line('create_user_validation_fname_label'), 'required|xss_clean');
 		$this->form_validation->set_rules('last_name', $this->lang->line('create_user_validation_lname_label'), 'xss_clean');
 		$this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'required|valid_email|is_unique['.$tables['users'].'.email]');
@@ -510,15 +510,14 @@ class Auth extends CI_Controller {
 		if ($this->form_validation->run() == true)
 		{
 			$username = $this->input->post('user_id');
-			$this->load->model('import_data');
-			$check_username=$this->import_data->check_username($username);
-			if($check_username==FALSE)
+			$email    = strtolower($this->input->post('email'));
+			$password = $this->input->post('password');
+			// $this->load->model('auth/ion_auth_model', 'chut');
+			if($this->ion_auth_model->validate_username($username)==TRUE)
 			{
 				$this->session->set_flashdata('danger', "Username already exists");
 				redirect("auth/create_general_user", 'refresh');
 			}
-			$email    = strtolower($this->input->post('email'));
-			$password = $this->input->post('password');
 
 			$additional_data = array(
 				'first_name' => $this->input->post('first_name'),

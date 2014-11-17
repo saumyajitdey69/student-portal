@@ -454,6 +454,17 @@ class Ion_auth_model extends CI_Model
 		else
 			return FALSE;
 	}
+
+	public function validate_username($username)
+	{
+		$old_db=$this->load->database('old_student',TRUE);
+		$query=$old_db->get_where('student_auth',array('username'=>$username));
+		// var_dump($query);
+		if($query->num_rows()==1)
+			return TRUE;
+		else
+			return FALSE;
+	}
 	/**
 	 * Deactivate
 	 *

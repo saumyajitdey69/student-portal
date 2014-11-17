@@ -17,16 +17,6 @@ class Import_data extends CI_Model
 		else
 			return FALSE;
 	}
-	public function check_username($username)
-	{
-		$this->old_db=$this->load->database('old_student',TRUE,TRUE);
-		$query = $this->old_db->get_where('student_data', array('username' => $username));
-		if ($query->num_rows() >= 0) {
-			return FALSE;
-		}
-		else
-			return TRUE;
-	}
 	public function check($id,$pass)//can be email or userid
 	{
 		$this->old_db=$this->load->database('old_student',TRUE,TRUE);
