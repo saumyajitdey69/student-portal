@@ -23,11 +23,13 @@ class Profile extends MY_Controller {
 
     public function validate()
     {
-        if($this->input->post('registration_number') === FALSE)
-        {
-            redirect(base_url('profile'), 'location', '301');
-            return;
-        }
+        if (!$this->ion_auth->logged_in())
+            redirect('auth/login');
+        // if($this->input->post('registration_number') === FALSE)
+        // {
+        //     redirect(base_url('profile'), 'location', '301');
+        //     return;
+        // }
 
         $this->form_validation->set_rules('name', 'Name', 'trim|required');
         // $this->form_validation->set_rules('registration_number', 'Registration Number', 'trim|required|min_length[4]|is_unique[student_data.registration_number]');
