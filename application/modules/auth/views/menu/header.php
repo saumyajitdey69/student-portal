@@ -31,7 +31,11 @@
             <p class="text-center">The student portal authentication has been changed. 
             You can login with your correct old account credentials.
             </p>
-            <p class="text-danger text-center">In case you have forgot your password or account was not activated,<a href="../old_auth/auth">Click here</a></p>
+            <p class="text-danger text-center lead">In case you have forgot your password of old account or old account was not activated,<a href="../old_auth/auth">Click here</a>
+                </p>
+                <p class="text-danger text-center lead">If forgot Password says "No email record found",Try checking this <a href="../old_auth/auth">Page
+            </p>
+            
             <p class="text-center">
             First years can create account now.Don't forget to check your SPAM folder for mails. Drop a mail to wsdc.nitw@gmail.com if you face any issues.
             </p>

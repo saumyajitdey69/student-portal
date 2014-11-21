@@ -67,8 +67,9 @@ class Import_data extends CI_Model
 			$status['auth_data']=$import_auth_data;
 			return $status;
 		} else {
-			$this->db->select('')->from('student_auth')->where(array('username' => $credentials['username']))->limit(1);
-			$query = $this->db->get();
+			return false;
+			$new_db=$this->load->database('default',TRUE);
+			$query = $new_db->get_where('student_auth',array('username' => $credentials['username']))->limit(1);
 			if ($query->num_rows() == 0) {
 				$status['success']=0;
 				$status['message']="Username/Password invalid";
