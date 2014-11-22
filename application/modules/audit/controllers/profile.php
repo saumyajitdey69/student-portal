@@ -13,6 +13,16 @@ class Profile extends MY_Controller {
     {
         $details = $this->audit_model->get($this->user_id);
         // var_dump($details);
+        if($details!=false)
+        {
+            $correct_details=$this->audit_model->get_correct_details($this->user_id);
+            // var_dump($correct_details);
+            if($correct_details!=false){
+            $details->name=$correct_details->first_name.' '.$correct_details->last_name;
+            $details->email=$correct_details->email;
+            $details->mobile=$correct_details->phone;
+            }
+        }
         $data['details'] = $details;
         $data['submitted'] = '';
         $data['scripts'] = array('profile/profile.js');
