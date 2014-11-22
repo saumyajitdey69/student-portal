@@ -380,6 +380,7 @@ $(document).ready(function() {
     var table = $('.table').DataTable({
     	"aLengthMenu": [[12, 25, 50, 100, -1], [12, 25, 50, 100, "ALL"]],
 		"iDisplayLength": 12,
+		"deferRender": true
     });
      // new $.fn.dataTable.FixedHeader(table, {
      // 	"offsetTop" : 50

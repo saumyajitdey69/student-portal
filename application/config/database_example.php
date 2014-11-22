@@ -98,20 +98,20 @@ $db['results']['autoinit'] = TRUE;
 $db['results']['stricton'] = FALSE;
 
 
-$db['registration']['hostname'] = 'localhost';
-$db['registration']['username'] = 'root';
-$db['registration']['password'] = '';
-$db['registration']['database'] = 'test_sem_reg';
-$db['registration']['dbdriver'] = 'mysql';
-$db['registration']['dbprefix'] = '';
-$db['registration']['pconnect'] = TRUE;
-$db['registration']['db_debug'] = TRUE; 
-$db['registration']['cache_on'] = FALSE;
-$db['registration']['cachedir'] = '';
-$db['registration']['char_set'] = 'utf8';
-$db['registration']['dbcollat'] = 'utf8_general_ci';
-$db['registration']['swap_pre'] = '';
-$db['registration']['autoinit'] = TRUE;
-$db['registration']['stricton'] = FALSE;
+$db['reg']['hostname'] = 'localhost';
+$db['reg']['username'] = 'root';
+$db['reg']['password'] = '';
+$db['reg']['database'] = 'test_sem_reg2';
+$db['reg']['dbdriver'] = 'mysql';
+$db['reg']['dbprefix'] = '';
+$db['reg']['pconnect'] = TRUE;
+$db['reg']['db_debug'] = TRUE; 
+$db['reg']['cache_on'] = FALSE;
+$db['reg']['cachedir'] = '';
+$db['reg']['char_set'] = 'utf8';
+$db['reg']['dbcollat'] = 'utf8_general_ci';
+$db['reg']['swap_pre'] = '';
+$db['reg']['autoinit'] = TRUE;
+$db['reg']['stricton'] = FALSE;
 /* End of file database.php */
 /* Location: ./application/config/database.php */
