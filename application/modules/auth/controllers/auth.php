@@ -50,6 +50,7 @@ class Auth extends CI_Controller {
 				$data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
 			}
 			$data['scripts'] = array('auth/jquery.dataTables.min.js','auth/table.js');
+			$data['css'] = array('dataTables.bootstrap.css');
 			$data['admin_logged']=$this->ion_auth->is_admin();
 			$this->load->model('user_data_model','',TRUE);
 			$data['users_info']=$this->user_data_model->get_all_user_data();

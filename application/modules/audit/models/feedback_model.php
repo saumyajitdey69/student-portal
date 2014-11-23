@@ -66,7 +66,7 @@ class Feedback_model extends CI_Model {
     }
     public function get_rollnos()
     {
-        $db_register=$this->load->database('registration',TRUE);
+        $db_register=$this->load->database('reg',TRUE);
         $query=$this->db->get_where($this->tables['registered']);
         if($query->num_rows()>0)
             return $query->result();
@@ -75,7 +75,7 @@ class Feedback_model extends CI_Model {
     }
     public function get_rollnos2()
     {
-        $db_register=$this->load->database('registration',TRUE);
+        $db_register=$this->load->database('reg',TRUE);
         $query=$this->db->get_where($this->tables['registered']);
         if($query->num_rows()>0)
             return $query->result_array();
@@ -85,7 +85,7 @@ class Feedback_model extends CI_Model {
     public function get_courses($roll)
     {
         $data['roll']=$roll;
-        $db_register=$this->load->database('registration',TRUE);
+        $db_register=$this->load->database('reg',TRUE);
         $db_register->like('roll',$roll);
         $query=$db_register->get($this->tables['registered']);
         return $query->result_array();
@@ -99,14 +99,14 @@ class Feedback_model extends CI_Model {
             $data['roll']=$query->row()->roll_number;
         else
             return FALSE;
-        $db_register=$this->load->database('registration',TRUE);
+        $db_register=$this->load->database('reg',TRUE);
         $query=$db_register->get_where($this->tables['registered'],$data);
         return $query->result_array();
     
     }
     public function get_structure_id($data)
     {
-        $db_register=$this->load->database('registration',TRUE);
+        $db_register=$this->load->database('reg',TRUE);
         // $query=$db_register->get_where($this->tables['list_of_all_classes'],array('class_name'=>$data['class']));
         // $data['class']=$query->row()->class_code;
         $query=$db_register->get_where('regular',$data);
@@ -117,7 +117,7 @@ class Feedback_model extends CI_Model {
     }
     public function get_cfid($structure_id,$course_id,$sec)
     {
-        $db_register=$this->load->database('registration',TRUE);
+        $db_register=$this->load->database('reg',TRUE);
 	    if($sec=='0')
             $sec="NO";
         $data=array(

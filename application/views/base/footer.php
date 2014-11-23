@@ -7,16 +7,16 @@
             </div>
             <div class="clearfix visible-sm visible-xs">
             </div>
-            <small data-step="10" data-intro="Contact WSDC for any queries, feedback, suggestions">
+            <div data-step="10" data-intro="Contact WSDC for any queries, feedback, suggestions">
               <span class="glyphicon glyphicon-copyright-mark"></span> <a class="tips" title="Web & Software Development Cell, NIT Warangal" target="_blank" href="http://www.nitw.ac.in/wsdc">WSDC, NITW </a> 
               | <a href="http://wsdc.nitw.ac.in" target="_blank">wsdc.nitw.ac.in</a> | 
               <span class="glyphicon glyphicon-envelope"> </span> <a href="mailto:wsdc@nitw.ac.in" target="_blank"> wsdc@nitw.ac.in</a>
-            </small>
+            </div>
           </footer>
         </div>
       </div> <!-- /row with hidden print closes -->
       <br>
-
+    </div> <!-- container close here -->
     </div> <!--  container-fluid from header.php closes here -->
     <script src="<?php echo asset_url()."js/jquery.js"; ?> "></script>
     <script src="<?php echo asset_url()."js/bootstrap.min.js"; ?> "></script>

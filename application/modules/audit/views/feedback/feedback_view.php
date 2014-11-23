@@ -1,5 +1,5 @@
-<div class="row">
-	<div class="col-xs-12 col-sm-12 col-md-12">
+<!-- <div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-12"> -->
 		<div class="alert alert-info" id="info_div" style="display:none;">
 			<!-- <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> -->
 			<span></span>
@@ -8,7 +8,6 @@
 			<!-- <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> -->
 			<span></span>
 		</div>
-
 		<ul id="navigation" class="pager" style='display:none'>
 			<li class="list"><a href="javascript:void(0)"> <span class="glyphicon glyphicon-list-alt "></span> &nbsp; Show all courses</a ></li>
 			<li class="previous"><a href="javascript:void(0)">&larr; Previous </a ></li>
@@ -271,8 +270,6 @@
 							</label>
 						</td>
 					</tr>
-
-
 				</table>
 				<table id="feedback_comments_course" class="table">
 					<tr>
@@ -660,81 +657,76 @@
 				<img src="<?php echo asset_url()."images/feedback-loading.gif"; ?>" id="t_img" width="160px" height="20px" />
 			</div>
 		</div>   <!--/ques_theory -->
-		<div id="tabs" class="panel panel-default">
+		<div id="tabs">
 			<!-- Default panel contents -->
-			<div class="panel-heading"><span class="glyphicon glyphicon-list-alt "></span> &nbsp; Registered Courses</div>
-			<div class="panel-body">
-				<ul>
-					<li class="text-info"> <strong>Anonymity of feedback is guaranteed</strong>	</li>
-					<li>Only after the academic results are announced, consolidated feedback report will be shared with the faculty. <strong>No student details are stored.</strong></li>
+			<legend>Academic Feedback <small>(Registered Courses)</small></legend>
+			<ul>
+				<li class="text-info"> <strong>Anonymity of feedback is guaranteed</strong>	</li>
+				<li>Only after the academic results are announced, consolidated feedback report will be shared with the faculty. <strong>No student details are stored.</strong></li>
 
-					<li>If any of the lab/theory courses are missing or are extra, please contact WSDC before submitting the feedback</li>
-					<li>All questions are mandatory except comments</li>
-					<li>For assistance, contact <a href="mailto:wsdc.nitw@gmail.com">wsdc.nitw@gmail.com</a> , WSDC NITW
-					</li>
-				</ul>
-			</div>
-			<div>
-				<table class="table table-hover table-condensed" data-questions=35 data-commentsize=4>
-					<thead>
-						<tr><th style="text-align:center">#</th>
-							<th>COURSE ID</th><th>COURSE NAME</th>
-							<th>FACULTY ALLOTED</th><th style="text-align:center">FEEDBACK</th>
-						</tr>
-					</thead>
-					<tbody>
+				<li>If any of the lab/theory courses are missing or are extra, please contact WSDC before submitting the feedback</li>
+				<li>All questions are mandatory except comments</li>
+				<li>For assistance, contact <a href="mailto:wsdc.nitw@gmail.com">wsdc.nitw@gmail.com</a> , WSDC NITW
+				</li>
+			</ul>
+			<table class="table table-hover table-responsive" data-questions=35 data-commentsize=4>
+				<thead>
+					<tr><th style="text-align:center">#</th>
+						<th>COURSE ID</th><th>COURSE NAME</th>
+						<th>FACULTY ALLOTED</th><th style="text-align:center">FEEDBACK</th>
+					</tr>
+				</thead>
+				<tbody>
 
-						<?php
-						$course_id=1;
-						foreach ($students_courses as $list) {
-							foreach ($list['courses'] as $course) {
-								$is_feedback_filled=0;
+					<?php
+					$course_id=1;
+					foreach ($students_courses as $list) {
+						foreach ($list['courses'] as $course) {
+							$is_feedback_filled=0;
 
-								$faculty_name="HOD";
-								$alloted=0;
-								$text_color="text-danger";
-								$glyphicon="glyphicon-remove";
-								if(isset($course['faculty_name'])){
-									$faculty_name=$course['faculty_name'];
-									$alloted=1;
-								}
-								if($feedback_status[$course_id-1]=='1'){
-									$is_feedback_filled=1;
-									$text_color="text-success";
-									$glyphicon="glyphicon-ok";
-								}
+							$faculty_name="HOD";
+							$alloted=0;
+							$text_color="text-danger";
+							$glyphicon="glyphicon-remove";
+							if(isset($course['faculty_name'])){
+								$faculty_name=$course['faculty_name'];
+								$alloted=1;
+							}
+							if($feedback_status[$course_id-1]=='1'){
+								$is_feedback_filled=1;
+								$text_color="text-success";
+								$glyphicon="glyphicon-ok";
+							}
                                 // if($alloted==0)
                                 // {
                                 //     $glyphicon="glyphicon-ban-circle";
                                 // }
 
-								?>
-								<tr class="course_row" data-cfid="<?php if($alloted) echo $course['cfid'];?>" data-status="<?php echo $is_feedback_filled;?>" data-alloted="<?php echo $alloted;?>"
-									data-credits="<?php echo $course['credits'];?>" data-type="<?php echo $course['type'];?>" data-sec="<?php echo $list['sec']; ?>" data-faculty-id="<?php if($alloted)  echo $course['faculty_id'];?>" >
-									<td class="text-center"><?php echo $course_id;?></td>
-									<td><?php echo $course['id'];?></td>
-									<td><?php echo $course['name'];?></td>
-									<td><?php echo $faculty_name;?></td>
+							?>
+							<tr class="course_row" data-cfid="<?php if($alloted) echo $course['cfid'];?>" data-status="<?php echo $is_feedback_filled;?>" data-alloted="<?php echo $alloted;?>"
+								data-credits="<?php echo $course['credits'];?>" data-type="<?php echo $course['type'];?>" data-sec="<?php echo $list['sec']; ?>" data-faculty-id="<?php if($alloted)  echo $course['faculty_id'];?>" >
+								<td class="text-center"><?php echo $course_id;?></td>
+								<td><?php echo $course['id'];?></td>
+								<td><?php echo $course['name'];?></td>
+								<td><?php echo $faculty_name;?></td>
 
-									<td style="text-align:center;" class="<?php echo $text_color;?>"><span rel="tooltip" data-placement="left" title="Feedback<?php if($is_feedback_filled==0) echo 'not';?> submitted" class="glyphicon <?php echo $glyphicon;?>"></span></td>
-								</tr>
-								<?php
-								$course_id++;
-							}
-						} ?>
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<!-- </div> panel -->
-	</div>  <!-- /col-md-12-->
-</div><!-- /row inside row -->
-<center>
-	<ol class="breadcrumb" style="display:none;">
-		<li>5-Strongly agree</li>
-		<li>4-Agree</li>
-		<li>3-Partially agree</li>
-		<li>2-Disagree</li>
-		<li>1-Strongly disagree</li>
-	</ol>
-</center>		
+								<td style="text-align:center;" class="<?php echo $text_color;?>"><span rel="tooltip" data-placement="left" title="Feedback<?php if($is_feedback_filled==0) echo 'not ';?> submitted" class="tips glyphicon <?php echo $glyphicon;?>"></span></td>
+							</tr>
+							<?php
+							$course_id++;
+						}
+					} ?>
+				</tbody>
+			</table>
+			<!-- </div> panel -->
+		</div>  <!-- /col-md-12-->
+	</div><!-- /row inside row -->
+<!-- 	<center>
+		<ol class="breadcrumb" style="display:none;">
+			<li>5-Strongly agree</li>
+			<li>4-Agree</li>
+			<li>3-Partially agree</li>
+			<li>2-Disagree</li>
+			<li>1-Strongly disagree</li>
+		</ol>
+	</center>		 -->

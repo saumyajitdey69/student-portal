@@ -29,7 +29,7 @@ class Results_model extends CI_Model {
 
 	public function check_feedback($userid = '', $rollno='')
 	{
-		$old_db=$this->load->database('old_student',TRUE,TRUE);
+		$old_db=$this->load->database('default',TRUE);
 		$query = $old_db->select('feedback, final_year')
 		->where(array('userid' => $userid))
 		->from($this->tables['feedback'])
@@ -52,7 +52,7 @@ class Results_model extends CI_Model {
 			// 	$status['message'] = 'Your results are blocked. Please contact Associate Dean Examination for further details. <br> WSDC does not have results of these students.';
 			// 	return $status;
 			// }
-			$register_db = $this->load->database('registration', TRUE);
+			$register_db = $this->load->database('reg', TRUE);
 			$query = $register_db->select()->where('roll', $rollno)->get('registered');
 			if($query->num_rows() == 0)
 			{
@@ -62,7 +62,7 @@ class Results_model extends CI_Model {
 				if($query2->num_rows()==1)
 				{
 				$regno=$query2->row()->registration_number;
-				$register_db = $this->load->database('registration', TRUE);
+				$register_db = $this->load->database('reg', TRUE);
 				$query = $register_db->select()->where('roll', $regno)->get('registered');
 				}
 			}
@@ -183,7 +183,7 @@ class Results_model extends CI_Model {
 	}
 	public function get_old_user_id($roll)
 	{
-		$old_db=$this->load->database('old_student',TRUE,TRUE);
+		$old_db=$this->load->database('student',TRUE,TRUE);
 		$old_db->select('userid')->from('student_data')->where(array('roll_number' => $roll))->limit(1);
 		$query = $old_db->get();
 		if ($query->num_rows() == 1) {

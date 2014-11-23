@@ -26,7 +26,7 @@
   box-shadow: 0 0 8px rgba(82,168,236,.6) !important;
 }
 body {
-  font-size:13px;
+  font-size:12px;
   padding-top: 50px;
 }
 @media print{
@@ -220,11 +220,11 @@ footer p{
   vertical-align: middle;
 }
 
-@media (min-width: 1200px) {
+/*@media (min-width: 1200px) {
   .container {
     width: 1270px;
   }
-}
+}*/
 
 .panel-title-with-btn {
   margin-bottom: 10px;
@@ -341,8 +341,8 @@ body {
 
 @media (min-width: 768px) {
   .sidebar {
-    position: fixed;
-    top: 51px;
+    /*position: fixed;*/
+    /*top: 51px;*/
     bottom: 0;
     left: 0;
     z-index: 1000;
@@ -517,7 +517,7 @@ padding-top:3px;
 
 .google .input-form:focus, .google input:focus,.google .input-form:hover, .google input:hover{
  -webkit-box-shadow:none !important;
- box-shadow: none;
+ box-shadow: none !important;
 }
 
 .google-search-btn span{
@@ -526,4 +526,22 @@ padding-top:3px;
 
 .google-search-progile-img{
   padding:2px;
+}
+
+.table>thead>tr>td.google-attendance-danger, .table>tbody>tr>td.google-attendance-danger, .table>tfoot>tr>td.google-attendance-danger, .table>thead>tr>th.google-attendance-danger, .table>tbody>tr>th.google-attendance-danger, .table>tfoot>tr>th.google-attendance-danger, .table>thead>tr.google-attendance-danger>td, .table>tbody>tr.google-attendance-danger>td, .table>tfoot>tr.google-attendance-danger>td, .table>thead>tr.google-attendance-danger>th, .table>tbody>tr.google-attendance-danger>th, .table>tfoot>tr.google-attendance-danger>th{
+    background-color: #f2dede;
+    color: black;
+}
+
+.table-hover>tbody>tr>td.google-attendance-danger:hover, .table-hover>tbody>tr>th.google-attendance-danger:hover, .table-hover>tbody>tr.google-attendance-danger:hover>td, .table-hover>tbody>tr.google-attendance-danger:hover>th{
+  background-color: #ebcccc;
+}
+
+.table>thead>tr>td.google-attendance-success, .table>tbody>tr>td.google-attendance-success, .table>tfoot>tr>td.google-attendance-success, .table>thead>tr>th.google-attendance-success, .table>tbody>tr>th.google-attendance-success, .table>tfoot>tr>th.google-attendance-success, .table>thead>tr.google-attendance-success>td, .table>tbody>tr.google-attendance-success>td, .table>tfoot>tr.google-attendance-success>td, .table>thead>tr.google-attendance-success>th, .table>tbody>tr.google-attendance-success>th, .table>tfoot>tr.google-attendance-success>th{
+    background-color: #dff0d8;
+    color: black;
+}
+
+.table-hover>tbody>tr>td.google-attendance-success:hover, .table-hover>tbody>tr>th.google-attendance-success:hover, .table-hover>tbody>tr.google-attendance-success:hover>td, .table-hover>tbody>tr.google-attendance-success:hover>th{
+  background-color: #d0e9c6;
 }

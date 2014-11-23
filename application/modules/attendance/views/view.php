@@ -1,10 +1,11 @@
-<div class="alert alert-danger">
-	The subjects having total classes as zero are not yet entered by respective faculty.Lab and open elective courses are not included in online attendance.
+<div class=" alert alert-warning ">
+<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	The subjects having total classes as <strong>zero (0)</strong> are not yet entered by respective faculty.Lab are excluded from online attendance.
 </div>
-<h3 class="text-center">
-	Attendance Report
-</h3>
-<table class="table table-responsive">
+<!-- <div class="page-header">
+  <h3> &nbsp; Attendance Report</h3>
+</div> -->
+<!-- <table class="table table-responsive table-condensed">
 	<tr>
 		<th>Roll No:</th>
 		<td><?php echo $reg_roll; ?></td>
@@ -23,14 +24,14 @@
 			<th>Semester:</th>
 			<td><?php echo $reg_semester; ?></td>
 		</tr>
-	</table>
+	</table> -->
 	<?php $type=array('regular'=>'Regular','backlog'=>'Backlog'); 
 	foreach ($type as $key => $value) : 
 		if(sizeof(${$key.'_courses'}['reg_course_id']) <= 0)
 			continue;
 	?>
-	<p class="lead text-center"><?php echo $value; ?> Subjects</p>
-	<table class="table table-bordered table-hover">
+	<legend> &nbsp; Attendace report of <?php echo $value; ?> Subjects</legend>
+	<table class="table table-hover table-responsive">
 		<thead>
 			<tr>
 				<th>
@@ -90,9 +91,9 @@
 					}
 			?>
 			<tr class="<?php if($shortage==1) 
-								echo "danger"; 
+								echo "google-attendance-danger"; 
 							else if($shortage==0) 
-								echo "success";
+								echo "google-attendance-success";
 					 ?>">
 				<td><?php echo ($i+1) ?></td>
 				<td><?php echo ${$key.'_courses'}['reg_course_id'][$i]; ?></td>
