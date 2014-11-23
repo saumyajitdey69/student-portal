@@ -9,17 +9,35 @@ class Profile extends MX_Controller {
 		$this->load->library('auth/ion_auth');
 		if (!$this->ion_auth->logged_in())
 			redirect(base_url('auth'), 'location', 301);
+
+		// load the common model
+		$this->load->model('profile/profile_model');
 	}
 
 	public function index()
 	{
-		$data['title'] = "Student Profile | WSDC";
+		$data['current_page'] = 'public';
+		$data['title'] = $this->session->userdata('name');
+		// public profile of logged in user.
+		$data['profile'] = $this->profile_model->get(array('username' => $this->session->userdata('username')), true);
 		$this->_render_page('public_profile', $data);
 	}
 
+	public function view($username = '')
+	{
+		$data['current_page'] = 'public';
+		$data['profile'] = $this->profile_model->get(array('username' => $username), true);
+		if(empty($data['profile'])){
+			$this->session->set_flashdata('danger', 'Username does not exist. Please check the username and try again.');
+			redirect('profile');
+		}
+		$data['title'] = ucwords(strtolower($data['profile']['first_name']))." ".ucwords(strtolower($data['profile']['last_name']));
+		$this->_render_page('public_profile', $data);
+	}
 
 	function _render_page($view, $data=null, $render=false)
 	{
+		$data['current_section'] = 'profile';
 		if(empty($data['current_page'])) $data['current_page'] = "";
 		$this->viewdata = (empty($data)) ? $data: $data;
 		$view_html = array(

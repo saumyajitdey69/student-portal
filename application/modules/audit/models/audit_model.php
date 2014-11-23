@@ -20,7 +20,7 @@ class Audit_model extends CI_Model {
 	}
 
 	// @author: Vaibhav Awachat
-
+	// this is of no use
 	public function get_public_profile($username = "")
 	{
 		$this->db->select('first_name, last_name, email, phone, roll_number, registration_number, joining_year, branch');
