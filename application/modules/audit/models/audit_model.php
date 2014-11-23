@@ -11,8 +11,7 @@ class Audit_model extends CI_Model {
 
 	public function get($userid)
 	{
-		$this->db->select()->from($this->tables['student_data'])->where(array('userid' => $userid))->limit(1);
-		$this->db->get();
+		$query = $this->db->select()->from($this->tables['student_data'])->where(array('userid' => $userid))->limit(1)->get();
 		if ($query->num_rows() == 1) {
 			return $query->first_row();
 		} else {

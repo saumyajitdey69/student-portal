@@ -23,36 +23,37 @@
 <body class="google">
 	<!-- <div class="container-fluid"> -->
 	<div class="navbar navbar-fixed-top navbar-inverse hidden-print" role="navigation">
-		<div class="row">	
-			<div class="col-md-2">
-				<div class="navbar-header google-header-img">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
+		<div class="container">
+			<div class="row">	
+				<div class="col-md-2">
+					<div class="navbar-header google-header-img">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
 
-					<a class="navbar-brand" href="<?php echo base_url() ?>">
-						<img class="img" width="70px" src="<?php echo base_url('assets/images/logo_wsdc.png') ?>" alt="wsdc_logo">
-					</a>
+						<a class="navbar-brand" href="<?php echo base_url() ?>">
+							<img class="img" width="70px" src="<?php echo base_url('assets/images/logo_wsdc.png') ?>" alt="wsdc_logo">
+						</a>
+					</div>
 				</div>
-			</div>
-			<div class="col-md-10">
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse google-header-center navbar-ex1-collapse">
-					<form onsubmit="return false;" class="navbar-form google-header-form col-md-6 col-xs-12" role="search">
-						<div class="input-group google-input-group">
-							<input type="search" class="form-control google-search-bar google-search-size" placeholder="Search students" id="search-item-input" oninput="OnInput(this.value)" autocomplete="off" name="search-item">
-							<span class="input-group-btn">
-								<button class="btn btn-default btn-primary google-search-btn" type="button"> <span class="glyphicon glyphicon-search"></span></button>
-							</span>
-						</div><!-- /input-group -->
-						<div class="list-group search-result-box google-search-size" id="search-item-output" >
-						</div> 
-					</form>						
+				<div class="col-md-10">
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse google-header-center navbar-ex1-collapse">
+						<form onsubmit="return false;" class="navbar-form google-header-form col-md-6 col-xs-12" role="search">
+							<div class="input-group google-input-group">
+								<input type="search" class="form-control google-search-bar google-search-size" placeholder="Search students" id="search-item-input" oninput="OnInput(this.value)" autocomplete="off" name="search-item">
+								<span class="input-group-btn">
+									<button class="btn btn-default btn-primary google-search-btn" type="button"> <span class="glyphicon glyphicon-search"></span></button>
+								</span>
+							</div><!-- /input-group -->
+							<div class="list-group search-result-box google-search-size" id="search-item-output" >
+							</div> 
+						</form>						
 
-					<ul class="nav navbar-nav navbar-right">
+						<ul class="nav navbar-nav navbar-right">
 						<!-- <li data-placement="bottom" class="tips <?php echo ($current_section === 'audit')?'active':''; ?>" title="Academic Audit : Results, Feedback, Registration">
 							<a href="<?php echo base_url('audit/home'); ?>">
 								<span class="glyphicon glyphicon-list-alt"></span> <span class="hidden-sm">Academic Audit</span>
@@ -75,7 +76,7 @@
 						</li> -->
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<?php echo $this->session->userdata('name'); ?>
+								<?php echo $this->session->userdata('name'); ?>
 								<!-- <span class="glyphicon glyphicon-cog"></span> -->  <b class="caret"></b> &nbsp;
 							</a>
 							<ul class="dropdown-menu">
@@ -92,4 +93,5 @@
 			</div>
 		</div>
 	</div>
+</div>
 <div class="container">

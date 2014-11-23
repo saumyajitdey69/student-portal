@@ -27,7 +27,6 @@
 		<th>User ID</th>
 			<th><?php echo lang('index_dname_th');?></th>
 			<th><?php echo lang('index_email_th');?></th>
-			<th style="width:100px;"><?php echo lang('index_email_th');?></th>
 			<th>Roll No</th>
 			<th>Reg No</th>
 			<th>Phone</th>
