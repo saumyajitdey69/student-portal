@@ -378,8 +378,8 @@ alert("Warning: ColVis requires DataTables 1.7 or greater - www.datatables.net/d
 
 $(document).ready(function() {
     var table = $('.table').DataTable({
-    	"aLengthMenu": [[12, 25, 50, 100, -1], [12, 25, 50, 100, "ALL"]],
-		"iDisplayLength": 12,
+    	"aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "ALL"]],
+		"iDisplayLength": 10,
 		"deferRender": true
     });
      // new $.fn.dataTable.FixedHeader(table, {
