@@ -53,6 +53,7 @@ class Auth_model extends CI_Model {
     }
 
     public function set_new_password($activation_link,$password){
+        $this->old_db=$this->load->database('old_student',TRUE,TRUE);
         $this->old_db->update('student_auth',
             array('password' => md5($password), 'activation_link' => ''),
             array('activation_link' => $activation_link));

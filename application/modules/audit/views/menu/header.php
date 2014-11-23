@@ -47,7 +47,6 @@
       </div>
       <a href="#">Profile</a>
     </div>
-
     <div id="profile" class="collapse">
       <ul role="menu" class="list-group-item-menu">
         <li class="list-group-item">

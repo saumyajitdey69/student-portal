@@ -35,6 +35,8 @@ class Audit_model extends CI_Model {
 			return FALSE;
 	}
 
+// @author: Vaibhav Awachat
+
 	public function getSeachItem($searchStr = "", $json = true, $count = 5)
 	{
 		if(!empty($searchStr)){
@@ -55,11 +57,27 @@ class Audit_model extends CI_Model {
 
 	}
 
+	public function get_correct_details($userid)
+	{
+		$this->db->select()->from($this->tables['student_auth'])->where(array('id' => $userid))->limit(1);
+		$query = $this->db->get();
+		if ($query->num_rows() == 1) {
+			return $query->first_row();
+		} else {
+			return false;
+		}
+	}
+
 	public function update($userid, $details)
 	{
 		$query = $this->db->update($this->tables['student_data'], $details, array('userid' => $userid));
 		if ($this->db->affected_rows() >= 0) {
-			$this->db->update($this->tables['student_auth'], array('profile_edited' => 1), array('id' => $userid));
+			$this->db->update($this->tables['student_auth'], array('profile_edited' => 1,
+					'first_name'=>$details['name'],
+					'phone'=>$details['mobile'],
+					'email'=>$details['email']
+				 	), array('id' => $userid));
+			
 			if ($this->db->affected_rows() >= 0) {
 				return true;
 			} else {

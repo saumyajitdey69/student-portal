@@ -495,8 +495,8 @@ class Auth extends CI_Controller {
 	{
 		$data['title'] = "Create Account";
 		$tables = $this->config->item('tables','ion_auth');
-
 		//validate form input
+
 		$this->form_validation->set_rules('first_name', $this->lang->line('create_user_validation_fname_label'), 'required|xss_clean');
 		$this->form_validation->set_rules('last_name', $this->lang->line('create_user_validation_lname_label'), 'xss_clean');
 		$this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'required|valid_email|is_unique['.$tables['users'].'.email]');
@@ -504,7 +504,7 @@ class Auth extends CI_Controller {
 		$this->form_validation->set_rules('regno', $this->lang->line('create_user_validation_regno_label'), 'xss_clean|required|is_unique['.$tables['student_data'].'.registration_number]');
 		$this->form_validation->set_rules('rollno', $this->lang->line('create_user_validation_rollno_label'), 'xss_clean|required|is_unique['.$tables['student_data'].'.roll_number]');
 		
-		$this->form_validation->set_rules('phone', $this->lang->line('create_user_validation_phone_label'), 'required|min_length[10]|xss_clean');
+		$this->form_validation->set_rules('phone', $this->lang->line('create_user_validation_phone_label'), 'required|min_length[10]|xss_clean|is_unique['.$tables['student_data'].'.mobile]');
 		$this->form_validation->set_rules('password', $this->lang->line('create_user_validation_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
 		$this->form_validation->set_rules('password_confirm', $this->lang->line('create_user_validation_password_confirm_label'), 'required');
 
@@ -513,6 +513,12 @@ class Auth extends CI_Controller {
 			$username = $this->input->post('user_id');
 			$email    = strtolower($this->input->post('email'));
 			$password = $this->input->post('password');
+			// $this->load->model('auth/ion_auth_model', 'chut');
+			if($this->ion_auth_model->validate_username($username)==TRUE)
+			{
+				$this->session->set_flashdata('danger', "Username already exists");
+				redirect("auth/create_general_user", 'refresh');
+			}
 
 			$additional_data = array(
 				'first_name' => $this->input->post('first_name'),
@@ -732,7 +738,26 @@ class Auth extends CI_Controller {
 			$this->_render_wsdc_page('auth/create_user', $data);
 		}
 	}
-
+	public function delete_user($id)
+	{
+		
+		if ($this->ion_auth->is_admin())
+		{
+			$this->load->model('auth/ion_auth_model');
+			if($this->ion_auth_model->delete_user($id)==TRUE)
+			{
+				$this->session->set_flashdata('message', "User Deleted");
+			}
+			else
+				$this->session->set_flashdata('message', "User not Deleted");
+			redirect('auth', 'refresh');
+		}
+		else
+		{
+			$this->session->set_flashdata('message', "Permission denied");
+			redirect('/', 'refresh');
+		}
+	}
 	//edit a user
 	function edit_user($id)
 	{
@@ -838,13 +863,13 @@ class Auth extends CI_Controller {
 			'type'  => 'text',
 			'value' => $this->form_validation->set_value('last_name', $user->last_name),
 			);
-		$data['company'] = array(
-			'name'  => 'company',
-			'id'    => 'company',
-			'class' => 'form-control',
-			'type'  => 'text',
-			'value' => $this->form_validation->set_value('company', $user->company),
-			);
+		// $data['company'] = array(
+		// 	'name'  => 'company',
+		// 	'id'    => 'company',
+		// 	'class' => 'form-control',
+		// 	'type'  => 'text',
+		// 	'value' => $this->form_validation->set_value('company', $user->company),
+		// 	);
 		$data['phone'] = array(
 			'name'  => 'phone',
 			'id'    => 'phone',

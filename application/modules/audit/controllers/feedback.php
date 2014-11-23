@@ -5,6 +5,12 @@ class Feedback extends MY_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('auth/ion_auth_model', '', TRUE);
+		if ($this->user_id === null)
+		{
+			redirect(base_url('auth'), 'location', 301);
+			return false;
+		}
 		$this->load->model('audit_model');
 		if ($this->audit_model->profile_edited($this->user_id) === false)
 		{
@@ -20,7 +26,7 @@ class Feedback extends MY_Controller {
 	public function get_missing()
 	{
 		$data = array();
-		$this->load->model('feedback_model');
+		$this->load->model('audit/feedback_model');
 		$query=$this->feedback_model->get_rollnos();
 		foreach ($query as $roll) {
 			$query2=$this->feedback_model->get_courses($roll->roll);
@@ -81,23 +87,36 @@ class Feedback extends MY_Controller {
 		$data['section_page'] = 'audit';
 		$data['current_page'] = 'feedback';
 		$data['scripts']=array('JavaScriptSpellCheck/include.js','feedback/feedback.min.js','notify/bootstrap-notify.js');
-		$this->load->model('feedback_model');
+		$this->load->model('audit/feedback_model');
 
 		//////// allowed feedback code ///////////
 		$userid = $this->user_id;
 
 		$this->load->model('audit/results_model', 'results_model');
-		$roll = $this->results_model->get_roll_number($userid);
-		if($this->results_model->_is_allowed_for_feedback($roll) === FALSE)
-		{	
-			$this->session->set_flashdata('danger', 'Feedback is closed. If you did not fill the feedback please contact Associate Dean Academic Audit. <br> After the approval of Dean it takes 2-3 days for receiving the results and	activating feedback. <br> Please do not contact WSDC for this issue.');
-			redirect('audit');
-			return;
-		}
+		$roll = $this->feedback_model->get_roll($userid);
+
+		//close feedback
+		// $this->session->set_flashdata('danger', 'Feedback will start from 17th November');
+		// redirect('audit');
+
+		//print_r($roll);
+		//if($this->results_model->_is_allowed_for_feedback($roll) === FALSE)
+		//{	
+		//	$this->session->set_flashdata('danger', 'Feedback is closed. If you did not fill the feedback please contact Associate Dean Academic Audit. <br> After the approval of Dean it takes 2-3 days for receiving the results and	activating feedback. <br> Please do not contact WSDC for this issue.');
+		//	redirect('audit');
+		//	return;
+		//}
         ////////////////////////////////
 		if ($this->feedback_model->get_cgpa($this->user_id) == 0) {
-			redirect(base_url("audit/feedback/cgpa"), "location", 301);
-			return;
+			$rollno=$this->feedback_model->get_roll($this->user_id);
+			$cgpa = $this->feedback_model->get_cgpa_results($rollno);
+			if($cgpa == FALSE)
+			{
+				$rollno = $this->feedback_model->get_reg_no($this->user_id);
+				$cgpa = $this->feedback_model->get_cgpa_results($rollno);
+			}
+			
+			$this->feedback_model->set_cgpa($this->user_id, $cgpa);
 		}
 		$feedback_status=$this->feedback_model->get_status($this->user_id);
 		$query=$this->feedback_model->get_feedback_courses($this->user_id);
@@ -160,14 +179,15 @@ class Feedback extends MY_Controller {
 	public function setcgpa()
 	{
 
-		$this->load->model('feedback_model');
+		$this->load->model('audit/feedback_model');
 		$this->feedback_model->set_cgpa($this->user_id, $this->input->post('cgpa'));
 		redirect(base_url("audit/feedback"), "location", 301);
 	}
-	function submit_feedback()
+	public function submit_feedback()
 	{
-		$this->load->model('feedback_model');
+		$this->load->model('audit/feedback_model');
 		$data=$this->input->post();
+//print_r('im here');
 		for($i=0;$i<35;$i++)
 		{
 			if($data['value'][$i]=='0')
@@ -176,15 +196,16 @@ class Feedback extends MY_Controller {
 				return;
 			}
 		}
-		// $value=$this->input->post('value');
-		// $cfid=$this->input->post('cfid');
+		 $value=$this->input->post('value');
+		 $cfid=$this->input->post('cfid');
 		$userid=$this->user_id;
-		// $comment=$this->input->post('comment');
-		// $status_bit=$this->input->post('status');
-
-		$status=$this->feedback_model->get_status($userid);
+		 $comment=$this->input->post('comment');
+		 $status_bit=$this->input->post('status');
 		$data['rollno']=$this->feedback_model->get_roll($userid);
+		$data['sec'] = $this->feedback_model->get_section($data['rollno']);
+		$status=$this->feedback_model->get_status($userid);
 		$data['cgpa']=$this->feedback_model->get_cgpa($userid);
+print_r($data);
 		if(isset($_POST['comment']))
 		{
 			$comment=$data['comment'];
@@ -216,7 +237,7 @@ class Feedback extends MY_Controller {
 		else
 			echo 0;
 	}
-
+	
 	function _render_page($view, $data=null, $render=false)
 	{
 		$data['current_section'] = 'audit';

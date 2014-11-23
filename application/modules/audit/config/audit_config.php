@@ -26,3 +26,4 @@ $config['tables']['exit_feedback']='exit_feedback';
 $config['tables']['results_odd']='results_odd_2013';
 $config['tables']['attendance_record']='attendance_record';
 $config['tables']['attendance_dates']='attendance_dates';
+$config['tables']['results_even_2014'] = "results_even_2014";

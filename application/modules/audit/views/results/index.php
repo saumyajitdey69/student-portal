@@ -33,14 +33,14 @@
 							<td><b class="color">Roll no.</b></td>
 							<td><?php echo $result['RegNo']; ?></td>
 							<td><b class="color">Year/Sem</b></td>
-							<td><?php echo $result['semester']; ?></td>
+							<td><?php echo $result['semester']; ?>r</td>
 
 						</tr>
 						<tr>
 							<td><b class="color">Name</b></td>
 							<td><?php echo strtoupper($result['Name']); ?></td>
 							<td><b class="color">Examination</b></td>
-							<td>DEC 2013</td>
+							<td>April 2014</td>
 						</tr>
 					</table>
 					<table id="" class="table table-hover table-bordered">

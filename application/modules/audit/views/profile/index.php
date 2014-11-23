@@ -58,13 +58,13 @@ else if(!empty($submitted))
       <div class="form-group">
         <label for="inputRegistration_number" class="col-sm-4 control-label">Registration Number</label>
         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
-          <input type="text" name="registration_number" id="inputRegistration_number"  class="form-control input-sm" value="" required="required" title="" placeholder="First year roll number" >
+          <input type="text" disabled name="registration_number" id="inputRegistration_number"  class="form-control input-sm" value="" required="required" title="" placeholder="First year roll number" >
         </div>
       </div>
       <div class="form-group">
         <label for="inputRoll_number" class="col-sm-4 control-label">Roll Number</label>
         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
-          <input type="text" name="roll_number" id="inputRoll_number" class="form-control input-sm"  required="required" >
+          <input type="text" name="roll_number" id="inputRoll_number" class="form-control input-sm"  required="required" disabled >
         </div>
       </div>
       <div class="form-group">

@@ -454,6 +454,17 @@ class Ion_auth_model extends CI_Model
 		else
 			return FALSE;
 	}
+
+	public function validate_username($username)
+	{
+		$old_db=$this->load->database('old_student',TRUE);
+		$query=$old_db->get_where('student_auth',array('username'=>$username));
+		// var_dump($query);
+		if($query->num_rows()==1)
+			return TRUE;
+		else
+			return FALSE;
+	}
 	/**
 	 * Deactivate
 	 *
@@ -920,7 +931,7 @@ class Ion_auth_model extends CI_Model
 		$this->trigger_events('extra_where');
 		$query = $this->db->select($this->identity_column . ', username, email, id, password, active, last_login, first_name')
 		->where($this->identity_column, $this->db->escape_str($identity))
-		                  ->or_where('email', $this->db->escape_str($identity)) // so that email can also be used for aloging along with username
+		                  ->or_where('email', $this->db->escape_str($identity)) // so that email can also be used for login along with username
 		                  ->limit(1)
 		                  ->get($this->tables['users']);
 
@@ -1558,7 +1569,6 @@ class Ion_auth_model extends CI_Model
 	public function delete_user($id)
 	{
 		$this->trigger_events('pre_delete_user');
-
 		$this->db->trans_begin();
 
 		// remove user from groups
@@ -1566,13 +1576,16 @@ class Ion_auth_model extends CI_Model
 
 		// delete user from users table should be placed after remove from group
 		$this->db->delete($this->tables['users'], array('id' => $id));
-
+		if ($this->db->affected_rows() == 0)
+		{
+			return FALSE;
+		}
+		$this->db->delete($this->tables['student_data'], array('userid' => $id));
 		// if user does not exist in database then it returns FALSE else removes the user from groups
 		if ($this->db->affected_rows() == 0)
 		{
 			return FALSE;
 		}
-
 		if ($this->db->trans_status() === FALSE)
 		{
 			$this->db->trans_rollback();
@@ -1580,7 +1593,6 @@ class Ion_auth_model extends CI_Model
 			$this->set_error('delete_unsuccessful');
 			return FALSE;
 		}
-
 		$this->db->trans_commit();
 
 		$this->trigger_events(array('post_delete_user', 'post_delete_user_successful'));

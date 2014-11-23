@@ -13,19 +13,40 @@ class Profile extends MY_Controller {
     public function index()
     {
         //$this->view($this->session->userdata('username'));
+
+        $details = $this->audit_model->get($this->user_id);
+        // var_dump($details);
+        if($details!=false)
+        {
+            $correct_details=$this->audit_model->get_correct_details($this->user_id);
+            // var_dump($correct_details);
+            if($correct_details!=false){
+            $details->name=$correct_details->first_name.' '.$correct_details->last_name;
+            $details->email=$correct_details->email;
+            $details->mobile=$correct_details->phone;
+            }
+        }
+        $data['details'] = $details;
+        $data['submitted'] = '';
+        $data['scripts'] = array('profile/profile.js');
+        $data['title'] = "Profile";
+        $data['current_page'] = "profile";
+        $this->_render_page('profile/index', $data);
     }
 
     public function validate()
     {
-        if($this->input->post('registration_number') === FALSE)
-        {
-            redirect(base_url('profile'), 'location', '301');
-            return;
-        }
+        if (!$this->ion_auth->logged_in())
+            redirect('auth/login');
+        // if($this->input->post('registration_number') === FALSE)
+        // {
+        //     redirect(base_url('profile'), 'location', '301');
+        //     return;
+        // }
 
         $this->form_validation->set_rules('name', 'Name', 'trim|required');
-        $this->form_validation->set_rules('registration_number', 'Registration Number', 'trim|required|min_length[4]|is_unique[student_data.registration_number]');
-        $this->form_validation->set_rules('roll_number', 'Roll Number', 'trim|required|min_length[4]|is_unique[student_data.roll_number]');
+        // $this->form_validation->set_rules('registration_number', 'Registration Number', 'trim|required|min_length[4]|is_unique[student_data.registration_number]');
+        // $this->form_validation->set_rules('roll_number', 'Roll Number', 'trim|required|min_length[4]|is_unique[student_data.roll_number]');
         $this->form_validation->set_rules('gender', 'Gender', 'trim|required|min_length[1]|max_length[1]');
         $this->form_validation->set_rules('dob', 'Date of Birth', 'trim|required');
         $this->form_validation->set_rules('nationality', 'Nationality', 'trim|required');
@@ -56,8 +77,8 @@ class Profile extends MY_Controller {
 
             $res = $this->audit_model->update($this->user_id ,
                 array('name' => $this->input->post('name'),
-                    'registration_number' => $this->input->post('registration_number'),
-                    'roll_number' => $this->input->post('roll_number') ,
+                    // 'registration_number' => $this->input->post('registration_number'),
+                    // 'roll_number' => $this->input->post('roll_number') ,
                     'gender' => $this->input->post('gender'),
                     'birthday'=> $this->input->post('dob'),
                     'country' => $this->input->post('nationality') ,
