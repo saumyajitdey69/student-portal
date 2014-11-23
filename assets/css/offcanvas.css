@@ -545,3 +545,9 @@ padding-top:3px;
 .table-hover>tbody>tr>td.google-attendance-success:hover, .table-hover>tbody>tr>th.google-attendance-success:hover, .table-hover>tbody>tr.google-attendance-success:hover>td, .table-hover>tbody>tr.google-attendance-success:hover>th{
   background-color: #d0e9c6;
 }
+
+.google-profile-img-container{
+  padding: 0 !important;
+  height: 50px;
+  line-height: 1 !important;
+}

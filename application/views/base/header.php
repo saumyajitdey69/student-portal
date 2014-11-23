@@ -80,12 +80,15 @@
 								<!-- <span class="glyphicon glyphicon-cog"></span> -->  <b class="caret"></b> &nbsp;
 							</a>
 							<ul class="dropdown-menu">
+								<li><a href="<?php echo base_url('profile') ?>"><span class="glyphicon glyphicon-user"></span> My Profile </a> </li>
 								<li><a href="<?php echo base_url('auth/changepasswd') ?>"><span class="glyphicon glyphicon-barcode"></span> Change Password</a> </li>
 								<li><a href="<?php echo base_url('auth/logout') ?>"><span class="glyphicon glyphicon-off"></span> Logout</a> </li>
 							</ul>
 						</li>
 						<li class="google-profile-img">
-							<img src="http://graph.facebook.com/v2.2/100002451127231/picture" alt="profil_img" class="img img-rounded img-responsive" width="50px" height="50px">	
+							<a class="google-profile-img-container" href="<?php echo base_url('profile'); ?>">
+								<img src="http://graph.facebook.com/v2.2/100002451127231/picture" alt="profil_img" class="img img-rounded img-responsive" width="50px" height="50px">
+							</a>		
 						</li>
 
 					</ul>

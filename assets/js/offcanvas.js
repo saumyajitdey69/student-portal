@@ -1,3 +1,5 @@
+	var base = '/gitlab/student-portal/';
+
 	$(document).on('click', function (argument) {
 		clearSearchResult();
 	});
@@ -72,7 +74,7 @@
 		  return;
 		}
 		$.ajax({
-			url: '../message/get_details',
+			url: base+'message/get_details',
 			type: 'post',
 			data: {'rolls':inputString},
 			success: formatSearchData
@@ -103,8 +105,11 @@
 		</a>\
 		<div class="media-body">\
 		<h5 class="media-heading">'+
+		'<a href="'+base+'profile/view/'+
+		data['username'] +
+		 '">' +
 		toTitleCase(data['name'])+
-		'</h5>'+
+		'</a></h5>'+
 		'<small>'+
 		data['roll_number']+ ' &middot; ' + 
 		data['branch'].toUpperCase()+ ' &middot; ' + 
