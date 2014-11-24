@@ -659,7 +659,7 @@
 		</div>   <!--/ques_theory -->
 		<div id="tabs">
 			<!-- Default panel contents -->
-			<legend>Academic Feedback <small>(Registered Courses)</small></legend>
+			<h4> &nbsp; Academic Feedback <small>(Registered Courses)</small></h4>
 			<ul>
 				<li class="text-info"> <strong>Anonymity of feedback is guaranteed</strong>	</li>
 				<li>Only after the academic results are announced, consolidated feedback report will be shared with the faculty. <strong>No student details are stored.</strong></li>
