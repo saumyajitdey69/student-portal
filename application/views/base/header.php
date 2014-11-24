@@ -7,7 +7,7 @@
 <meta name="author" content="WSDC">
 <head>
 	<title><?php if(!empty($title)) echo $title; else echo 'WSDC'; ?></title>
-	<link href="<?php echo asset_url()."css/flatty.bootstrap.min.css" ?> " rel="stylesheet">
+	<link href="<?php echo asset_url()."css/bootstrap.min.css" ?> " rel="stylesheet">
 	<link href="<?php echo asset_url()."css/google.bootstrap.min.css" ?> " rel="stylesheet">
 	<link href="<?php echo asset_url()."css/offcanvas.css" ?>" rel="stylesheet">
 	<?php

@@ -8,7 +8,8 @@
 
 <head>
     <title>Faculty Login</title>
-    <link href="<?php echo base_url(); ?>assets/css/0.bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/css/google.bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets/css/signin.css" rel="stylesheet">
     <script src="<?php echo base_url("assets/js/jquery.js"); ?>"></script>
     <script>
