@@ -43,12 +43,16 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse google-header-center navbar-ex1-collapse">
 						<form onsubmit="return false;" class="navbar-form google-header-form col-md-6 col-xs-12" role="search">
+						<div class="has-feedback form-group">
 							<div class="input-group google-input-group">
 								<input type="search" class="form-control google-search-bar google-search-size" placeholder="Search students" id="search-item-input" oninput="OnInput(this.value)" autocomplete="off" name="search-item">
-								<span class="input-group-btn">
+								 <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+								<!-- <span class="input-group-btn">
 									<button class="btn btn-default btn-primary google-search-btn" type="button"> <span class="glyphicon glyphicon-search"></span></button>
-								</span>
+								</span> -->
 							</div><!-- /input-group -->
+						</div>
+							
 							<div class="list-group search-result-box google-search-size" id="search-item-output" >
 							</div> 
 						</form>						
