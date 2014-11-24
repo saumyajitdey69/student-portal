@@ -22,7 +22,7 @@
     </a>
   </li>
   <li  class="list-group-item <?php echo $current_page === "slip" ? "active" : ""?>" >
-    <a href="<?php echo base_url('audit/slip'); ?>" target="_blank">
+    <a href="<?php echo base_url('audit/slip'); ?>">
       Registration Slip
     </a>
   </li>
