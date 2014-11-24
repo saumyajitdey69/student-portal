@@ -18,7 +18,7 @@
    </li>
    <li  class="list-group-item <?php echo $current_page === "result" ? "active" : ""?>">
     <a href="<?php echo base_url('audit/results') ?>">
-      April 2014 (Even Sem)
+      Results
     </a>
   </li>
   <li  class="list-group-item <?php echo $current_page === "slip" ? "active" : ""?>" >

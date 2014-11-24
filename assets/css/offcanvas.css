@@ -26,7 +26,8 @@
   box-shadow: 0 0 8px rgba(82,168,236,.6) !important;
 }
 body {
-  font-size:12px;
+  font-family: 'Segoe UI', Arial;
+  font-size:13px;
   padding-top: 50px;
 }
 @media print{
@@ -550,4 +551,59 @@ padding-top:3px;
   padding: 0 !important;
   height: 50px;
   line-height: 1 !important;
+}
+
+/* Google fonts */
+@font-face {
+    font-family: "Segoe UI";
+    font-weight: 200;
+    src: local("Segoe UI Light");
+}
+@font-face {
+    font-family: "Segoe UI";
+    font-weight: 300;
+    src: local("Segoe UI Semilight");
+}
+@font-face {
+    font-family: "Segoe UI";
+    font-weight: 400;
+    src: local("Segoe UI");
+}
+@font-face {
+    font-family: "Segoe UI";
+    font-weight: 600;
+    src: local("Segoe UI Semibold");
+}
+@font-face {
+    font-family: "Segoe UI";
+    font-weight: 700;
+    src: local("Segoe UI Bold");
+}
+@font-face {
+    font-family: "Segoe UI";
+    font-style: italic;
+    font-weight: 400;
+    src: local("Segoe UI Italic");
+}
+@font-face {
+    font-family: "Segoe UI";
+    font-style: italic;
+    font-weight: 700;
+    src: local("Segoe UI Bold Italic");
+}
+
+.google li.list-group-item>a{
+  font-weight: 600;
+}
+
+.google .main{
+  border-left: 1px solid #eee;
+}
+
+.google .sidebar{
+ border-right: 0px;
+}
+
+.google .footer-well{
+  margin-bottom: 0px;
 }
