@@ -42,8 +42,8 @@ class Profile extends MY_Controller {
         // }
 
         $this->form_validation->set_rules('name', 'Name', 'trim|required');
-        // $this->form_validation->set_rules('registration_number', 'Registration Number', 'trim|required|min_length[4]|is_unique[student_data.registration_number]');
-        // $this->form_validation->set_rules('roll_number', 'Roll Number', 'trim|required|min_length[4]|is_unique[student_data.roll_number]');
+        $this->form_validation->set_rules('registration_number', 'Registration Number', 'trim|required|min_length[6]|ctype_alnum');
+        $this->form_validation->set_rules('roll_number', 'Roll Number', 'trim|required|min_length[6]|max_length[6]|ctype_digit');
         $this->form_validation->set_rules('gender', 'Gender', 'trim|required|min_length[1]|max_length[1]');
         $this->form_validation->set_rules('dob', 'Date of Birth', 'trim|required');
         $this->form_validation->set_rules('nationality', 'Nationality', 'trim|required');
@@ -53,8 +53,8 @@ class Profile extends MY_Controller {
         $this->form_validation->set_rules('branch', 'Branch', 'trim|required');
         $this->form_validation->set_rules('section', 'Section', 'trim|required');
         $this->form_validation->set_rules('email', 'Email ID', 'trim|required|valid_email');
-        $this->form_validation->set_rules('phone_number', 'Phone Number', 'trim|required|min_length[10]|max_length[12]');
-        $this->form_validation->set_rules('emergency_contact', 'Emergency Contact Number', 'trim|required|min_length[10]|max_length[12]|xss_clean');
+        $this->form_validation->set_rules('phone_number', 'Phone Number', 'trim|required|min_length[10]|max_length[10]');
+        $this->form_validation->set_rules('emergency_contact', 'Emergency Contact Number', 'trim|required|min_length[10]|max_length[10]|xss_clean');
         $this->form_validation->set_rules('sbh_account', 'SBH Account Number', 'trim');
         $this->form_validation->set_rules('hostel', 'Hostel', 'trim');
         $this->form_validation->set_rules('room_number', 'Hostel room number', 'trim');
@@ -71,11 +71,21 @@ class Profile extends MY_Controller {
         }
         else
         {
-
+           // No need of swapping the number, we are allowing students to update the roll numbers and registrations number.
+           // $var =  $this->input->post('swap');
+           //  if($var == 'on'){
+           //           $roll_number = $this->input->post('registration_number1');
+           //           $registration_number = $this->input->post('roll_number1') ;
+           //       }
+           //       else
+           //       {
+           //         $roll_number = $this->input->post('roll_number1');
+           //           $registration_number = $this->input->post('registration_number1') ;
+           //       }
             $res = $this->audit_model->update($this->user_id ,
-                array('name' => $this->input->post('name'),
-                    // 'registration_number' => $this->input->post('registration_number'),
-                    // 'roll_number' => $this->input->post('roll_number') ,
+                array('name' => ucwords($this->input->post('name')),
+                     'registration_number' => strtoupper($this->input->post('registration_number')),
+                     'roll_number' => strtoupper($this->input->post('roll_number')) ,
                     'gender' => $this->input->post('gender'),
                     'birthday'=> $this->input->post('dob'),
                     'country' => $this->input->post('nationality') ,

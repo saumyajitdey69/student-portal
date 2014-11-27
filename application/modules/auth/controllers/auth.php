@@ -100,7 +100,8 @@ class Auth extends CI_Controller {
 		{
 			//check to see if the user is logging in
 			//check for "remember me"
-			$remember = (bool) $this->input->post('remember');
+			$remember = false;
+			// $remember = (bool) $this->input->post('remember');
 
 			if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember))
 			{
@@ -496,12 +497,12 @@ class Auth extends CI_Controller {
 		$tables = $this->config->item('tables','ion_auth');
 		//validate form input
 
-		$this->form_validation->set_rules('first_name', $this->lang->line('create_user_validation_fname_label'), 'required|xss_clean');
-		$this->form_validation->set_rules('last_name', $this->lang->line('create_user_validation_lname_label'), 'xss_clean');
-		$this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'required|valid_email|is_unique['.$tables['users'].'.email]');
-		$this->form_validation->set_rules('user_id', $this->lang->line('create_user_validation_userid_label'), 'xss_clean|required|is_unique['.$tables['users'].'.username]');
-		$this->form_validation->set_rules('regno', $this->lang->line('create_user_validation_regno_label'), 'xss_clean|required|is_unique['.$tables['student_data'].'.registration_number]');
-		$this->form_validation->set_rules('rollno', $this->lang->line('create_user_validation_rollno_label'), 'xss_clean|required|is_unique['.$tables['student_data'].'.roll_number]');
+		$this->form_validation->set_rules('first_name', $this->lang->line('create_user_validation_fname_label'), 'required|xss_clean|trim');
+		$this->form_validation->set_rules('last_name', $this->lang->line('create_user_validation_lname_label'), 'xss_clean|trim');
+		$this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'required|valid_email|trim|is_unique['.$tables['users'].'.email]');
+		$this->form_validation->set_rules('user_id', $this->lang->line('create_user_validation_userid_label'), 'xss_clean|trim|required|is_unique['.$tables['users'].'.username]');
+		$this->form_validation->set_rules('regno', $this->lang->line('create_user_validation_regno_label'), 'xss_clean|trim|required|min_length[6]|ctype_alnum|is_unique['.$tables['student_data'].'.registration_number]');
+		$this->form_validation->set_rules('rollno', $this->lang->line('create_user_validation_rollno_label'), 'xss_clean|trim|required|min_length[6]|max_length[6]|ctype_digit|is_unique['.$tables['student_data'].'.roll_number]');
 		
 		$this->form_validation->set_rules('phone', $this->lang->line('create_user_validation_phone_label'), 'required|min_length[10]|xss_clean|is_unique['.$tables['student_data'].'.mobile]');
 		$this->form_validation->set_rules('password', $this->lang->line('create_user_validation_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');

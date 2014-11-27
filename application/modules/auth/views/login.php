@@ -18,10 +18,11 @@ if($this->session->flashdata('info') == TRUE)
 if($this->session->flashdata('danger') == TRUE)
   echo '<div class="alert alert-danger"><a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>'.$this->session->flashdata('danger').'</div>';
 ?>
-    <p class="text-info fade in">Please login with your registered Email/User Id and password</p>
+    <p class="text-info fade in">Please login with your username nd password</p>
   <?php endif; ?>
+      <span class="help-block">Do not use email id to login</span>
   <div class="form-group">
-    <input required="required" type="text" id="identity" name="identity" class="form-control" placeholder="Email" autofocus>
+    <input required="required" type="text" id="identity" name="identity" class="form-control" placeholder="username" autofocus>
   </div>
   <div class="form-group">
     <input required="required" type="password" id="password" name="password" class="form-control" placeholder="Password">

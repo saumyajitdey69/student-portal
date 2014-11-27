@@ -107,7 +107,9 @@ class Feedback extends MY_Controller {
 		//	return;
 		//}
         ////////////////////////////////
-		if ($this->feedback_model->get_cgpa($this->user_id) == 0) {
+		$cgpa_1 = $this->feedback_model->get_cgpa($this->user_id);
+        //print_r($cgpa_1);
+		if ($cgpa_1 == -1) {
 			$rollno=$this->feedback_model->get_roll($this->user_id);
 			$cgpa = $this->feedback_model->get_cgpa_results($rollno);
 			if($cgpa == FALSE)

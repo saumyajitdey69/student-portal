@@ -117,7 +117,7 @@ class Feedback_model extends CI_Model {
 		return FALSE;
 	}	
 
-    public function get_feedback_courses($userid)
+  public function get_feedback_courses($userid)
     {
         $this->db = $this->load->database('default',TRUE);
         $query=$this->db->get_where($this->tables['student_data'],array('userid'=>$userid));
@@ -125,8 +125,10 @@ class Feedback_model extends CI_Model {
             $data['roll']=$query->row()->roll_number;
         else
             return FALSE;
+        //print_r($data);
         $db_register=$this->load->database('reg',TRUE);
-        $query=$db_register->get_where($this->tables['registered'],$data);
+        $db_register->like('roll',$data['roll']);
+        $query=$db_register->get($this->tables['registered']);
         return $query->result_array();
     
     }
@@ -207,7 +209,7 @@ class Feedback_model extends CI_Model {
         if ($query->num_rows() == 1) {
             return $query->first_row()->cgpa;
         } else {
-            return false;
+            return -1;
         }
     }
 
