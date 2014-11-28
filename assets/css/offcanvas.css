@@ -225,94 +225,94 @@ footer p{
   .container {
     width: 1270px;
   }
-}*/
+  }*/
 
-.panel-title-with-btn {
-  margin-bottom: 10px;
-}
+  .panel-title-with-btn {
+    margin-bottom: 10px;
+  }
 
-.checkbox-horizontal{
-  float: left;
-  padding-right: 9px;
-}
-@media print{
-  body {
-    font-size: 10px;
+  .checkbox-horizontal{
+    float: left;
+    padding-right: 9px;
   }
-  legend{
-    font-size: 16px;
+  @media print{
+    body {
+      font-size: 10px;
+    }
+    legend{
+      font-size: 16px;
+    }
+    .page-break{
+      page-break-after: always; 
+      page-break-inside: avoid;
+    }
   }
-  .page-break{
-    page-break-after: always; 
-    page-break-inside: avoid;
+  .checkbox-nba
+  {
+    margin:0;
   }
-}
-.checkbox-nba
-{
-  margin:0;
-}
 /*@page{
   margin:0px ;
   }*/
-#result-column {
-  margin: 0 auto;
-  width: 960px;
-  padding: 20px;
-  /*border: 1px solid #7b829c;*/
-  background-color: #fbfcf6;
-}
-#logo-column {
-  float:left;
-  max-width: 20%;
-  /*border: 1px solid black;*/
-}
-#header-column {
-  float: left;
-  width: 80%;
-  /*border: 1px solid black;*/
-}
-#grade-column {
-  clear:both;
-}
-.color {
-  color: #7b829c;
-}
-b.color {
-  font-size: 1.1em;
-}
-#info-table {
-  width: 100%;
-  margin-top: 20px;
-  margin-bottom: 0px;
-}
-#grades-table {
-  width: 100%;
-  margin-bottom: 30px;
-  border: 1px solid #7b829c;
-  border-collapse: collapse;
-}
-#grades-table th{
-  color: #7b829c;
-  padding: 10px;
-  border: 1px solid #7b829c;
-  font-size: 1.1em;
-}
-#grades-table tr{
-  border: 1px solid #7b829c;
-}
-#grades-table td{
-  border: 1px solid #7b829c;
-  padding: 7px;
-}
-#gpa-table td{
-  padding: 10px;
-}
+  #result-column {
+    margin: 0 auto;
+    width: 960px;
+    padding: 20px;
+    /*border: 1px solid #7b829c;*/
+    background-color: #fbfcf6;
+  }
+  #logo-column {
+    float:left;
+    max-width: 20%;
+    /*border: 1px solid black;*/
+  }
+  #header-column {
+    float: left;
+    width: 80%;
+    /*border: 1px solid black;*/
+  }
+  #grade-column {
+    clear:both;
+  }
+  .color {
+    color: #7b829c;
+  }
+  b.color {
+    font-size: 1.1em;
+  }
+  #info-table {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 0px;
+  }
+  #grades-table {
+    width: 100%;
+    margin-bottom: 30px;
+    border: 1px solid #7b829c;
+    border-collapse: collapse;
+  }
+  #grades-table th{
+    color: #7b829c;
+    padding: 10px;
+    border: 1px solid #7b829c;
+    font-size: 1.1em;
+  }
+  #grades-table tr{
+    border: 1px solid #7b829c;
+  }
+  #grades-table td{
+    border: 1px solid #7b829c;
+    padding: 7px;
+  }
+  #gpa-table td{
+    padding: 10px;
+  }
 /*
  * Base structure
  */
 
-/* Move down content because we have a fixed navbar that is 50px tall */
-body {
+ /* Move down content because we have a fixed navbar that is 50px tall */
+ body {
   padding-top: 50px;
 }
 
@@ -321,7 +321,7 @@ body {
  * Global add-ons
  */
 
-.sub-header {
+ .sub-header {
   padding-bottom: 10px;
   border-bottom: 1px solid #eee;
 }
@@ -330,7 +330,7 @@ body {
  * Top navigation
  * Hide default border to remove 1px line.
  */
-.navbar-fixed-top {
+ .navbar-fixed-top {
   border: 0;
 }
 
@@ -338,9 +338,9 @@ body {
  * Sidebar
  */
 
-/* Hide for mobile, show later */
+ /* Hide for mobile, show later */
 
-@media (min-width: 768px) {
+ @media (min-width: 768px) {
   .sidebar {
     /*position: fixed;*/
     /*top: 51px;*/
@@ -380,7 +380,7 @@ body {
  * Main content
  */
 
-.main {
+ .main {
   padding:0px;
 }
 @media (min-width: 768px) {
@@ -398,7 +398,7 @@ body {
  * Placeholder dashboard ideas
  */
 
-.placeholders {
+ .placeholders {
   margin-bottom: 30px;
   text-align: center;
 }
@@ -414,37 +414,37 @@ body {
 }
 
 .left-inner-addon {
-    position: relative;
+  position: relative;
 }
 .left-inner-addon input {
-    padding-left: 30px;    
+  padding-left: 30px;    
 }
 .left-inner-addon i {
-    position: absolute;
-    padding: 10px 12px;
-    pointer-events: none;
+  position: absolute;
+  padding: 10px 12px;
+  pointer-events: none;
 }
 
 .right-inner-addon {
-    position: relative;
+  position: relative;
 }
 .right-inner-addon input {
-    padding-right: 30px;    
+  padding-right: 30px;    
 }
 .right-inner-addon i {
-    position: absolute;
-    right: 0px;
-    padding: 10px 12px;
-    pointer-events: none;
+  position: absolute;
+  right: 0px;
+  padding: 10px 12px;
+  pointer-events: none;
 }
 /*.search-bar{
   height: 35px;
-}*/
+  }*/
 
-#search-item-output{
+  #search-item-output{
  /* border-radius: 5px;
-  border: 1px solid silver;*/
-  display: none;
+ border: 1px solid silver;*/
+ display: none;
 }
 
 .navbar{
@@ -483,7 +483,7 @@ body {
 }
 
 .google-header-img{
-padding-top:3px;
+  padding-top:3px;
   padding-bottom:3px;
 }
 
@@ -530,8 +530,8 @@ padding-top:3px;
 }
 
 .table>thead>tr>td.google-attendance-danger, .table>tbody>tr>td.google-attendance-danger, .table>tfoot>tr>td.google-attendance-danger, .table>thead>tr>th.google-attendance-danger, .table>tbody>tr>th.google-attendance-danger, .table>tfoot>tr>th.google-attendance-danger, .table>thead>tr.google-attendance-danger>td, .table>tbody>tr.google-attendance-danger>td, .table>tfoot>tr.google-attendance-danger>td, .table>thead>tr.google-attendance-danger>th, .table>tbody>tr.google-attendance-danger>th, .table>tfoot>tr.google-attendance-danger>th{
-    background-color: #f2dede;
-    color: black;
+  background-color: #f2dede;
+  color: black;
 }
 
 .table-hover>tbody>tr>td.google-attendance-danger:hover, .table-hover>tbody>tr>th.google-attendance-danger:hover, .table-hover>tbody>tr.google-attendance-danger:hover>td, .table-hover>tbody>tr.google-attendance-danger:hover>th{
@@ -539,8 +539,8 @@ padding-top:3px;
 }
 
 .table>thead>tr>td.google-attendance-success, .table>tbody>tr>td.google-attendance-success, .table>tfoot>tr>td.google-attendance-success, .table>thead>tr>th.google-attendance-success, .table>tbody>tr>th.google-attendance-success, .table>tfoot>tr>th.google-attendance-success, .table>thead>tr.google-attendance-success>td, .table>tbody>tr.google-attendance-success>td, .table>tfoot>tr.google-attendance-success>td, .table>thead>tr.google-attendance-success>th, .table>tbody>tr.google-attendance-success>th, .table>tfoot>tr.google-attendance-success>th{
-    background-color: #dff0d8;
-    color: black;
+  background-color: #dff0d8;
+  color: black;
 }
 
 .table-hover>tbody>tr>td.google-attendance-success:hover, .table-hover>tbody>tr>th.google-attendance-success:hover, .table-hover>tbody>tr.google-attendance-success:hover>td, .table-hover>tbody>tr.google-attendance-success:hover>th{
@@ -555,41 +555,41 @@ padding-top:3px;
 
 /* Google fonts */
 @font-face {
-    font-family: "Segoe UI";
-    font-weight: 200;
-    src: local("Segoe UI Light");
+  font-family: "Segoe UI";
+  font-weight: 200;
+  src: local("Segoe UI Light");
 }
 @font-face {
-    font-family: "Segoe UI";
-    font-weight: 300;
-    src: local("Segoe UI Semilight");
+  font-family: "Segoe UI";
+  font-weight: 300;
+  src: local("Segoe UI Semilight");
 }
 @font-face {
-    font-family: "Segoe UI";
-    font-weight: 400;
-    src: local("Segoe UI");
+  font-family: "Segoe UI";
+  font-weight: 400;
+  src: local("Segoe UI");
 }
 @font-face {
-    font-family: "Segoe UI";
-    font-weight: 600;
-    src: local("Segoe UI Semibold");
+  font-family: "Segoe UI";
+  font-weight: 600;
+  src: local("Segoe UI Semibold");
 }
 @font-face {
-    font-family: "Segoe UI";
-    font-weight: 700;
-    src: local("Segoe UI Bold");
+  font-family: "Segoe UI";
+  font-weight: 700;
+  src: local("Segoe UI Bold");
 }
 @font-face {
-    font-family: "Segoe UI";
-    font-style: italic;
-    font-weight: 400;
-    src: local("Segoe UI Italic");
+  font-family: "Segoe UI";
+  font-style: italic;
+  font-weight: 400;
+  src: local("Segoe UI Italic");
 }
 @font-face {
-    font-family: "Segoe UI";
-    font-style: italic;
-    font-weight: 700;
-    src: local("Segoe UI Bold Italic");
+  font-family: "Segoe UI";
+  font-style: italic;
+  font-weight: 700;
+  src: local("Segoe UI Bold Italic");
 }
 
 .google li.list-group-item>a{
@@ -606,4 +606,9 @@ padding-top:3px;
 
 .google .footer-well{
   margin-bottom: 0px;
+}
+
+.google-header-form .media-heading a {
+  color: #1F2351;
+  font-weight: 600;
 }

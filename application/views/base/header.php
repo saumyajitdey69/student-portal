@@ -34,7 +34,7 @@
 							<span class="icon-bar"></span>
 						</button>
 
-						<a class="navbar-brand" href="<?php echo base_url() ?>">
+						<a class="navbar-brand" href="<?php echo base_url('audit'); ?>">
 							<img class="img" width="70px" src="<?php echo base_url('assets/images/logo_wsdc.png') ?>" alt="wsdc_logo">
 						</a>
 					</div>

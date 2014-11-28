@@ -49,7 +49,7 @@
 </div> <!-- /row with hidden print closes -->
 
 
-<script src="<?php echo asset_url()."js/jquery.js"; ?> "></script>
+<script src="<?php echo asset_url()."js/jquery-1.11.1.min.js"; ?> "></script>
 <script src="<?php echo asset_url()."js/bootstrap.min.js"; ?> "></script>
 <!-- <script src="<?php //echo asset_url()."js/intro.min.js"; ?> "></script> -->
 <script src="<?php echo asset_url()."js/offcanvas.js"; ?> "></script>

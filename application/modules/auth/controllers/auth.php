@@ -1039,6 +1039,7 @@ class Auth extends CI_Controller {
 		$view_html = array( $this->load->view('base/header', $data, $render),
 			$this->load->view('audit/menu/sidebar', $data, FALSE),
 			$this->load->view($view, $this->viewdata, $render),
+			$this->load->view('audit/menu/footer', $data, FALSE),
 			$this->load->view('base/footer', $data, $render));
 
 		if (!$render) return $view_html;
