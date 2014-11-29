@@ -89,99 +89,6 @@ class Feedback extends MY_Controller {
 		$data['scripts']=array('JavaScriptSpellCheck/include.js','feedback/feedback.min.js','notify/bootstrap-notify.js');	
 
 		////////////////////////////feedback module under maintanance//////////////////////
-		$this->_render_page('feedback/offline',$data);
-		return;
-		//////////////////////////// feedback shutdown ///////////////////////////////////
-		$this->load->model('audit/feedback_model');
-		//////// allowed feedback code ///////////
-		$userid = $this->user_id;
-
-		$this->load->model('audit/results_model', 'results_model');
-		$roll = $this->feedback_model->get_roll($userid);
-
-		//close feedback
-		// $this->session->set_flashdata('danger', 'Feedback will start from 17th November');
-		// redirect('audit');
-
-		//print_r($roll);
-		//if($this->results_model->_is_allowed_for_feedback($roll) === FALSE)
-		//{	
-		//	$this->session->set_flashdata('danger', 'Feedback is closed. If you did not fill the feedback please contact Associate Dean Academic Audit. <br> After the approval of Dean it takes 2-3 days for receiving the results and	activating feedback. <br> Please do not contact WSDC for this issue.');
-		//	redirect('audit');
-		//	return;
-		//}
-        ////////////////////////////////
-		$cgpa_1 = $this->feedback_model->get_cgpa($this->user_id);
-        //print_r($cgpa_1);
-		if ($cgpa_1 == -1) {
-			$rollno=$this->feedback_model->get_roll($this->user_id);
-			$cgpa = $this->feedback_model->get_cgpa_results($rollno);
-			if($cgpa == FALSE)
-			{
-				$rollno = $this->feedback_model->get_reg_no($this->user_id);
-				$cgpa = $this->feedback_model->get_cgpa_results($rollno);
-			}
-			
-			$this->feedback_model->set_cgpa($this->user_id, $cgpa);
-		}
-		$feedback_status=$this->feedback_model->get_status($this->user_id);
-		$query=$this->feedback_model->get_feedback_courses($this->user_id);
-		$structure=array();
-		$j=0;
-		foreach ($query as $row)
-		{
-			$structure[$j]['branch']=$row['branch'];
-			$structure[$j]['sem']=$row['sem'];
-			$structure[$j]['session_id']=$row['session_id'];
-			$structure[$j]['class']=$row['class'];
-
-			$k=0;
-			$structure_id=$this->feedback_model->get_structure_id($structure[$j]);
-			// $structure_id=$row['structure_id'];
-			$structure[$j]['sec']=$row['sec'];
-			for($i=1;$i<=15;$i++)
-			{
-				$cid="c".$i;
-				$name="name".$i;
-				$credit="credit".$i;
-				$type="type".$i;
-				if(!is_null($row[$cid]))
-				{
-					$structure[$j]['courses'][$k]['id']=$row[$cid];
-					$structure[$j]['courses'][$k]['name']=$row[$name];
-					$structure[$j]['courses'][$k]['credits']=$row[$credit];
-					$structure[$j]['courses'][$k]['type']=$row[$type];
-					$faculty_detail=$this->feedback_model->get_cfid
-					($structure_id,$row[$cid],$row['sec']);
-					if($faculty_detail!=FALSE)
-					{
-						$structure[$j]['courses'][$k]['cfid']=$faculty_detail->id;
-						$structure[$j]['courses'][$k]['faculty_id']=$faculty_detail->faculty_id;
-
-						$structure[$j]['courses'][$k]['faculty_name']=$faculty_detail->faculty_name;
-					}
-					$k++;
-				}
-			}
-
-			$j++;
-		}
-		$data['feedback_status']=$feedback_status;
-		$data['students_courses']=$structure;
-		$data['userid']=$this->user_id;
-		$this->_render_page('feedback/feedback_view',$data);
-	}
-
-
-	public function index2()
-	{
-		$data = array();
-		$data['title'] = "Academic Feedback";
-		$data['section_page'] = 'audit';
-		$data['current_page'] = 'feedback';
-		$data['scripts']=array('JavaScriptSpellCheck/include.js','feedback/feedback.min.js','notify/bootstrap-notify.js');	
-
-		////////////////////////////feedback module under maintanance//////////////////////
 		// $this->_render_page('feedback/offline',$data);
 		// return;
 		//////////////////////////// feedback shutdown ///////////////////////////////////
@@ -264,6 +171,99 @@ class Feedback extends MY_Controller {
 		$data['userid']=$this->user_id;
 		$this->_render_page('feedback/feedback_view',$data);
 	}
+
+
+	// public function index2()
+	// {
+	// 	$data = array();
+	// 	$data['title'] = "Academic Feedback";
+	// 	$data['section_page'] = 'audit';
+	// 	$data['current_page'] = 'feedback';
+	// 	$data['scripts']=array('JavaScriptSpellCheck/include.js','feedback/feedback.min.js','notify/bootstrap-notify.js');	
+
+	// 	////////////////////////////feedback module under maintanance//////////////////////
+	// 	// $this->_render_page('feedback/offline',$data);
+	// 	// return;
+	// 	//////////////////////////// feedback shutdown ///////////////////////////////////
+	// 	$this->load->model('audit/feedback_model');
+	// 	//////// allowed feedback code ///////////
+	// 	$userid = $this->user_id;
+
+	// 	$this->load->model('audit/results_model', 'results_model');
+	// 	$roll = $this->feedback_model->get_roll($userid);
+
+	// 	//close feedback
+	// 	// $this->session->set_flashdata('danger', 'Feedback will start from 17th November');
+	// 	// redirect('audit');
+
+	// 	//print_r($roll);
+	// 	//if($this->results_model->_is_allowed_for_feedback($roll) === FALSE)
+	// 	//{	
+	// 	//	$this->session->set_flashdata('danger', 'Feedback is closed. If you did not fill the feedback please contact Associate Dean Academic Audit. <br> After the approval of Dean it takes 2-3 days for receiving the results and	activating feedback. <br> Please do not contact WSDC for this issue.');
+	// 	//	redirect('audit');
+	// 	//	return;
+	// 	//}
+ //        ////////////////////////////////
+	// 	$cgpa_1 = $this->feedback_model->get_cgpa($this->user_id);
+ //        //print_r($cgpa_1);
+	// 	if ($cgpa_1 == -1) {
+	// 		$rollno=$this->feedback_model->get_roll($this->user_id);
+	// 		$cgpa = $this->feedback_model->get_cgpa_results($rollno);
+	// 		if($cgpa == FALSE)
+	// 		{
+	// 			$rollno = $this->feedback_model->get_reg_no($this->user_id);
+	// 			$cgpa = $this->feedback_model->get_cgpa_results($rollno);
+	// 		}
+			
+	// 		$this->feedback_model->set_cgpa($this->user_id, $cgpa);
+	// 	}
+	// 	$feedback_status=$this->feedback_model->get_status($this->user_id);
+	// 	$query=$this->feedback_model->get_feedback_courses($this->user_id);
+	// 	$structure=array();
+	// 	$j=0;
+	// 	foreach ($query as $row)
+	// 	{
+	// 		$structure[$j]['branch']=$row['branch'];
+	// 		$structure[$j]['sem']=$row['sem'];
+	// 		$structure[$j]['session_id']=$row['session_id'];
+	// 		$structure[$j]['class']=$row['class'];
+
+	// 		$k=0;
+	// 		$structure_id=$this->feedback_model->get_structure_id($structure[$j]);
+	// 		// $structure_id=$row['structure_id'];
+	// 		$structure[$j]['sec']=$row['sec'];
+	// 		for($i=1;$i<=15;$i++)
+	// 		{
+	// 			$cid="c".$i;
+	// 			$name="name".$i;
+	// 			$credit="credit".$i;
+	// 			$type="type".$i;
+	// 			if(!is_null($row[$cid]))
+	// 			{
+	// 				$structure[$j]['courses'][$k]['id']=$row[$cid];
+	// 				$structure[$j]['courses'][$k]['name']=$row[$name];
+	// 				$structure[$j]['courses'][$k]['credits']=$row[$credit];
+	// 				$structure[$j]['courses'][$k]['type']=$row[$type];
+	// 				$faculty_detail=$this->feedback_model->get_cfid
+	// 				($structure_id,$row[$cid],$row['sec']);
+	// 				if($faculty_detail!=FALSE)
+	// 				{
+	// 					$structure[$j]['courses'][$k]['cfid']=$faculty_detail->id;
+	// 					$structure[$j]['courses'][$k]['faculty_id']=$faculty_detail->faculty_id;
+
+	// 					$structure[$j]['courses'][$k]['faculty_name']=$faculty_detail->faculty_name;
+	// 				}
+	// 				$k++;
+	// 			}
+	// 		}
+
+	// 		$j++;
+	// 	}
+	// 	$data['feedback_status']=$feedback_status;
+	// 	$data['students_courses']=$structure;
+	// 	$data['userid']=$this->user_id;
+	// 	$this->_render_page('feedback/feedback_view',$data);
+	// }
 
 
 	

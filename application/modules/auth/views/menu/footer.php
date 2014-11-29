@@ -3,7 +3,7 @@
     <div class="row">
         <hr>
         <p class="pull-right help-block"><span class="glyphicon glyphicon-copyright-mark"> </span> 2014,WSDC NITW</p>
-        <p class="pull-left help-block"><span class="glyphicon glyphicon-envelope"> </span> <a href="mailto:wsdc.nitw@gmail.com">wsdc.nitw@gmail.com</a> <!-- | <span class="glyphicon glyphicon-phone"> </span> +91-8121210825 --><!--, <span class="glyphicon glyphicon-phone"> </span> +91-8121210825--></p>
+        <!-- <p class="pull-left help-block"><span class="glyphicon glyphicon-envelope"> </span> <a href="mailto:wsdc.nitw@gmail.com">wsdc.nitw@gmail.com</a> | <span class="glyphicon glyphicon-phone"> </span> +91-8121210825, <span class="glyphicon glyphicon-phone"> </span> +91-8121210825</p> -->
     </div>
 </div>
 

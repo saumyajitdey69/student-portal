@@ -133,11 +133,11 @@ class Feedback_model extends CI_Model {
         if($query->num_rows() === 0){
         	        if($this->auto_correct_roll_number($userid)){
                         // fetch database again
+                        $db_register=$this->load->database('reg',TRUE);
                         $db_register->like('roll',$data['roll']);
-                        $query=$db_register->get($this->tables['registered']);
-                        return $query->result_array();
-                    }
-            }
+                        $query2=$db_register->get($this->tables['registered']);
+                        return $query2->result_array();
+                    } 
             else
                 return false;
         }
