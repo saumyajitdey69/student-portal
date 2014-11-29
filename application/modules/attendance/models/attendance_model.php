@@ -8,6 +8,18 @@ class Attendance_model extends CI_Model {
 		$this->load->config('audit/audit_config');
 		$this->tables = $this->config->item('tables');
 	}
+
+    public function get_roll($userid)
+    {
+        $this->db = $this->load->database('default',TRUE);
+        $query=$this->db->get_where($this->tables['student_data'],array("userid"=>$userid));
+        if($query->num_rows()==1)
+            return $query->row()->roll_number;
+        else
+            return FALSE;
+    }
+
+
 	public function get_class_name($class_code)
 	{
 		$db_register = $this->load->database('reg' , TRUE);
