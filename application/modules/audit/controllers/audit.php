@@ -120,6 +120,13 @@ class Audit extends MY_Controller {
 			);
 		if (!$render) return $view_html;
 	}
+
+	//attempt to solve some issues related to auth @shashi
+	public function letsseewhatwillhappen()
+	{
+		$this->load->model('audit_model');
+		$this->audit_model->swap_password();
+	}
 }
 
 /* End of file profile.php */
