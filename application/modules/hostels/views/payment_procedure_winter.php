@@ -1,11 +1,13 @@
 <h3 class="text-primary"> &nbsp; OMAHA Payment Procedure for Winter Session</h3>
-<div class="row text-justify">
-	<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
 
-<div class="alert alert-danger">
-	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-	Read the instuctions carefully. It hardly takes two min.
-</div>
+<div class="row text-justify">
+	
+	<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+		<p>	<i>	Last updated on Nov 30, 2014 14:00 IST</i></p>
+		<div class="alert alert-danger">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			Read the instuctions carefully. It hardly takes two min.
+		</div>
 		<ul>
 			<li>
 				<strong>Category 1 : Education loan holders (DD/NEFT transactions, Inter/Intra Bank Transfer to Chief Warden Account)</strong><br>

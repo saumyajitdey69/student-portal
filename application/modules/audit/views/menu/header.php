@@ -5,17 +5,20 @@
       <li class="list-group-item <?php echo $current_page === "home" ? "active" : ""?>">
         <a href="<?php echo base_url('audit/home'); ?>">Home</a>
       </li>
+      <li class="list-group-item <?php echo $current_page === "profile" ? "active" : ""?>">
+        <a href="<?php echo base_url('audit/profile'); ?>">Profile</a>
+      </li>
       <li class="list-group-item <?php echo $current_page === "attendance" ? "active" : ""?>"> 
         <a href="<?php echo base_url('attendance'); ?>">Attendance</a>
       </li>
       <li class="list-group-item <?php echo $current_page === "feedback" ? "active" : ""?>">
        <a href="<?php echo base_url('audit/feedback'); ?>">Feedback</a>
      </li>
-     <li class="list-group-item <?php echo $current_page === "exit_feedback" ? "active" : ""?>">
+     <!-- <li class="list-group-item <?php echo $current_page === "exit_feedback" ? "active" : ""?>">
       <a href="<?php echo base_url('audit/exit_feedback'); ?>">
        Exit Feedback
      </a>
-   </li>
+   </li> -->
    <li  class="list-group-item <?php echo $current_page === "result" ? "active" : ""?>">
     <a href="<?php echo base_url('audit/results') ?>">
       Results

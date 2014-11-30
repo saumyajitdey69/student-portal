@@ -42,13 +42,11 @@ else if(!empty($submitted))
 
 ?>
 <?php echo validation_errors(); ?>
-
+<h3 class="text-primary"> &nbsp; My Profile</h3>
 
 <form class="form-horizontal" name="form_profile" role="form" action=" <?php echo base_url("audit/profile/validate"); ?>" method="POST">
   <div class="row">
-
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-      <legend>My Profile</legend>
+    <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-6 col-lg-6">
       <div class="form-group">
         <label for="inputName" class="col-sm-4 control-label">Name</label>
         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
@@ -140,7 +138,7 @@ else if(!empty($submitted))
 <div class="clearfix">
 
 </div>
-<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+<div class=" col-md-offset-1 col-xs-12 col-sm-12 col-md-6 col-lg-6">
   <legend>Course Details</legend>
   <div class="form-group well ">
     <label for="inputYearofjoining" class="col-sm-4 control-label">Year of Joining<span class="text-danger">**</span></label>
