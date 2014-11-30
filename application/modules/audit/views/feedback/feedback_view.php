@@ -666,8 +666,6 @@
 
 				<li>If any of the lab/theory courses are missing or are extra, please contact WSDC before submitting the feedback</li>
 				<li>All questions are mandatory except comments</li>
-				<li>For assistance, contact <a href="mailto:wsdc.nitw@gmail.com">wsdc.nitw@gmail.com</a> , WSDC NITW
-				</li>
 			</ul>
 			<table class="table table-hover table-responsive" data-questions=35 data-commentsize=4>
 				<thead>

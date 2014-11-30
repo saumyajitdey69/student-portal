@@ -30,7 +30,8 @@ class Hostels extends MY_Controller {
         //         header("location: /student/hostels/allotment/mess/");
         //     }
         // }
-        $data['title'] = 'Online Hostel & Mess Allotment';
+        $data['current_page'] = 'home';
+        $data['title'] = 'Online Mess & Hostel Allotment';
         $data['error'] = array();
         $regno = $this->hostelmodel->userid_to_regno($this->user_id);
         $student_detail = $this->studentmodel->get_student_detail($regno);
@@ -192,6 +193,7 @@ class Hostels extends MY_Controller {
     }
 
     public function hostel_slip(){
+        $data['current_page'] = 'slip';
         $data['title'] = 'Hostel/Mess allotment slip';
         $data['error'] = array();
         $regno = $this->hostelmodel->userid_to_regno($this->user_id);

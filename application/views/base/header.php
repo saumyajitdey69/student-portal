@@ -87,7 +87,7 @@
 							</a>
 							<ul class="dropdown-menu">
 								<li><a href="<?php echo base_url('profile') ?>"><span class="glyphicon glyphicon-user"></span> My Profile </a> </li>
-								<li><a href="<?php echo base_url('auth/changepasswd') ?>"><span class="glyphicon glyphicon-barcode"></span> Change Password</a> </li>
+								<li><a href="<?php echo base_url('auth/change_password') ?>"><span class="glyphicon glyphicon-barcode"></span> Change Password</a> </li>
 								<li><a href="<?php echo base_url('auth/logout') ?>"><span class="glyphicon glyphicon-off"></span> Logout</a> </li>
 							</ul>
 						</li>

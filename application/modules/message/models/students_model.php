@@ -8,7 +8,7 @@ class Students_model extends CI_Model {
 	public function get_details($search_query)
 	{
 		$this->load->model('audit/audit_model');
-		$db_students=$this->load->database("student", TRUE);
+		$db_students=$this->load->database("default", TRUE);
 		$db_students->from("student_data");
 		foreach ($search_query as $key => $query) {
 			$query= trim($query);
@@ -28,9 +28,9 @@ class Students_model extends CI_Model {
 
 	public function get_details_advance($search_query, $result_count = '5', $order_by_col = 'first_name')
 	{
-		$db_students=$this->load->database("student", TRUE);
+		$db_students=$this->load->database("default", TRUE);
 
-		$db_students->select('first_name, last_name ,username , email, phone, branch, registration_number, roll_number, joining_year')->from("student_data as data");
+		$db_students->select('auth.first_name, auth.last_name , auth.username , auth.email, auth.phone, branch, registration_number, roll_number, joining_year')->from("student_data as data");
 
 		$db_students->join("users as auth",'auth.id = data.userid', 'inner');
 		foreach ($search_query as $key => $query) {
@@ -86,7 +86,7 @@ class Students_model extends CI_Model {
 			$db_students->or_where($query_string);
 		}	
 		
-		$query=$db_students->limit($result_count)->order_by($order_by_col)->get();
+		$query = $db_students->limit($result_count)->order_by($order_by_col)->get();
 		if($query->num_rows()>0)
 			return $query->result();
 		else

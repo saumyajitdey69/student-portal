@@ -28,7 +28,7 @@
 		<thead>
 			<tr>
 				<th>User Id</th>
-				<th  class="col-md-2"><?php echo lang('index_dname_th');?></th>
+				<th><?php echo lang('index_dname_th');?></th>
 				<th><?php echo lang('index_email_th');?></th>
 				<th>Roll No</th>
 				<th>Reg No</th>
@@ -39,7 +39,6 @@
 			</tr>
 		</thead>
 		<tbody>
-			<?php  //print_r($users);?>
 			<?php $i=0; foreach ($users as $user):?>
 			<tr>
 				<td><?php echo $user->id ?></td>
@@ -57,9 +56,9 @@
 				<td>
 					<div class="btn-group">
 						<!-- Edit the user details -->
-						<?php echo anchor("auth/edit_user/".$user->id, '<i class="glyphicon glyphicon-pencil"></i> Edit') ;?> 
+						<?php echo anchor("auth/edit_user/".$user->id, '<i class="glyphicon glyphicon-pencil"></i>') ;?> 
 						<!-- Delete user details -->
-						<?php echo anchor("auth/delete_user/".$user->id, '<i class="glyphicon glyphicon-remove"></i> Delete') ;?>
+						<?php echo anchor("auth/delete_user/".$user->id, '<i class="glyphicon glyphicon-remove"></i>') ;?>
 					</div>
 				</td>
 			</tr>

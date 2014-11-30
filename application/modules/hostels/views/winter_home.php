@@ -1,9 +1,4 @@
-<div class="well wsdc-well">
-	<div class="container">
-		<h1>Online Mess And Hostel Allotment (OMAHA) <small>Winter Session</small></h1>
-	</div>
-</div>
-<div class="container">
+<h3 class="text-primary">Online Mess And Hostel Allotment (OMAHA) <small>Winter Session</small></h3>
 	<div class="row">
 	<div class="well"><span class="glyphicon glyphicon-warning"></span> 	All 1st year student will be informed about the payment procedure on or before 8th Dec, 2014.</div>
 		<div class="col-xs-12 col-sm-6 col-md-9 col-lg-9">
@@ -127,10 +122,6 @@
 
 				<strong>-To chief warden, NITW</strong>
 			</p> -->
-			<p class="text-primary">
-				follow us on facebook for updates
-				<div class="fb-like" data-href="https://www.facebook.com/wsdc.nitw" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
-			</p>
 		</div>
 		<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
 			<a href="https://www.onlinesbh.com/prelogin/icollecthome.htm" class="btn btn-default btn-info btn-lg btn-block">State Bank Collect <br> (Will start after exams)</a>
@@ -168,5 +159,5 @@
 </div>
 <div class="clearfix">
 </div>
-</div>
+
 
