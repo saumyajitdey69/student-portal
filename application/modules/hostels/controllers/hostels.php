@@ -80,6 +80,13 @@ class Hostels extends MY_Controller {
       //return $this->home();
     }
 
+    function  rules($session = 'main')
+    {
+       $data['title'] = 'Rules & Regulations | OMAHA';
+       $data['current_page'] = 'rules';
+       $this->_render_page('payment_procedure_'.$session, $data);
+    }
+
     public function neft_check()
     {
         $has_neft=$this->_is_neft();
@@ -130,8 +137,8 @@ class Hostels extends MY_Controller {
 
     public function Home () {
 
-        // $this->index();
-        // return;
+        $this->index();
+        return;
         $data = array();
         $data['current_page'] = 'hostel';
         $data['title'] = 'Online Hostel & Mess Allotment';
