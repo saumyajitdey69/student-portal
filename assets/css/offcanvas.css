@@ -26,6 +26,7 @@
   box-shadow: 0 0 8px rgba(82,168,236,.6) !important;
 }
 body {
+  font-family: 'Segoe UI', Arial;
   font-size:13px;
   padding-top: 50px;
 }
@@ -220,89 +221,397 @@ footer p{
   vertical-align: middle;
 }
 
-@media (min-width: 1200px) {
+/*@media (min-width: 1200px) {
   .container {
     width: 1270px;
   }
-}
+  }*/
 
-.panel-title-with-btn {
-  margin-bottom: 10px;
-}
+  .panel-title-with-btn {
+    margin-bottom: 10px;
+  }
 
-.checkbox-horizontal{
-  float: left;
-  padding-right: 9px;
-}
-@media print{
-  body {
-    font-size: 10px;
+  .checkbox-horizontal{
+    float: left;
+    padding-right: 9px;
   }
-  legend{
-    font-size: 16px;
+  @media print{
+    body {
+      font-size: 10px;
+    }
+    legend{
+      font-size: 16px;
+    }
+    .page-break{
+      page-break-after: always; 
+      page-break-inside: avoid;
+    }
   }
-  .page-break{
-    page-break-after: always; 
-    page-break-inside: avoid;
+  .checkbox-nba
+  {
+    margin:0;
   }
-}
-.checkbox-nba
-{
-  margin:0;
-}
 /*@page{
   margin:0px ;
   }*/
-#result-column {
-  margin: 0 auto;
-  width: 960px;
-  padding: 20px;
-  /*border: 1px solid #7b829c;*/
-  background-color: #fbfcf6;
+  #result-column {
+    margin: 0 auto;
+    width: 960px;
+    padding: 20px;
+    /*border: 1px solid #7b829c;*/
+    background-color: #fbfcf6;
+  }
+  #logo-column {
+    float:left;
+    max-width: 20%;
+    /*border: 1px solid black;*/
+  }
+  #header-column {
+    float: left;
+    width: 80%;
+    /*border: 1px solid black;*/
+  }
+  #grade-column {
+    clear:both;
+  }
+  .color {
+    color: #7b829c;
+  }
+  b.color {
+    font-size: 1.1em;
+  }
+  #info-table {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 0px;
+  }
+  #grades-table {
+    width: 100%;
+    margin-bottom: 30px;
+    border: 1px solid #7b829c;
+    border-collapse: collapse;
+  }
+  #grades-table th{
+    color: #7b829c;
+    padding: 10px;
+    border: 1px solid #7b829c;
+    font-size: 1.1em;
+  }
+  #grades-table tr{
+    border: 1px solid #7b829c;
+  }
+  #grades-table td{
+    border: 1px solid #7b829c;
+    padding: 7px;
+  }
+  #gpa-table td{
+    padding: 10px;
+  }
+/*
+ * Base structure
+ */
+
+ /* Move down content because we have a fixed navbar that is 50px tall */
+ body {
+  padding-top: 50px;
 }
-#logo-column {
-  float:left;
-  max-width: 20%;
-  /*border: 1px solid black;*/
+
+
+/*
+ * Global add-ons
+ */
+
+ .sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
 }
-#header-column {
-  float: left;
-  width: 80%;
-  /*border: 1px solid black;*/
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+ .navbar-fixed-top {
+  border: 0;
 }
-#grade-column {
-  clear:both;
+
+/*
+ * Sidebar
+ */
+
+ /* Hide for mobile, show later */
+
+ @media (min-width: 768px) {
+  .sidebar {
+    /*position: fixed;*/
+    /*top: 51px;*/
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    /*padding: 20px;  google */
+    padding: 0 15px 0 0;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #ffffff;
+    /*background-color: #f5f5f5; google*/
+    border-right: 1px solid #eee;
+  }
 }
-.color {
-  color: #7b829c;
+
+/* Sidebar navigation */
+.nav-sidebar {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
 }
-b.color {
-  font-size: 1.1em;
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
 }
-#info-table {
-  width: 100%;
-  margin-top: 20px;
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #fff;
+  background-color: #428bca;
+}
+
+
+/*
+ * Main content
+ */
+
+ .main {
+  padding:0px;
+}
+@media (min-width: 768px) {
+  .main {
+    padding-right: -15px;
+    padding-left: -15px;
+  }
+}
+.main .page-header {
+  margin-top: 0;
+}
+
+
+/*
+ * Placeholder dashboard ideas
+ */
+
+ .placeholders {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.placeholders h4 {
+  margin-bottom: 0;
+}
+.placeholder {
+  margin-bottom: 20px;
+}
+.placeholder img {
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.left-inner-addon {
+  position: relative;
+}
+.left-inner-addon input {
+  padding-left: 30px;    
+}
+.left-inner-addon i {
+  position: absolute;
+  padding: 10px 12px;
+  pointer-events: none;
+}
+
+.right-inner-addon {
+  position: relative;
+}
+.right-inner-addon input {
+  padding-right: 30px;    
+}
+.right-inner-addon i {
+  position: absolute;
+  right: 0px;
+  padding: 10px 12px;
+  pointer-events: none;
+}
+/*.search-bar{
+  height: 35px;
+  }*/
+
+  #search-item-output{
+ /* border-radius: 5px;
+ border: 1px solid silver;*/
+ display: none;
+}
+
+.navbar{
+  /*min-height: 50px;*/
+  height: 50px;
+}
+/*.navbar-nav > li > a {padding-top:15px !important; padding-bottom:15px !important;}*/
+
+.search-list-item{
+  padding: 2px;
+}
+
+.search-media{
+  margin-top: 0;
+}
+
+.search-result-box{
+  position:absolute; 
+  width:450px; 
+  box-sizing:border-box;
+}
+
+.search-result-box small,.search-result-box small a{
+  color:rgb(154, 154, 154);
+}
+.search-result-box small a{
+  text-decoration: none;
+}
+.search-result-box small a:hover{
+  text-decoration: underline;
+  color:rgb(160,160,160);
+}
+.google-header-center{
+  padding-top:10px;
+  padding-bottom:10px;
+}
+
+.google-header-img{
+  padding-top:3px;
+  padding-bottom:3px;
+}
+
+.google-profile-img{
+  margin-top: -10px;
+  margin-right: -15px;
+  height:100%;
+}
+.google-profile-img .img{
+  height:100%;
+}
+
+.google-header-form{
+  padding-left:0px; 
+  margin-left:-15px;
+  height:30px;
+  width:450px;
+}
+
+.google-search-bar, .google-search-btn{
+  height:30px !important;
+}
+
+.google-search-size{
+  width: 450px !important;
+}
+
+.google-input-group{
+  height:30px;
+  width:100%;
+}
+
+.google .input-form:focus, .google input:focus,.google .input-form:hover, .google input:hover{
+ -webkit-box-shadow:none !important;
+ box-shadow: none !important;
+}
+
+.google-search-btn span{
+  padding:0 15px;
+}
+
+.google-search-progile-img{
+  padding:2px;
+}
+
+.table>thead>tr>td.google-attendance-danger, .table>tbody>tr>td.google-attendance-danger, .table>tfoot>tr>td.google-attendance-danger, .table>thead>tr>th.google-attendance-danger, .table>tbody>tr>th.google-attendance-danger, .table>tfoot>tr>th.google-attendance-danger, .table>thead>tr.google-attendance-danger>td, .table>tbody>tr.google-attendance-danger>td, .table>tfoot>tr.google-attendance-danger>td, .table>thead>tr.google-attendance-danger>th, .table>tbody>tr.google-attendance-danger>th, .table>tfoot>tr.google-attendance-danger>th{
+  background-color: #f2dede;
+  color: black;
+}
+
+.table-hover>tbody>tr>td.google-attendance-danger:hover, .table-hover>tbody>tr>th.google-attendance-danger:hover, .table-hover>tbody>tr.google-attendance-danger:hover>td, .table-hover>tbody>tr.google-attendance-danger:hover>th{
+  background-color: #ebcccc;
+}
+
+.table>thead>tr>td.google-attendance-success, .table>tbody>tr>td.google-attendance-success, .table>tfoot>tr>td.google-attendance-success, .table>thead>tr>th.google-attendance-success, .table>tbody>tr>th.google-attendance-success, .table>tfoot>tr>th.google-attendance-success, .table>thead>tr.google-attendance-success>td, .table>tbody>tr.google-attendance-success>td, .table>tfoot>tr.google-attendance-success>td, .table>thead>tr.google-attendance-success>th, .table>tbody>tr.google-attendance-success>th, .table>tfoot>tr.google-attendance-success>th{
+  background-color: #dff0d8;
+  color: black;
+}
+
+.table-hover>tbody>tr>td.google-attendance-success:hover, .table-hover>tbody>tr>th.google-attendance-success:hover, .table-hover>tbody>tr.google-attendance-success:hover>td, .table-hover>tbody>tr.google-attendance-success:hover>th{
+  background-color: #d0e9c6;
+}
+
+.google-profile-img-container{
+  padding: 0 !important;
+  height: 50px;
+  line-height: 1 !important;
+}
+
+/* Google fonts */
+@font-face {
+  font-family: "Segoe UI";
+  font-weight: 200;
+  src: local("Segoe UI Light");
+}
+@font-face {
+  font-family: "Segoe UI";
+  font-weight: 300;
+  src: local("Segoe UI Semilight");
+}
+@font-face {
+  font-family: "Segoe UI";
+  font-weight: 400;
+  src: local("Segoe UI");
+}
+@font-face {
+  font-family: "Segoe UI";
+  font-weight: 600;
+  src: local("Segoe UI Semibold");
+}
+@font-face {
+  font-family: "Segoe UI";
+  font-weight: 700;
+  src: local("Segoe UI Bold");
+}
+@font-face {
+  font-family: "Segoe UI";
+  font-style: italic;
+  font-weight: 400;
+  src: local("Segoe UI Italic");
+}
+@font-face {
+  font-family: "Segoe UI";
+  font-style: italic;
+  font-weight: 700;
+  src: local("Segoe UI Bold Italic");
+}
+
+.google li.list-group-item>a{
+  font-weight: 600;
+}
+
+.google .main{
+  border-left: 1px solid #eee;
+}
+
+.google .sidebar{
+ border-right: 0px;
+}
+
+.google .footer-well{
   margin-bottom: 0px;
 }
-#grades-table {
-  width: 100%;
-  margin-bottom: 30px;
-  border: 1px solid #7b829c;
-  border-collapse: collapse;
+
+.google-header-form .media-heading a {
+  color: #1F2351;
+  font-weight: 600;
 }
-#grades-table th{
-  color: #7b829c;
-  padding: 10px;
-  border: 1px solid #7b829c;
-  font-size: 1.1em;
-}
-#grades-table tr{
-  border: 1px solid #7b829c;
-}
-#grades-table td{
-  border: 1px solid #7b829c;
-  padding: 7px;
-}
-#gpa-table td{
-  padding: 10px;
+.google-name-email{
+margin-top: -10px; 
 }

@@ -7,8 +7,7 @@
               <div class="clearfix visible-sm visible-xs">
                 <br><br>
               </div>
-              <a href="http://www.nitw.ac.in/wsdc" target="_blank">www.nitw.ac.in/wsdc</a> | 
-              <span class="glyphicon glyphicon-envelope"> </span> <a href="mailto: wsdc.nitw@gmail.com" target="_blank"> wsdc.nitw@gmail.com</a> | 
+              <a href="http://.www.nitw.ac.in/" target="_blank">wsdc.nitw.ac.in</a> 
               <!-- <span class="tips" title="Gopi Krishna, 4/4 Btech CSE"> <span class="glyphicon glyphicon-phone"> </span> +91-9704176445</span> | -->
               <span class="glyphicon glyphicon-copyright-mark"></span> <a target="_blank" href="http://www.nitw.ac.in/wsdc">2014, WSDC NITW </a> &nbsp;
             </span>

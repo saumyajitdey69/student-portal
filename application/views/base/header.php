@@ -8,14 +8,20 @@
 <head>
 	<title><?php if(!empty($title)) echo $title; else echo 'WSDC'; ?></title>
 	<link href="<?php echo asset_url()."css/bootstrap.min.css" ?> " rel="stylesheet">
-	<link href="<?php echo asset_url()."css/introjs.min.css" ?>" rel="stylesheet">
-	<link href="<?php echo asset_url()."css/offcanvas.css" ?>" rel="stylesheet">
-	<!-- Notify CSS -->
+	<link href="<?php echo asset_url()."css/offcanvas.css" ?>" rel="stylesheet">	<!-- Notify CSS -->
 	<link href="<?php echo asset_url()."css/bootstrap-notify.css" ?>" rel="stylesheet">
-
-	<!-- Custom Styles -->
 	<link href="<?php echo asset_url()."css/alert-bangtidy.css" ?>" rel="stylesheet">
 	<link href="<?php echo asset_url()."css/alert-blackgloss.css" ?>" rel="stylesheet">
+	<?php
+	if (isset($css)) {
+		foreach ($css as $index => $c) {
+			?>
+			<script src="<?php echo asset_url()."css/".$c; ?>"></script>
+			<?php
+		}
+	}
+	?>
+
 	<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

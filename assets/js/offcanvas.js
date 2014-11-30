@@ -67,7 +67,7 @@ $(document).ready(function()
 
     $(document).keydown(function(e)
     {
-        if ( (e.keyCode == cKey)) {
+        if ( ctrlDown && (e.keyCode == cKey)) {
            alert("Console is disabled. The instance will be reported. Do not use console it may lead to blocking of online services including OMAHA and results.");
            console.log('%cUnusual activity on student portal. Reported to Administration.', 'color:red')
         }
