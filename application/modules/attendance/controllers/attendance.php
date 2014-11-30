@@ -13,10 +13,9 @@ class Attendance extends MY_Controller {
 		$data['current_page'] = "attendance";
 		// load registered data
 		$userid=$this->user_id;
-		$this->load->model('audit/feedback_model');
 		$this->load->model('audit/slip_model');
 		$this->load->model('attendance/attendance_model');
-		$roll = $this->feedback_model->get_roll($userid);
+		$roll = $this->attendance_model->get_roll($userid);
 		$rows_data = $this->slip_model->get_registered_detail($roll);
 
 		$data['regular_courses']['reg_course_id'] = array();

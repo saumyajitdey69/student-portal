@@ -48,6 +48,8 @@ if($this->session->flashdata('danger') == TRUE)
     <div class="form-group">
         <label for="inputRollNumber-signup" class="control-label">Roll Number</label>
         <?php echo form_input($rollno);?>
+        <span class="help-block">Append zero if roll number is less than zero</span>
+
     </div>
       <p>
             <?php echo lang('create_user_phone_label', 'phone');?> <br />
