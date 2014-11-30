@@ -79,8 +79,10 @@
 							</a>
 						</li> -->
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<a href="#" class="dropdown-toggle google-name-email" data-toggle="dropdown">
 								<?php echo $this->session->userdata('name'); ?>
+                                <br/>
+                                <small><?php echo $this->session->userdata('email'); ?></small>
 								<!-- <span class="glyphicon glyphicon-cog"></span> -->  <b class="caret"></b> &nbsp;
 							</a>
 							<ul class="dropdown-menu">
