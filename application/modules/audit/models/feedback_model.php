@@ -117,7 +117,7 @@ class Feedback_model extends CI_Model {
 		return FALSE;
 	}	
 
-    public function get_feedback_courses($userid)
+  public function get_feedback_courses($userid)
     {
         $this->db = $this->load->database('default',TRUE);
         $query=$this->db->get_where($this->tables['student_data'],array('userid'=>$userid));
@@ -125,11 +125,66 @@ class Feedback_model extends CI_Model {
             $data['roll']=$query->row()->roll_number;
         else
             return FALSE;
+        //print_r($data);
         $db_register=$this->load->database('reg',TRUE);
-        $query=$db_register->get_where($this->tables['registered'],$data);
-        return $query->result_array();
+        $db_register->like('roll',$data['roll']);
+        $query=$db_register->get($this->tables['registered']);
+        // If the student is regisrered using registration number then, first swap the registration number with roll number in registration database and also swap the registraion numnber with roll number in attendace portal. - Vaibhav Awachat
+        if($query->num_rows() === 0){
+        	        if($this->auto_correct_roll_number($userid)){
+                        // fetch database again
+                        $db_register=$this->load->database('reg',TRUE);
+                        $db_register->like('roll',$data['roll']);
+                        $query2=$db_register->get($this->tables['registered']);
+                        return $query2->result_array();
+                    } 
+            else
+                return false;
+        }
+        else{
+     	   return $query->result_array();
+    	}
     
     }
+
+    public function auto_correct_roll_number($userid)
+    {
+    	//return false;
+       
+    	// get the correct registration number
+    	$regno = $this->get_reg_no($userid);
+    	// get correct roll number
+    	$correct_roll = $this->get_roll($userid);
+    	// search the roll number in registration database
+        $db_register=$this->load->database('reg',TRUE);
+        $query = $db_register->select('roll')->where('roll',$correct_roll)->get('registered');
+        if($query->num_rows() === 0){
+        	// the roll number does not exits, it means that faculty advisor must have used registration number to register.
+            // swap the registration number and roll number in attendance module as well
+            return $this->swap_reg_with_roll($regno, $correct_roll);
+        }
+        else{
+            //The database is already correct, nothing to change
+            // We might face some issues with the repeaters.
+            return true;
+        }
+    }
+
+    public function swap_reg_with_roll($regno, $correct_roll)
+    {
+     $db_register=$this->load->database('reg',TRUE);
+        // check the registration number in atendance module, TR sir added reg and roll both :(
+     $query = $db_register->where('rollno', $regno)->update('attendance_record', array('rollno' => $correct_roll));
+        if($db_register->_error_number() == 1062) // duplicate entry
+        {
+            return false;
+        }
+            // swap in registration database
+            // for all regular and backlog stulog students.
+        $query = $db_register->where('roll', $regno)->update('registered', array('roll' => $correct_roll));
+        return true;
+    }
+
     public function get_structure_id($data)
     {
         $db_register=$this->load->database('reg',TRUE);
@@ -207,7 +262,7 @@ class Feedback_model extends CI_Model {
         if ($query->num_rows() == 1) {
             return $query->first_row()->cgpa;
         } else {
-            return false;
+            return -1;
         }
     }
 

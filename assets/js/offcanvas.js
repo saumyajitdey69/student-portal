@@ -178,3 +178,29 @@
 	{
 		return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 	}
+
+$(document).ready(function()
+{
+    var ctrlDown = false;
+    var shiftDown = false;
+    var ctrlKey = 17, cKey = 67;
+    var shiftKey = 163;
+
+    $(document).keydown(function(e)
+    {
+        if (e.keyCode == ctrlKey) ctrlDown = true;
+        if (e.keyCode == shiftKey) shiftDown = true;
+    }).keyup(function(e)
+    {
+        if (e.keyCode == ctrlKey) ctrlDown = false;
+        if (e.keyCode == shiftKey) shiftDown = false;
+    });
+
+    $(document).keydown(function(e)
+    {
+        if ( ctrlDown && shiftDown && (e.keyCode == cKey)) {
+           alert("Console is disabled. The instance will be reported. Do not use console it may lead to blocking of online services including OMAHA and results.");
+           console.log('%cUnusual activity on student portal. Reported to Administration.', 'color:red')
+        }
+    });
+});

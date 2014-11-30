@@ -103,5 +103,31 @@ class Audit_model extends CI_Model {
 	{
 
 	}
+//an attempt to minimise auth related issues. @shashi
+	public function swap_password()
+	{
+		$db_audit = $this->load->database('old_student', TRUE);
+		//$this->db->query('update student_auth as stu join student_data as s on s.userid = stu.userid set stu.password = s.password where s.userid = stu.userid');
+		$k=1;
+		$pass = "d41d8cd98f00b204e9800998ecf8427e";
+		$data = $db_audit->select('userid')
+				->from('student_auth')
+				->where('password', $pass)
+				->get();
+		//print_r($data->result());
+		foreach($data->result() as $stu)
+		{
+			$p = $db_audit->select('password')
+				->from('student_data')
+				->where('userid', $stu->userid)
+				->get();
+			//print_r($p->result());
+			$pa = $p->row_array();
+			$pas=array('password'=>$pa['password']);
+			$query = $db_audit->update('student_auth',$pas, array('userid'=> $stu->userid));
+			$k++;
+		}
+		echo $k;
+	}
 
 }
