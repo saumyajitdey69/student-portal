@@ -5,6 +5,7 @@
 </div>
 <div class="container">
 	<div class="row">
+	<div class="well"><span class="glyphicon glyphicon-warning"></span> 	All 1st year student will be informed about the payment procedure on or before 8th Dec, 2014.</div>
 		<div class="col-xs-12 col-sm-6 col-md-9 col-lg-9">
 			<h4 id="transacitonsummary">
 				Transaction Summary of OMAHA
