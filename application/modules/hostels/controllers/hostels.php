@@ -128,8 +128,9 @@ class Hostels extends MY_Controller {
     }
 
     public function Home () {
-    // $this->index();
-    // return;
+
+        // $this->index();
+        // return;
         $data = array();
         $data['current_page'] = 'hostel';
         $data['title'] = 'Online Hostel & Mess Allotment';
@@ -141,6 +142,7 @@ class Hostels extends MY_Controller {
         $data['allowed_hostel_mess'] = $this->_get_allowed_mess_hostel_summer($payment_detail);
         $data['allotment_detail']['hostel'] = $this->_is_alloted_hostel();
         $data['allotment_detail']['mess'] = $this->_is_alloted_mess();
+
         $this->_render_page('winter_home', $data);
     }
     public function _get_hostel_total(&$payment_detail){
