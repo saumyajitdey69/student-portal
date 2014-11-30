@@ -4,14 +4,14 @@
 	</span>
 	<div class="col-md-2 col-lg-2 hidden-print">
 	</div>
-	<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-		<div class="row" style="border-bottom:2px solid black">
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		<div class="row visible-print" style="border-bottom:2px solid black">
 			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
 				<img class="img img-responsive" width="50px" src="<?php echo asset_url(); ?>images/logo_nitw.png" />
 			</div>
 			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 				<h4 style="margin:0"><b>National Institute of Technology, Warangal</b></h4>
-				<h5 style="margin:0"><u>No Dues / Room and Mess Allotment Receipt</u></h5>
+				<h5 style="margin:0"><u>No Dues / Room and Mess Allotment Receipt - OMAHA</u></h5>
 				<br>
 			</div>
 			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
@@ -100,7 +100,7 @@
 					</tbody>
 				</table>
 				<center class="hidden-print">
-					<button type="button" onclick="window.print()" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-print"></span> Print (Submit the DD/NEFT to Hostel Office or else room will be cancelled, not required for i-collect)</button>
+					<button type="button" onclick="window.print()" class="btn btn-md btn-primary"><span class="glyphicon glyphicon-print"></span> Print</button>
 				</center>
 				<br><br><br><br>			
 			</div>
@@ -115,7 +115,7 @@
 				</div>
 				<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 					<h4 style="margin:0"><b>National Institute of Technology, Warangal</b></h4>
-					<h5 style="margin:0"><u>No Dues / Room and Mess Allotment Receipt</u></h5>
+					<h5 style="margin:0"><u>No Dues / Room and Mess Allotment Receipt - OMAHA</u></h5>
 					<br>
 				</div>
 				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
