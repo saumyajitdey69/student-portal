@@ -28,17 +28,17 @@
   </div>
   <div class="form-group clearfix">
     <div class="col-md-6">
-    <button type="submit" name="submit" class="btn btn-md btn-primary ">Login</button>
+    <button type="submit" name="submit" class="btn btn-primary ">Login</button>
       
     </div>
     <div class="col-md-6">
-      <a href="<?php echo base_url('auth/create_general_user') ?>" role="button" class="btn btn-sm btn-warning">Create Account</a>
+      <a href="<?php echo base_url('auth/create_general_user') ?>" role="button" class="btn btn-sm btn-success">Create Account</a>
     </div>
   </div>
 </form>
 <div class="row" style="padding:15px;">
   <div class="form-group">
-    <a  class="text-danger" href="<?php echo base_url('auth/forgot_password') ?>"  >Forgot password/username</a>
+    <a  class="text-danger" href="<?php echo base_url('auth/forgot_password') ?>">Forgot password/username</a>
     <hr>
     <a  class="text-danger" href="<?php echo base_url('auth/activation_mail') ?>">Get Activation Link</a>
   </div>

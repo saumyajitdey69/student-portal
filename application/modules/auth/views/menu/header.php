@@ -38,6 +38,8 @@
             
             <p class="text-center lead">
             1) First years can create account now.Don't forget to check your SPAM folder for mails. if you face any issues contact your friends who did it correctly.
+            <br>
+            <!-- 2) If you are getting error like Wrong Username/password,Try using this link to check whether account exists or you have to create new account -->
             </p>
         </div>
         <div class="hidden-xs col-md-8 col-sm-7 col-lg-8 well">

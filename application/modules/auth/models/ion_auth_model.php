@@ -905,6 +905,16 @@ class Ion_auth_model extends CI_Model
 				'registration_number'=>$additional_data['registration_number'] 
 				);
 			$this->db->insert($this->tables['student_data'], $data_array);
+			$no=$this->db->affected_rows();
+			if($no==0)
+			{
+				//student data insertion error
+				$this->remove_from_group(NULL, $id);
+
+				// delete user from users table should be placed after remove from group
+				$this->db->delete($this->tables['users'], array('id' => $id));
+				return FALSE;
+			}
 		}
 		$this->trigger_events('post_register');
 
@@ -978,9 +988,15 @@ class Ion_auth_model extends CI_Model
 
 		                  		return TRUE;
 		                  	}
+		                  	else
+		                  	{
+		                  		$this->trigger_events('post_login_unsuccessful');
+		                  		$this->set_error('wrong_password');
+		                  		return FALSE;
+		                  	}
 		                  }
 
-		//Hash something anyway, just to take up time
+						//Hash something anyway, just to take up time
 		                  $this->hash_password($password);
 
 		                  $this->increase_login_attempts($identity);

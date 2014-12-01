@@ -387,7 +387,7 @@ class Ion_auth
 			}
 			$error='active';
 			// var_dump($user->active=='1');
-			if($user->active=='1')
+			if($user->active == 1)
 				return $error;
 			$activation_code =$user->activation_code;
 
