@@ -50,7 +50,7 @@ $lang['deactivate_confirm_y_label']          = 'Yes:';
 $lang['deactivate_confirm_n_label']          = 'No:';
 $lang['deactivate_submit_btn']               = 'Submit';
 $lang['deactivate_validation_confirm_label'] = 'confirmation';
-$lang['deactivate_validation_user_id_label'] = 'user ID';
+$lang['deactivate_validation_user_id_label'] = 'User name';
 
 // Create User
 $lang['create_user_heading']                           = 'Create Account';
@@ -59,7 +59,7 @@ $lang['create_user_fname_label']                       = 'First Name:';
 $lang['create_user_lname_label']                       = 'Last Name:';
 $lang['create_user_company_label']                     = 'Company Name:';
 $lang['create_user_email_label']                       = 'Email:';
-$lang['create_user_userid_label']                      = 'User Id:';
+$lang['create_user_userid_label']                      = 'User Name:';
 $lang['create_user_phone_label']                       = 'Phone:';
 $lang['create_user_password_label']                    = 'Password:';
 $lang['create_user_password_confirm_label']            = 'Confirm Password:';

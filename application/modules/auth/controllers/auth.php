@@ -44,15 +44,19 @@ class Auth extends CI_Controller {
 			$data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 			$data['title'] = "User List";
 			//list the users
-			$data['users'] = $this->ion_auth->users()->result();
-			foreach ($data['users'] as $k => $user)
-			{
-				$data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
-			}
+			// $data['users'] = $this->ion_auth->users()->result();
+			// foreach ($data['users'] as $k => $user)
+			// {
+			// 	$data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
+			// }
 			$data['scripts'] = array('auth/jquery.dataTables.js','auth/table.js');
 			$data['admin_logged']=$this->ion_auth->is_admin();
 			$this->load->model('user_data_model','',TRUE);
 			$data['users_info']=$this->user_data_model->get_all_user_data();
+			foreach ($data['users_info'] as $k => $user)
+			{
+				$data['users_info'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
+			}
 			$this->_render_wsdc_page('auth/index',$data);
 		}
 	}
@@ -70,7 +74,7 @@ class Auth extends CI_Controller {
 			{
 				$this->session->set_flashdata('danger', 'Activation mail sending failed.<br>Enter registered email-id correctly.');
 			}
-			else if($status==100)
+			else if($status=='active')
 			{
 				$this->session->set_flashdata('warning', 'Account already Activated.<br>Click on forgot password to reset your password.');
 			}
@@ -118,7 +122,7 @@ class Auth extends CI_Controller {
 					Check whether data is available in old portal
 
 				*/
-					$this->load->model('import_data');
+				/*	$this->load->model('import_data');
 					$status=$this->import_data->check($this->input->post('identity'),$this->input->post('password'));
 					if($status['success']==1)
 					{
@@ -170,7 +174,7 @@ class Auth extends CI_Controller {
 					}
 
 					// return;
-				}
+				}*/
 				/*Ends
 				Show the login error
 				*/
@@ -513,12 +517,11 @@ class Auth extends CI_Controller {
 			$username = $this->input->post('user_id');
 			$email    = strtolower($this->input->post('email'));
 			$password = $this->input->post('password');
-			// $this->load->model('auth/ion_auth_model', 'chut');
-			if($this->ion_auth_model->validate_username($username)==TRUE)
-			{
-				$this->session->set_flashdata('danger', "Username already exists");
-				redirect("auth/create_general_user", 'refresh');
-			}
+			// if($this->ion_auth_model->validate_username($username)==TRUE)
+			// {
+			// 	$this->session->set_flashdata('danger', "Username already exists");
+			// 	redirect("auth/create_general_user", 'refresh');
+			// }
 
 			$additional_data = array(
 				'first_name' => $this->input->post('first_name'),
@@ -532,33 +535,6 @@ class Auth extends CI_Controller {
 
 		if ($this->form_validation->run() == true && ($result=$this->ion_auth->register($username, $password, $email, $additional_data,$group_ids)))
 		{
-			// check to see if we are creating the user
-			// redirect them back to the admin page
-
-			// send the mail
-			// $mail_id=$result['email'];
-			// $activation_code=$result['activation'];
-			// $mailDetails['to'] = $userDetails['email'];
-		 //            $mailDetails['subject'] = 'Activation Link';
-		 //            $mailDetails['message'] =
-		 //            '
-		 //            Hi,
-
-		 //            To activate your account click on this '.base_url("auth/activate/".$creationStatus['activationLink']).'
-		 //            Or copy paste the following link in the browser: '.base_url("auth/activate/".$creationStatus['activationLink']).'.
-
-		 //            For doubts contact: wsdc.nitw@gmail.com
-
-		 //            Reagers,
-		 //            WSDC, NITW';
-		 //            $this->load->library('myemail');
-		 //            if (($creationStatus['status'] = $this->myemail->send($mailDetails)) !== true) {
-		 //                $stat['status'] = "success";
-		 //                $stat['message'] = 'Account created. Error sending activation mail.';
-		 //            } else {
-		 //                $stat['message'] = "Account created. Please activate your account before proceeding further";
-		 //            }
-		 //    return;
 			$this->session->set_flashdata('message', $this->ion_auth->messages());
 			redirect("auth/login", 'refresh');
 		}
