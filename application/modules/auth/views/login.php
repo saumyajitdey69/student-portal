@@ -19,7 +19,7 @@
     ?>
     <p class="text-info fade in">Please login with your username and password</p>
   <?php endif; ?>
-  <span class="text-danger">Do not use email id to login</span>
+  <!-- <span class="text-danger">Do not use email id to login</span> -->
   <div class="form-group">
     <input required="required" type="text" id="identity" name="identity" class="form-control" placeholder="username" autofocus>
   </div>

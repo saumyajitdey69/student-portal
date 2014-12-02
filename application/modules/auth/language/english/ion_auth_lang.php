@@ -39,7 +39,7 @@ $lang['activation_email_unsuccessful']   	 = 'Unable to Send Activation Email';
 
 // Login / Logout
 $lang['login_successful'] 		  	         = 'Logged In Successfully';
-$lang['login_unsuccessful'] 		  	     = 'Account does not exist with this username/email.<br>Use create account for creating new account';
+$lang['login_unsuccessful'] 		  	     = 'Wrong Username.<br>Account does not exist with this username/email.<br>Use create account for creating new account';
 $lang['wrong_password']						 ='Wrong password.<br>Use Forgot password for resetting the password';
 
 $lang['login_unsuccessful_not_active'] 		 = 'Account is inactive.Please activate or click on Get Activation Link';

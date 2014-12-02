@@ -74,7 +74,7 @@ class Auth extends CI_Controller {
 			{
 				$this->session->set_flashdata('danger', 'Activation mail sending failed.<br>Enter registered email-id correctly.');
 			}
-			else if($status=='active')
+			else if($status==='active')
 			{
 				$this->session->set_flashdata('warning', 'Account already Activated.<br>Click on forgot password to reset your password.');
 			}
@@ -83,7 +83,7 @@ class Auth extends CI_Controller {
 				$this->session->set_flashdata('success', 'Activation mail sent.<br>Check your email inbox and spam folder too!!.');
 
 			}
-			redirect('auth/login','location', 301);
+			redirect('auth/login','refresh');
 		}
 		else
 		{
