@@ -38,13 +38,13 @@
 	</thead>
 	<tbody>
 	<?php  //print_r($users);?>
-		<?php $i=0; foreach ($users as $user):?>
+		<?php foreach ($users_info as $user):?>
 		<tr>
 			<td><?php echo $user->id ?></td>
 			<td><?php echo $user->first_name;?> <?php echo $user->last_name;?></td>
 			<td><?php echo $user->email;?></td>
-			<td><?php echo $users_info[$i]['roll_number'] ?></td>
-			<td><?php echo $users_info[$i]['registration_number'] ?></td>
+			<td><?php echo $user->roll_number ?></td>
+			<td><?php echo $user->registration_number ?></td>
 			<td><?php echo $user->phone ?></td>
 			<td>
 				<?php foreach ($user->groups as $group):?>
@@ -54,7 +54,7 @@
 			<td><?php echo ($user->active) ? anchor("auth/deactivate/".$user->id, lang('index_active_link')) : anchor("auth/activate/". $user->id, lang('index_inactive_link'));?></td>
 			<td><?php echo anchor("auth/edit_user/".$user->id, 'Edit') ;?> Or <?php echo anchor("auth/delete_user/".$user->id, 'Delete') ;?></td>
 		</tr>
-		<?php $i++; endforeach;?>
+		<?php endforeach;?>
 	</tbody>
 </table>
 </div>

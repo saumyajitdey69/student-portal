@@ -7,9 +7,17 @@
 <meta name="author" content="WSDC">
 <head>
 	<title><?php if(!empty($title)) echo $title; else echo 'WSDC'; ?></title>
+<<<<<<< HEAD
 	<link href="<?php echo asset_url()."css/flatty.bootstrap.min.css" ?> " rel="stylesheet">
 	<link href="<?php echo asset_url()."css/google.bootstrap.min.css" ?> " rel="stylesheet">
 	<link href="<?php echo asset_url()."css/offcanvas.css" ?>" rel="stylesheet">
+=======
+	<link href="<?php echo asset_url()."css/bootstrap.min.css" ?> " rel="stylesheet">
+	<link href="<?php echo asset_url()."css/offcanvas.css" ?>" rel="stylesheet">	<!-- Notify CSS -->
+	<link href="<?php echo asset_url()."css/bootstrap-notify.css" ?>" rel="stylesheet">
+	<link href="<?php echo asset_url()."css/alert-bangtidy.css" ?>" rel="stylesheet">
+	<link href="<?php echo asset_url()."css/alert-blackgloss.css" ?>" rel="stylesheet">
+>>>>>>> e917856c5876303385c28f763b51dd0c0a2d3aa5
 	<?php
 	if (isset($css)) {
 		foreach ($css as $index => $c) {
@@ -19,6 +27,21 @@
 		}
 	}
 	?>
+<<<<<<< HEAD
+=======
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-46078676-1', 'auto');
+		ga('require', 'displayfeatures');
+		ga('send', 'pageview');
+
+	</script>
+>>>>>>> e917856c5876303385c28f763b51dd0c0a2d3aa5
 </head>
 <body class="google">
 	<!-- <div class="container-fluid"> -->

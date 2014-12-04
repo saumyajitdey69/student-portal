@@ -50,6 +50,9 @@ body {
 .form-signin button[type="submit"]{
   margin:20px 0;
 }
+.form-signin a{
+    margin:20px 0;
+}
 .form-forgot button[type="submit"]{
   margin:20px  0 0 0;
 }

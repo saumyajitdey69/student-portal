@@ -191,7 +191,11 @@ $(document).ready(function()
 
     $(document).keydown(function(e)
     {
+<<<<<<< HEAD
         if ( ctrlDown && shiftDown && (e.keyCode == cKey)) {
+=======
+        if ( ctrlDown && (e.keyCode == cKey)) {
+>>>>>>> e917856c5876303385c28f763b51dd0c0a2d3aa5
            alert("Console is disabled. The instance will be reported. Do not use console it may lead to blocking of online services including OMAHA and results.");
            console.log('%cUnusual activity on student portal. Reported to Administration.', 'color:red')
         }
