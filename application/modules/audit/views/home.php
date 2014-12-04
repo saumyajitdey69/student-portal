@@ -19,6 +19,10 @@ if($this->session->flashdata('danger') == TRUE)
 }
 ?>
 
+<div class="well">
+	This is beta version of new student portal. Send your suggestions to wsdc.nitw@gmail.com
+</div>
+
 <!-- <div class="row">
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="page-header">
