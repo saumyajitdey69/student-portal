@@ -125,7 +125,6 @@ class Feedback_model extends CI_Model {
             $data['roll']=$query->row()->roll_number;
         else
             return FALSE;
-        //print_r($data);
         $db_register=$this->load->database('reg',TRUE);
         $db_register->like('roll',$data['roll']);
         $query=$db_register->get($this->tables['registered']);
