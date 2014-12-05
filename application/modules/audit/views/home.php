@@ -24,7 +24,9 @@ if($this->session->flashdata('danger') == TRUE)
 	<!-- <h2><a href="http://goo.gl/CcOVYj">Click here to avail mobile banking services</a></h2> -->
 </div>
 
-
+<div class="well">
+	This is beta version of new student portal. Send your suggestions to wsdc.nitw@gmail.com
+</div>
 
 		<!-- <div class="panel panel-default">
 

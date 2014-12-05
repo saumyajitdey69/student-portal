@@ -19,11 +19,11 @@
        Exit Feedback
      </a>
    </li> -->
-   <li  class="list-group-item <?php echo $current_page === "result" ? "active" : ""?>">
+   <!-- <li  class="list-group-item <?php echo $current_page === "result" ? "active" : ""?>">
     <a href="<?php echo base_url('audit/results') ?>">
       Results
     </a>
-  </li>
+  </li> -->
   <li  class="list-group-item <?php echo $current_page === "slip" ? "active" : ""?>" >
     <a href="<?php echo base_url('audit/slip'); ?>">
       Registration Slip

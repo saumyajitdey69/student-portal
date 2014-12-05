@@ -13,7 +13,7 @@
 
      <li class="list-group-item <?php echo (isset($current_page) && $current_page === "slip")?"active":""; ?>">
       <a href="<?php echo base_url("hostels/hostel_slip"); ?>">
-        Room Allotment SLip
+        Room Allotment Slip
       </a>
     </li>
   </ul>
