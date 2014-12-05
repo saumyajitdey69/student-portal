@@ -42,32 +42,32 @@
 				<div class="col-md-10">
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse google-header-center navbar-ex1-collapse">
-						<!-- <form onsubmit="return false;" class="navbar-form google-header-form col-md-6 col-xs-12" role="search">
-												<div class="has-feedback form-group">
-													<div class="input-group google-input-group">
-														<input type="search" class="form-control google-search-bar google-search-size" placeholder="Search students" id="search-item-input" oninput="OnInput(this.value)" autocomplete="off" name="search-item">
-														 <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
-														<span class="input-group-btn">
-															<button class="btn btn-default btn-primary google-search-btn" type="button"> <span class="glyphicon glyphicon-search"></span></button>
-														</span>
-													</div>/input-group
-												</div>
-													
-													<div class="list-group search-result-box google-search-size" id="search-item-output" >
-													</div> 
-												</form> -->						
+						<form onsubmit="return false;" class="navbar-form google-header-form col-md-6 col-xs-12" role="search">
+							<div class="has-feedback form-group">
+								<div class="input-group google-input-group">
+									<input type="search" class="form-control google-search-bar google-search-size" placeholder="Search students" id="search-item-input" oninput="OnInput(this.value)" autocomplete="off" name="search-item">
+									<span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+									<span class="input-group-btn">
+										 <span class="glyphicon glyphicon-search"></span>
+									</span>
+								</div>
+							</div>
 
-												<ul class="nav navbar-nav navbar-right">
-													<li data-placement="bottom" class="tips <?php echo ($current_section === 'audit')?'active':''; ?>" title="Academic Audit : Results, Feedback, Registration">
-														<a href="<?php echo base_url('audit/home'); ?>">
-															<span class="glyphicon glyphicon-list-alt"></span> <span class="hidden-sm">Academic Audit</span>
-														</a>
-													</li>
-													<li data-placement="bottom" class=" tips <?php echo ($current_section === 'hostels')?'active':''; ?>"  title="Online Hostel Allotment">
-														<a href="<?php echo base_url('hostels'); ?>">
-															<span class="glyphicon glyphicon-cutlery"></span> <span class="hidden-sm"> Hostel & Mess</span>
-														</a>
-													</li>
+							<div class="list-group search-result-box google-search-size" id="search-item-output" >
+							</div> 
+						</form>						
+
+						<ul class="nav navbar-nav navbar-right">
+							<li data-placement="bottom" class="tips <?php echo ($current_section === 'audit')?'active':''; ?>" title="Academic Audit : Results, Feedback, Registration">
+								<a href="<?php echo base_url('audit/home'); ?>">
+									<span class="glyphicon glyphicon-list-alt"></span> <span class="hidden-sm"></span>
+								</a>
+							</li>
+							<li data-placement="bottom" class=" tips <?php echo ($current_section === 'hostels')?'active':''; ?>"  title="Online Hostel Allotment">
+								<a href="<?php echo base_url('hostels'); ?>">
+									<span class="glyphicon glyphicon-cutlery"></span> <span class="hidden-sm"></span>
+								</a>
+							</li>
 						<!-- <li data-placement="bottom" class="tips <?php echo $current_page === "profile" ? "'active'" : ""?>" title="My Profile">
 							<a href="<?php echo base_url('audit/profile'); ?>">
 								Profile
