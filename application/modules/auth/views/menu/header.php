@@ -27,23 +27,25 @@
 <body>
     <div class="container">
         <div class="row">
-      <!--   <div class="alert alert-info">
+        <div class="alert alert-danger">
             <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
-            <p class="text-center">The student portal authentication has been changed. 
+            <!-- <p class="text-center">The student portal authentication has been changed. 
             You can login with your correct old account credentials.
             </p>
             <p class="text-danger text-center lead">In case you have forgot your password of old account or old account was not activated,<a href="../old_auth/auth">Click here</a>
                 </p>
                 <p class="text-danger text-center lead">If forgot Password says "No email record found",Try checking this <a href="../old_auth/auth">Page
-            </p>
+            </p> -->
             
             <p class="text-center lead">
-            First years can create account now.Don't forget to check your SPAM folder for mails. if you face any issues contact your friends who it correctly.
+            1) First years can create account now.Don't forget to check your SPAM folder for mails. if you face any issues contact your friends who did it correctly.
+            <br>
+            2) If you are getting error like Wrong Username after entering correct username/email again and again.Please try creating new account.
             </p>
-        </div> -->
+        </div>
         <div class="hidden-xs col-md-8 col-sm-7 col-lg-8 well">
             <div id="center">
-                    <!-- <div id="main_name">
+                    <div id="main_name">
                         <a href="http://www.nitw.ac.in/">
                             <img src="<?php echo asset_url(); ?>images/logo_nitw.png" alt="">
                         </a>
@@ -52,23 +54,8 @@
                         NATIONAL INSTITUTE OF TECHNOLOGY WARANGAL
                         <br>
                         <br>An Institute of National Importance
-                    </div> -->
-                    <div class="alert alert-info">
-                        <!-- <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a> -->
-                        <h3>Read the instructions carefully.</h3>
-                        <p class="text-center">The student portal authentication has been changed. 
-                            You can login with your correct old account credentials.
-                        </p>
-                        <p class="text-danger text-center lead">In case you have forgot your password of old account or old account was not activated,<a href="../old_auth/auth">Click here</a>
-                        </p>
-                        <br>
-                        <p class="text-danger text-center lead">If forgot Password says "No email record found",Try checking this <a href="../old_auth/auth">Page
-                        </p>
-                        <br><br>
-                        <p class="text-center lead">
-                            First years can create account now. Don't forget to check your SPAM folder for mails. if you face any issues contact your friends who it correctly.
-                        </p>
                     </div>
+                    
                 </div>
                 <div id="main_name">
                     <a href="http://www.nitw.ac.in/wsdc">
@@ -77,4 +64,4 @@
                 </div>
             </div>
             <div class="clearfix visible-xs"></div>
-            <div class="col-xs-offset-1 col-md-offset-0 col-lg-offset-0 col-sm-offset-0 col-xs-10 col-md-4 col-sm-5 col-lg-4">
+            <div class="col-md-4 col-sm-5 col-lg-4" style="padding:15px">

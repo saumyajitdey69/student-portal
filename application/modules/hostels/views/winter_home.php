@@ -1,9 +1,9 @@
 <h3 class="text-primary"> &nbsp; Online Mess And Hostel Allotment (OMAHA) <small>Winter Session</small></h3>
 <div class="row">
 	<div class="col-xs-12 col-sm-6 col-md-9 col-lg-9">
-		<div class="alert alert-warning">
-			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			<span class="glyphicon glyphicon-warning-sign"></span> All 1st year student will be informed about the payment procedure on or before 8th Dec, 2014.
+		<div class="well">
+		<p>State Bank Collect payment will start on 13th, Dec, 2014 (Tentative)</p>
+			<a href="https://groups.google.com/forum/#!forum/omaha-winter">Click here for OMAHA Winter session Help Center</a>
 		</div>
 		<h4 id="transacitonsummary">
 			Transaction Summary of OMAHA

@@ -385,8 +385,10 @@ class Ion_auth
 			{
 				return FALSE;
 			}
-			if($user->active==1)
-				return 100;
+			$error='active';
+			// var_dump($user->active=='1');
+			if($user->active == 1)
+				return $error;
 			$activation_code =$user->activation_code;
 
 			$data = array(
@@ -403,7 +405,6 @@ class Ion_auth
 			}
 			else
 			{
-				//it uses this
 				$message = $this->load->view($this->config->item('email_templates', 'ion_auth').$this->config->item('email_activate', 'ion_auth'), $data, true);
 
 				$this->email->clear();

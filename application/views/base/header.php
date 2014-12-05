@@ -6,7 +6,7 @@
 <meta name="description" content="Student Protal for students of NIT Warangal developed by WSDC">
 <meta name="author" content="WSDC">
 <head>
-	<title><?php if(!empty($title)) echo $title; else echo 'WSDC'; ?></title>
+	<title><?php if(!empty($title)) echo $title; else echo 'Student Portal | NITW'; ?></title>
 	<link href="<?php echo asset_url()."css/bootstrap.min.css" ?> " rel="stylesheet">
 	<link href="<?php echo asset_url()."css/google.bootstrap.min.css" ?> " rel="stylesheet">
 	<link href="<?php echo asset_url()."css/offcanvas.css" ?>" rel="stylesheet">
@@ -57,17 +57,17 @@
 													</div> 
 												</form> -->						
 
-						<ul class="nav navbar-nav navbar-right">
-						<li data-placement="bottom" class="tips <?php echo ($current_section === 'audit')?'active':''; ?>" title="Academic Audit : Results, Feedback, Registration">
-							<a href="<?php echo base_url('audit/home'); ?>">
-								<span class="glyphicon glyphicon-list-alt"></span> <span class="hidden-sm">Academic Audit</span>
-							</a>
-						</li>
-						<li data-placement="bottom" class=" tips <?php echo ($current_section === 'hostels')?'active':''; ?>"  title="Online Hostel Allotment">
-							<a href="<?php echo base_url('hostels'); ?>">
-								<span class="glyphicon glyphicon-cutlery"></span> <span class="hidden-sm"> Hostel & Mess</span>
-							</a>
-						</li>
+												<ul class="nav navbar-nav navbar-right">
+													<li data-placement="bottom" class="tips <?php echo ($current_section === 'audit')?'active':''; ?>" title="Academic Audit : Results, Feedback, Registration">
+														<a href="<?php echo base_url('audit/home'); ?>">
+															<span class="glyphicon glyphicon-list-alt"></span> <span class="hidden-sm">Academic Audit</span>
+														</a>
+													</li>
+													<li data-placement="bottom" class=" tips <?php echo ($current_section === 'hostels')?'active':''; ?>"  title="Online Hostel Allotment">
+														<a href="<?php echo base_url('hostels'); ?>">
+															<span class="glyphicon glyphicon-cutlery"></span> <span class="hidden-sm"> Hostel & Mess</span>
+														</a>
+													</li>
 						<!-- <li data-placement="bottom" class="tips <?php echo $current_page === "profile" ? "'active'" : ""?>" title="My Profile">
 							<a href="<?php echo base_url('audit/profile'); ?>">
 								Profile
@@ -76,8 +76,8 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle google-name-email" data-toggle="dropdown">
 								<?php echo $this->session->userdata('name'); ?>
-                                <br/>
-                                <small><?php echo $this->session->userdata('email'); ?></small>
+								<br/>
+								<small><?php echo $this->session->userdata('email'); ?></small>
 								<!-- <span class="glyphicon glyphicon-cog"></span> -->  <b class="caret"></b> &nbsp;
 							</a>
 							<ul class="dropdown-menu">
@@ -86,11 +86,11 @@
 								<li><a href="<?php echo base_url('auth/logout') ?>"><span class="glyphicon glyphicon-off"></span> Logout</a> </li>
 							</ul>
 						</li>
-						<!-- <li class="google-profile-img">
+						<li class="google-profile-img">
 							<a class="google-profile-img-container" href="<?php echo base_url('profile'); ?>">
 								<img src="http://graph.facebook.com/v2.2/100002451127231/picture" alt="profil_img" class="img img-rounded img-responsive" width="50px" height="50px">
 							</a>		
-						</li> -->
+						</li>
 
 					</ul>
 				</div>	

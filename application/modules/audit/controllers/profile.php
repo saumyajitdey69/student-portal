@@ -46,7 +46,7 @@ class Profile extends MY_Controller {
 
         $this->form_validation->set_rules('name', 'Name', 'trim|required');
         $this->form_validation->set_rules('registration_number', 'Registration Number', 'trim|required|min_length[6]|ctype_alnum');
-        $this->form_validation->set_rules('roll_number', 'Roll Number', 'trim|required|min_length[6]|max_length[6]|ctype_digit');
+        $this->form_validation->set_rules('roll_number', 'Roll Number', 'trim|required|min_length[4]|max_length[6]|ctype_digit');
         $this->form_validation->set_rules('gender', 'Gender', 'trim|required|min_length[1]|max_length[1]');
         $this->form_validation->set_rules('dob', 'Date of Birth', 'trim|required');
         $this->form_validation->set_rules('nationality', 'Nationality', 'trim|required');
