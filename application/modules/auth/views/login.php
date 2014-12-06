@@ -1,5 +1,6 @@
 <form class="form form-signin" role="form" method="post" accept-charset="utf-8">
-  <legend> Login </legend>
+  <h1 class="text-primary">Student Portal</h1>
+  <br>
   <!-- <div class="alert alert-danger">The website is under maintenance. Inconvenience is deeply regretted. <br> -Abhishek Singh, WSDC Gen. Sec</div> -->
   <?php if(!empty($message)): ?>
     <div class="text-danger fade in"><?php echo $message;?></div>
@@ -17,36 +18,29 @@
     if($this->session->flashdata('danger') == TRUE)
       echo '<div class="alert alert-danger"><a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>'.$this->session->flashdata('danger').'</div>';
     ?>
-    <p class="text-info fade in">Please login with your username and password</p>
+    <!-- <p class="text-info fade in">Please login with your username/email and password</p> -->
   <?php endif; ?>
   <!-- <span class="text-danger">Do not use email id to login</span> -->
-  <div class="form-group">
+  <div class="form-group has-feedback">
+    <span class="help-block">WSDC account</span>
     <input required="required" type="text" id="identity" name="identity" class="form-control" placeholder="username" autofocus>
+    <span class="form-control-feedback" aria-hidden="true">@student.nitw.ac.in</span>
   </div>
   <div class="form-group">
-    <input required="required" type="password" id="password" name="password" class="form-control" placeholder="Password">
+    <input required="required" type="password" id="password" name="password" class="form-control" placeholder="password">
   </div>
   <div class="form-group clearfix">
-    <div class="col-md-6">
-    <button type="submit" name="submit" class="btn btn-primary ">Login</button>
-      
+    <button type="submit" name="submit" class="btn btn-primary ">Sign In</button>        
+  </div>
+  <div class="form-group">
+    <small> 
+      <a  class="text-info" href="<?php echo base_url('auth/forgot_password') ?>">Forgot password or username?</a>
+      <br>
+      <a  class="text-info" href="<?php echo base_url('auth/activation_mail') ?>">Resent Activation Link</a>
+    </small> 
+    <div class="clearfix">
+      <br>
     </div>
-    <div class="col-md-6">
-      <a href="<?php echo base_url('auth/create_general_user') ?>" role="button" class="btn btn-sm btn-success">Create Account</a>
-    </div>
+    Don't have a WSDC account? <a href="<?php echo base_url('auth/create_general_user') ?>"> Sign up now</a>
   </div>
 </form>
-<div class="row" style="padding:15px;">
-  <div class="form-group">
-    <a  class="text-danger" href="<?php echo base_url('auth/forgot_password') ?>">Forgot password/username</a>
-    <hr>
-    <a  class="text-danger" href="<?php echo base_url('auth/activation_mail') ?>">Get Activation Link</a>
-  </div>
-<!--   <div class="form-group">
-
-</div> -->
-</div>
-<!-- <div class="row" style="padding:15px;">
-  <legend>Create account</legend>
-  <a href="<?php echo base_url('auth/create_general_user') ?>" role="" class="btn btn-warning">Register</a>
-</div> -->

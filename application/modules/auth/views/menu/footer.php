@@ -1,13 +1,28 @@
         </div>
     </div>
-    <div class="row">
-        <hr>
-        <p class="pull-right help-block"><span class="glyphicon glyphicon-copyright-mark"> </span> 2014,WSDC NITW</p>
-        <!-- <p class="pull-left help-block"><span class="glyphicon glyphicon-envelope"> </span> <a href="mailto:wsdc.nitw@gmail.com">wsdc.nitw@gmail.com</a> | <span class="glyphicon glyphicon-phone"> </span> +91-8121210825, <span class="glyphicon glyphicon-phone"> </span> +91-8121210825</p> -->
-    </div>
-</div>
 
-<!-- /container -->
+    <!-- /container -->
+    <div class="row hidden-print">
+    	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    		<table class="table">
+    			<thead>
+    				<tr>
+    					<th class="pull-right" style="border:none"> &copy; Web & Software Development Cell, NIT Warangal</th>
+    				</tr>
+    			</thead>
+    			<tbody>
+    				<tr>
+    					<td class="pull-right"> <a href="http://student.nitw.ac.in">Student Webmail</a></td>
+    					<td class="pull-right"> <a href="http://www.nitw.ac.in">NITW Homepage</a></td>
+<!--     					<td class="pull-right"> Contact Us</td>
+    					<td class="pull-right"> Help Center</td> -->
+    					<td class="pull-right"> <a href="http://www.nitw.ac.in/ro">Routine Order (RO)</a></td>
+    				</tr>
+    			</tbody>
+    		</table>
+    	</div>
+    </div> <!-- footer container close here -->
+</div>
 <!-- Main Body Ends -->
 <script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>

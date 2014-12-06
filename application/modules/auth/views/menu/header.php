@@ -25,26 +25,10 @@
     </script>
 </head>
 <body>
-    <div class="container">
+    <div class="container google">
         <div class="row">
-        <div class="alert alert-danger">
-            <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
-            <!-- <p class="text-center">The student portal authentication has been changed. 
-            You can login with your correct old account credentials.
-            </p>
-            <p class="text-danger text-center lead">In case you have forgot your password of old account or old account was not activated,<a href="../old_auth/auth">Click here</a>
-                </p>
-                <p class="text-danger text-center lead">If forgot Password says "No email record found",Try checking this <a href="../old_auth/auth">Page
-            </p> -->
-            
-            <p class="text-center lead">
-            1) First years can create account now.Don't forget to check your SPAM folder for mails. if you face any issues contact your friends who did it correctly.
-            <br>
-            2) If you are getting error like Wrong Username after entering correct username/email again and again.Please try creating new account.
-            </p>
-        </div>
-        <div class="hidden-xs col-md-8 col-sm-7 col-lg-8 well">
-            <div id="center">
+        <div class="hidden-xs col-md-8 col-sm-7 col-lg-8">
+                <div id="center">
                     <div id="main_name">
                         <a href="http://www.nitw.ac.in/">
                             <img src="<?php echo asset_url(); ?>images/logo_nitw.png" alt="">
