@@ -26,26 +26,10 @@
 </head>
 <body>
     <div class="container google">
-        <div class="row">
-        <div class="hidden-xs col-md-8 col-sm-7 col-lg-8">
-                <div id="center">
-                    <div id="main_name">
-                        <a href="http://www.nitw.ac.in/">
-                            <img src="<?php echo asset_url(); ?>images/logo_nitw.png" alt="">
-                        </a>
-                    </div>
-                    <div id="full_form">
-                        NATIONAL INSTITUTE OF TECHNOLOGY WARANGAL
-                        <br>
-                        <br>An Institute of National Importance
-                    </div>
-                    
-                </div>
-                <div id="main_name">
-                    <a href="http://www.nitw.ac.in/wsdc">
-                        <img src="<?php echo asset_url(); ?>images/logo_wsdc.png" alt="WSDC logo">
-                    </a>
-                </div>
-            </div>
-            <div class="clearfix visible-xs"></div>
-            <div class="col-md-4 col-sm-5 col-lg-4" style="padding:15px">
+      <div id="main_name">
+        <a href="http://www.nitw.ac.in/wsdc">
+            <img src="<?php echo asset_url(); ?>images/logo_wsdc.png" alt="WSDC logo" width="100px">
+        </a>
+    </div>
+    <h1 class="text-info text-center"><b>Student Portal</b></h1>
+    <br>

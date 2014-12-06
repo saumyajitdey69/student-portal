@@ -11,7 +11,7 @@ body {
 
 @media (min-width: 1200px){
   .google {
-    width: 1000px !important;
+    width: 400px !important;
   }
 }
 .google .input-form:focus, .google input:focus,.google .input-form:hover, .google input:hover{
@@ -62,13 +62,13 @@ body {
     border-top-right-radius: 0;
   }
   .form-signin button[type="submit"]{
-    margin:20px 0;
+    /*margin:20px 0;*/
   }
   .form-signin a{
     margin:20px 0;
   }
   .form-forgot button[type="submit"]{
-    margin:20px  0 0 0;
+    /*margin:20px  0 0 0;*/
   }
   .font_raleway{
     font-family: 'raleway_regular';
