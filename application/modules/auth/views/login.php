@@ -20,7 +20,7 @@
   ?>
   <!-- <p class="text-info fade in">Please login with your username/email and password</p> -->
 <?php endif; ?>
-<div class="well">
+<div class="well google-well">
   <!-- <span class="text-danger">Do not use email id to login</span> -->
   <div class="form-group has-feedback">
     <span class="help-block">WSDC account</span>

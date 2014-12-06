@@ -132,7 +132,7 @@ $lang['change_password_validation_new_password_label']         = 'New Password';
 $lang['change_password_validation_new_password_confirm_label'] = 'Confirm New Password';
 
 // Forgot Password
-$lang['forgot_password_heading']                 = 'Forgot Password';
+$lang['forgot_password_heading']                 = 'Forgot Password/Username';
 $lang['forgot_password_subheading']              = 'Please enter your %s so we can send you an email to reset your password.';
 $lang['forgot_password_email_label']             = '%s:';
 $lang['forgot_password_submit_btn']              = 'Submit';

@@ -73,7 +73,7 @@ class Auth extends CI_Controller {
 			$status=$this->ion_auth->send_activation_mail($email);
 			if($status==FALSE)
 			{
-				$this->session->set_flashdata('danger', 'Activation mail sending failed.<br>Enter registered email-id correctly.');
+				$this->session->set_flashdata('danger', 'Activation mail sending failed.<br>Enter valid registered email id.');
 			}
 			else if($status==='active')
 			{
@@ -293,7 +293,7 @@ class Auth extends CI_Controller {
 		if ($this->form_validation->run() == false)
 		{
 			//setup the input
-			$data['email'] = array('name' => 'email','class'=>'form-control',
+			$data['email'] = array('name' => 'email','placeholder' => 'username@student.nitw.ac.in' ,'class'=>'form-control',
 				'id' => 'email',
 				);
 
