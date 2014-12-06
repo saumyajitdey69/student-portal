@@ -26,7 +26,7 @@ class Profile extends MX_Controller {
 	public function view($username = '')
 	{
 		$data['current_page'] = 'public';
-		$data['profile'] = $this->profile_model->get(array('username' => $username), true);
+		$data['profile'] = $this->profile_model->get(array('auth.username' => $username), true);
 		if(empty($data['profile'])){
 			$this->session->set_flashdata('danger', 'Username does not exist. Please check the username and try again.');
 			redirect('profile');

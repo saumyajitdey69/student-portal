@@ -19,20 +19,23 @@ class Profile_model extends CI_Model {
 	//$single = true means first row only, false means complete results (multiple rows)
 	// $where contains the array of where query (It should be passed always, cannot be blank)
 	// $order is order by query
-	public function get($where = array(), $single = false, $column = 'first_name, last_name, email, phone, username, roll_number, registration_number, joining_year, gender', $json = false, $array = true,  $order = 'first_name asc, roll_number asc, joining_year asc')
+	public function get($where = array(), $single = false, $column = 'first_name, last_name, auth.email, phone, auth.username, roll_number, registration_number, joining_year, gender', $json = false, $array = true,  $order = 'first_name asc, roll_number asc, joining_year asc')
 	{
 		// default db is connected to students
 		$this->db->select($column)
-				 ->where($where)
 				 ->from($this->tables['student_auth'].' as auth')
 				 ->join($this->tables['student_data'].' as data', 'auth.id = data.userid', 'inner');
+
+		if(!empty($where))
+			$this->db->where($where);
+
 		if($single)
 			$this->db->limit(1);
 
 		$this->db->order_by($order);
 
 		$query = $this->db->get();
-		if($query->num_rows() > 0){
+		if($query->num_rows() > 0)
 			if($single)
 				if($json)
 					return json_encode($query->first_row());
@@ -47,10 +50,8 @@ class Profile_model extends CI_Model {
 					return $query->result('array');
 				else
 					return $query->result();
-		}
-		else{
+		else
 			return false;
-		}
 	}
 
 }

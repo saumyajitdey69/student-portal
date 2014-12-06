@@ -24,7 +24,7 @@
 		</div>
 	<?php endif; ?>
 
-	<table class="table table-hover table-condensed" id="example">
+	<table class="table dataTable table-hover table-condensed" data-ajax="true" data-ajax-url="<?php echo base_url('auth/dataTables') ?>" id="example">
 		<thead>
 			<tr>
 				<th>User Id</th>
@@ -39,13 +39,13 @@
 			</tr>
 		</thead>
 		<tbody>
-			<?php $i=0; foreach ($users as $user):?>
+			<?php $i=0; foreach ($users_info as $user):?>
 			<tr>
 				<td><?php echo $user->id ?></td>
 				<td><?php echo $user->first_name;?> <?php echo $user->last_name;?></td>
 				<td><a href="mailto:<?php echo $user->email;?>" target="_blank"><?php echo $user->email;?></a></td>
-				<td><?php echo $users_info[$i]['roll_number'] ?></td>
-				<td><?php echo $users_info[$i]['registration_number'] ?></td>
+				<td><?php echo $users_info[$i]->roll_number; ?></td>
+				<td><?php echo $users_info[$i]->registration_number; ?></td>
 				<td><?php echo $user->phone ?></td>
 				<td>
 					<?php foreach ($user->groups as $group):?>

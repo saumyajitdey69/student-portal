@@ -44,11 +44,11 @@ class Auth extends CI_Controller {
 			$data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 			$data['title'] = "User List";
 			//list the users
-			$data['users'] = $this->ion_auth->users()->result();
-			foreach ($data['users'] as $k => $user)
-			{
-				$data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
-			}
+			// $data['users'] = $this->ion_auth->users()->result();
+			// foreach ($data['users'] as $k => $user)
+			// {
+			// 	$data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
+			// }
 			$data['scripts'] = array('auth/jquery.dataTables.min.js','auth/table.js');
 			$data['css'] = array('dataTables.bootstrap.css');
 			$data['admin_logged']=$this->ion_auth->is_admin();

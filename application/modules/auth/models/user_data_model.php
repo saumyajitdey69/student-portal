@@ -14,7 +14,7 @@ class User_data_model extends CI_Model
 	}
 	public function get_all_user_data()
 	{	
-		$this->db->select()
+		$this->db->select('id, first_name, last_name, users.email, roll_number, registration_number, users.phone, users.active')
 				->from($this->tables['users'])
 				->join($this->tables['student_data'],'users.id=student_data.userid');
 		$query=$this->db->get();
