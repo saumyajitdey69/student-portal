@@ -20,8 +20,7 @@ class Apps extends MX_Controller {
     // }
 
     public function hubs() {
-        $data = array();
-       
+        $data = array();       
         $data['current_page'] = 'home';
         $this->load->model('hub_model', '', TRUE);
         $data['hub_list'] = $this->hub_model->get();
@@ -32,9 +31,11 @@ class Apps extends MX_Controller {
 
 
     public function update_hubs() {
-        $hub_details = $this->input->post();
+        $token = $this->input->post('token');
+        $hub_details = $this->input->post('content'); 
+        $hub_details = json_decode($hub_details);
         $this->load->model('hub_model');
-        $this->hub_model->update($hub_details);
+        $this->hub_model->update($hub_details, $token);
     }
 
     function _render_page($view, $data=null, $render=false)
