@@ -31,11 +31,15 @@ class Apps extends MX_Controller {
 
 
     public function update_hubs() {
-        $token = $this->input->post('token');
-        $hub_details = $this->input->post('content'); 
-        $hub_details = json_decode($hub_details);
+        // $token = $this->input->post('token');
+        $token ='rajakiaayegibarat';
+        // $hub_details = $this->input->post('content'); 
+        $hub_details = '[ {"Name":"NITW e-Library Network - Testing Complete (Staging)","Users":"182","UpTime":"1 days, 11 hours, 2 minutes","Address":"172.30.107.112","Software":"PtokaX DC Hub 0.5.0.1 "},{"Name":"JoKeR","Users":"55","UpTime":"0 days, 14 hours, 28 minutes","Address":"172.30.103.116","Software":"PtokaX DC Hub 0.5.0.2 "} ]';
+        $hub_details = json_decode($hub_details, true);
         $this->load->model('hub_model');
-        $this->hub_model->update($hub_details, $token);
+        var_dump($hub_details);
+        $this->hub_model->delete($token);
+        $this->hub_model->insert($hub_details, $token);
     }
 
     function _render_page($view, $data=null, $render=false)

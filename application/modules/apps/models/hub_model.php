@@ -19,6 +19,7 @@ class Hub_model extends CI_Model {
   {
     if($token != $this->token) 
       return false;
+    $this->db->where('address !=', '');
     if($this->db->delete('hubs')){
       echo 'Deleted successfully';
       return true;
@@ -35,7 +36,7 @@ class Hub_model extends CI_Model {
     if($token != $this->token) 
       return false;
 
-    if($this->db->insert('hubs', $value))
+    if($this->db->insert_batch('hubs', $value))
     {
       echo 'Success!';
       return true;
