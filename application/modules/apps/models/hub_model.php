@@ -6,7 +6,7 @@ class Hub_model extends CI_Model {
   {
     parent::__construct();        
     $this->db = $this->load->database('hubs', TRUE);
-    $this->token = md5('rajakiaayegibarat');
+    $this->token = 'rajakiaayegibarat';
   }
 
   public function get()
@@ -35,7 +35,7 @@ class Hub_model extends CI_Model {
     if($token != $this->token) 
       return false;
 
-    if($this->db->insert('hubs', $data))
+    if($this->db->insert('hubs', $value))
     {
       echo 'Success!';
       return true;
