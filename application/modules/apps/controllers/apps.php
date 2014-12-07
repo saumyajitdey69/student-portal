@@ -21,30 +21,20 @@ class Apps extends MX_Controller {
 
     public function hubs() {
         $data = array();
-        $data['title'] = "Apps - Home";
+       
         $data['current_page'] = 'home';
         $this->load->model('hub_model', '', TRUE);
-        $data['hub_list'] = $this->hub_model->get_hubs();
-        $data['scripts'] = array('jquery.dataTables.min.js', 'table.js');
+        $data['hub_list'] = $this->hub_model->get();
+        $data['title'] = "DC++ Hubs (".count($data['hub_list']).")";
+        // $data['scripts'] = array('auth/jquery.dataTables.min.js', 'auth/table.js');
         $this->_render_page('hubs/index', $data);
     }
 
 
     public function update_hubs() {
-        if(!isset($_GET['hub_address'])|| 
-            !isset($_GET['no_of_users'])|| 
-            !isset($_GET['hub_name'])|| 
-            !isset($_GET['uptime'])||
-            !isset($_GET['delete'])||
-            !isset($_GET['secretkey'])
-            )
-        {
-            echo 'Invalid Request!';
-            return;
-        }
-
-        $this->load->model('hub_model', '', TRUE);
-        $this->hub_model->update_hubs($_GET);
+        $hub_details = $this->input->post();
+        $this->load->model('hub_model');
+        $this->hub_model->update($hub_details);
     }
 
     function _render_page($view, $data=null, $render=false)

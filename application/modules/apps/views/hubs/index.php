@@ -1,11 +1,11 @@
-<legend>Active DC++ hubs</legend>
-<table class="table table-hover table-condensed">
+<table class="table dataTable table-hover table-condensed">
 	<thead>
 		<tr>
-			<th>Hub Address</th>
-			<th>Hub Name</th>
-			<th>Number of Users</th>
+			<th>Hub address (IP:Port)</th>
+			<th>Hub name</th>
+			<th>Active users</th>
 			<th>Uptime</th>
+			<th><?php echo count($hub_list) ?> hubs online</th>
 		</tr>
 	</thead>
 	<tbody>
