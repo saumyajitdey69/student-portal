@@ -29,9 +29,11 @@ class Hub_model extends CI_Model {
     }
   }
 
-  public function insert($value, $token)
+  public function insert($value = array())
   {
     //first authenticate the request..
+    $token = $value['token'];
+    $data = $value['hubs'];
     if($token != $this->token) 
       return false;
 
