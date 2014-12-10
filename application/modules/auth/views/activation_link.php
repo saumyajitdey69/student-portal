@@ -10,7 +10,7 @@
 
       <p>
       <span class="help-block">Email Id:</span>
-      	<input type="email" id="email" placeholder="username@student.nitw.ac.in" class="form-control" name="email"/>
+      	<input type="email" id="email" placeholder="Registered email id" class="form-control" name="email"/>
       	<p class="help-block text-danger">Check your inbox (or spam folder) for activation link</p>
       </p>
 	

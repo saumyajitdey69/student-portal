@@ -293,7 +293,7 @@ class Auth extends CI_Controller {
 		if ($this->form_validation->run() == false)
 		{
 			//setup the input
-			$data['email'] = array('name' => 'email','placeholder' => 'username@student.nitw.ac.in' ,'class'=>'form-control',
+			$data['email'] = array('name' => 'email','placeholder' => 'Registered email id' ,'class'=>'form-control',
 				'id' => 'email',
 				);
 
