@@ -136,7 +136,7 @@ class Results_model extends CI_Model {
 	public function _is_allowed_for_feedback($roll='')
 	{
 		$results_db = $this->load->database('results', TRUE);
-		$query = $results_db->select('roll')->where('roll', $roll)->get('allowed');
+		$query = $results_db->select('roll')->where('roll', $roll)->get('allowed_2014odd');
 		if($query->num_rows() > 0)
 		{
 			return TRUE;
