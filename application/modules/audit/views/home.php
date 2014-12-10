@@ -12,7 +12,6 @@ if($this->session->flashdata('danger') == TRUE)
 	echo '<div class="alert alert-danger"><a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>'.$this->session->flashdata('danger').'</div>';
 ?>
 
-
 <?php if(isset($message))
 {
 	echo '<div class="alert alert-success"><a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>'.$message.'</div>';
@@ -21,10 +20,10 @@ if($this->session->flashdata('danger') == TRUE)
 
 <div class="row">
 	<div class="col-xs-12 col-sm-8 col-md-9 col-lg-9 main">
-		
+		<?php echo modules::run('enotice', 'academic-home') ?>
 	</div>
 	<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 main" id="enotice">
-		<?php echo modules::run('enotice'); ?>
+		<?php echo modules::run('enotice', 'academic-section'); ?>
 	</div>
 </div>
 
