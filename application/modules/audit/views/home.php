@@ -43,6 +43,7 @@ if($this->session->flashdata('danger') == TRUE)
 				</div>
 				<div class="panel-body">
 					<ul>
+						<li>Chief Warden Account Number for NEFT/RTGS added.</li>
 						<li> <a href="<?php echo base_url('assets/downloads/audit/fees/dec_2014.pdf') ?>" target="_blank"> Click here to download Tuition fee details for Dec 2014</a></li>
 						<li> <a href="<?php echo base_url('assets/downloads/omaha/winter/rules.pdf') ?>" target="_blank"> Click here to download Hostel fee details for Dec 2014</a></li>
 						<li>Last date to fill academic feedback with fine is Dec 5, 2014.</li>

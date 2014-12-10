@@ -14,22 +14,22 @@
       </li>
       <hr>
       <li <?php echo $current_page === "attendance" ? "class='active'" : ""?>>
-        <a href="<?php echo base_url('attendance'); ?>">ATTENDANCE <span class="label label-danger">new</span></a>
+        <aref="<?php echo base_url('attendance'); ?>">ATTENDANCE </a>
       </li>
       <hr>
       <!-- <li>FEEDBACK</li>
       <li <?php echo $current_page === "feedback" ? "class='active'" : ""?>>
         <a href="<?php //echo base_url('audit/feedback'); ?>">
-          <span class="glyphicon glyphicon-check"></span> Feedback (December 2014)<span class="label label-danger">new</span>
+          <span class="glyphicon glyphicon-check"></span> Feedback (December 2014)
         </a>
       </li> -->
       <li <?php echo $current_page === "feedback" ? "class='active'" : ""?> class="tips" title="Feedback">FEEDBACK
        <a href="<?php echo base_url('audit/feedback'); ?>">
-          <span class="glyphicon glyphicon-check"></span> Feedback (December 2014)<span class="label label-danger">new</span>
+          <span class="glyphicon glyphicon-check"></span> Feedback (December 2014)
         </a>
       </li>
       <li>
-        <a href="http://172.20.0.4/ro"><span class="glyphicon glyphicon-tasks"></span> Routine Order <span class="label label-danger">new</span></a>
+        <a href="http://172.20.0.4/ro"><span class="glyphicon glyphicon-tasks"></span> Routine Order </a>
       </li>
      <!-- <li <?php echo $current_page === "exit_feedback" ? "class='active'" : ""?>>
         <a href="<?php echo base_url('audit/exit_feedback'); ?>">
@@ -49,7 +49,7 @@
       <hr>
       <li <?php echo $current_page === "slip" ? "class='active'" : ""?> class="tips" title="Registration slip avalilable">
         <a href="<?php echo base_url('audit/slip'); ?>" target="_blank">
-          <span class="glyphicon glyphicon-file"></span> Registration Slip <span class="label label-danger">new</span>
+          <span class="glyphicon glyphicon-file"></span> Registration Slip 
         </a>
       </li>
       <li <?php echo $current_page === "calendar" ? "class='active'" : ""?>>

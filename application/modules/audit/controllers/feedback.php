@@ -18,6 +18,8 @@ class Feedback extends MY_Controller {
 			redirect(base_url('audit/profile'), 'location', 301);
 			return false;
 		}
+		//$this->session->set_flashdata('danger', 'Academic Feedback is closed. Fine payment procedure will be updated after vacations (6th Dec - 18th Dec, 2014). ');
+		//redirect('audit/home');
 	}
 	public function update_cgpa(){
 		$this->load->model('audit/feedback_model');
@@ -104,12 +106,12 @@ class Feedback extends MY_Controller {
 		// redirect('audit');
 
 		//print_r($roll);
-		//if($this->results_model->_is_allowed_for_feedback($roll) === FALSE)
-		//{	
-		//	$this->session->set_flashdata('danger', 'Feedback is closed. If you did not fill the feedback please contact Associate Dean Academic Audit. <br> After the approval of Dean it takes 2-3 days for receiving the results and	activating feedback. <br> Please do not contact WSDC for this issue.');
-		//	redirect('audit');
-		//	return;
-		//}
+		if($this->results_model->_is_allowed_for_feedback($roll) === FALSE)
+		{	
+			$this->session->set_flashdata('danger', 'Feedback is closed. If you did not fill the feedback please contact Associate Dean Academic Audit. <br> After the approval of Dean it takes 2-3 days for receiving the results and	activating feedback. <br> Please do not contact WSDC for this issue.');
+			redirect('audit');
+			return;
+		}
         ////////////////////////////////
 		$cgpa_1 = $this->feedback_model->get_cgpa($this->user_id);
         //print_r($cgpa_1);
