@@ -25,7 +25,7 @@
   <div class="form-group has-feedback">
     <span class="help-block">WSDC account</span>
     <input required="required" type="text" id="identity" name="identity" class="form-control" placeholder="username" autofocus>
-    <span class="form-control-feedback" aria-hidden="true">@student.nitw.ac.in</span>
+    <!-- <span class="form-control-feedback" aria-hidden="true">@student.nitw.ac.in</span> -->
   </div>
   <div class="form-group">
     <input required="required" type="password" id="password" name="password" class="form-control" placeholder="password">
@@ -38,7 +38,7 @@
   <small> 
     <a  class="text-info" href="<?php echo base_url('auth/forgot_password') ?>">Forgot password or username?</a>
     <br>
-    <a  class="text-info" href="<?php echo base_url('auth/activation_mail') ?>">Resent Activation Link</a>
+    <a  class="text-info" href="<?php echo base_url('auth/activation_mail') ?>">Resend Activation Link</a>
   </small> 
   <div class="clearfix">
     <br>
