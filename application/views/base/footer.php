@@ -5,13 +5,7 @@
       <!-- <hr> -->
       <footer>
         <div class="row">
-          <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-            <strong>News & Notifications</strong><br><br>
-            <ul type="square" style="margin-left:-1.5em">
-             <li>Students should fill the academic feedback on or beforee 28th, Nov, 2014</li>
-           </ul>
-         </div>
-         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
           <strong>Quick Links</strong><br><br>
           <ul type="square" style="margin-left:-1.5em">
             <li><a href="http://www.nitw.ac.in" target="_blank">College main website </a></li>
@@ -21,7 +15,7 @@
             <li><a href="http://www.nitw.ac.in/nitw/index.php/academics/rules" target="_blank">Rules and regulations</a></li>
           </ul>
         </div>
-        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
           <strong>About Us</strong><br><br>
           <address>
             WSDC Office, <br>
@@ -31,7 +25,7 @@
           Drop us an email on
           <a href="mailto:wsdc@nitw.ac.in">  <span class="glyphicon glyphicon-envelope"></span>  wsdc@nitw.ac.in</a> 
         </div>
-        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
           <strong>Follow us on Facebook</strong><br><br>
           Stay in touch with WSDC, NIT Warangal</br>
           <div class="fb-like" data-href="https://www.facebook.com/wsdc.nitw" data-layout="button" data-action="like" data-show-faces="false" data-share="true">

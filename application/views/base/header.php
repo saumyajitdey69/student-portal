@@ -42,6 +42,7 @@
 				<div class="col-md-10">
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse google-header-center navbar-ex1-collapse">
+					<?php if($this->ion_auth->is_admin()): ?>
 						<form onsubmit="return false;" class="navbar-form google-header-form col-md-6 col-xs-12" role="search">
 							<div class="has-feedback form-group">
 								<div class="input-group google-input-group">
@@ -56,16 +57,16 @@
 							<div class="list-group search-result-box google-search-size" id="search-item-output" >
 							</div> 
 						</form>						
-
+					<?php endif; ?>
 						<ul class="nav navbar-nav navbar-right">
 							<li data-placement="bottom" class="tips <?php echo ($current_section === 'audit')?'active':''; ?>" title="Academic Audit : Results, Feedback, Registration">
 								<a href="<?php echo base_url('audit/home'); ?>">
-									<span class="glyphicon glyphicon-list-alt"></span> <span class="hidden-sm"></span>
+									<span class="glyphicon glyphicon-list-alt"></span> <span class="hidden-sm">Academic Section</span>
 								</a>
 							</li>
 							<li data-placement="bottom" class=" tips <?php echo ($current_section === 'hostels')?'active':''; ?>"  title="Online Hostel Allotment">
 								<a href="<?php echo base_url('hostels'); ?>">
-									<span class="glyphicon glyphicon-cutlery"></span> <span class="hidden-sm"></span>
+									<span class="glyphicon glyphicon-cutlery"></span> <span class="hidden-sm">OMAHA</span>
 								</a>
 							</li>
 						<!-- <li data-placement="bottom" class="tips <?php echo $current_page === "profile" ? "'active'" : ""?>" title="My Profile">
@@ -86,11 +87,11 @@
 								<li><a href="<?php echo base_url('auth/logout') ?>"><span class="glyphicon glyphicon-off"></span> Logout</a> </li>
 							</ul>
 						</li>
-						<li class="google-profile-img">
+						<!-- <li class="google-profile-img">
 							<a class="google-profile-img-container" href="<?php echo base_url('profile'); ?>">
 								<img src="http://graph.facebook.com/v2.2/100002451127231/picture" alt="profil_img" class="img img-rounded img-responsive" width="50px" height="50px">
 							</a>		
-						</li>
+						</li> -->
 
 					</ul>
 				</div>	
