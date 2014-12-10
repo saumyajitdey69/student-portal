@@ -6,9 +6,20 @@
 <div class="container">
 	<div class="row">
 		<div class="well">
-		<p>State Bank Collect payment will start on 13th, Dec, 2014 (Tentative)</p>
+			<p>State Bank Collect payment will start on 13th, Dec, 2014 (Tentative)</p>
 			<a href="https://groups.google.com/forum/#!forum/omaha-winter">Click here for OMAHA Winter session Help Center</a>
 		</div>
+		
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<h3>Payment via RTGS/NEFT</h3>
+			<p>Account Name: CHIEF WARDEN, NITW</p>
+
+			<p>ACCOUNT NO: 52109375132</p>
+			<p>IFSC code : SBHY0020149 ( within in INDIA)</p>
+
+			<p>SWIFT code:  SBHYINBB018 (Transfer from abroad)</p>
+		</div>
+
 		<div class="col-xs-12 col-sm-6 col-md-9 col-lg-9">
 			<h4 id="transacitonsummary">
 				Transaction Summary of OMAHA
@@ -149,7 +160,7 @@
 		</div>
 		<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
 
-		<a href="<?php echo base_url('assets/downloads/omaha/winter/rules.pdf') ?>" class="btn btn-default btn-info btn-lg btn-block"> Download pdf<br> (Payment Procedure)<br> </a>
+			<a href="<?php echo base_url('assets/downloads/omaha/winter/rules.pdf') ?>" class="btn btn-default btn-info btn-lg btn-block"> Download pdf<br> (Payment Procedure)<br> </a>
 			<a href="https://www.onlinesbh.com/prelogin/icollecthome.htm" class="btn btn-default btn-info btn-lg btn-block">State Bank Collect <br> (Will start after exams)</a>
 			<br>
 			<!-- <a href="/student/hostels/wsdc_collect/" class="btn btn-default btn-info btn-lg btn-block">WSDC Collect <br> <small>for NEFT/DD/Intra Bank</small></a> -->
