@@ -52,7 +52,8 @@ if($this->session->flashdata('danger') == TRUE)
 			</table>
 		<?php else: ?>
 			<p class="text-danger alert alert-danger">
-				Your transaction is not uploaded by Hostel Office, NITW. If the transactions are not uploaded within 3 days (72 hours) of your payment go to hostel office when you come to college.
+			    <strong>Pay your Hostel Fees using State bank Collect, Intra/Inter Bank Transfer, NEFT only. DD payments are not permitted.</strong> <br>
+				Transaction Details must be uploaded/approved by Hostel Office, NITW. If the transaction is not uploaded within 3 days (72 hours) of your payment go to hostel office when you come to college.
 			</p>
 		<?php endif; ?>
 		<hr>
