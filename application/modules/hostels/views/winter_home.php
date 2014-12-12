@@ -38,7 +38,7 @@
 				</tbody>
 			</table>
 		<?php else: ?>
-			<p class="text-danger">
+			<p class="text-danger alert alert-danger">
 				Your transaction is not listed here. Please go to Hostel Office, NITW and inform the same to the officials. Hostel Office must upload the information.
 			</p>
 		<?php endif; ?>

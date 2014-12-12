@@ -214,6 +214,9 @@ class HostelModel extends CI_Model {
 				return FALSE;
 			}
 	}
+
+
+	// Deprecated, instead profile module is used. Check student portal wiki for more details (stident details api)
 	public function userid_to_regno($userId) {
 		$this->db = $this->load->database('default', TRUE);
 		$this->db->select('registration_number')

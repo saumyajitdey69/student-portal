@@ -9,9 +9,6 @@ class Hostels extends MY_Controller {
 
     function __construct(){
         parent::__construct();
-        $this->load->library('auth/ion_auth');
-        if (!$this->ion_auth->logged_in())
-            redirect('auth/login');
         $this->load->model('audit/audit_model');
         if ($this->audit_model->profile_edited($this->user_id) === false)
         {
@@ -19,23 +16,23 @@ class Hostels extends MY_Controller {
             redirect(base_url('audit/profile'), 'location', 301);
             return false;
         }
-        $this->load->model('hostelmodel', '', TRUE);
-        $this->load->model('messmodel', '', TRUE);
+        $this->load->model('hostelmodel');
+        $this->load->model('messmodel');
         $this->load->model('studentmodel');
     }
 
     public function index(){
-        // if($this->_is_alloted_hostel()){
-        //     if(!$this->_is_alloted_mess()){
-        //         header("location: /student/hostels/allotment/mess/");
-        //     }
-        // }
         $data['current_page'] = 'home';
-        $data['title'] = 'Online Mess & Hostel Allotment';
+        $data['title'] = 'OMAHA | WSDC';
         $data['error'] = array();
-        $regno = $this->hostelmodel->userid_to_regno($this->user_id);
+        // student profile api
+        $this->load->model('profile/profile_model', 'profile_model', TRUE);
+        $raw_data = $this->profile_model->get(array('id' => $this->user_id), TRUE, 'registration_number, roll_number');
+        $regno = $raw_data['registration_number'];
+        // get student hostel and mess details
         $student_detail = $this->studentmodel->get_student_detail($regno);
-        if($student_detail){
+        if(!empty($student_detail))
+        {
             if($student_detail['blocked']==1){
                 $error = 'Your account is blocked by Hostel Office. Please contact Hostel Office, NIT Warangal for further details';
                 array_push($data['error'], $error);
@@ -46,22 +43,50 @@ class Hostels extends MY_Controller {
             }else{
                 $data['allowed_allotment'] = FALSE;
             } 
-        }else{
-            $error = 'Unable to retrieve student details from Academic Audit Section.Please drop an email to wsdc with subject: "SPH: Unable to retieve student details"';
-            array_push($data['error'], $error);
+        }
+        else
+        {
+            print_r("loop 1");
+            //check if they use roll number
+            $student_detail = $this->studentmodel->get_student_detail($raw_data['roll_number']);
+            if(!empty($student_detail))
+            {
+                print_r("loop 2");
+                // swap with registration number and run index function again
+                $this->studentmodel->swap_roll_with_reg($raw_data);
+                $this->index();
+            }
+
+            // search for registration number in transaction table
+            if($this->studentmodel->swap_roll_with_reg_transaction($raw_data))
+                $this->index();
+            else{
+                print_r("loop 3");
+                // create an entry in wsdc_hostels student table
+                if($this->studentmodel->create_student($regno)){
+                    print_r("loop 4");
+                    $this->index();
+                }
+                else
+                { 
+                    print_r("loop 5");
+                    //error
+                    $data['error'] = 'Some serious errors occured while setting up new account for you. Please contact WSDC wsdc.nitw@gmail.com. Mention your registration number and error no: 3123';
+                }
+            }
         }
 
         // this is not required for winter session
 
-    //     if($this->_is_alloted_hostel() && $this->_is_alloted_mess()){
-    //      if(!$winter_session){
-    //         //$data['slip'] = true; 
-    //         $data['slip_url'] = '/student/hostels/hostel_slip/'; 
-    //         // redirect to slip
-    //         redirect('/hostels/hostel_slip/');
-    //         //var_dump($this->_is_neft());
-    //     }
-    // }
+        //     if($this->_is_alloted_hostel() && $this->_is_alloted_mess()){
+        //      if(!$winter_session){
+        //         //$data['slip'] = true; 
+        //         $data['slip_url'] = '/student/hostels/hostel_slip/'; 
+        //         // redirect to slip
+        //         redirect('/hostels/hostel_slip/');
+        //         //var_dump($this->_is_neft());
+        //     }
+        // }
 
 
         //$data['hosteltransactions'] = $this->hostelmodel->get_student_transactions($regno);
