@@ -65,17 +65,15 @@ class Studentmodel extends CI_Model {
 
 			$this->hostel_db->update($this->tables['students'], array('regno' => $data['registration_number']), array('regno' => $data['roll_number']));			
 			$this->hostel_db->update($this->tables['messallotments'], array('regno' => $data['registration_number']), array('regno' => $data['roll_number']));			
-			$this->hostel_db->update($this->tables['hosteltransactions'], array('registration_number' => $data['registration_number']), array('registration_number' => $data['roll_number']));
-			$this->hostel_db->update($this->tables['studentpayments'], array('regno' => $data['registration_number']), array('regno' => $data['roll_number']));
+			$this->hostel_db->update($this->tables['messtransactions'], array('registration_number' => $data['registration_number']), array('registration_number' => $data['roll_number']));
+			$this->hostel_db->update($this->tables['studentpayments_old'], array('regno' => $data['registration_number']), array('regno' => $data['roll_number']));
 
 			// if no room is allotted to students then add new entry
 			$query = $this->hostel_db->update($this->tables['roomallotments'], array('regno' => $data['registration_number']), array('regno' => $data['roll_number']));
-			if($query->num_rows() > 0)
+			if($this->db->affected_rows()> 0)
 				return true;
 			else
-				return false;
-			
-			
+				return false;			
 	}
 
 	// @Vaibhav Awachat
@@ -84,10 +82,10 @@ class Studentmodel extends CI_Model {
 	{
 		// search the student with roll number in transaction tablle
 		$this->hostel_db = $this->load->database('hostels', TRUE);
-		$query = $this->hostel_db->select('registration_number, roll_number')->where('roll_number', $data['roll_number'])->from($this->tables['hostelstransactions'])->limit(1)->get();
+		$query = $this->hostel_db->select('registration_number, roll_number')->where('roll_number', $data['roll_number'])->from($this->tables['messtransactions'])->limit(1)->get();
 		if($query->num_rows() > 0){
-			$res = $query->results('array');
-			$invalid_reg = $reg['registration_number'];
+			$res = $query->first_row('array');
+			$invalid_reg = $res['registration_number'];
 			$correct_reg = $data['registration_number'];
 			$new_data = array(
 				'roll_number' => $invalid_reg,
@@ -122,12 +120,13 @@ class Studentmodel extends CI_Model {
 	// this function fetch the class, gender and calculate the current year using registration database and hence maps with student type id
 	// Student type id and registration number and dumped into wsdc_hostel.student table
 
-	public function create_student($regno='')
+	public function create_student($regno='', $sem = '')
 	{
 		$error = array();
 		$error['status'] = true;
 		// get course, joining year and gender from student profile
 		$this->load->model('profile/profile_model','profile_model', TRUE);
+		$this->load->database('default',true);
 		$student_data = $this->profile_model->get(array('registration_number' => $regno), true, 'gender, joining_year, course, roll_number');
 		// change gender alphabet to number
 		$student_data['gender'] = trim($student_data['gender'])== 'M' ? '1' : '0';
@@ -151,37 +150,35 @@ class Studentmodel extends CI_Model {
 		// for we are checking last year semester registration, use hostel_reg for registration database
 		// calculate year if not phd
 		// $query3 = $this->hostel_reg_db->select('sem')->where(array('roll' => $student_data['roll_number']))->from('test_sem_reg2.registered')->limit(1)->get();
-		$sem = $this->get_sem_from_Registered($student_data['roll_number']);
+		
+		$sem = trim($sem);
 		if($sem == "1" || $sem == "2")
 		{
-			print_r('sem '.$sem);
-			$student_date['year'] = '1';
+			$student_data['year'] = '1';
 		}
 		elseif($sem == '3' || $sem == '4')
 		{
-			$student_date['year'] = '2';
+			$student_data['year'] = '2';
 		}
 		elseif($sem == '5' || $sem == '6')
 		{
-			$student_date['year'] = '3';
+			$student_data['year'] = '3';
 		}
 		elseif($sem == '7' || $sem === '8')
 		{
-			$student_date['year'] = '4';
+			$student_data['year'] = '4';
 		}
 		elseif($sem == "12" || $sem == "34")
 		{
-			$item['year'] = '1'; #for mba students only
+			$student_data['year'] = '1'; #for mba students only
 		}
 		elseif($sem == '56' || $sem == '78')
 		{
-			$item['year'] = '3'; #for mba students only
+			$student_data['year'] = '3'; #for mba students only
 		}
 		else
 		{
-			print_r('sem = '.$sem);
-			return;
-			$student_date['year'] = (date('Y') - $student_data['joining_year'] + 1);
+			$student_data['year'] = (date('Y') - $student_data['joining_year'] + 1);
 		}
 
 		// something for phd must be included
@@ -197,15 +194,17 @@ class Studentmodel extends CI_Model {
 			return true;
 	}
 
-	public function get_sem_from_Registered($roll)
+	public function get_sem_from_Registered($roll = '')
 	{
 		$this->hostel_reg_db = $this->load->database('hostel_reg', TRUE);
 		// check the registration status
 		// for we are checking last year semester registration, use hostel_reg for registration database
 		// calculate year if not phd
+		//print_r($this->hostel_reg_db);
 		$query = $this->hostel_reg_db->select('sem')->where(array('roll' => $roll))->from('registered')->limit(1)->get();
 		if($query->num_rows() > 0){
 			$sem  = $query->first_row('array');
+			//$this->session->set_flashdata('danger', print_r($this->hostel_reg_db));
 			return $sem['sem'];
 		}
 	}

@@ -39,11 +39,11 @@
 						</a>
 					</div>
 				</div>
-				<div class="col-md-10">
+				<div class="col-md-10 google-mobile">
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse google-header-center navbar-ex1-collapse">
 					<?php if($this->ion_auth->is_admin()): ?>
-						<form onsubmit="return false;" class="navbar-form google-header-form col-md-6 col-xs-12" role="search">
+						<!-- <form onsubmit="return false;" class="navbar-form google-header-form col-md-6 col-xs-12" role="search">
 							<div class="has-feedback form-group">
 								<div class="input-group google-input-group">
 									<input type="search" class="form-control google-search-bar google-search-size" placeholder="Search students" id="search-item-input" oninput="OnInput(this.value)" autocomplete="off" name="search-item">
@@ -56,7 +56,7 @@
 
 							<div class="list-group search-result-box google-search-size" id="search-item-output" >
 							</div> 
-						</form>						
+						</form>		 -->				
 					<?php endif; ?>
 						<ul class="nav navbar-nav navbar-right">
 							<li data-placement="bottom" class="tips <?php echo ($current_section === 'audit')?'active':''; ?>" title="Academic Audit : Results, Feedback, Registration">

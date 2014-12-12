@@ -1,5 +1,5 @@
 </div> <!-- container close here -->
-<div class="row hidden-print well footer-well">
+<div class="row hidden-print well footer-well hidden-xs">
   <div class="container">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <!-- <hr> -->
@@ -23,7 +23,7 @@
             NIT Warangal, Telangana - 506004
           </address>
           Drop us an email on
-          <a href="mailto:wsdc@nitw.ac.in">  <span class="glyphicon glyphicon-envelope"></span>  wsdc@nitw.ac.in</a> 
+          <a href="mailto:wsdc.nitw@gmail.com">  <span class="glyphicon glyphicon-envelope"></span>  wsdc.nitw@gmail.com</a> 
         </div>
         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
           <strong>Follow us on Facebook</strong><br><br>

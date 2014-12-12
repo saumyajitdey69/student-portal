@@ -15,9 +15,9 @@ class Messmodel extends CI_Model {
 		if(empty($regno)){
 			return false;
 		}
-		$query = $this->hostel_db->select('due')->from('messdues')->where('regno', $regno)->get();
+		$query = $this->hostel_db->select('due, advance, total')->from('messdues')->where('regno', $regno)->get();
 		if($query->num_rows() > 0){
-			return $query->first_row()->due;
+			return $query->first_row('array');
 		}else{
 			return false;
 		}

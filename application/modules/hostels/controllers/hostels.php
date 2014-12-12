@@ -46,35 +46,50 @@ class Hostels extends MY_Controller {
         }
         else
         {
-            print_r("loop 1");
-            //check if they use roll number
+// print_r("loop 1");
+//check if they use roll number
             $student_detail = $this->studentmodel->get_student_detail($raw_data['roll_number']);
             if(!empty($student_detail))
             {
-                print_r("loop 2");
-                // swap with registration number and run index function again
-                $this->studentmodel->swap_roll_with_reg($raw_data);
-                $this->index();
+// print_r("loop 2");
+// swap with registration number and run index function again
+                if($this->studentmodel->swap_roll_with_reg($raw_data))
+                    redirect('hostels');
+                else
+                {
+                    $sem = $this->studentmodel->get_sem_from_Registered($raw_data['roll_number']);
+                    if($this->studentmodel->create_student($regno, $sem))
+                    {
+                        redirect('hostels');
+                    }
+                    else
+                    { 
+                        $data['error'] = 'Some serious errors occured while setting up new account for you. Please contact WSDC wsdc.nitw@gmail.com. Mention your registration number and error no: 3123';
+                    }
+                }
+
             }
 
+        // take this lite
             // search for registration number in transaction table
-            if($this->studentmodel->swap_roll_with_reg_transaction($raw_data))
-                $this->index();
-            else{
-                print_r("loop 3");
-                // create an entry in wsdc_hostels student table
-                if($this->studentmodel->create_student($regno)){
-                    print_r("loop 4");
-                    $this->index();
-                }
-                else
-                { 
-                    print_r("loop 5");
-                    //error
-                    $data['error'] = 'Some serious errors occured while setting up new account for you. Please contact WSDC wsdc.nitw@gmail.com. Mention your registration number and error no: 3123';
-                }
-            }
-        }
+        // if($this->studentmodel->swap_roll_with_reg_transaction($raw_data))
+        //     redirect('hostels');
+        // else{
+        //         // print_r("loop 3");
+        //         // create an entry in wsdc_hostels student table
+        //     $sem = $this->studentmodel->get_sem_from_Registered($raw_data['roll_number']);
+        //     if($this->studentmodel->create_student($regno, $sem)){
+        //             // print_r("loop 4");
+        //         redirect('hostels');
+        //     }
+        //     else
+        //     { 
+        //             // print_r("loop 5");
+        //             //error
+        //         $data['error'] = 'Some serious errors occured while setting up new account for you. Please contact WSDC wsdc.nitw@gmail.com. Mention your registration number and error no: 3123';
+        //     }
+        // }
+    }
 
         // this is not required for winter session
 
@@ -93,27 +108,28 @@ class Hostels extends MY_Controller {
         //$data['messtransactions'] = $this->messmodel->get_student_messtransactions($regno);
         //$data['hostelhistory'] = $this->hostelmodel->hostel_allotment_history($regno);
         //$data['messhistory'] = $this->messmodel->mess_allotment_history($regno);
-        $data['studenttransactions'] = $this->studentmodel->get_student_transactions($regno);
-        $payment_detail = $data['studenttransactions'][0];
-        $data['payment_detail'] = $payment_detail;
+    $data['messdues'] = $this->messmodel->getMessDues($regno); // for winter session only
+    $data['studenttransactions'] = $this->studentmodel->get_student_transactions($regno);
+    $payment_detail = $data['studenttransactions'][0];
+    $data['payment_detail'] = $payment_detail;
         //$data['allowed_hostel_mess'] = $this ->_get_allowed_mess_hostel_summer($payment_detail);
-        $messdues = $this->messmodel->getMessDues($regno);
-        $data['messdues'] = ($messdues != FALSE) ? $messdues : 'N/A';
-        $data['regno'] = $regno;
-        $this->_render_page('winter_home', $data);
+    $messdues = $this->messmodel->getMessDues($regno);
+    $data['messdues'] = ($messdues != FALSE) ? $messdues : 'N/A';
+    $data['regno'] = $regno;
+    $this->_render_page('winter_home', $data);
         // $this->_render_page('home2', $data);  // main omaha
       //return $this->home();
-    }
+}
 
-    function  rules($session = 'main')
-    {
-     $data['title'] = 'Rules & Regulations | OMAHA';
-     $data['current_page'] = 'rules';
-     $this->_render_page('payment_procedure_'.$session, $data);
- }
+function  rules($session = 'main')
+{
+ $data['title'] = 'Rules & Regulations | OMAHA';
+ $data['current_page'] = 'rules';
+ $this->_render_page('payment_procedure_'.$session, $data);
+}
 
- public function neft_check()
- {
+public function neft_check()
+{
     $has_neft=$this->_is_neft();
     for ($i=0; $i<count($has_neft)-1 ; $i++) { 
         if($has_neft[$i]['status']!=3){
