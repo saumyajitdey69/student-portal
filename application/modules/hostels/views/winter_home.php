@@ -57,6 +57,7 @@ if($this->session->flashdata('danger') == TRUE)
 		<?php endif; ?>
 		<hr>
 		<p>You should pay following amount to Chief Warden, via i-collect (state bank collect), or NEFT</p>
+		<?php if(!empty($messdues)): ?>
 		<table class="table table-hover table-condensed table-striped">
 			<thead>
 				<tr>
@@ -82,10 +83,41 @@ if($this->session->flashdata('danger') == TRUE)
 				</tr>
 			</tfoot>
 		</table>
-		<hr>		
+	<?php else: ?>
+		<div class="alert alert-danger">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			Your messdues will be uploading soon.
+		</div>
+	<?php endif; ?>
+		<hr>
+
 		<p class="text-center">	
 			<a type="button" href="<?php echo base_url('hostels/rules/winter') ?>" class="btn btn-lg btn-primary">Rules & Regulations for Winter Session</a>
 		</p>
+		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="headingOne">
+					<h4 class="panel-title">
+					<a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#messdues-xlsx" aria-expanded="true" aria-controls="messdues-xlsx">
+							Messdues list of all the students
+						</a>
+					</h4>
+				</div>
+				<div id="messdues-xlsx" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+					<div class="panel-body">
+						<ul>
+							<li><a href="<?php echo base_url('assets/downloads/omaha/winter/messdues_2014/B.TECH - IV YEAR.xls') ?>">B. Tech Final Year</a></li>
+							<li><a href="<?php echo base_url('assets/downloads/omaha/winter/messdues_2014/B.TECH-I YR.xls') ?>">B. Tech First Year</a></li>
+							<li><a href="<?php echo base_url('assets/downloads/omaha/winter/messdues_2014/B.TECH-II YR.xls') ?>">B. Tech Second Year</a></li>
+							<li><a href="<?php echo base_url('assets/downloads/omaha/winter/messdues_2014/B.TECH-III YR.xls') ?>">B. Tech Third year</a></li>
+							<li><a href="<?php echo base_url('assets/downloads/omaha/winter/messdues_2014/PG COURSE-I.xls') ?>">PG Courses First year</a></li>
+							<li><a href="<?php echo base_url('assets/downloads/omaha/winter/messdues_2014/PG COURSE-II & III.xls') ?>">PG Courses Second & Third Year</a></li>
+							<li><a href="<?php echo base_url('assets/downloads/omaha/winter/messdues_2014/PH.D..xls') ?>">PHD</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
 		<!-- <strong>Payment Mode</strong> -->
