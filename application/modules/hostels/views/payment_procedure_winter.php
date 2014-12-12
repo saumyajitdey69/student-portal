@@ -23,7 +23,7 @@
 	<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
 		<strong>Category 1 : Education loan holders (NEFT transactions, Inter/Intra Bank Transfer to Chief Warden Account)</strong><br>
 		<ul>
-			<li>Make a single transaction for mess dues, mess advance (INR 12,000).</li>
+			<li>Make a single transaction for total amount</li>
 			<li>
 				Enter the transaction details on student portal using <strong class="text-info">WSDC Collect</strong>
 				<ol>
@@ -64,7 +64,7 @@
 		</div>
 		<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
 			<p>	
-				<a href="https://www.onlinesbh.com/prelogin/icollecthome.htm" class="btn btn-block btn-primary btn-md ">State Bank Collect <br>	  (Will start after exams)</a>
+				<a href="https://www.onlinesbh.com/prelogin/icollecthome.htm" class="btn btn-block btn-primary btn-md ">State Bank Collect</a>
 			</p>
 		</div>
 	</div>
@@ -103,7 +103,7 @@
 		</div>
 		<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
 			<p>	
-				<a href="#" class="btn btn-primary btn-md btn-block">WSDC Collect <br>	 <small>for NEFT/DD/Intra Bank</small> <br>	 (Will start after exams)</a>
+				<a href="#" class="btn btn-primary btn-md btn-block">WSDC Collect <br>	 <small>for NEFT/DD/Intra Bank</small></a>
 			</p>
 		</div>
 	</div>

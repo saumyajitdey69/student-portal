@@ -25,7 +25,7 @@
 		<a href="<?php echo base_url('assets/downloads/omaha/winter/rules.pdf') ?>" target="_blank">Click here to download guidlines</a>
 	</li>
 	<li>
-		Mess dues will be uploaded on 13<sup>th</sup> Dec, 2014.
+		Mess dues are uploaded, click on OMAHA tab.
 	</li>
 	<i>- Chief Warden, NITW</i>
 </ul>

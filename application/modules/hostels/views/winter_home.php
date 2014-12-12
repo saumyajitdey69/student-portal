@@ -121,7 +121,7 @@ if($this->session->flashdata('danger') == TRUE)
 	</div>
 	<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
 		<!-- <strong>Payment Mode</strong> -->
-		<a href="https://www.onlinesbh.com/prelogin/icollecthome.htm" class="btn btn-default btn-info btn-lg btn-block">State Bank Collect <br> (starts on 13th Dec, 2014)</a>
+		<a href="https://www.onlinesbh.com/prelogin/icollecthome.htm" class="btn btn-default btn-info btn-lg btn-block">State Bank Collect</a>
 		<br>
 		<!-- <a href="/student/hostels/wsdc_collect/" class="btn btn-default btn-info btn-lg btn-block">WSDC Collect <br> <small>for NEFT/DD/Intra Bank</small></a> -->
 		<a href="#" class="btn btn-default btn-info btn-lg btn-block">WSDC Collect <br> <small>for NEFT/Intra Bank</small> <br> (starts on 14th Dec, 2014)</a>
