@@ -3,34 +3,29 @@
 /**
 * 
 */
-class Wsdc_collect extends MX_Controller
+class Wsdc_collect extends MY_Controller
 {
 	
 	function __construct(){
-	    parent::__construct();
-	    {
-	        $this->load->model('auth/auth_model', '', TRUE);
-	        if ($this->nativesession->get('userid') === null)
-	        {
-	            redirect(base_url('audit'), 'location', 301);
-	            return false;
-	        }
-	    }
-	    $this->load->model('audit/audit_model');
-	    if ($this->audit_model->profile_edited($this->nativesession->get('userid')) === false)
-	    {
-	        $this->session->set_flashdata('danger', 'Complete your profile');
-	        redirect(base_url('audit/profile'), 'location', 301);
-	        return false;
-	    }
-	    $this->load->model('hostelmodel', '', TRUE);
-	    $this->load->model('messmodel', '', TRUE);
-	    $this->load->model('studentmodel', '', TRUE);
+        parent::__construct();
+        $this->load->library('auth/ion_auth');
+        if (!$this->ion_auth->logged_in())
+            redirect('auth/login');
+        $this->load->model('audit/audit_model');
+        if ($this->audit_model->profile_edited($this->user_id) === false)
+        {
+            $this->session->set_flashdata('danger', 'Complete your profile');
+            redirect(base_url('audit/profile'), 'location', 301);
+            return false;
+        }
+        $this->load->model('hostelmodel', '', TRUE);
+        $this->load->model('messmodel', '', TRUE);
+        $this->load->model('studentmodel');
 	}
 	public function index($value=''){
 	    $data['title'] = 'WSDC Collect';
 	    $this->load->model('studentmodel');
-	    $regno = $this->hostelmodel->userid_to_regno($this->nativesession->get('userid'));
+	    $regno = $this->hostelmodel->userid_to_regno($this->user_id);
 	    $data['neftdd_details'] = $this->studentmodel->has_neft($regno);
 	    $messdues = $this->messmodel->getMessDues($regno);
 	    $data['regno'] = $regno;
@@ -64,7 +59,7 @@ class Wsdc_collect extends MX_Controller
 	        array_push($error, $error_m);
 	    }
 
-	    $regno = $this->hostelmodel->userid_to_regno($this->nativesession->get('userid'));
+	    $regno = $this->hostelmodel->userid_to_regno($this->user_id);
 	    $details['regno'] = $regno;
 	    if(!empty($error)){
 	        $response['message'] = $message;
@@ -96,7 +91,7 @@ class Wsdc_collect extends MX_Controller
 	    }
 	}
 	public function neft_files(){
-	    $regno = $this->hostelmodel->userid_to_regno($this->nativesession->get('userid'));
+	    $regno = $this->hostelmodel->userid_to_regno($this->user_id);
 	    $files = $_FILES['files'];
 	    $id = $_POST['transaction_id'];
 	    $uploaddir = './uploads/'.$regno .'/';
