@@ -217,7 +217,7 @@ function send_form_data (data) {
 		success : function (data) {
 			console.log(data);
 			if(data.message[0] == 'successful'){
-				alert('NEFT/DD Details added successfully');
+				alert('NEFT/Inter/Intra bank Details added successfully');
 				location.reload();
 			}
 			if(data.error.length!=0){
