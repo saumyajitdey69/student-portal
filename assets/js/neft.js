@@ -1,3 +1,4 @@
+var BASE_URL = window.location.href;
 $(document).on('ready',function () {
 	$('#neftPayDate').datepicker({
 		format: 'dd/mm/yyyy'
@@ -127,8 +128,8 @@ function neft_form_cnf () {
 		return;
 	};
 	if(data.files.size/1024>1024){
-		$(divs[12]).addClass("has-error");
-		alert(data.files[i].name + ' exceeds file size limit. Maximum file size is 1MB');
+        alert(data.files.name + ' exceeds file size limit. Maximum file size is 1MB');
+        $(divs[12]).addClass("has-error");
 		$('#neftFiles').focus();
 		return false;
 	};
@@ -195,7 +196,7 @@ function neft_form_sub () {
 
 		}  
 	}
-	xhr.open('POST', '/student/hostels/wsdc_collect/neft_files/', true);
+	xhr.open('POST', BASE_URL+'/neft_files/', true);
 	xhr.upload.addEventListener("progress", xhr.progressBar, false);  
 	xhr.onload = function () {
 	  if (xhr.status === 200) {
@@ -209,7 +210,7 @@ function neft_form_sub () {
 function send_form_data (data) {
 	delete data.files;
 	$.ajax({
-		url: '/student/hostels/wsdc_collect/neft_details/',
+		url: BASE_URL+ '/neft_details/',
 		type: "POST",
 		data: data,
 		dataType : 'JSON',

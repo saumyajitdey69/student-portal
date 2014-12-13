@@ -1,7 +1,7 @@
-<div class ="container" >
+<div class ="col-sm-9 col-md-12 main" style="padding-left: 20px" >
   <div>
     <br>
-    <button id = "neftModalStatus" class = "btn btn-danger btn-large btn-block" data-toggle="modal" data-target="#neftDdModalStatus">Click here to check NEFT/DD/Inter/Intra Bank transaction Status</button>
+    <button id = "neftModalStatus" class = "btn btn-danger btn-large btn-block" data-toggle="modal" data-target="#neftDdModalStatus">Click here to check NEFT/Inter/Intra Bank transaction Status</button>
     <br>
     <legend class="alert alert-warning">
       Not for State bank collect / i-collect transactions <br>
@@ -21,18 +21,21 @@
         <!--instructions goes here-->
         <h5>Please read the instructions below very carefully:</h5>
         <ol>
-          <li>You have to add separate details for each DD/NEFT/Inter/Intra bank Transaction.</li>
-          <li>Please decompose your DD/NEFT/Inter/Intra bank transaction amount and put decomposed amounts in appropriate fields.</li>
+          <li>You are allowed to upload details for more than one NEFT/Inter/Intra bank transactions i.e you can submit this form more than once but do not submit twice for same NEFT/Inter/Intra bank transfer</li>
+          <li>You have to submit separate details for each NEFT/Inter/Intra bank Transaction.</li>
+          <li>Do not mix-up <strong>tuition fees</strong> with <strong>hostel/mess</strong> charges. Submit separate forms for both.</li>
+          <li>Select payment category as <strong>Chief warden</strong> for mess and hostel charges</li>
+          <li>Please decompose your NEFT/Inter/Intra bank transaction amount and put decomposed amounts in appropriate fields.</li>
           <li>Each field should be filled with appropriate amount. Fields which are not applicable leave it as ‘0’.</li>
-          <li>Please make sure that auto-generated total amount field matches with the amount in your DD/NEFT/Inter/Intra bank transaction slip.</li>
-          <li>Please upload a clear scanned/photographed copy of the DD/NEFT/Inter/Intra bank transaction slip.</li>
+          <li>Please make sure that auto-generated total amount field matches with the amount in your NEFT/Inter/Intra bank transaction slip.</li>
+          <li>Please upload a clear scanned/photographed copy of the NEFT/Inter/Intra bank transaction slip.</li>
           <li>Only JPEG format images are allowed</li>
           <li>Please note that maximum allowed file size is 1MB (1024KB).</li>
-          <li>Do not upload/add invalid/incorrect DD/NEFT transaction information. If invalid/incorrect information is found allotment will be cancelled and heavy penalty will be imposed.</li>
+          <li>Do not upload/add invalid/incorrect NEFT/Inter/Intra bank transaction information. If invalid/incorrect information is found allotment will be cancelled and heavy penalty will be imposed.</li>
         </ol>
         <p>
           <strong>Example scenario:</strong><br> 
-          If you have made a DD/NEFT/Inter/Intra bank transaction of 10000 as mess advance write 10000 in mess advance box and you will see total amount automatically being calculated and updated in total amount box.
+          If you have made a NEFT/Inter/Intra bank transaction of 12000 as mess advance and 3500 as mess dues, write 12000 in mess advance and 3500 in mess dues box and you will see total amount automatically being calculated and updated in total amount box.
         </p>
         <div class="well" style="max-width: 400px; margin: 0 auto 10px;">
           <button id= "neftNextBtn" type="button" class="btn btn-primary btn-block">Next (not for i-collect)</button>
@@ -52,16 +55,15 @@
                   <select id="neftMode" class="form-control" required>
                     <option value="">--Select One--</option>
                     <option value="neft">NEFT</option>
-                    <option value="dd">DD</option>
                     <option value="inter">Inter/Intra bank transaction</option>
                   </select>
                 </div>
               </div>
               <div class="form-group">
-                <label for="neftPayId" class="col-sm-4 control-label">Transaction ID/DD number</label>
+                <label for="neftPayId" class="col-sm-4 control-label">Transaction ID</label>
                 <div class="col-sm-8">
                   <input type="text" class="form-control" id="neftPayId" required>
-                  <div class="help-block">If you have more than one dd/NEFT receipt/ Inter Bank transfer receipt, fill wsdc-collect multiple times for each transaction and fill the fee head accordingly. If the total amount in the dd image and total amount calculated is not matched, your transaction will be cancelled and you won't be able to book room online till coming Saturday.</div>
+                  <div class="help-block">If you have more than one NEFT receipt/ Inter Bank transfer receipt, fill wsdc-collect multiple times for each transaction and fill the fee head accordingly. If the total amount in the image and total amount calculated is not matched, your transaction will be cancelled.</div>
                 </div>
               </div>
               <div class="form-group">
@@ -236,7 +238,7 @@
           <div style = "display:none;" id = "progressGif">
             <h5>Please do not refresh the page or press the back button after pressing the 'submit' button while your request is being processed</h5>
             <h5>Page will automatically refresh after successful submission.</h5>
-            <img src="../../assets/images/720.GIF">
+            <img src="/student/assets/images/720.GIF">
           </div>
         </div>
         <div class="clearfix"></div>
@@ -254,7 +256,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title">NEFT/DD/Intra/Inter bank transaction Status</h4>
+            <h4 class="modal-title">NEFT/Intra/Inter bank transaction Status</h4>
           </div>
           <div class="modal-body">
             <?php if($neftdd_details){ ?>
@@ -262,7 +264,7 @@
               <thead>
               <tr>
                 <th>Registration No.</th>
-                <th>Transaction ID/DD No.</th>
+                <th>Transaction ID</th>
                 <th>Transaction Date</th>
                 <th>Category</th>
                 <th>Mode</th>
@@ -301,7 +303,7 @@
                         <td><?php echo "Rs. " . $neftdd_detail['total'] ?></td>
                         <td>
                           <?php 
-                          $image_link = "<a href = '../../uploads/".$regno."/".$neftdd_detail['transaction_id'] . ".jpeg" ."' target='_blank'>".$neftdd_detail['transaction_id'] .".jpeg"."</a>"; 
+                          $image_link = "<a href = '/student/uploads/".$regno."/".$neftdd_detail['transaction_id'] . ".jpeg" ."' target='_blank'>".$neftdd_detail['transaction_id'] .".jpeg"."</a>";
                           echo$image_link;
                           ?>
                         </td>
@@ -331,7 +333,7 @@
                     </tbody>
                   </table>
                   <?php }else{ ?>
-                  <center><h1>No NEFT/DD/Intra/Inter bank transaction data available.</h1></center>
+                  <center><h1>No NEFT/Intra/Inter bank transaction data available.</h1></center>
                   <?php } ?>
                 </div>
                 <div class="modal-footer">
