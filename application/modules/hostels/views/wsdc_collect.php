@@ -274,7 +274,7 @@
                 </tr>
               </thead>
               <tbody>
-                <?php for ($curr = 0; $curr<count($neftdd_details)-1;++$curr) {
+                <?php for ($curr = 0; $curr<count($neftdd_details);++$curr) {
                   $neftdd_detail = $neftdd_details[$curr];
                   ?>
                   <tr>
