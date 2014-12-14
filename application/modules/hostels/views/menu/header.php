@@ -8,16 +8,21 @@
         </a>
       </li>
       <li class="list-group-item <?php echo (isset($current_page) && $current_page === "rules")?"active":""; ?>">
-      <a href="<?php echo  base_url('hostels/rules/winter') ?>">Instructions</a>
-     </li>
-
-     <li class="list-group-item <?php echo (isset($current_page) && $current_page === "slip")?"active":""; ?>">
-      <a href="<?php echo base_url("hostels/hostel_slip"); ?>">
-        Room Allotment Slip
-      </a>
-    </li>
-  </ul>
-</div>
-<div class="clearfix visible-xs hidden-print"></div>
-<div class="col-sm-9 col-md-10 main">
-  <!-- <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"> -->
+        <a href="<?php echo  base_url('hostels/rules/winter') ?>">Instructions</a>
+      </li>
+      <li class="list-group-item <?php echo (isset($current_page) && $current_page === "wsdc_collect")?"active":""; ?>">
+        <a href="<?php echo base_url("hostels/wsdc_collect/"); ?>">
+          WSDC Collect
+        </a>
+      </li>
+      <li class="list-group-item <?php echo (isset($current_page) && $current_page === "slip")?"active":""; ?>">
+        <a href="<?php echo base_url("hostels/hostel_slip"); ?>">
+          Room Allotment Slip
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+  <div class="clearfix visible-xs hidden-print"></div>
+  <div class="col-sm-9 col-md-10 main">
+    <!-- <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"> -->

@@ -125,7 +125,7 @@ if($this->session->flashdata('danger') == TRUE)
 		<a href="https://www.onlinesbh.com/prelogin/icollecthome.htm" class="btn btn-default btn-info btn-lg btn-block">State Bank Collect</a>
 		<br>
 		<!-- <a href="/student/hostels/wsdc_collect/" class="btn btn-default btn-info btn-lg btn-block">WSDC Collect <br> <small>for NEFT/DD/Intra Bank</small></a> -->
-		<a href="/student/hostels/wsdc_collect/" class="btn btn-default btn-info btn-lg btn-block">WSDC Collect <br> <small>for NEFT/Intra Bank</small> <br> (starts on 14th Dec, 2014)</a>
+		<a href="<?php echo base_url('hostels/wsdc_collect/') ?> " class="btn btn-default btn-info btn-lg btn-block">WSDC Collect <br> <small>for NEFT/Intra Bank</small></a>
 		<hr>
 		<p>
 			<strong>Account Name:</strong> <br> CHIEF WARDEN, NITW <br>

@@ -23,7 +23,8 @@ class Wsdc_collect extends MY_Controller
         $this->load->model('studentmodel');
 	}
 	public function index($value=''){
-	    $data['title'] = 'WSDC Collect';
+		$data['current_page'] = 'wsdc_collect';
+	    $data['title'] = 'WSDC Collect | OMAHA';
 	    $this->load->model('studentmodel');
 	    $regno = $this->hostelmodel->userid_to_regno($this->user_id);
 	    $data['neftdd_details'] = $this->studentmodel->has_neft($regno);

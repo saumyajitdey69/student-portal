@@ -103,7 +103,7 @@
 		</div>
 		<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
 			<p>	
-				<a href="#" class="btn btn-primary btn-md btn-block">WSDC Collect <br>	 <small>for NEFT/DD/Intra Bank</small></a>
+				<a href="<?php echo base_url('hostels/wsdc_collect/') ?> " class="btn btn-default btn-info btn-md btn-block">WSDC Collect <br> <small>for NEFT/Intra Bank</small></a>
 			</p>
 		</div>
 	</div>
