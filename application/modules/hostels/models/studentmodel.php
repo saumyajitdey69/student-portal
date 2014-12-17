@@ -282,7 +282,7 @@ class Studentmodel extends CI_Model {
 		$this->hostel_db = $this->load->database('hostels', TRUE);
 		$this->hostel_db->select('*')
 						->from($this->tables['rawpayments'])
-						->where(array('registration_number'=>$regno));
+						->where(array('registration_number'=>$regno,'type'=>'1'));
 		$query = $this->hostel_db->get();
 		if($query->num_rows()>0){
 			$data = $query->result_array();

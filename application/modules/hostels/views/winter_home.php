@@ -40,18 +40,16 @@ if($this->session->flashdata('danger') == TRUE)
 					</tr>
 				</thead>
 				<tbody>
-					<?php foreach ($studenttransactions as $key => $item): ?>
 						<tr>
-							<td><?php echo $item['regno'] ?></td>
-							<td><?php echo $item['mess_dues'] ?></td>
-							<td><?php echo $item['mess_advance'] ?></td>
-							<td><?php echo $item['maintenance_charges'] ?></td>
-							<td><?php echo $item['emc'] ?></td>
-							<td><?php echo $item['seatrent'] ?></td>
-							<td><b><?php echo $item['total'] ?></b></td>
-							<td><?php echo $item['timestamp'] ?></td>
+							<td><?php echo $studenttransactions['regno'] ?></td>
+							<td><?php echo $studenttransactions['mess_dues'] ?></td>
+							<td><?php echo $studenttransactions['mess_advance'] ?></td>
+							<td><?php echo $studenttransactions['maintenance_charges'] ?></td>
+							<td><?php echo $studenttransactions['emc'] ?></td>
+							<td><?php echo $studenttransactions['seatrent'] ?></td>
+							<td><b><?php echo $studenttransactions['total'] ?></b></td>
+							<td><?php echo $studenttransactions['timestamp'] ?></td>
 						</tr>
-					<?php endforeach ?>
 				</tbody>
 			</table>
 		<?php else: ?>

@@ -139,6 +139,32 @@ public function neft_check()
     return $has_neft;
 }
 
+//vaibahv awachat
+public function neft_check2()
+{
+    $data = array();
+    $has_neft=$this->_is_neft();
+    unset($has_neft['im_list']);
+    print_r($has_neft);
+    if(count($has_neft) == 0){
+        $data['neft'] == '0';
+    }
+    else{
+        $data['neft'] = '1';
+        $data['status'] = '0';
+        for ($i=0; $i<count($has_neft) ; $i++) { 
+            if($has_neft[$i]['status'] == '3'){
+                $data['status'] = '1';
+            }
+            else{
+                $data['status'] = '0';
+            }
+        }
+    }
+    print_r($data);
+    return $data;
+}
+
 public function _is_neft()
 {
     $regno = $this->hostelmodel->userid_to_regno($this->user_id);
@@ -249,12 +275,16 @@ public function no_dues()
         //var_dump($this->_is_alloted_hostel());
         //var_dump($this->_is_alloted_mess());
     if($this->_is_alloted_hostel() && $this->_is_alloted_hostel()){
-        $data = $this->neft_check();
+        $data = $this->neft_check2();
         // for neft, intra and inter bank students
-        unset($data['im_list']);
-        if(empty($data))
+        if($data['neft'] == 1)
         {
-            $this->session->set_flashdata('danger', 'Please submit your DD/NEFT/Inter-Intra bank transaction detail at Hostel office. Hostel Office will give the receipt. Thereafter your can also print using student portal');
+            if($data['status'] == 1){
+                $this->session->set_flashdata('danger', 'Please submit your DD/NEFT/Inter-Intra bank transaction detail at Hostel office. Hostel Office will give the receipt. Thereafter you can also print using student portal');
+            }
+            else{
+                 $this->session->set_flashdata('danger', 'Your transaction is not approved by Hostel Office. It takes 3-4 days to update the NEFT/Intra-Inter bank transactions.');
+            }
             redirect('hostels');
             return;
         }
