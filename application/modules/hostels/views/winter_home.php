@@ -19,7 +19,8 @@ if($this->session->flashdata('danger') == TRUE)
 			<a href="https://groups.google.com/forum/#!forum/omaha-winter">Click here for OMAHA Winter session Help Center</a>
 		</div>
 		<div class="alert alert-warning text-danger"> 
-			<strong> Information regarding reduction of mess advance have not been received by WSDC form Hostel office. The mess advance is 12,000 INR. The students who paid less are requested to wait and check student protal regularly for more updates. "No dues certificate" is not availabe for such students now. Do not write email to WSDC on this topic.
+			<strong> 
+				Information regarding reduction of mess advance have not been received by WSDC form Hostel office. The mess advance is 12,000 INR. The students who paid less are requested to wait and check student portal regularly for more updates. No dues certificate is not available for such students now. Do not write email to WSDC on this topic.
 			</strong>
 		</div>
 		<h4 id="transacitonsummary">
@@ -40,22 +41,22 @@ if($this->session->flashdata('danger') == TRUE)
 					</tr>
 				</thead>
 				<tbody>
-						<tr>
-							<td><?php echo $studenttransactions['regno'] ?></td>
-							<td><?php echo $studenttransactions['mess_dues'] ?></td>
-							<td><?php echo $studenttransactions['mess_advance'] ?></td>
-							<td><?php echo $studenttransactions['maintenance_charges'] ?></td>
-							<td><?php echo $studenttransactions['emc'] ?></td>
-							<td><?php echo $studenttransactions['seatrent'] ?></td>
-							<td><b><?php echo $studenttransactions['total'] ?></b></td>
-							<td><?php echo $studenttransactions['timestamp'] ?></td>
-						</tr>
+					<tr>
+						<td><?php echo $studenttransactions['regno'] ?></td>
+						<td><?php echo $studenttransactions['mess_dues'] ?></td>
+						<td><?php echo $studenttransactions['mess_advance'] ?></td>
+						<td><?php echo $studenttransactions['maintenance_charges'] ?></td>
+						<td><?php echo $studenttransactions['emc'] ?></td>
+						<td><?php echo $studenttransactions['seatrent'] ?></td>
+						<td><b><?php echo $studenttransactions['total'] ?></b></td>
+						<td><?php echo $studenttransactions['timestamp'] ?></td>
+					</tr>
 				</tbody>
 			</table>
 		<?php else: ?>
 			<p class="text-danger alert alert-danger">
 				<strong>Pay your Hostel Fees using State bank Collect, Intra/Inter Bank Transfer, NEFT only. DD payments are not permitted.</strong> <br>
-				Transaction Details must be uploaded/approved by Hostel Office, NITW. If the transaction is not uploaded within 3 days (72 hours) of your payment go to hostel office when you come to college.
+				Transaction Details must be uploaded/approved by Hostel Office, NITW. If the transaction is not uploaded within 3 days (72 hours) of your payment go to hostel office when you come back to college.
 			</p>
 		<?php endif; ?>
 		<hr>
