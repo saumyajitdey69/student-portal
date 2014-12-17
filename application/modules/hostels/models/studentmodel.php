@@ -36,7 +36,7 @@ class Studentmodel extends CI_Model {
 		$query2 = $this->hostel_db->select('regno, emc, seatrent, mess_dues, mess_advance, maintenance_charges, (emc + seatrent + mess_advance + mess_dues + maintenance_charges) as total, timestamp')
 								 ->where('regno', $reg_no)
 								 ->get("studentpayments_main_2014");
-		
+		$mess = array();
 		if($query->num_rows() > 0){
 			$mess = $query->result('array');
 		}
