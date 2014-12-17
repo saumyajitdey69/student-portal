@@ -653,6 +653,13 @@ public function single_mess() {
         $add_stat = $this->hostelmodel->add_member($roll,$group_id);
     }*/
 
+      	//first years room and mess upload @shashi
+  	public function rauofyb()
+  	{
+  		$this->load->model('hostelmodel');
+  		$this->hostelmodel->rauofyb();
+  	}
+
     function _render_page($view, $data=null, $render=false){
         $data['current_section'] = 'hostels';
         $this->viewdata = (empty($data)) ? $data: $data;

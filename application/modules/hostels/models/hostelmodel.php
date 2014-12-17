@@ -467,6 +467,140 @@ class HostelModel extends CI_Model {
 		if($this->db_hostel->affected_rows<=0) return 3;
 		return 'success';
 	}*/
+
+	//room allotment updation of first years @shashi
+public function rauofyb()
+{
+	echo "hi shashi<br>";
+	$mess_ifcb = 0;
+	$mess_priy = 0;
+	$already_there = 0;
+	$new_rooms = 0;
+$hostel_db = $this->load->database('hostels', TRUE); //fyd === first year details
+$fyd = $hostel_db->select()
+->from('first_year_boys')
+->get();
+//print_r($fyd->result());
+foreach($fyd->result() as $row)
+{
+	$hostel_db = $this->load->database('hostels', TRUE);
+	$check = $hostel_db->select()
+	->from('students')
+	->where('regno', $row->Reg)
+	->get();
+	if($check->num_rows() > 0)
+	{
+		$already_there++;
+	}
+	else
+	{
+		$hostel_db = $this->load->database('hostels', TRUE);
+		if(substr($row->room, 0, 2) == "SH")
+		{
+			$query = $hostel_db->select('capacity')
+			->from('rooms')
+			->where('number', $row->room)
+			->get();
+			if($query->result() > 0)
+			{
+				$abc = $query->row_array();
+				$capacity = $abc['capacity'] + 1;
+			}
+			else
+				$capacity = 1;
+			$data_r = array('number' => $row->room,
+				'floor' => substr($row->room, 2, 1),
+				'hostelid' => 33,
+				'capacity' => $capacity,
+				'conditionid' => 1,
+				'alloted' => 1);
+			$insert_new_room = $hostel_db->insert('rooms', $data_r);
+			$new_rooms++;
+		}
+		$rid = $hostel_db->select('id, alloted')
+		->from('rooms')
+		->where('number', $row->room)
+		->get();
+		$r = $rid->row_array();
+//echo $row->Reg."  ".$row->room."  ".$r['id']."<br>";
+		$update_room = $hostel_db->update('rooms', array('alloted' => 1), array('id' => $r['id']));
+		$db_auth = $this->load->database('student', TRUE);
+		$stu_details = $db_auth->select('roll_number, gender, course, country')
+		->where('registration_number', $row->Reg)
+		->get('student_data');
+		if($stu_details->num_rows() != NULL)
+		{
+			$s = $stu_details->row_array();
+			$messid = 3;
+			switch($s['gender'])
+			{
+				case 'M' : $gender = 1; break;
+				case 'F' : $gender = 0; $messid = 11;break;
+				case '' : $gender = 1; break;
+			}
+			if($messid == 3)
+				$mess_ifcb++;
+			else
+				$mess_priy++;
+			switch($s['course'])
+			{
+				case "btech" : $class = 1; break;
+				case "mtech" : $class = 2; break;
+				case "phd" : $class = 6; break;
+				case "mca" : $class = 3; break;
+				case "Msc. Tech" : $class = 5; break;
+				case "msc" : $class = 5; break;
+				case "mba" : $class = 4; break;
+				case '' : $class = 1; break;
+			}
+			$admissiontypeid = 2;
+			switch($s['country'])
+			{
+				case "Indian" : 
+				case "INDIA" :
+				case '' : $admissiontypeid = 1; break;
+			}
+//echo $row->Reg."  ".$s['roll_number']."  ".$gender."  ".$class."  ".$row->room." ".$r['id']."<br>";
+			$hostel_db = $this->load->database('hostels', TRUE);
+			$data0 =array('gender' => $gender,
+				'class' => $class,
+				'year' => 1,
+				'admissiontypeid' => $admissiontypeid);
+			$stu_typeid = $hostel_db->select()
+			->from('studenttypes')
+			->where($data0)
+			->get();
+			$st = $stu_typeid->row_array();
+
+			$data1 = array('gender' => $gender,
+				'class' => $class,
+				'roll' => $s['roll_number'],
+				'current_year' => 1,
+				'regno' => $row->Reg,
+				'admissiontypeid' => $admissiontypeid);
+			$insert_dummy = $hostel_db->insert('dummystudents2', $data1);
+			$data2 = array('regno' => $row->Reg,
+				'hosteltypeid' => $st['id'],
+				'roomid' => $r['id'],
+				'messid' => $messid,
+				'blocked' => 0);
+			$insert_stu = $hostel_db->insert('students', $data2);
+			$hostel_db = $this->load->database('hostels', TRUE);
+			$data3 = array('regno' => $row->Reg,
+				'messid' => $messid,
+				'status' => 1,
+				'allottedby' => 0);
+			$insert_mess = $hostel_db->insert('messallotments', $data3);
+			$data4 = array('regno' => $row->Reg,
+				'roomid' => $r['id'],
+				'status' => 1,
+				'allottedby' => 0);
+			$insert_room_allot = $hostel_db->insert('roomallotments', $data4);
+		}
+	}
+}
+echo "ifc = ".$mess_ifcb."<br>priy = ".$mess_priy."<br>already alloted = ".$already_there."<br>new rooms = ".$new_rooms;
+}
 }
 
 /* End of file hostel.php */
