@@ -226,7 +226,7 @@ class Studentmodel extends CI_Model {
 
 	public function get_sem_from_Registered($roll = '')
 	{
-		$this->hostel_reg_db = $this->load->database('hostel_reg', TRUE);
+		$this->hostel_reg_db = $this->load->database('reg', TRUE);
 		// check the registration status
 		// for we are checking last year semester registration, use hostel_reg for registration database
 		// calculate year if not phd
