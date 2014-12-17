@@ -286,7 +286,7 @@ class Studentmodel extends CI_Model {
 		$query = $this->hostel_db->get();
 		if($query->num_rows()>0){
 			$data = $query->result_array();
-		//	$data['im_list'] = scandir('./uploads/'.$regno);
+			$data['im_list'] = scandir('./uploads/'.$regno);
 			return $data;
 		}else{
 			return false;
