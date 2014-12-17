@@ -1,3 +1,6 @@
+<div class="hidden-print alert alert-danger">
+	"No dues certificate" will be available by tonight (9:00 pm, 17th Dec, 2014). "No dues certificate" is available only to student who paid total amount mentioned on student portal. Others are requested to go to Hostel Office and collect the same.
+</div>
 <div class="row">
 	<span class="hidden-print">
 		<br><br>

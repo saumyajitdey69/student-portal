@@ -247,7 +247,7 @@ public function hostel_slip(){
     $student_detail = $this->studentmodel->get_student_detail($regno);
         //var_dump($this->_is_alloted_hostel());
         //var_dump($this->_is_alloted_mess());
-    if(!$this->_is_alloted_hostel() && $this->_is_alloted_hostel()){
+    if($this->_is_alloted_hostel() && $this->_is_alloted_hostel()){
         if(in_array($student_detail['hosteltypeid'], $GLOBALS['iccr_ids'])){
             $mess_due_arr = $this->get_mess_due();
             $mess_due = $mess_due_arr[0]['due'];
@@ -307,11 +307,7 @@ public function hostel_slip(){
 
         }
     }else{
-            $this->load->view('base/header', $data, $render);
-            $this->load->view('menu/header', $data, $render);
-            echo "<div class='alert alert-warning'>Alloted Hostel/Mess details are not availabe. We are processing the hostel and mess details of first year students. All the details will be available on or before 19th Oct, 2014. Please check student portal regularly for more updates.</div>";
-            $this->load->view('menu/footer', $data);
-            $this->load->view('base/footer', $data, $render);        
+           $this->_render_page('no-hostel', $data);      
     }
 }
 

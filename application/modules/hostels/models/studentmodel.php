@@ -33,14 +33,23 @@ class Studentmodel extends CI_Model {
 		$query = $this->hostel_db->select('regno, emc, seatrent, mess_dues, mess_advance, maintenance_charges, (emc + seatrent + mess_advance + mess_dues + maintenance_charges) as total, timestamp')
 								 ->where('regno', $reg_no)
 								 ->get($this->tables['studentpayments']);
-		if($query->num_rows() > 0)
-		{
-			//print_r($query->result('array'));
-			return $query->result('array');
+		$query2 = $this->hostel_db->select('regno, emc, seatrent, mess_dues, mess_advance, maintenance_charges, (emc + seatrent + mess_advance + mess_dues + maintenance_charges) as total, timestamp')
+								 ->where('regno', $reg_no)
+								 ->get("studentpayments_main_2014");
+		
+		if($query->num_rows() > 0){
+			$mess = $query->result('array');
 		}
-		else{
-			return FALSE;
+		if($query2->num_rows()> 0){
+			if($mess == false){
+				$mess = $query2->result('array');
+			}
+			else{
+				$mess = array_merge($mess, $query2->result('array'));
+			}
 		}
+		return $mess;
+		
 	}
 
 	// @Vaibhav Awachat
