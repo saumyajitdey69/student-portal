@@ -18,6 +18,18 @@ if($this->session->flashdata('danger') == TRUE)
 		<div class="well">
 			<a href="https://groups.google.com/forum/#!forum/omaha-winter">Click here for OMAHA Winter session Help Center</a>
 		</div>
+		<div class="alert alert-danger text-danger"> <strong> 
+Information 
+regarding reduction of mess advance have not been received by WSDC form 
+Hostel office. The mess advance is 12,000 INR. The students who paid 
+less are requested to wait and check student protal regularly for more 
+updates. "No dues certificate" is not 
+availabe for such students now. Do now 
+write email 
+on this topic to WSDC.
+ 
+</strong>
+		</div>
 		<h4 id="transacitonsummary">
 			Transaction Summary of OMAHA
 		</h4>
