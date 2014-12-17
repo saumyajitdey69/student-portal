@@ -144,9 +144,14 @@ public function neft_check2()
 {
     $data = array();
     $has_neft=$this->_is_neft();
+    if(empty($has_neft) or $has_neft == false){
+        $data['neft'] = '0';
+        return $data;
+    }
     unset($has_neft['im_list']);
-    if(count($has_neft) == 0){
+    if(!empty($has_neft) and count($has_neft) == 0){
         $data['neft'] == '0';
+        return $data;
     }
     else{
         $data['neft'] = '1';
@@ -300,7 +305,7 @@ public function no_dues()
          }
 
          if(empty($messtransactions)) {
-             $error = 'Your transactions are either not approved/uploaded by Hostel Office. It takes maximum of 3-4 working days for Hostel Office. In such case students should go to Hostel Office to get <i> No dues certificate </i> or wait for sometime.';
+             $error = 'Your transactions are not available. It takes maximum of 3-4 working days for Hostel Office. In such case students should go to Hostel Office to get <i> No dues certificate </i> or wait for sometime.';
              $this->session->set_flashdata('danger', $error);
              redirect('hostels');
          }
