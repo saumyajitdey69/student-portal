@@ -3,3 +3,4 @@ application/logs/
 uploads/
 .DS_Store
 .idea/
+index.php
