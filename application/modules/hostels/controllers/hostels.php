@@ -254,8 +254,9 @@ public function no_dues()
         unset($data['im_list']);
         if(empty($data))
         {
-            echo "Please submit your DD/NEFT/Inter-Intra bank transaction detail at Hostel office. Hostel Office will give the receipt. Thereafter your can also print using student portal";
-            return 1;
+            $this->session->set_flashdata('danger', 'Please submit your DD/NEFT/Inter-Intra bank transaction detail at Hostel office. Hostel Office will give the receipt. Thereafter your can also print using student portal');
+            redirect('hostels');
+            return;
         }
                 # for i-collect students
         $this->load->model('studentmodel', TRUE);
