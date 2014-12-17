@@ -145,7 +145,6 @@ public function neft_check2()
     $data = array();
     $has_neft=$this->_is_neft();
     unset($has_neft['im_list']);
-    print_r($has_neft);
     if(count($has_neft) == 0){
         $data['neft'] == '0';
     }
@@ -161,7 +160,6 @@ public function neft_check2()
             }
         }
     }
-    print_r($data);
     return $data;
 }
 
@@ -277,9 +275,9 @@ public function no_dues()
     if($this->_is_alloted_hostel() && $this->_is_alloted_hostel()){
         $data = $this->neft_check2();
         // for neft, intra and inter bank students
-        if($data['neft'] == 1)
+        if($data['neft'] == '1')
         {
-            if($data['status'] == 1){
+            if($data['status'] == '1'){
                 $this->session->set_flashdata('danger', 'Please submit your DD/NEFT/Inter-Intra bank transaction detail at Hostel office. Hostel Office will give the receipt. Thereafter you can also print using student portal');
             }
             else{
