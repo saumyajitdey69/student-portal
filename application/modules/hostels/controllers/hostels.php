@@ -109,7 +109,7 @@ class Hostels extends MY_Controller {
         //$data['hostelhistory'] = $this->hostelmodel->hostel_allotment_history($regno);
         //$data['messhistory'] = $this->messmodel->mess_allotment_history($regno);
     $data['messdues'] = $this->messmodel->getMessDues($regno); // for winter session only
-    $data['studenttransactions'] = $this->studentmodel->get_student_transactions($regno);
+    $data['studenttransactions'] = $this->studentmodel->get_current_student_transactions($regno);
     $payment_detail = $data['studenttransactions'];
     $data['payment_detail'] = $payment_detail;
         //$data['allowed_hostel_mess'] = $this ->_get_allowed_mess_hostel_summer($payment_detail);
