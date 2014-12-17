@@ -613,8 +613,14 @@ footer p{
   font-weight: 600;
 }
 .google-name-email{
-margin-top: -10px; 
+  margin-top: -10px; 
 }
 .google-mobile{
-      background: rgb(250, 250, 250);
+  background: rgb(250, 250, 250);
+}
+.google-table-extra-condensed>>thead>tr>th, .google-table-extra-condensed>>tbody>tr>th, .google-table-extra-condensed>>tfoot>tr>th, .google-table-extra-condensed>>thead>tr>td, .google-table-extra-condensed>>tbody>tr>td, .google-table-extra-condensed>>tfoot>tr>td {
+  line-height: 1 !important;
+}
+.google-table-extra-condensed>tbody>tr>td, .table-condensed>tfoot>tr>td {
+  padding: 2px;
 }
