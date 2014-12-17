@@ -130,7 +130,7 @@ if($this->session->flashdata('danger') == TRUE)
 		<p>
 			<strong>Account Name:</strong> <br> CHIEF WARDEN, NITW <br>
 			<strong>ACCOUNT NO:</strong> <br>52109375132 <br>
-			<strong>IFSC code :</strong> <br>SBHY0020149 (within in INDIA) <br>
+			<strong>IFSC code :</strong> <br>SBHY0020149 (within INDIA) <br>
 			<strong>SWIFT code:</strong> <br>SBHYINBB018 (transfer from abroad) <br>	
 		</p>
 	</div>
