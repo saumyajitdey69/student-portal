@@ -52,6 +52,27 @@ class Studentmodel extends CI_Model {
 		
 	}
 
+	# winter
+	//@Vaibhav Awachat
+	public function get_current_student_transactions($reg_no = ''){
+		if(empty($reg_no))
+			return false;
+		$this->hostel_db = $this->load->database('hostels', TRUE);
+		$query = $this->hostel_db->select('regno, emc, seatrent, mess_dues, mess_advance, maintenance_charges, (emc + seatrent + mess_advance + mess_dues + maintenance_charges) as total, timestamp')
+								 ->where('regno', $reg_no)
+								 ->get($this->tables['studentpayments']);
+		$mess = array();
+		if($query->num_rows() > 0){
+			$mess = $query->first_row('array');
+			return $mess;
+		}
+		else{
+			return false;
+		}
+		
+	}
+
+
 	// @Vaibhav Awachat
 
 	public function swap_roll_with_reg($data = array())

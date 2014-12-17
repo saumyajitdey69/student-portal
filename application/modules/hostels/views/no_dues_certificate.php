@@ -1,5 +1,5 @@
 <div class="hidden-print alert alert-danger">
-	<a href="<?php echo base_url('hostels/no_dues') ?>	"> Click here to download <i>No Dues Certificate</i>, OMAHA Winter Session</a>
+	"No dues certificate" will be available by tonight (9:00 pm, 17th Dec, 2014). "No dues certificate" is available only to student who paid total amount mentioned on student portal. Others are requested to go to Hostel Office and collect the same.
 </div>
 <div class="row">
 	<span class="hidden-print">
@@ -14,7 +14,7 @@
 			</div>
 			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 				<h4 style="margin:0"><b>National Institute of Technology, Warangal</b></h4>
-				<h5 style="margin:0"><u>No Dues / Room and Mess Allotment Receipt - OMAHA</u></h5>
+				<h5 style="margin:0">No dues cetificate, OMAHA Winter Session</h5>
 				<br>
 			</div>
 			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
@@ -32,7 +32,7 @@
 		<div class="clearfix">		
 		</div>
 		<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
-			<h5><u>Student Details</u></h5>
+			<h5>Student Details</h5>
 			<table class="table table-condensed google-table-extra-condensed table-striped">
 				<tr>
 					<td>Reg. No. </td>
@@ -57,7 +57,7 @@
 			</table>
 		</div>
 		<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-			<h5><u>Allotment Details</u></h5>
+			<h5>Allotment Details</h5>
 			<table class="table table-condensed google-table-extra-condensed table-mess-hostel table-striped">
 				<tr>
 					<td>Hostel </td>
@@ -77,29 +77,35 @@
 					<td>Mess </td>
 					<td><label class="stu_mess"><?php echo $details['mess'] ?></label></td>
 				</tr>
+				<tr>
+					<td>Receipt generated on </td>
+					<td><label class="stu_mess"><?php echo date('d-M-Y'); ?></label></td>
+				</tr>
 			</table>
 		</div>
 		<div class="row" style="border-bottom:1px dotted black">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<h5><u>Transcation Details </u></h5>
+				<h5>Transcation Details </h5>
 				<table class="table table-condensed google-table-extra-condensed table-transactions table-striped">
 					<thead>
 						<tr>
-							<th>Type</th>
-							<th>Transcation ID</th>
-							<th>Total Amount</th>
-							<th>Date of transcation</th>
+							<th>Reg No.</th>
+							<th>Mess dues</th>
+							<th>Mess Advance</th>
+							<th>Total Amt Paid</th>
+							<th>Extra Amount Paid</th>
 						</tr>
 					</thead>
 					<tbody>
-						<?php if(isset($messtransactions) and !empty($messtransactions)): foreach($messtransactions as $messtransaction): ?>
+						<?php if(isset($messtransactions) and !empty($messtransactions)): ?>
 							<tr>
-								<td><?php echo $messtransaction['transaction_type']; ?></td>
-								<td><?php echo $messtransaction['transactionid']; ?></td>
-								<td><?php echo $messtransaction['amount']; ?></td>
-								<td><?php echo $messtransaction['date']; ?></td>
+								<td><?php echo $messtransactions['regno']; ?></td>
+								<td><?php echo $messtransactions['mess_dues']; ?></td>
+								<td><?php echo $messtransactions['mess_advance']; ?></td>
+								<td><?php echo $messtransactions['total']; ?></td>
+								<td><?php echo $extra; ?></td>
 							</tr>
-						<?php	endforeach; endif;	?>
+						<?php endif;	?>
 					</tbody>
 				</table>
 				<center class="hidden-print">
@@ -118,7 +124,7 @@
 				</div>
 				<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 					<h4 style="margin:0"><b>National Institute of Technology, Warangal</b></h4>
-					<h5 style="margin:0"><u>No Dues / Room and Mess Allotment Receipt - OMAHA</u></h5>
+					<h5 style="margin:0">No dues cetificate, OMAHA Winter Session</h5>
 					<br>
 				</div>
 				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">

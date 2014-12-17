@@ -15,9 +15,14 @@
           WSDC Collect
         </a>
       </li>
-      <li class="list-group-item <?php echo (isset($current_page) && $current_page === "slip")?"active":""; ?>">
+     <!--  <li class="list-group-item <?php echo (isset($current_page) && $current_page === "slip")?"active":""; ?>">
         <a href="<?php echo base_url("hostels/hostel_slip"); ?>">
           Room Allotment Slip
+        </a>
+      </li> -->
+       <li class="list-group-item <?php echo (isset($current_page) && $current_page === "slip")?"active":""; ?>">
+        <a href="<?php echo base_url("hostels/no_dues"); ?>">
+          No Dues Certificate <br> <small>(Winter Session)</small>
         </a>
       </li>
       

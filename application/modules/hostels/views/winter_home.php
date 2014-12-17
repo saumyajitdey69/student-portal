@@ -18,17 +18,9 @@ if($this->session->flashdata('danger') == TRUE)
 		<div class="well">
 			<a href="https://groups.google.com/forum/#!forum/omaha-winter">Click here for OMAHA Winter session Help Center</a>
 		</div>
-		<div class="alert alert-danger text-danger"> <strong> 
-Information 
-regarding reduction of mess advance have not been received by WSDC form 
-Hostel office. The mess advance is 12,000 INR. The students who paid 
-less are requested to wait and check student protal regularly for more 
-updates. "No dues certificate" is not 
-availabe for such students now. Do now 
-write email 
-on this topic to WSDC.
- 
-</strong>
+		<div class="alert alert-warning text-danger"> 
+			<strong> Information regarding reduction of mess advance have not been received by WSDC form Hostel office. The mess advance is 12,000 INR. The students who paid less are requested to wait and check student protal regularly for more updates. "No dues certificate" is not availabe for such students now. Do not write email to WSDC on this topic.
+			</strong>
 		</div>
 		<h4 id="transacitonsummary">
 			Transaction Summary of OMAHA
@@ -56,7 +48,7 @@ on this topic to WSDC.
 							<td><?php echo $item['maintenance_charges'] ?></td>
 							<td><?php echo $item['emc'] ?></td>
 							<td><?php echo $item['seatrent'] ?></td>
-							<td><?php echo $item['total'] ?></td>
+							<td><b><?php echo $item['total'] ?></b></td>
 							<td><?php echo $item['timestamp'] ?></td>
 						</tr>
 					<?php endforeach ?>
@@ -64,44 +56,44 @@ on this topic to WSDC.
 			</table>
 		<?php else: ?>
 			<p class="text-danger alert alert-danger">
-			    <strong>Pay your Hostel Fees using State bank Collect, Intra/Inter Bank Transfer, NEFT only. DD payments are not permitted.</strong> <br>
+				<strong>Pay your Hostel Fees using State bank Collect, Intra/Inter Bank Transfer, NEFT only. DD payments are not permitted.</strong> <br>
 				Transaction Details must be uploaded/approved by Hostel Office, NITW. If the transaction is not uploaded within 3 days (72 hours) of your payment go to hostel office when you come to college.
 			</p>
 		<?php endif; ?>
 		<hr>
 		<p>You should pay following amount to Chief Warden, via i-collect (state bank collect), or NEFT</p>
 		<?php if(!empty($messdues)): ?>
-		<table class="table table-hover table-condensed table-striped">
-			<thead>
-				<tr>
-					<th>Payment type</th>
-					<th>Amount to be paid</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Mess dues</td>
-					<!-- <td>&#x20B9; <?php echo $messdues ?> </td> -->
-					<td>&#x20B9; <?php echo $messdues['due']; ?></td>
-				</tr>
-				<tr>
-					<td>Mess Advance</td>
-					<td>&#x20B9; <?php echo $messdues['advance']; ?></td>
-				</tr>
-			</tbody>
-			<tfoot>
-				<tr>	
-					<th>Total amount payable to Chief Warden, NITW </th>
-					<th>&#x20B9; <?php echo $messdues['total']; ?></th>
-				</tr>
-			</tfoot>
-		</table>
-	<?php else: ?>
-		<div class="alert alert-danger">
-			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			Your messdues will be uploading soon.
-		</div>
-	<?php endif; ?>
+			<table class="table table-hover table-condensed table-striped">
+				<thead>
+					<tr>
+						<th>Payment type</th>
+						<th>Amount to be paid</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Mess dues</td>
+						<!-- <td>&#x20B9; <?php echo $messdues ?> </td> -->
+						<td>&#x20B9; <?php echo $messdues['due']; ?></td>
+					</tr>
+					<tr>
+						<td>Mess Advance</td>
+						<td>&#x20B9; <?php echo $messdues['advance']; ?></td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>	
+						<th>Total amount payable to Chief Warden, NITW </th>
+						<th>&#x20B9; <?php echo $messdues['total']; ?></th>
+					</tr>
+				</tfoot>
+			</table>
+		<?php else: ?>
+			<div class="alert alert-danger">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				Your messdues will be available on or before 19th Dec, 2014
+			</div>
+		<?php endif; ?>
 		<hr>
 
 		<p class="text-center">	
@@ -111,7 +103,7 @@ on this topic to WSDC.
 			<div class="panel panel-default">
 				<div class="panel-heading" role="tab" id="headingOne">
 					<h4 class="panel-title">
-					<a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#messdues-xlsx" aria-expanded="true" aria-controls="messdues-xlsx">
+						<a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#messdues-xlsx" aria-expanded="true" aria-controls="messdues-xlsx">
 							Messdues list of all the students
 						</a>
 					</h4>
@@ -134,6 +126,8 @@ on this topic to WSDC.
 	</div>
 	<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
 		<!-- <strong>Payment Mode</strong> -->
+		<a href="<?php echo base_url('hostels/no_dues'); ?>" class="btn btn-success btn-lg btn-block"><i>No Dues Certificate</i> <br> <small>Winter Session</small></a>
+		<br>
 		<a href="https://www.onlinesbh.com/prelogin/icollecthome.htm" class="btn btn-default btn-info btn-lg btn-block">State Bank Collect</a>
 		<br>
 		<!-- <a href="/student/hostels/wsdc_collect/" class="btn btn-default btn-info btn-lg btn-block">WSDC Collect <br> <small>for NEFT/DD/Intra Bank</small></a> -->

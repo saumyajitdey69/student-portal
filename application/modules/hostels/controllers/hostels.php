@@ -46,13 +46,13 @@ class Hostels extends MY_Controller {
         }
         else
         {
-// print_r("loop 1");
-//check if they use roll number
+        // print_r("loop 1");
+        //check if they use roll number
             $student_detail = $this->studentmodel->get_student_detail($raw_data['roll_number']);
-            if(!empty($student_detail))
+            if(empty($student_detail))
             {
-// print_r("loop 2");
-// swap with registration number and run index function again
+                // print_r("loop 2");
+                // swap with registration number and run index function again
                 if($this->studentmodel->swap_roll_with_reg($raw_data))
                     redirect('hostels');
                 else
@@ -89,7 +89,7 @@ class Hostels extends MY_Controller {
         //         $data['error'] = 'Some serious errors occured while setting up new account for you. Please contact WSDC wsdc.nitw@gmail.com. Mention your registration number and error no: 3123';
         //     }
         // }
-    }
+        }
 
         // this is not required for winter session
 
@@ -110,11 +110,11 @@ class Hostels extends MY_Controller {
         //$data['messhistory'] = $this->messmodel->mess_allotment_history($regno);
     $data['messdues'] = $this->messmodel->getMessDues($regno); // for winter session only
     $data['studenttransactions'] = $this->studentmodel->get_student_transactions($regno);
-    $payment_detail = $data['studenttransactions'][0];
+    $payment_detail = $data['studenttransactions'];
     $data['payment_detail'] = $payment_detail;
         //$data['allowed_hostel_mess'] = $this ->_get_allowed_mess_hostel_summer($payment_detail);
     $messdues = $this->messmodel->getMessDues($regno);
-    $data['messdues'] = ($messdues != FALSE) ? $messdues : 'N/A';
+    // $data['messdues'] = ($messdues != FALSE) ? $messdues : 'N/A';
     $data['regno'] = $regno;
     $this->_render_page('winter_home', $data);
         // $this->_render_page('home2', $data);  // main omaha
@@ -123,9 +123,9 @@ class Hostels extends MY_Controller {
 
 function  rules($session = 'main')
 {
- $data['title'] = 'Rules & Regulations | OMAHA';
- $data['current_page'] = 'rules';
- $this->_render_page('payment_procedure_'.$session, $data);
+   $data['title'] = 'Rules & Regulations | OMAHA';
+   $data['current_page'] = 'rules';
+   $this->_render_page('payment_procedure_'.$session, $data);
 }
 
 public function neft_check()
@@ -240,6 +240,65 @@ public function _get_mess_total_summer(&$payment_detail){
     }
 }
 
+public function no_dues()
+{
+    #for winter session only
+    $data['error'] = array();
+    $regno = $this->hostelmodel->userid_to_regno($this->user_id);
+    $student_detail = $this->studentmodel->get_student_detail($regno);
+        //var_dump($this->_is_alloted_hostel());
+        //var_dump($this->_is_alloted_mess());
+    if($this->_is_alloted_hostel() && $this->_is_alloted_hostel()){
+        $data = $this->neft_check();
+        // for neft, intra and inter bank students
+        unset($data['im_list']);
+        if(empty($data))
+        {
+            echo "Please submit your DD/NEFT/Inter-Intra bank transaction detail at Hostel office. Hostel Office will give the receipt. Thereafter your can also print using student portal";
+            return 1;
+        }
+                # for i-collect students
+        $this->load->model('studentmodel', TRUE);
+        $this->load->model('messmodel', TRUE);
+        $data['details'] = $this->studentmodel->get_student_details($regno);
+                        //$data['transactions'] = $this->studentmodel->get_student_transactions_slip($regno);
+        $messtransactions = $this->studentmodel->get_current_student_transactions($regno);
+            $messdues = $this->messmodel->getMessDues($regno); // for winter session only
+            if(empty($messdues)){
+             $error = 'Your mess dues are not available on OMAHA. Please go to Hostel Office to generate <i> No Dues Certificate</i>';
+             $this->session->set_flashdata('danger', $error);
+             redirect('hostels');
+         }
+
+         if(empty($messtransactions)) {
+             $error = 'Your transactions are either not approved/uploaded by Hostel Office. It takes maximum of 3-4 working days for Hostel Office. In such case students should go to Hostel Office to get <i> No dues certificate </i> or wait for sometime.';
+             $this->session->set_flashdata('danger', $error);
+             redirect('hostels');
+         }
+         $extra = 'N/A';
+         if($messdues['total'] > $messtransactions['total']){
+             $error = 'Your total mess dues are '. $messdues['total'].'. Total amount paid by you is '. $messtransactions['total'].'. You must pay '.($messdues['total'] - $messtransactions['total']).' INR to generate <i>No Dues Cetificate</i>. <br> <strong>NOTE: The mess advance is 12000 INR. WSDC did not receive any official instructions on reduction of mess advance. Those who paid less are requested to wait untill further instuctions or go to Hostel Office, NITW for more details.</strong>';
+             $this->session->set_flashdata('danger', $error);
+             redirect('hostels');
+         }
+         if($messdues['total'] <= $messtransactions['total']){
+            $extra = 0;
+            $extra = $messtransactions['total'] - $messdues['total'];
+        }
+        $data['extra'] = $extra;
+        $data['messtransactions'] = $messtransactions;
+        $data['current_page'] = 'slip';
+        $data['title'] = 'Hostel/Mess allotment slip';
+        $this->_render_page('no_dues_certificate', $data);
+
+    }
+    else
+    {
+     $this->_render_page('no-hostel', $data);      
+ }
+}
+
+
 public function hostel_slip(){
 
     $data['error'] = array();
@@ -307,8 +366,8 @@ public function hostel_slip(){
 
         }
     }else{
-           $this->_render_page('no-hostel', $data);      
-    }
+     $this->_render_page('no-hostel', $data);      
+ }
 }
 
 public function _get_allowed_mess_hostel($payment_detail){
