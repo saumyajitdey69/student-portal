@@ -5,6 +5,7 @@ $ewc_charge = 4500;
 $allowed_student_types = array(71,72,73,74,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,95,94,102,103,39,47,55,63,41,49,57,65,104,43,51,59,67,107,45,53,61,69,40,48,56,64,42,50,58,66,105,44,52,60,68,106,46,46,54,62,70,46,94,95,102,103,108);
 $winter_session = false;
 $iccr_ids = array(55,56,57,58,59,60,61,62,108);
+//$iccr_ids = array(55,56,57,58,59,60,61,108);
 class Hostels extends MY_Controller {
 
     function __construct(){
@@ -271,111 +272,91 @@ public function neft_check2()
 }
 
 
-public function no_dues()
-{
-    #for winter session only
-    $data['error'] = array();
-    $regno = $this->hostelmodel->userid_to_regno($this->user_id);
-    $student_detail = $this->studentmodel->get_student_detail($regno);
+    public function no_dues()
+    {
+        #for winter session only
+        $data['error'] = array();
+        $regno = $this->hostelmodel->userid_to_regno($this->user_id);
+        $student_detail = $this->studentmodel->get_student_detail($regno);
         //var_dump($this->_is_alloted_hostel());
         //var_dump($this->_is_alloted_mess());
-    if($this->_is_alloted_hostel() && $this->_is_alloted_hostel()){
-        $data = $this->neft_check2();
-        // print_r($data); return;
-        // for neft, intra and inter bank students
-        if($data['neft'] == '1')
-        {
-            switch($data['status'])
+        if($this->_is_alloted_hostel() && $this->_is_alloted_hostel()){
+            $data = $this->neft_check2();
+            // print_r($data); return;
+            // for neft, intra and inter bank students
+            if($data['neft'] == '1')
             {
-                case '1':
-                $this->session->set_flashdata('success', 'Your transaction is approved by Hostel Office. Please submit your NEFT/Inter-Intra bank transaction receipt to Hostel office, NITW. Hostel Office will issue no dues certificate. Thereafter you can also print using student portal.');
-                break;
-                case '2':
-                $this->session->set_flashdata('danger', 'Your transaction is rejected by Hostel Office, NITW. Please go to hostel office for more details.');
-                break;
-                case '3':
-                goto a;
-                break;
-                case '0':
-                $this->session->set_flashdata('warning', 'Your transaction is not approved by Hostel Office, NITW. It takes 3-4 days to update the NEFT/Intra-Interbank transactions on student portal.');
-                break;
-            }
+                switch($data['status'])
+                {
+                    case '1':
+                        $this->session->set_flashdata('success', 'Your transaction is approved by Hostel Office. Please submit your NEFT/Inter-Intra bank transaction receipt to Hostel office, NITW. Hostel Office will issue no dues certificate. Thereafter you can also print using student portal.');
+                        break;
+                    case '2':
+                        $this->session->set_flashdata('danger', 'Your transaction is rejected by Hostel Office, NITW. Please go to hostel office for more details.');
+                        break;
+                    case '3':
+                        goto a;
+                        break;
+                    case '0':
+                        $this->session->set_flashdata('warning', 'Your transaction is not approved by Hostel Office, NITW. It takes 3-4 days to update the NEFT/Intra-Interbank transactions on student portal.');
+                        break;
+                }
 
-            redirect('hostels');
-            return;
-        }
-        a:
-        # for i-collect students
-        $this->load->model('studentmodel', TRUE);
-        $this->load->model('messmodel', TRUE);
-        $data['details'] = $this->studentmodel->get_student_details($regno);
-                        //$data['transactions'] = $this->studentmodel->get_student_transactions_slip($regno);
-        $messtransactions = $this->studentmodel->get_current_student_transactions($regno);
+                redirect('hostels');
+                return;
+            }
+            a:
+            # for i-collect students
+            $this->load->model('studentmodel', TRUE);
+            $this->load->model('messmodel', TRUE);
+            $data['details'] = $this->studentmodel->get_student_details($regno);
+            //$data['transactions'] = $this->studentmodel->get_student_transactions_slip($regno);
+            $messtransactions = $this->studentmodel->get_current_student_transactions($regno);
             $messdues = $this->messmodel->getMessDues($regno); // for winter session only
             if(empty($messdues)){
-             $error = 'Your mess dues are not available on student portal. Please go to Hostel Office, NITW for no dues certificate.';
-             $this->session->set_flashdata('danger', $error);
-             redirect('hostels');
-         }
-
-         if(empty($messtransactions)) {
-             $error = 'Your transactions are not available. It takes maximum of 2-3 working days for Hostel Office to upload your transaction on student portal. ';
-             $this->session->set_flashdata('danger', $error);
-             redirect('hostels');
-         }
-         $extra = 'N/A';
-        //iccr check
-        if(in_array($data['details']['studenttypeid'], $GLOBALS['iccr_ids'])){
-            if($messdues['due'] > $messtransactions['total']){
-                $error = 'comes Your total mess dues are '. $messdues['total'].'. Total amount paid by you is '. $messtransactions['total'].'. You must pay '.($messdues['due'] - $messtransactions['total']).' INR to generate no dues certificate. NOTE: The mess advance is 12000 INR. WSDC did not receive any official instructions on reduction of mess advance. Those who paid less are requested to wait until further instructions or go to Hostel Office, NITW for more details</strong>';
+                $error = 'Your mess dues are not available on student portal. Please go to Hostel Office, NITW for no dues certificate.';
                 $this->session->set_flashdata('danger', $error);
                 redirect('hostels');
             }
-        }elseif($messdues['total'] > $messtransactions['total']){
-             $error =  'comes Your total mess dues are '. $messdues['total'].'. Total amount paid by you is '. $messtransactions['total'].'. You must pay '.($messdues['total'] - $messtransactions['total']).' INR to generate no dues certificate. NOTE: The mess advance is 12000 INR. WSDC did not receive any official instructions on reduction of mess advance. Those who paid less are requested to wait until further instructions or go to Hostel Office, NITW for more details</strong>';
-             $this->session->set_flashdata('danger', $error);
 
-             redirect('hostels');
-         }
-        //iccr check
-        if(in_array($data['details']['studenttypeid'], $GLOBALS['iccr_ids'])){
-            if($messdues['due'] <= $messtransactions['total']){
-                $extra = 0;
-                $extra = $messtransactions['total'] - $messdues['due'];
+            if(empty($messtransactions)) {
+                $error = 'Your transactions are not available. It takes maximum of 2-3 working days for Hostel Office to upload your transaction on student portal. ';
+                $this->session->set_flashdata('danger', $error);
+                redirect('hostels');
             }
-        }elseif($messdues['total'] <= $messtransactions['total']){
-               $error = 'Your mess dues are not available on student portal. Please go to Hostel Office, NITW for no dues certificate.';
-               $this->session->set_flashdata('danger', $error);
-               redirect('hostels');
-           }
+            $extra = 'N/A';
+            if(in_array($data['details']['studenttypeid'], $GLOBALS['iccr_ids'])){
+                if($messdues['due'] > $messtransactions['total']){
+                    $error = 'Your total mess dues are '. $messdues['total'].'. Total amount paid by you is '. $messtransactions['total'].'. You must pay '.($messdues['due'] - $messtransactions['total']).' INR to generate no dues certificate.</strong>';
+                    $this->session->set_flashdata('danger', $error);
+                    redirect('hostels');
+                }
+            }elseif($messdues['total'] > $messtransactions['total']){
+                $error = 'Your total mess dues are '. $messdues['total'].'. Total amount paid by you is '. $messtransactions['total'].'. You must pay '.($messdues['total'] - $messtransactions['total']).' INR to generate no dues certificate.</strong>';
+                $this->session->set_flashdata('danger', $error);
+                redirect('hostels');
+            }
+            if(in_array($data['details']['studenttypeid'], $GLOBALS['iccr_ids'])){
+                if($messdues['due'] <= $messtransactions['total']){
+                    $extra = 0;
+                    $extra = $messtransactions['total'] - $messdues['due'];
+                }
+            }elseif($messdues['total'] <= $messtransactions['total']){
+                $extra = 0;
+                $extra = $messtransactions['total'] - $messdues['total'];
+            }
+            $data['extra'] = $extra;
+            $data['messtransactions'] = $messtransactions;
+            $data['current_page'] = 'slip';
+            $data['title'] = 'Hostel/Mess allotment slip';
+            $this->_render_page('no_dues_certificate', $data);
 
-           if(empty($messtransactions)) {
-               $error = 'Your transactions are not available. It takes maximum of 2-3 working days for Hostel Office to upload your transaction on student portal. ';
-               $this->session->set_flashdata('danger', $error);
-               redirect('hostels');
-           }
-           $extra = 'N/A';
-           if($messdues['total'] > $messtransactions['total']){
-               $error = 'Your total mess dues are '. $messdues['total'].'. Total amount paid by you is '. $messtransactions['total'].'. You must pay '.($messdues['total'] - $messtransactions['total']).' INR to generate no dues certificate.</strong>';
-               $this->session->set_flashdata('danger', $error);
-               redirect('hostels');
-           }
-           if($messdues['total'] <= $messtransactions['total']){
-            $extra = 0;
-            $extra = $messtransactions['total'] - $messdues['total'];
         }
-        $data['extra'] = $extra;
-        $data['messtransactions'] = $messtransactions;
-        $data['current_page'] = 'slip';
-        $data['title'] = 'Hostel/Mess allotment slip';
-        $this->_render_page('no_dues_certificate', $data);
-
+        else
+        {
+            $this->_render_page('no-hostel', $data);
+        }
     }
-    else
-    {
-       $this->_render_page('no-hostel', $data);      
-   }
-}
 
 
 public function hostel_slip(){
