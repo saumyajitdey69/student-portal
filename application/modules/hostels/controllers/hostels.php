@@ -310,12 +310,26 @@ public function no_dues()
              redirect('hostels');
          }
          $extra = 'N/A';
-         if($messdues['total'] > $messtransactions['total']){
-             $error = 'Your total mess dues are '. $messdues['total'].'. Total amount paid by you is '. $messtransactions['total'].'. You must pay '.($messdues['total'] - $messtransactions['total']).' INR to generate no dues certificate. NOTE: The mess advance is 12000 INR. WSDC did not receive any official instructions on reduction of mess advance. Those who paid less are requested to wait until further instructions or go to Hostel Office, NITW for more details</strong>';
+        //iccr check
+        if(in_array($data['details']['studenttypeid'], $GLOBALS['iccr_ids'])){
+            if($messdues['due'] > $messtransactions['total']){
+                $error = 'comes Your total mess dues are '. $messdues['total'].'. Total amount paid by you is '. $messtransactions['total'].'. You must pay '.($messdues['due'] - $messtransactions['total']).' INR to generate no dues certificate. NOTE: The mess advance is 12000 INR. WSDC did not receive any official instructions on reduction of mess advance. Those who paid less are requested to wait until further instructions or go to Hostel Office, NITW for more details</strong>';
+                $this->session->set_flashdata('danger', $error);
+                redirect('hostels');
+            }
+        }elseif($messdues['total'] > $messtransactions['total']){
+             $error =  'comes Your total mess dues are '. $messdues['total'].'. Total amount paid by you is '. $messtransactions['total'].'. You must pay '.($messdues['total'] - $messtransactions['total']).' INR to generate no dues certificate. NOTE: The mess advance is 12000 INR. WSDC did not receive any official instructions on reduction of mess advance. Those who paid less are requested to wait until further instructions or go to Hostel Office, NITW for more details</strong>';
              $this->session->set_flashdata('danger', $error);
+
              redirect('hostels');
          }
-         if($messdues['total'] <= $messtransactions['total']){
+        //iccr check
+        if(in_array($data['details']['studenttypeid'], $GLOBALS['iccr_ids'])){
+            if($messdues['due'] <= $messtransactions['total']){
+                $extra = 0;
+                $extra = $messtransactions['total'] - $messdues['due'];
+            }
+        }elseif($messdues['total'] <= $messtransactions['total']){
             $extra = 0;
             $extra = $messtransactions['total'] - $messdues['total'];
         }
