@@ -280,7 +280,7 @@ public function neft_check2()
         $student_detail = $this->studentmodel->get_student_detail($regno);
         //var_dump($this->_is_alloted_hostel());
         //var_dump($this->_is_alloted_mess());
-        if($this->_is_alloted_hostel() && $this->_is_alloted_hostel()){
+        //if($this->_is_alloted_hostel() && $this->_is_alloted_hostel()){
             $data = $this->neft_check2();
             // print_r($data); return;
             // for neft, intra and inter bank students
@@ -351,11 +351,11 @@ public function neft_check2()
             $data['title'] = 'Hostel/Mess allotment slip';
             $this->_render_page('no_dues_certificate', $data);
 
-        }
-        else
-        {
-            $this->_render_page('no-hostel', $data);
-        }
+        // }
+        // else
+        // {
+        //     $this->_render_page('no-hostel', $data);
+        // }
     }
 
 
