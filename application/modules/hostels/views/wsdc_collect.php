@@ -1,4 +1,8 @@
 <!-- <h3 class="text-primary"> &nbsp; WSDC Collect <small>(Intra/inter Bank transfer or NEFT transactions)</small></h3> -->
+<div class="alert alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  Tuition fees NEFT transactions are removed.
+</div>
 <div class="alert alert-warning">
   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
   WSDC Collect is not for State bank collect (former i-collect) transactions. Only NEFT or Intra/Inter bank transactions must be entered.
@@ -19,6 +23,7 @@
       <li>You are allowed to upload details for more than one NEFT/Inter/Intra bank transactions i.e you can submit this form more than once but do not submit twice for same NEFT/Inter/Intra bank transfer</li>
       <li>You have to submit separate details for each NEFT/Inter/Intra bank Transaction.</li>
       <li>Do not mix-up <strong>tuition fees</strong> with <strong>hostel/mess</strong> charges. Submit separate forms for both.</li>
+      <li><span class="label label-danger">new</span>Do not upload tuition fees. Even if you have uploaded, need not to worry.</li>
       <li>Select payment category as <strong>Chief warden</strong> for mess and hostel charges</li>
       <li>Please decompose your NEFT/Inter/Intra bank transaction amount and put decomposed amounts in appropriate fields.</li>
       <li>Each field should be filled with appropriate amount. Fields which are not applicable leave it as ‘0’.</li>
