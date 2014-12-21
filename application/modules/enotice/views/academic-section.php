@@ -1,6 +1,8 @@
 <div class="list-group">
 	<p class="list-group-item active">Academic Feedback is closed for July 2014 Session.</p>
     <a class="list-group-item" href="<?php echo base_url('assets/downloads/audit/undertaking.pdf') ?>" target="_blank"><span class="glyphicon glyphicon-download"></span> Undertaking forms</a>
+    <a class="list-group-item" href="<?php echo base_url('assets/downloads/audit/modified_undertaking.pdf') ?>" target="_blank"><span class="glyphicon glyphicon-download"></span> Modified Undertaking forms</a>
+    <a class="list-group-item" href="<?php echo base_url('assets/downloads/audit/sc_st_undertaking.pdf') ?>" target="_blank"><span class="glyphicon glyphicon-download"></span> SC and ST Undertaking form</a>
     <a class="list-group-item" href="https://www.onlinesbh.com/prelogin/icollecthome.htm" target="_blank">State Bank Collect (former i-collect)</a>
     <a class="list-group-item" href="<?php echo base_url('assets/downloads/audit/fees/dec_2014.pdf') ?>" target="_blank"><span class="glyphicon glyphicon-download"></span> Tuition fee details for Dec 2014</a>
     <a class="list-group-item" href="<?php echo base_url('assets/downloads/omaha/winter/rules.pdf') ?>" target="_blank"> <span class="glyphicon glyphicon-download"></span> Hostel fee details for Dec 2014</a>
