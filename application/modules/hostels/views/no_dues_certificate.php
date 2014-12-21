@@ -121,7 +121,8 @@
 				</div>
 				<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 					<h4 style="margin:0"><b>National Institute of Technology, Warangal</b></h4>
-					<h5 style="margin:0">No dues cetificate, OMAHA Winter Session</h5>
+					<h5 style="margin:0">No dues 
+certificate, OMAHA Winter Session</h5>
 					<br>
 				</div>
 				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
