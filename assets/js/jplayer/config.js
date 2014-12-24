@@ -4,12 +4,11 @@ $(document).ready(function(){
 		ready: function (event) {
 			$(this).jPlayer("setMedia", {
 				title: "NITW LAN Radio - English ",
-				m4a: "http://jplayer.org/audio/m4a/Miaow-07-Bubble.m4a",
-				oga: "http://jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
+				mp3:"http://172.30.102.208:8000/stream/1/"
 			});
 		},
-		swfPath: "../../dist/jplayer",
-		supplied: "m4a, oga",
+		swfPath: "",
+		supplied: "mp3",
 		wmode: "window",
 		useStateClassSkin: true,
 		autoBlur: false,
