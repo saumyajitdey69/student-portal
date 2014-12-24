@@ -2,9 +2,14 @@
     <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 hidden-print sidebar" role="navigation">
       <ul class="list-group">
         <li class="list-group-header">WSDC Apps</li>
-        <li class="list-group-item <?php echo (isset($current_page) && $current_page === "home")?"active":""; ?>">
+        <li class="list-group-item <?php echo (isset($current_page) && $current_page === "dc")?"active":""; ?>">
          <a href="<?php echo base_url("hostels/"); ?>">
           Onine DC++ hubs
+        </a>
+      </li>
+      <li class="list-group-item <?php echo (isset($current_page) && $current_page === "lanradio")?"active":""; ?>">
+         <a href="<?php echo base_url("hostels/"); ?>">
+          Live LAN Radio
         </a>
       </li>
   </ul>
