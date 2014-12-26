@@ -11,7 +11,6 @@
     <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets/css/google.bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets/css/signin.css" rel="stylesheet">
-    <script src="<?php echo base_url("assets/js/jquery.js"); ?>"></script>
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

@@ -14,7 +14,7 @@
 	if (isset($css)) {
 		foreach ($css as $index => $c) {
 			?>
-			<script rel="stylesheet" src="<?php echo asset_url()."css/".$c; ?>"></script>
+			<link href="<?php echo asset_url()."css/".$c; ?>" rel="stylesheet">
 			<?php
 		}
 	}
