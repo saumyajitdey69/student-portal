@@ -4,7 +4,7 @@ $(document).ready(function(){
 		ready: function (event) {
 			$(this).jPlayer("setMedia", {
 				title: "NITW LAN Radio - English ",
-				mp3:"http://172.30.102.208:8000/stream/1/"
+				mp3:"http://localhost/gitlab/student-portal/assets/js/jplayer/lanradio.wvx"
 			});
 		},
 		swfPath: "",
