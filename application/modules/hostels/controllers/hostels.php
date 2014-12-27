@@ -27,6 +27,8 @@ class Hostels extends MY_Controller {
         $data['current_page'] = 'home';
         $data['title'] = 'OMAHA | WSDC';
         $data['error'] = array();
+        // var_dump($this->student->blocked_check('k11057'));
+        // return;
         // student profile api
         $this->load->model('profile/profile_model', 'profile_model', TRUE);
         $raw_data = $this->profile_model->get(array('id' => $this->user_id), TRUE, 'registration_number, roll_number');

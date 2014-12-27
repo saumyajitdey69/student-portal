@@ -7,6 +7,7 @@ class Studentmodel extends CI_Model {
 		parent::__construct();
 		$this->load->config('hostels/hostels_config',  TRUE);
 		$this->tables = $this->config->item('tables', 'hostels_config');
+		$this->db = $this->load->database('hostels', TRUE);
 	}
 	
 	//@vaibhav awachat
@@ -25,6 +26,7 @@ class Studentmodel extends CI_Model {
 		}
 	}
 
+	// deprecated
 	//@Vaibhav Awachat
 	public function get_student_transactions($reg_no = ''){
 		if(empty($reg_no))
@@ -54,6 +56,8 @@ class Studentmodel extends CI_Model {
 
 	# winter
 	//@Vaibhav Awachat
+
+	// deprecated
 	public function get_current_student_transactions($reg_no = ''){
 		if(empty($reg_no))
 			return false;
@@ -128,6 +132,7 @@ class Studentmodel extends CI_Model {
 		}
 	}
 
+	// deprecated
 	/* 
 		Anik Das
 		function to get student type ID
@@ -292,6 +297,7 @@ class Studentmodel extends CI_Model {
 			return false;
 		}
 	}
+
 	public function add_neft_detail($data){
 		$date = new DateTime();
 		$insert_data = array(
@@ -319,6 +325,8 @@ class Studentmodel extends CI_Model {
 		}
 	}
 
+
+	//deprecated
 	public function get_student_details($reg_num)
 	{
 		$this->hostel_db = $this->load->database('hostels', TRUE);
@@ -342,7 +350,7 @@ class Studentmodel extends CI_Model {
 			return FALSE;
 	}
 
-
+	// deprecated
 	public function get_student_messtransactions($reg_no = '')
 	{
 		$this->hostel_db = $this->load->database('hostels', TRUE);
@@ -357,12 +365,20 @@ class Studentmodel extends CI_Model {
 	}
 
 
-	/*
-	Author: Vaibhav Awachat
-	*/
+
+
+	/**
+	 * get data from given table
+	 * 	
+	 * @return mixed 
+	 * @author Awachat
+	 *
+	 */
+
 	public function _get($input_column = array(), $table_name = 'students', $err_message = 'Some error occured. Data is not available.', $limit = FALSE, $json = FALSE, $array = TRUE, $output_column = '*', $order = '')
 	{
-		if(!empty($where))
+		$this->db = $this->load->database('hostels', TRUE);
+		if(!empty($input_column))
 			$this->db->where($input_column);
 
 		if($limit != FALSE)
@@ -401,6 +417,21 @@ class Studentmodel extends CI_Model {
 			else
 				return $err_message;
 		}
+	}
+
+
+	/**
+	 * blocked status check
+	 * 
+	 * @return bool, false means not blocked
+	 * @author Awachat
+	 */
+
+	public function blocked_check($regno = '')
+	{
+		if(empty($regno))
+			return false; 
+		return $this->db->select('blocked')->get_where($this->tables['students'], array('regno'=> $regno),'1')->first_row()->blocked == '0' ? FALSE : TRUE;
 	}
 
 }
