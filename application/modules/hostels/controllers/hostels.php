@@ -10,13 +10,14 @@ class Hostels extends MY_Controller {
 
     function __construct(){
         parent::__construct();
+        $this->load->library('hostels/Student');
         $this->load->model('audit/audit_model');
-        if ($this->audit_model->profile_edited($this->user_id) === false)
-        {
-            $this->session->set_flashdata('danger', 'Complete your profile');
-            redirect(base_url('audit/profile'), 'location', 301);
-            return false;
-        }
+        // if ($this->audit_model->profile_edited($this->user_id) === false)
+        // {
+        //     $this->session->set_flashdata('danger', 'Complete your profile');
+        //     redirect(base_url('audit/profile'), 'location', 301);
+        //     return false;
+        // }
         $this->load->model('hostelmodel');
         $this->load->model('messmodel');
         $this->load->model('studentmodel');
@@ -29,9 +30,10 @@ class Hostels extends MY_Controller {
         // student profile api
         $this->load->model('profile/profile_model', 'profile_model', TRUE);
         $raw_data = $this->profile_model->get(array('id' => $this->user_id), TRUE, 'registration_number, roll_number');
+
         $regno = $raw_data['registration_number'];
         // get student hostel and mess details
-        $student_detail = $this->studentmodel->get_student_detail($regno);
+        $student_detail = $this->student->get_student_detail($regno);
         if(!empty($student_detail))
         {
             if($student_detail['blocked']==1){
@@ -49,7 +51,7 @@ class Hostels extends MY_Controller {
         {
         // print_r("loop 1");
         //check if they use roll number
-            $student_detail = $this->studentmodel->get_student_detail($raw_data['roll_number']);
+            $student_detail = $this->student->get_student_detail($raw_data['roll_number']);
             if(empty($student_detail))
             {
                 // print_r("loop 2");
@@ -104,11 +106,6 @@ class Hostels extends MY_Controller {
         //     }
         // }
 
-
-        //$data['hosteltransactions'] = $this->hostelmodel->get_student_transactions($regno);
-        //$data['messtransactions'] = $this->messmodel->get_student_messtransactions($regno);
-        //$data['hostelhistory'] = $this->hostelmodel->hostel_allotment_history($regno);
-        //$data['messhistory'] = $this->messmodel->mess_allotment_history($regno);
     $data['messdues'] = $this->messmodel->getMessDues($regno); // for winter session only
     $data['studenttransactions'] = $this->studentmodel->get_current_student_transactions($regno);
     $payment_detail = $data['studenttransactions'];
