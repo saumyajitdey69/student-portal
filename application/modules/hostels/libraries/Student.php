@@ -67,18 +67,32 @@ class Student{
 			// student profile api
 			$this->load->model('profile/profile_model', 'profile_model', TRUE);
 			$raw_data = $this->profile_model->get(array('id' => $this->user_id), TRUE, 'registration_number');
-		  	$input_column['registration_number'] = $raw_data['registration_number'];
+		  	$input_column = array('registration_number' => $raw_data['registration_number']);
 		}
 		return $this->studentmodel->_get( $input_column, $this->tables['student_details'], 'Students details are not available.', $limit, $json, $array, $output_column, $order );
 	}
 
 	public function messtransactions($input_column = array(), $limit = FALSE, $json = FALSE, $array = TRUE, $output_column = 'bank_reference_no, transaction_date, registration_number, roll_number, mess_dues, mess_advance, seatrent, emc, maintenance_charges, amount as total, transaction_type, uploaded_by', $order = 'transaction_date asc')
 	{
+		if(empty($input_column))
+		{
+			// student profile api
+			$this->load->model('profile/profile_model', 'profile_model', TRUE);
+			$raw_data = $this->profile_model->get(array('id' => $this->user_id), TRUE, 'registration_number');
+		  	$input_column = array('registration_number' => $raw_data['registration_number']);
+		}
 		return $this->studentmodel->_get($input_column, $this->tables['messtransactions'], 'Transactions are not available. <i>State Bank Collect (former i-collect), NEFT and Intra/Inter Bank transfer</i> transactions takes 1-2 working days for approval.', $limit, $json, $array, $output_column, $order);
 	}
 
-	public function consolidated_payment($input_column = array(), $limit = FALSE, $json = FALSE, $array = TRUE, $output_column = '*', $order = 'timestamp asc')
+	public function consolidated_payment($input_column = array(), $limit = '1', $json = FALSE, $array = TRUE, $output_column = 'seatrent, maintenance_charges, mess_dues, mess_advance, emc, (seatrent + maintenance_charges + mess_dues + mess_advance + emc) as total_amount_paid', $order = 'timestamp asc')
 	{
+		if(empty($input_column))
+		{
+			// student profile api
+			$this->load->model('profile/profile_model', 'profile_model', TRUE);
+			$raw_data = $this->profile_model->get(array('id' => $this->user_id), TRUE, 'registration_number');
+		  	$input_column = array('regno' => $raw_data['registration_number']);
+		}
 		return $this->studentmodel->_get($input_column, $this->tables['studentpayments'], 'Transactions are not available. <i>State Bank Collect (former i-collect), NEFT and Intra/Inter Bank transfer</i> transactions takes 1-2 working days for approval.', $limit, $json, $array, $output_column, $order);
 	}
 }
