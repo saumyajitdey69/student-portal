@@ -25,9 +25,98 @@ class Slip extends MY_Controller {
 		$data=$this->getSlipData($roll);
 		$this->_render_page('registration/slip_new',$data);
 	}
+	public function even_sem14_15()
+	{
+		$userid=$this->user_id;
+		$roll = $this->feedback_model->get_roll($userid);
+		$data=$this->getSlipDataNew($roll);
+		//print_r($data);
+
+		foreach ($data as  $value) {
+			$value['current_page'] = "slip_even";
+			$this->_render_page('registration/currentslip',$value);
+		}	
+	}
+	public function getSlipDataNew($roll)
+	{   $slips=array();
+		$num_of_slips=-1;
+		$rows_data = $this->slip_model->get_registered_detail($roll,'reg_2014_15_even');
+		$data['title'] = "Registration Slip";
+		
+		if(empty($rows_data))
+		{
+			$this->session->set_flashdata('danger', 'Student is not yet registered. Please check the roll number or register the student');
+			redirect('registration/slip');
+			return;
+		}
+		$count = 0;
+		$data['reg_credits_study'] =0;
+		$data['reg_credits_study_exam']=0;
+		$flag=0;
+		foreach($rows_data as $raw_data)
+			{   	$temp=array();
+
+				if($raw_data['backlog']=='0'){
+					$data['current_section'] = 'registration';
+					$data['current_page'] = "slip";		     
+					$num_of_slips++;
+
+					$data['regular_courses']['reg_course_id'] = array();
+					$data['regular_courses']['reg_course_name'] = array();
+					$data['regular_courses']['reg_course_credit'] = array();
+					$data['regular_courses']['reg_study_exam'] = array();
+					
+					$data['backlog_courses']['reg_course_id'] = array();
+					$data['backlog_courses']['reg_course_name'] = array();
+					$data['backlog_courses']['reg_course_credit'] = array();
+					$data['backlog_courses']['reg_study_exam'] = array();
+
+					
+					
+			    $data['roll_number'] = $raw_data['roll']; // this is required to delete, please do not rename the variable or do not remove it @awachat
+			    
+			    $data['reg_roll'] = $raw_data['roll'];
+			    $data['reg_name'] = $raw_data['name'];
+			    $data['reg_branch'] = $raw_data['branch_name'];
+			    $data['reg_semester'] = $raw_data['sem'];
+			    $data['reg_course'] = $raw_data['class_name'];
+			    $data['reg_section'] = $raw_data['sec'];
+			    $data['reg_credits_study'] += $raw_data['scredits'];
+			    $data['reg_credits_study_exam'] += $raw_data['secredits'];
+			    
+			    $temp=json_decode($raw_data['regular_courses']);
+			    foreach ($temp as $key => $value) {				
+			    	$data['regular_courses']['reg_course_id'][$key] = $temp[$key]->cid;
+			    	$data['regular_courses']['reg_course_name'][$key] = $temp[$key]->cname;
+			    	$data['regular_courses']['reg_course_credit'][$key] = $temp[$key]->credits;
+			    	$data['regular_courses']['reg_study_exam'][$key] = $temp[$key]->type;
+			    }
+
+			}
+			else
+			{
+				
+				$temp=json_decode($raw_data['regular_courses']);
+				foreach ($temp as $key => $value) {	
+					$data['reg_credits_study'] += $raw_data['scredits'];
+					$data['reg_credits_study_exam'] += $raw_data['secredits'];				
+					array_push($data['backlog_courses']['reg_course_id'], $temp[$key]->cid);
+					array_push($data['backlog_courses']['reg_course_name'], $temp[$key]->cname);
+					array_push($data['backlog_courses']['reg_course_credit'], $temp[$key]->credits);
+					array_push($data['backlog_courses']['reg_study_exam'], $temp[$key]->type);
+					$count++;
+				}
+			}
+			
+			
+			$slips[$num_of_slips]=$data;
+		}
+		
+		return $slips;
+	}
 	public function getSlipData($roll)
 	{
-		$rows_data = $this->slip_model->get_registered_detail($roll);
+		$rows_data = $this->slip_model->get_registered_detail($roll,'reg');
 		$data['title'] = "Registration Slip";
 		
 		$data['regular_courses']['reg_course_id'] = array();

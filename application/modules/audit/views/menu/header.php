@@ -9,7 +9,10 @@
         <a href="<?php echo base_url('audit/profile'); ?>">Profile</a>
       </li>
       <li class="list-group-item <?php echo $current_page === "attendance" ? "active" : ""?>"> 
-        <a href="<?php echo base_url('attendance'); ?>">Attendance</a>
+        <a href="<?php echo base_url('attendance'); ?>">Attendance(2014-15 Odd sem)</a>
+      </li>
+      <li class="list-group-item <?php echo $current_page === "attendance_even" ? "active" : ""?>"> 
+        <a href="<?php echo base_url('attendance/even_sem14_15'); ?>">Attendance(2014-15 Even sem)<span class="label label-danger"> New</span></a>
       </li>
       <li class="list-group-item <?php echo $current_page === "feedback" ? "active" : ""?>">
        <a href="<?php echo base_url('audit/feedback'); ?>">Feedback</a>
@@ -26,7 +29,12 @@
   </li>
   <li  class="list-group-item <?php echo $current_page === "slip" ? "active" : ""?>" >
     <a href="<?php echo base_url('audit/slip'); ?>">
-      Registration Slip
+      Registration Slip(2014-15 Odd sem)
+    </a>
+  </li>
+  <li  class="list-group-item <?php echo $current_page === "slip_even" ? "active" : ""?>" >
+    <a href="<?php echo base_url('audit/slip/even_sem14_15'); ?>">
+      Registration Slip(2014-15 Even sem)<span class="label label-danger"> New</span>
     </a>
   </li>
   <li  class="list-group-item <?php echo $current_page === "calendar" ? "active" : ""?>">

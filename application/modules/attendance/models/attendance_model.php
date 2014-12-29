@@ -33,9 +33,9 @@ class Attendance_model extends CI_Model {
 		else
 			return FALSE;
 	}
-	public function load_dates($data)
+	public function load_dates($data,$db_config)
 	{
-		$db_register = $this->load->database('reg' , TRUE);
+		$db_register = $this->load->database($db_config , TRUE);
 		$query=$db_register->select()
 							->from($this->tables['attendance_dates'])
 							->order_by('date asc')
@@ -45,10 +45,10 @@ class Attendance_model extends CI_Model {
 		else
 			return FALSE;
 	}
-	public function get_attendance($roll,$course_id,$branch,$sem,$class,$section,$session_id)
+	public function get_attendance($roll,$course_id,$branch,$sem,$class,$section,$session_id,$db_config,$batch="0")
 	{
 		$details=array();
-		$db_register = $this->load->database('reg' , TRUE);
+		$db_register = $this->load->database($db_config , TRUE);
 		$query = $db_register->select('structure_id')
 							 ->from($this->tables['regular'])
 							 ->where(array('branch' => $branch, 'class' => $class,'sem'=>$sem,'session_id'=>$session_id))
@@ -70,7 +70,9 @@ class Attendance_model extends CI_Model {
 			'course_id'=>$course_id,
 			'section'=>$section
 			);
-		$classes_held=$this->load_dates($details_of_course);
+		if($db_config!="reg")
+			$details_of_course['lab_batch']=$batch;
+		$classes_held=$this->load_dates($details_of_course,$db_config);
 		if($classes_held==FALSE)
 		{
 			$details['status']=1;
