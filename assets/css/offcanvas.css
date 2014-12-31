@@ -592,7 +592,7 @@ footer p{
   src: local("Segoe UI Bold Italic");
 }
 
-.google li.list-group-item>a{
+.google li.list-group-item>a, .google div.list-group-item-wrapper>a{
   font-weight: 600;
 }
 
