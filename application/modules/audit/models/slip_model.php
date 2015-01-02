@@ -21,9 +21,9 @@ class Slip_model extends CI_Model {
 			return TRUE;
 		}
 	}
-	public function get_registered_detail($roll)
+	public function get_registered_detail($roll,$db_config)
 	{
-		$this->db_reg = $this->load->database('reg',TRUE);
+		$this->db_reg = $this->load->database($db_config,TRUE);
 		$query = $this->db_reg->where('roll',$roll)
 							  ->get($this->tables['registered']);
 		if($query->num_rows()<1){

@@ -43,20 +43,20 @@
 </div> <!-- /row with hidden print closes -->
 
 
-<script src="<?php echo asset_url()."js/jquery-1.11.1.min.js"; ?> "></script>
-<script src="<?php echo asset_url()."js/bootstrap.min.js"; ?> "></script>
+<script type="text/javascript" src="<?php echo asset_url()."js/jquery-1.11.1.min.js"; ?> "></script>
+<script type="text/javascript" src="<?php echo asset_url()."js/bootstrap.min.js"; ?> "></script>
 <!-- <script src="<?php //echo asset_url()."js/intro.min.js"; ?> "></script> -->
-<script src="<?php echo asset_url()."js/offcanvas.js"; ?> "></script>
+<script type="text/javascript" src="<?php echo asset_url()."js/offcanvas.js"; ?> "></script>
 <?php
 if (isset($scripts)) {
   foreach ($scripts as $index => $script) {
     ?>
-    <script src="<?php echo asset_url()."js/".$script; ?>"></script>
+    <script type="text/javascript" src="<?php echo asset_url()."js/".$script; ?>"></script>
     <?php
   }
 }
 ?>
 <div id="fb-root"></div>
-<script src="<?php echo asset_url()."js/social.js"; ?> "></script>
+<script type="text/javascript" src="<?php echo asset_url()."js/social.js"; ?> "></script>
 </body>
 </html>

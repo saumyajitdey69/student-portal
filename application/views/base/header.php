@@ -87,11 +87,11 @@
 								<li><a href="<?php echo base_url('auth/logout') ?>"><span class="glyphicon glyphicon-off"></span> Logout</a> </li>
 							</ul>
 						</li>
-						<!-- <li class="google-profile-img">
+						<li class="google-profile-img">
 							<a class="google-profile-img-container" href="<?php echo base_url('profile'); ?>">
-								<img src="http://graph.facebook.com/v2.2/100002451127231/picture" alt="profil_img" class="img img-rounded img-responsive" width="50px" height="50px">
+								<img src="<?= base_url('assets/upload/thumbs/'.$this->user_name.'.jpg')?>" alt="profil_img" class="img img-rounded img-responsive" width="50px" height="50px">
 							</a>		
-						</li> -->
+						</li>
 
 					</ul>
 				</div>	
