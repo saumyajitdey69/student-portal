@@ -73,7 +73,7 @@ class Upload extends MY_Controller {
         $this->load->library('upload');
 		$data['img']  = $this->upload->data();
         $data['scripts'] = array('upload/jquery.imgareaselect.min.js', 'upload/jquery.imgpreview.js');
-		$this->_render_page('upload/index',$data) ;
+		$this->_render_page('upload/profile',$data) ;
 		
 		
     }
