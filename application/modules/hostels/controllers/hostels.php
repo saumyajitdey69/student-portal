@@ -10,13 +10,18 @@ class Hostels extends MY_Controller {
 
     function __construct(){
         parent::__construct();
+        $this->load->library('hostels/Student');
         $this->load->model('audit/audit_model');
-        if ($this->audit_model->profile_edited($this->user_id) === false)
-        {
-            $this->session->set_flashdata('danger', 'Complete your profile');
-            redirect(base_url('audit/profile'), 'location', 301);
-            return false;
-        }
+        // if ($this->audit_model->profile_edited($this->user_id) === false)
+        // {
+        //     $this->session->set_flashdata('danger', 'Complete your profile');
+        //     redirect(base_url('audit/profile'), 'location', 301);
+        //     return false;
+        // }
+        $image = 'assets/upload/thumbs/'.$this->session->userdata('registration_number').'.jpg';
+         if(!file_exists($image))
+            redirect('upload');
+
         $this->load->model('hostelmodel');
         $this->load->model('messmodel');
         $this->load->model('studentmodel');
@@ -25,31 +30,34 @@ class Hostels extends MY_Controller {
     public function index(){
         $data['current_page'] = 'home';
         $data['title'] = 'OMAHA | WSDC';
-        $data['error'] = array();
+        $data['errors'] = array();
+        // var_dump($this->student->blocked_check('k11057'));
+        // return;
+
         // student profile api
         $this->load->model('profile/profile_model', 'profile_model', TRUE);
         $raw_data = $this->profile_model->get(array('id' => $this->user_id), TRUE, 'registration_number, roll_number');
         $regno = $raw_data['registration_number'];
+
         // get student hostel and mess details
-        $student_detail = $this->studentmodel->get_student_detail($regno);
+        $student_detail = $this->student->details();
         if(!empty($student_detail))
         {
             if($student_detail['blocked']==1){
-                $error = 'Your account is blocked by Hostel Office. Please contact Hostel Office, NIT Warangal for further details';
-                array_push($data['error'], $error);
+                $err_msg = 'Your account is blocked by Hostel Office. Please contact Hostel Office, NIT Warangal for further details';
+                $data['errors'][] = $err_msg;
             }
-            if(in_array(intval($student_detail['hosteltypeid']), $GLOBALS['allowed_student_types'])){
+            if(in_array(intval($student_detail['studenttypeid']), $GLOBALS['allowed_student_types'])){
                 $data['allowed_allotment'] = TRUE;
-                $data['allotment_url'] = '/student/hostels/allotment/';
+                $data['allotment_url'] = base_url('hostels/allotment');
             }else{
                 $data['allowed_allotment'] = FALSE;
             } 
         }
         else
         {
-        // print_r("loop 1");
-        //check if they use roll number
-            $student_detail = $this->studentmodel->get_student_detail($raw_data['roll_number']);
+            //check if they use roll number
+            $student_detail = $this->student->get_student_detail($raw_data['roll_number']);
             if(empty($student_detail))
             {
                 // print_r("loop 2");
@@ -70,26 +78,6 @@ class Hostels extends MY_Controller {
                 }
 
             }
-
-        // take this lite
-            // search for registration number in transaction table
-        // if($this->studentmodel->swap_roll_with_reg_transaction($raw_data))
-        //     redirect('hostels');
-        // else{
-        //         // print_r("loop 3");
-        //         // create an entry in wsdc_hostels student table
-        //     $sem = $this->studentmodel->get_sem_from_Registered($raw_data['roll_number']);
-        //     if($this->studentmodel->create_student($regno, $sem)){
-        //             // print_r("loop 4");
-        //         redirect('hostels');
-        //     }
-        //     else
-        //     { 
-        //             // print_r("loop 5");
-        //             //error
-        //         $data['error'] = 'Some serious errors occured while setting up new account for you. Please contact WSDC wsdc.nitw@gmail.com. Mention your registration number and error no: 3123';
-        //     }
-        // }
         }
 
         // this is not required for winter session
@@ -104,29 +92,31 @@ class Hostels extends MY_Controller {
         //     }
         // }
 
-
-        //$data['hosteltransactions'] = $this->hostelmodel->get_student_transactions($regno);
-        //$data['messtransactions'] = $this->messmodel->get_student_messtransactions($regno);
-        //$data['hostelhistory'] = $this->hostelmodel->hostel_allotment_history($regno);
-        //$data['messhistory'] = $this->messmodel->mess_allotment_history($regno);
     $data['messdues'] = $this->messmodel->getMessDues($regno); // for winter session only
-    $data['studenttransactions'] = $this->studentmodel->get_current_student_transactions($regno);
-    $payment_detail = $data['studenttransactions'];
-    $data['payment_detail'] = $payment_detail;
-        //$data['allowed_hostel_mess'] = $this ->_get_allowed_mess_hostel_summer($payment_detail);
+    $data['messtransactions'] = $this->student->messtransactions();
+    $data['consolidated_payment'] = $this->student->consolidated_payment();
+   // $payment_detail = $data['studenttransactions'];
+    //$data['payment_detail'] = $payment_detail;
+    //$data['allowed_hostel_mess'] = $this ->_get_allowed_mess_hostel_summer($payment_detail);
     $messdues = $this->messmodel->getMessDues($regno);
-    // $data['messdues'] = ($messdues != FALSE) ? $messdues : 'N/A';
     $data['regno'] = $regno;
-    $this->_render_page('winter_home', $data);
-        // $this->_render_page('home2', $data);  // main omaha
-      //return $this->home();
+    // $this->_render_page('winter_home', $data);
+    $this->_render_page('home2', $data);  // main omaha
+}
+
+
+public function calculator()
+{
+    $data['title'] = 'OMAHA Fee Calculator';
+    $data['current_page'] = 'fee-calculator';
+    $this->_render_page('fee-calculator', $data);
 }
 
 function  rules($session = 'main')
 {
- $data['title'] = 'Rules & Regulations | OMAHA';
- $data['current_page'] = 'rules';
- $this->_render_page('payment_procedure_'.$session, $data);
+   $data['title'] = 'Rules & Regulations | OMAHA';
+   $data['current_page'] = 'rules';
+   $this->_render_page('payment_procedure_'.$session, $data);
 }
 
 public function neft_check()
@@ -272,46 +262,46 @@ public function neft_check2()
 }
 
 
-    public function no_dues()
-    {
+public function no_dues()
+{
         #for winter session only
-        $data['error'] = array();
-        $regno = $this->hostelmodel->userid_to_regno($this->user_id);
-        $student_detail = $this->studentmodel->get_student_detail($regno);
+    $data['error'] = array();
+    $regno = $this->hostelmodel->userid_to_regno($this->user_id);
+    $student_detail = $this->studentmodel->get_student_detail($regno);
         //var_dump($this->_is_alloted_hostel());
         //var_dump($this->_is_alloted_mess());
         //if($this->_is_alloted_hostel() && $this->_is_alloted_hostel()){
-            $data = $this->neft_check2();
+    $data = $this->neft_check2();
             // print_r($data); return;
             // for neft, intra and inter bank students
-            if($data['neft'] == '1')
-            {
-                switch($data['status'])
-                {
-                    case '1':
-                        $this->session->set_flashdata('success', 'Your transaction is approved by Hostel Office. Please submit your NEFT/Inter-Intra bank transaction receipt to Hostel office, NITW. Hostel Office will issue no dues certificate. Thereafter you can also print using student portal.');
-                        break;
-                    case '2':
-                        $this->session->set_flashdata('danger', 'Your transaction is rejected by Hostel Office, NITW. Please go to hostel office for more details.');
-                        break;
-                    case '3':
-                        goto a;
-                        break;
-                    case '0':
-                        $this->session->set_flashdata('warning', 'Your transaction is not approved by Hostel Office, NITW. It takes 3-4 days to update the NEFT/Intra-Interbank transactions on student portal.');
-                        break;
-                }
+    if($data['neft'] == '1')
+    {
+        switch($data['status'])
+        {
+            case '1':
+            $this->session->set_flashdata('success', 'Your transaction is approved by Hostel Office. Please submit your NEFT/Inter-Intra bank transaction receipt to Hostel office, NITW. Hostel Office will issue no dues certificate. Thereafter you can also print using student portal.');
+            break;
+            case '2':
+            $this->session->set_flashdata('danger', 'Your transaction is rejected by Hostel Office, NITW. Please go to hostel office for more details.');
+            break;
+            case '3':
+            goto a;
+            break;
+            case '0':
+            $this->session->set_flashdata('warning', 'Your transaction is not approved by Hostel Office, NITW. It takes 3-4 days to update the NEFT/Intra-Interbank transactions on student portal.');
+            break;
+        }
 
-                redirect('hostels');
-                return;
-            }
-            a:
+        redirect('hostels');
+        return;
+    }
+    a:
             # for i-collect students
-            $this->load->model('studentmodel', TRUE);
-            $this->load->model('messmodel', TRUE);
-            $data['details'] = $this->studentmodel->get_student_details($regno);
+    $this->load->model('studentmodel', TRUE);
+    $this->load->model('messmodel', TRUE);
+    $data['details'] = $this->studentmodel->get_student_details($regno);
             //$data['transactions'] = $this->studentmodel->get_student_transactions_slip($regno);
-            $messtransactions = $this->studentmodel->get_current_student_transactions($regno);
+    $messtransactions = $this->studentmodel->get_current_student_transactions($regno);
             $messdues = $this->messmodel->getMessDues($regno); // for winter session only
             if(empty($messdues)){
                 $error = 'Your mess dues are not available on student portal. Please go to Hostel Office, NITW for no dues certificate.';
@@ -356,384 +346,384 @@ public function neft_check2()
         // {
         //     $this->_render_page('no-hostel', $data);
         // }
-    }
+        }
 
 
-public function hostel_slip(){
+        public function hostel_slip(){
 
-    $data['error'] = array();
-    $regno = $this->hostelmodel->userid_to_regno($this->user_id);
-    $student_detail = $this->studentmodel->get_student_detail($regno);
+            $data['error'] = array();
+            $regno = $this->hostelmodel->userid_to_regno($this->user_id);
+            $student_detail = $this->studentmodel->get_student_detail($regno);
         //var_dump($this->_is_alloted_hostel());
         //var_dump($this->_is_alloted_mess());
-    if($this->_is_alloted_hostel() && $this->_is_alloted_hostel()){
-        if(in_array($student_detail['hosteltypeid'], $GLOBALS['iccr_ids'])){
-            $mess_due_arr = $this->get_mess_due();
-            $mess_due = $mess_due_arr[0]['due'];
-            $data = $this->studentmodel->get_student_transactions($regno);
-            if(!$mess_due||$mess_due<0){
-                $this->load->model('studentmodel', TRUE);
-                $data['details'] = $this->studentmodel->get_student_details($regno);
+            if($this->_is_alloted_hostel() && $this->_is_alloted_hostel()){
+                if(in_array($student_detail['hosteltypeid'], $GLOBALS['iccr_ids'])){
+                    $mess_due_arr = $this->get_mess_due();
+                    $mess_due = $mess_due_arr[0]['due'];
+                    $data = $this->studentmodel->get_student_transactions($regno);
+                    if(!$mess_due||$mess_due<0){
+                        $this->load->model('studentmodel', TRUE);
+                        $data['details'] = $this->studentmodel->get_student_details($regno);
                         //$data['transactions'] = $this->studentmodel->get_student_transactions_slip($regno);
-                $data['messtransactions'] = $this->studentmodel->get_student_messtransactions($regno);
-                $this->_render_page('allotment_slip2', $data);
-                return 0;
-            }
-            if($data){
-                $payment_detail=$data[0];
-                if($payment_detail['mess_dues']>=$mess_due){
+                        $data['messtransactions'] = $this->studentmodel->get_student_messtransactions($regno);
+                        $this->_render_page('allotment_slip2', $data);
+                        return 0;
+                    }
+                    if($data){
+                        $payment_detail=$data[0];
+                        if($payment_detail['mess_dues']>=$mess_due){
                         // $alloted_hostel = $this->_is_alloted_hostel();
                         // $alloted_mess = $this->_is_alloted_mess();
                         // $data['hostel'] = $alloted_hostel;
                         // $data['mess'] = $alloted_mess;
                         // $this->_render_page('allotment_slip', $data);
-                    $this->load->model('studentmodel', TRUE);
-                    $data['details'] = $this->studentmodel->get_student_details($regno);
+                            $this->load->model('studentmodel', TRUE);
+                            $data['details'] = $this->studentmodel->get_student_details($regno);
                         //$data['transactions'] = $this->studentmodel->get_student_transactions_slip($regno);
-                    $data['messtransactions'] = $this->studentmodel->get_student_messtransactions($regno);
-                    $this->_render_page('allotment_slip2', $data);
+                            $data['messtransactions'] = $this->studentmodel->get_student_messtransactions($regno);
+                            $this->_render_page('allotment_slip2', $data);
+                        }else{
+                            echo "Please pay mess dues to generate slip.";
+                        }
+                    }else{
+                        echo "Please pay mess dues to generate slip.";
+                    }
                 }else{
-                    echo "Please pay mess dues to generate slip.";
-                }
-            }else{
-                echo "Please pay mess dues to generate slip.";
-            }
-        }else{
-            $data = $this->neft_check();
-            if($data){
-                if(!empty($data)){
-                    unset($data['im_list']);
-                    if(empty($data)){
-                        echo "Please submit your EFT/Inter-Intra bank transaction receipt at Hostel office. Hostel Office will issue no dues certificate.";
-                        return 1;
+                    $data = $this->neft_check();
+                    if($data){
+                        if(!empty($data)){
+                            unset($data['im_list']);
+                            if(empty($data)){
+                                echo "Please submit your EFT/Inter-Intra bank transaction receipt at Hostel office. Hostel Office will issue no dues certificate.";
+                                return 1;
+                            }else{
+                                $this->load->model('studentmodel', TRUE);
+                                $data['details'] = $this->studentmodel->get_student_details($regno);
+                            //$data['transactions'] = $this->studentmodel->get_student_transactions_slip($regno);
+                                $data['messtransactions'] = $this->studentmodel->get_student_messtransactions($regno);
+                                $this->_render_page('allotment_slip2', $data);
+                            }
+                        }
                     }else{
                         $this->load->model('studentmodel', TRUE);
                         $data['details'] = $this->studentmodel->get_student_details($regno);
-                            //$data['transactions'] = $this->studentmodel->get_student_transactions_slip($regno);
+                        //$data['transactions'] = $this->studentmodel->get_student_transactions_slip($regno);
                         $data['messtransactions'] = $this->studentmodel->get_student_messtransactions($regno);
+                        $data['current_page'] = 'slip';
+                        $data['title'] = 'Hostel/Mess allotment slip';
                         $this->_render_page('allotment_slip2', $data);
                     }
+
                 }
             }else{
-                $this->load->model('studentmodel', TRUE);
-                $data['details'] = $this->studentmodel->get_student_details($regno);
-                        //$data['transactions'] = $this->studentmodel->get_student_transactions_slip($regno);
-                $data['messtransactions'] = $this->studentmodel->get_student_messtransactions($regno);
-                $data['current_page'] = 'slip';
-                $data['title'] = 'Hostel/Mess allotment slip';
-                $this->_render_page('allotment_slip2', $data);
-            }
+             $this->_render_page('no-hostel', $data);      
+         }
+     }
 
-        }
-    }else{
-       $this->_render_page('no-hostel', $data);      
-   }
-}
-
-public function _get_allowed_mess_hostel($payment_detail){
-    $userId = $this->user_id;
-    $hostel_mess = $this->hostelmodel->get_hostel_mess_list_student($userId);
-    $mess_due = $this->get_mess_due();
-    if($payment_detail['messtransactions'] && $hostel_mess['mess']){
-        foreach ($hostel_mess['mess'] as $key => $mess) {
-            $amount_to_be_paid = intval($mess['messadvance']) + intval($mess_due);
-            $amount_paid = intval($payment_detail['total_mess_due']) + intval($payment_detail['total_mess_adv']);
-            if($amount_paid<$amount_to_be_paid){
-                unset($hostel_mess['mess'][$key]);
+     public function _get_allowed_mess_hostel($payment_detail){
+        $userId = $this->user_id;
+        $hostel_mess = $this->hostelmodel->get_hostel_mess_list_student($userId);
+        $mess_due = $this->get_mess_due();
+        if($payment_detail['messtransactions'] && $hostel_mess['mess']){
+            foreach ($hostel_mess['mess'] as $key => $mess) {
+                $amount_to_be_paid = intval($mess['messadvance']) + intval($mess_due);
+                $amount_paid = intval($payment_detail['total_mess_due']) + intval($payment_detail['total_mess_adv']);
+                if($amount_paid<$amount_to_be_paid){
+                    unset($hostel_mess['mess'][$key]);
+                }
+                if (empty($hostel_mess['mess'])) {
+                    $hostel_mess['mess'] =FLASE;
+                }
             }
-            if (empty($hostel_mess['mess'])) {
-                $hostel_mess['mess'] =FLASE;
-            }
+        }else{
+            $hostel_mess['mess'] = FALSE;
         }
-    }else{
-        $hostel_mess['mess'] = FALSE;
-    }
-    if($payment_detail['transactions'] && $hostel_mess['hostel']){
-        foreach ($hostel_mess['hostel'] as $key => $hostel) {
-            $hostel_emc = 2500;
-            $amount_to_be_paid_hostel = $hostel_emc + intval($hostel['hostelfee']) + intval($hostel['maintenance']);
-            $amount_paid_hostel = $payment_detail['total_maintenance']+ $payment_detail['total_seat_fee'] + $payment_detail['total_emc_fee'];
-            if($amount_paid_hostel<$amount_to_be_paid_hostel){
-                unset($hostel_mess['hostel'][$key]);
+        if($payment_detail['transactions'] && $hostel_mess['hostel']){
+            foreach ($hostel_mess['hostel'] as $key => $hostel) {
+                $hostel_emc = 2500;
+                $amount_to_be_paid_hostel = $hostel_emc + intval($hostel['hostelfee']) + intval($hostel['maintenance']);
+                $amount_paid_hostel = $payment_detail['total_maintenance']+ $payment_detail['total_seat_fee'] + $payment_detail['total_emc_fee'];
+                if($amount_paid_hostel<$amount_to_be_paid_hostel){
+                    unset($hostel_mess['hostel'][$key]);
+                }
             }
-        }
-        if(empty($hostel_mess['hostel'])){
+            if(empty($hostel_mess['hostel'])){
+                $hostel_mess['hostel'] = FALSE;
+            }
+        }else{
             $hostel_mess['hostel'] = FALSE;
         }
-    }else{
-        $hostel_mess['hostel'] = FALSE;
-    }
-    return $hostel_mess;
-}
-
-public function _get_allowed_mess_hostel_summer($payment_detail){
-    $userId = $this->user_id;
-    $hostel_mess = $this->hostelmodel->get_hostel_mess_list_student($userId);
-    $mess_due_arr = $this->get_mess_due();
-    $mess_due = $mess_due_arr[0]['due'];
-        //for iccr check
-    $regno = $this->hostelmodel->userid_to_regno($this->user_id);
-    $student_detail = $this->studentmodel->get_student_detail($regno);
-    $iccr = false;
-    if(in_array(intval($student_detail['hosteltypeid']), $GLOBALS['iccr_ids'])){
         return $hostel_mess;
     }
-    if($payment_detail && $hostel_mess['mess']){
-        foreach ($hostel_mess['mess'] as $key => $mess) {
-            $flag = true;
-            $amount_to_be_paid = intval($mess['messadvance'])+intval($mess_due);
-                // print_r($payment_detail['total_mess_due']);
-                // print_r($payment_detail);
-            $amount_paid = intval($payment_detail['mess_dues'])+intval($payment_detail['mess_advance']);
-                //amout paid should be 4000 under any circumstances for anyone to join summer hostel allotment.
-            if($amount_paid < $amount_to_be_paid){
-                $flag = false;
-                unset($hostel_mess['mess'][$key]);
-            }
-            if (empty($hostel_mess['mess'])) {
-                $hostel_mess['mess'] =false;
-            }
-        }
-    }else{
-        $hostel_mess['mess'] =false;
-    }
-    if($payment_detail && $hostel_mess['hostel']){
-        foreach ($hostel_mess['hostel'] as $key => $hostel) {
-            $flag = true;
-            $amount_to_be_paid = intval($hostel['hostelfee'])+intval($hostel['maintenance'])+$GLOBALS['ewc_charge'];
-                // print_r($payment_detail['total_mess_due']);
-                // print_r($payment_detail);
-            $amount_paid = intval($payment_detail['seatrent'])+intval($payment_detail['maintenance_charges'])+intval($payment_detail['emc']);
-                //amout paid should be 4000 under any circumstances for anyone to join summer hostel allotment.
-            if($amount_paid < $amount_to_be_paid){
-                $flag = false;
-                unset($hostel_mess['hostel'][$key]);
-            }
-            if (empty($hostel_mess['hostel'])) {
-                $hostel_mess['hostel'] =FALSE;
-            }
-        }
-    }else{
-        $hostel_mess['hostel'] =FALSE;
-    }
-    return $hostel_mess;
-}
 
-public function get_mess_due(){
-    $userId = $this->user_id;
-    $mess_due = $this->hostelmodel->get_mess_due($userId);
-    return $mess_due;
-}
-public function payment_detail_check() {
-    $userId = $this->user_id;
-    $payment_detail = $this->hostelmodel->payment_detail_check($userId);
-    return $payment_detail;
-}
-public function _is_alloted_hostel() {
-    $userId = $this->user_id;
-    $hostel = $this->hostelmodel->is_alloted_hostel($userId);
-    return $hostel;
-}
-public function _is_alloted_mess() {
-    $userId = $this->user_id;
-    $mess = $this->hostelmodel->is_alloted_mess($userId);
-    return $mess;
-}
-public function _is_alloted_hostel_summer() {
-    $userId = $this->user_id;
-    $hostel = $this->hostelmodel->is_alloted_hostel($userId);
-    return $hostel;
-}
-public function _is_alloted_mess_summer() {
-    $userId = $this->user_id;
-    $mess = $this->hostelmodel->is_alloted_mess($userId);
-    return $mess;
-}
-public function allotment ($type='') {
-    $regno = $this->hostelmodel->userid_to_regno($this->user_id);
-    $student_detail = $this->studentmodel->get_student_detail($regno);
-    if($student_detail){
-        if($student_detail['blocked']==1){
-            header("location: /student/hostels/home/");
-        }else if(!in_array(intval($student_detail['hosteltypeid']), $GLOBALS['allowed_student_types'])){
-            header("location: /student/hostels/home/");
+    public function _get_allowed_mess_hostel_summer($payment_detail){
+        $userId = $this->user_id;
+        $hostel_mess = $this->hostelmodel->get_hostel_mess_list_student($userId);
+        $mess_due_arr = $this->get_mess_due();
+        $mess_due = $mess_due_arr[0]['due'];
+        //for iccr check
+        $regno = $this->hostelmodel->userid_to_regno($this->user_id);
+        $student_detail = $this->studentmodel->get_student_detail($regno);
+        $iccr = false;
+        if(in_array(intval($student_detail['hosteltypeid']), $GLOBALS['iccr_ids'])){
+            return $hostel_mess;
         }
-    }else{
-        echo "An error occoured!";
-        return 1;
-    }
-    if ($type=='') {
-        header("location: /student/hostels/allotment/room/");
-    }
-    $data = array();
-    $regno = $this->hostelmodel->userid_to_regno($this->user_id);
-    $data['studenttransactions'] = $this->studentmodel->get_student_transactions($regno);
-    $payment_detail = $data['studenttransactions'][0];
-    $hostel_mess = $this->_get_allowed_mess_hostel_summer($payment_detail);
-    $hostel_mess = $this->_get_allowed_mess_hostel_summer($payment_detail);
-    if(!($hostel_mess['hostel'] && $hostel_mess['mess'])){
-        $data['error'] = 'Not Elegible for any Mess or Hostel';
-        header('location: /student/hostels/home/');
-    }
-    $data['current_page'] = 'hostel';
-    $data['current_nav'] = 'single';
-    $data['scripts'] = array('hostel.js');
-    if ($type == "room") {
-        if($this->_is_alloted_hostel()){
-            header("location: /student/hostels/home/");
-            return 0;
+        if($payment_detail && $hostel_mess['mess']){
+            foreach ($hostel_mess['mess'] as $key => $mess) {
+                $flag = true;
+                $amount_to_be_paid = intval($mess['messadvance'])+intval($mess_due);
+                // print_r($payment_detail['total_mess_due']);
+                // print_r($payment_detail);
+                $amount_paid = intval($payment_detail['mess_dues'])+intval($payment_detail['mess_advance']);
+                //amout paid should be 4000 under any circumstances for anyone to join summer hostel allotment.
+                if($amount_paid < $amount_to_be_paid){
+                    $flag = false;
+                    unset($hostel_mess['mess'][$key]);
+                }
+                if (empty($hostel_mess['mess'])) {
+                    $hostel_mess['mess'] =false;
+                }
+            }
+        }else{
+            $hostel_mess['mess'] =false;
         }
-        $data['title'] = 'Online Room Allotment';
-        $data['hostel_mess_detail'] = $hostel_mess;
-        $this->_render_page('hostels/allotment2', $data);
+        if($payment_detail && $hostel_mess['hostel']){
+            foreach ($hostel_mess['hostel'] as $key => $hostel) {
+                $flag = true;
+                $amount_to_be_paid = intval($hostel['hostelfee'])+intval($hostel['maintenance'])+$GLOBALS['ewc_charge'];
+                // print_r($payment_detail['total_mess_due']);
+                // print_r($payment_detail);
+                $amount_paid = intval($payment_detail['seatrent'])+intval($payment_detail['maintenance_charges'])+intval($payment_detail['emc']);
+                //amout paid should be 4000 under any circumstances for anyone to join summer hostel allotment.
+                if($amount_paid < $amount_to_be_paid){
+                    $flag = false;
+                    unset($hostel_mess['hostel'][$key]);
+                }
+                if (empty($hostel_mess['hostel'])) {
+                    $hostel_mess['hostel'] =FALSE;
+                }
+            }
+        }else{
+            $hostel_mess['hostel'] =FALSE;
+        }
+        return $hostel_mess;
     }
-    if($type == "mess"){
-        if(!$this->_is_alloted_hostel()){
+
+    public function get_mess_due(){
+        $userId = $this->user_id;
+        $mess_due = $this->hostelmodel->get_mess_due($userId);
+        return $mess_due;
+    }
+    public function payment_detail_check() {
+        $userId = $this->user_id;
+        $payment_detail = $this->hostelmodel->payment_detail_check($userId);
+        return $payment_detail;
+    }
+    public function _is_alloted_hostel() {
+        $userId = $this->user_id;
+        $hostel = $this->hostelmodel->is_alloted_hostel($userId);
+        return $hostel;
+    }
+    public function _is_alloted_mess() {
+        $userId = $this->user_id;
+        $mess = $this->hostelmodel->is_alloted_mess($userId);
+        return $mess;
+    }
+    public function _is_alloted_hostel_summer() {
+        $userId = $this->user_id;
+        $hostel = $this->hostelmodel->is_alloted_hostel($userId);
+        return $hostel;
+    }
+    public function _is_alloted_mess_summer() {
+        $userId = $this->user_id;
+        $mess = $this->hostelmodel->is_alloted_mess($userId);
+        return $mess;
+    }
+    public function allotment ($type='') {
+        $regno = $this->hostelmodel->userid_to_regno($this->user_id);
+        $student_detail = $this->studentmodel->get_student_detail($regno);
+        if($student_detail){
+            if($student_detail['blocked']==1){
+                header("location: /student/hostels/home/");
+            }else if(!in_array(intval($student_detail['hosteltypeid']), $GLOBALS['allowed_student_types'])){
+                header("location: /student/hostels/home/");
+            }
+        }else{
+            echo "An error occoured!";
+            return 1;
+        }
+        if ($type=='') {
             header("location: /student/hostels/allotment/room/");
-            return 0;
         }
-        $data['title'] = 'Online Mess Allotment';
-        $data['hostel_mess_detail'] = $hostel_mess;
-        $this->_render_page('hostels/messallotment2', $data);
+        $data = array();
+        $regno = $this->hostelmodel->userid_to_regno($this->user_id);
+        $data['studenttransactions'] = $this->studentmodel->get_student_transactions($regno);
+        $payment_detail = $data['studenttransactions'][0];
+        $hostel_mess = $this->_get_allowed_mess_hostel_summer($payment_detail);
+        $hostel_mess = $this->_get_allowed_mess_hostel_summer($payment_detail);
+        if(!($hostel_mess['hostel'] && $hostel_mess['mess'])){
+            $data['error'] = 'Not Elegible for any Mess or Hostel';
+            header('location: /student/hostels/home/');
+        }
+        $data['current_page'] = 'hostel';
+        $data['current_nav'] = 'single';
+        $data['scripts'] = array('hostel.js');
+        if ($type == "room") {
+            if($this->_is_alloted_hostel()){
+                header("location: /student/hostels/home/");
+                return 0;
+            }
+            $data['title'] = 'Online Room Allotment';
+            $data['hostel_mess_detail'] = $hostel_mess;
+            $this->_render_page('hostels/allotment2', $data);
+        }
+        if($type == "mess"){
+            if(!$this->_is_alloted_hostel()){
+                header("location: /student/hostels/allotment/room/");
+                return 0;
+            }
+            $data['title'] = 'Online Mess Allotment';
+            $data['hostel_mess_detail'] = $hostel_mess;
+            $this->_render_page('hostels/messallotment2', $data);
+        }
     }
-}
 
-public function get_Hostel_Detail_JSON($hostelId=''){
-    $hostel_detail = $this->hostelmodel->HostelDetail($hostelId);
-    echo json_encode($hostel_detail);
-}
+    public function get_Hostel_Detail_JSON($hostelId=''){
+        $hostel_detail = $this->hostelmodel->HostelDetail($hostelId);
+        echo json_encode($hostel_detail);
+    }
 
-public function get_room_list_JSON($hostelId='',$floor=''){
-    if(is_null($hostelId)||is_null($floor)) return print('error');
-    $room_list = $this->hostelmodel->roomList($hostelId,$floor);
-    echo json_encode($room_list);
-}
+    public function get_room_list_JSON($hostelId='',$floor=''){
+        if(is_null($hostelId)||is_null($floor)) return print('error');
+        $room_list = $this->hostelmodel->roomList($hostelId,$floor);
+        echo json_encode($room_list);
+    }
 
-public function single_room() {
-    $regno = $this->hostelmodel->userid_to_regno($this->user_id);
-    $student_detail = $this->studentmodel->get_student_detail($regno);
-    if($student_detail){
-        if($student_detail['blocked']==1){
-            echo "Your account is blocked";
+    public function single_room() {
+        $regno = $this->hostelmodel->userid_to_regno($this->user_id);
+        $student_detail = $this->studentmodel->get_student_detail($regno);
+        if($student_detail){
+            if($student_detail['blocked']==1){
+                echo "Your account is blocked";
+                return false;
+            }
+        }else{
+            echo "An error occoured";
             return false;
         }
-    }else{
-        echo "An error occoured";
-        return false;
-    }
-    $room_id = $this->input->post('roomId');
-    $hostel_id = $this->input->post('hostelId');
-    $userId = $this->user_id;
-    $regno = $this->hostelmodel->userid_to_regno($this->user_id);
-    $data['studenttransactions'] = $this->studentmodel->get_student_transactions($regno);
-    $payment_detail = $data['studenttransactions'][0];
-    if($payment_detail=='blocked'){
-        return print('blocked');
-    }
-    $hostel_mess = $this->_get_allowed_mess_hostel_summer($payment_detail);
-    if(!($hostel_mess['hostel'] && $hostel_mess['mess'])){
-        echo "error";
-    }
-    $hostels = $hostel_mess['hostel'];
-    $flag = 0;
-    foreach ($hostels as $key => $hostel) {
-        if($hostel_id == $hostel['hostelid']){
-            ++$flag;
+        $room_id = $this->input->post('roomId');
+        $hostel_id = $this->input->post('hostelId');
+        $userId = $this->user_id;
+        $regno = $this->hostelmodel->userid_to_regno($this->user_id);
+        $data['studenttransactions'] = $this->studentmodel->get_student_transactions($regno);
+        $payment_detail = $data['studenttransactions'][0];
+        if($payment_detail=='blocked'){
+            return print('blocked');
+        }
+        $hostel_mess = $this->_get_allowed_mess_hostel_summer($payment_detail);
+        if(!($hostel_mess['hostel'] && $hostel_mess['mess'])){
+            echo "error";
+        }
+        $hostels = $hostel_mess['hostel'];
+        $flag = 0;
+        foreach ($hostels as $key => $hostel) {
+            if($hostel_id == $hostel['hostelid']){
+                ++$flag;
+                break;
+            }
+        }
+        if(empty($hostel_id) || empty($room_id) || ($flag = 0)) return print('invalid');
+        $status = $this->hostelmodel->book_single_room($hostel_id,$room_id,$userId);
+        switch ($status) {
+            case 1:
+            echo "alloted";
+            break;
+            case 2:
+            echo "invstu";
+            break;
+            case 3:
+            echo "dberr";
+            break;
+            case 4:
+            echo('success');
+            break;
+            case 5:
+            echo('duplicate');
+            break;
+            case 6:
+            echo('messfull');
+            break;
+            case 6:
+            echo('dberr');
             break;
         }
     }
-    if(empty($hostel_id) || empty($room_id) || ($flag = 0)) return print('invalid');
-    $status = $this->hostelmodel->book_single_room($hostel_id,$room_id,$userId);
-    switch ($status) {
-        case 1:
-        echo "alloted";
-        break;
-        case 2:
-        echo "invstu";
-        break;
-        case 3:
-        echo "dberr";
-        break;
-        case 4:
-        echo('success');
-        break;
-        case 5:
-        echo('duplicate');
-        break;
-        case 6:
-        echo('messfull');
-        break;
-        case 6:
-        echo('dberr');
-        break;
-    }
-}
 
-public function single_mess() {
-    $regno = $this->hostelmodel->userid_to_regno($this->user_id);
-    $student_detail = $this->studentmodel->get_student_detail($regno);
-    if($student_detail){
-        if($student_detail['blocked']==1){
-            echo "Please contact Hostel Office to know the reason and unblock the account in order to avail online booking";
+    public function single_mess() {
+        $regno = $this->hostelmodel->userid_to_regno($this->user_id);
+        $student_detail = $this->studentmodel->get_student_detail($regno);
+        if($student_detail){
+            if($student_detail['blocked']==1){
+                echo "Please contact Hostel Office to know the reason and unblock the account in order to avail online booking";
+                return flase;
+            }
+        }else{
+            echo "An error occoured";
             return flase;
         }
-    }else{
-        echo "An error occoured";
-        return flase;
-    }
-    $mess_id = $this->input->post('messId');
-    $hostel_id = $this->input->post('hostelId');
-    $userId = $this->user_id;
-    $regno = $this->hostelmodel->userid_to_regno($this->user_id);
-    $data['studenttransactions'] = $this->studentmodel->get_student_transactions($regno);
-    $payment_detail = $data['studenttransactions'][0];
-    if($payment_detail=='blocked'){
-        return print('blocked');
-    }
-    $hostel_mess = $this->_get_allowed_mess_hostel_summer($payment_detail);
-    if(!($hostel_mess['hostel'] && $hostel_mess['mess'])){
-        echo "error";
-    }
-    $messes = $hostel_mess['mess'];
-    $flag = 0;
-    foreach ($messes as $key => $mess) {
-        if($mess_id == $mess['messid']){
-            ++$flag;
+        $mess_id = $this->input->post('messId');
+        $hostel_id = $this->input->post('hostelId');
+        $userId = $this->user_id;
+        $regno = $this->hostelmodel->userid_to_regno($this->user_id);
+        $data['studenttransactions'] = $this->studentmodel->get_student_transactions($regno);
+        $payment_detail = $data['studenttransactions'][0];
+        if($payment_detail=='blocked'){
+            return print('blocked');
+        }
+        $hostel_mess = $this->_get_allowed_mess_hostel_summer($payment_detail);
+        if(!($hostel_mess['hostel'] && $hostel_mess['mess'])){
+            echo "error";
+        }
+        $messes = $hostel_mess['mess'];
+        $flag = 0;
+        foreach ($messes as $key => $mess) {
+            if($mess_id == $mess['messid']){
+                ++$flag;
+                break;
+            }
+        }
+        if(empty($mess_id) || ($flag = 0)) return print('invalid');
+        $status = $this->hostelmodel->book_mess($mess_id,$userId);
+        switch ($status) {
+            case 9:
+            echo "alloted";
+            break;
+            case 2:
+            echo "invstu";
+            break;
+            case 8:
+            echo "dberr";
+            break;
+            case 4:
+            echo('success');
+            break;
+            case 5:
+            echo('duplicate');
+            break;
+            case 6:
+            echo('messfull');
+            break;
+            case 6:
+            echo('dberr');
+            break;
+            case 7:
+            echo('dberr');
             break;
         }
     }
-    if(empty($mess_id) || ($flag = 0)) return print('invalid');
-    $status = $this->hostelmodel->book_mess($mess_id,$userId);
-    switch ($status) {
-        case 9:
-        echo "alloted";
-        break;
-        case 2:
-        echo "invstu";
-        break;
-        case 8:
-        echo "dberr";
-        break;
-        case 4:
-        echo('success');
-        break;
-        case 5:
-        echo('duplicate');
-        break;
-        case 6:
-        echo('messfull');
-        break;
-        case 6:
-        echo('dberr');
-        break;
-        case 7:
-        echo('dberr');
-        break;
-    }
-}
 
 
-/*Group stuff starts here*/
+    /*Group stuff starts here*/
     /*public function group() {
         $data['current_page'] = 'hostel';
         $data['current_nav'] = 'group';

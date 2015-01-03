@@ -1,5 +1,7 @@
 application/config/database.php
 application/logs/
+assets/upload/real/
+assets/upload/thumbs/
 uploads/
 .DS_Store
 .idea/

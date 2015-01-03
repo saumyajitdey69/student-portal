@@ -8,6 +8,9 @@
       <li class="list-group-item <?php echo $current_page === "profile" ? "active" : ""?>">
         <a href="<?php echo base_url('audit/profile'); ?>">Profile</a>
       </li>
+       <li class="list-group-item <?php echo $current_page === "image-upload" ? "active" : ""?>">
+        <a href="<?php echo base_url('upload'); ?>">Upload Profile Image</a>
+      </li>
       <li class="list-group-item">
         <span class="collapse-caret collapsed dropdown-toggle" data-toggle="collapse" data-target="#attendance"></span>
         <div class="list-group-item-wrapper">

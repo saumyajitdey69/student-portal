@@ -13,6 +13,7 @@ $config['tables'] = array(
     'allowedhostels' =>  "allowedhostels",
     'studenttypes' =>  "studenttypes",
     'admissiontypes' =>  "admissiontypes",
+    'student_details' =>  "student_details",
     'students' =>  "students",
     'messdues' => "messdues",
     'hostelstransactions' =>  "transactions",

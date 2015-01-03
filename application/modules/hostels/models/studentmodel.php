@@ -7,6 +7,7 @@ class Studentmodel extends CI_Model {
 		parent::__construct();
 		$this->load->config('hostels/hostels_config',  TRUE);
 		$this->tables = $this->config->item('tables', 'hostels_config');
+		$this->db = $this->load->database('hostels', TRUE);
 	}
 	
 	//@vaibhav awachat
@@ -25,6 +26,7 @@ class Studentmodel extends CI_Model {
 		}
 	}
 
+	// deprecated
 	//@Vaibhav Awachat
 	public function get_student_transactions($reg_no = ''){
 		if(empty($reg_no))
@@ -54,6 +56,8 @@ class Studentmodel extends CI_Model {
 
 	# winter
 	//@Vaibhav Awachat
+
+	// deprecated
 	public function get_current_student_transactions($reg_no = ''){
 		if(empty($reg_no))
 			return false;
@@ -128,6 +132,7 @@ class Studentmodel extends CI_Model {
 		}
 	}
 
+	// deprecated
 	/* 
 		Anik Das
 		function to get student type ID
@@ -292,6 +297,7 @@ class Studentmodel extends CI_Model {
 			return false;
 		}
 	}
+
 	public function add_neft_detail($data){
 		$date = new DateTime();
 		$insert_data = array(
@@ -319,21 +325,23 @@ class Studentmodel extends CI_Model {
 		}
 	}
 
+
+	//deprecated
 	public function get_student_details($reg_num)
 	{
 		$this->hostel_db = $this->load->database('hostels', TRUE);
 		$this->hostel_db->where('regno', $reg_num);
 		$query = $this->hostel_db->select('regno, c.name as class, sd.roll_number as roll, sd.name as sname, sd.mobile as contact, sd.email as email, st.year as year, at.name as admissiontype, st.gender, r.number as room, r.floor as floor, h.name as hostel, m.name as mess, s.timestamp as timestamp, s.hosteltypeid as hostelid, s.messid, s.roomid, s.hosteltypeid as studenttypeid, s.blocked, mt.father_name as father')
-		->join($this->tables['student_data1'].' AS sd ', 's.regno = sd.registration_number', 'left')
-		->join($this->tables['studenttypes'].' AS st ', 's.hosteltypeid = st.id', 'left')
-		->join($this->tables['admissiontypes'].' as at ', 'st.admissiontypeid = at.id', 'left')
-		->join($this->tables['rooms'].' as r ', 's.roomid = r.id', 'left')
-		->join($this->tables['classes'].' as c ', 'st.class = c.id', 'left')
-		->join($this->tables['hostels'].' as h ', 'r.hostelid = h.id', 'left')
-		->join($this->tables['messes'].' as m ', 's.messid = m.id', 'left')
-		->join($this->tables['messtransactions'].' as mt ', 's.regno = mt.registration_number', 'left')
-		->limit(1)
-		->get($this->tables['students'].' as s ');
+					            ->join($this->tables['student_data1'].' AS sd ', 's.regno = sd.registration_number', 'left')
+					            ->join($this->tables['studenttypes'].' AS st ', 's.hosteltypeid = st.id', 'left')
+					            ->join($this->tables['admissiontypes'].' as at ', 'st.admissiontypeid = at.id', 'left')
+					            ->join($this->tables['rooms'].' as r ', 's.roomid = r.id', 'left')
+					            ->join($this->tables['classes'].' as c ', 'st.class = c.id', 'left')
+					            ->join($this->tables['hostels'].' as h ', 'r.hostelid = h.id', 'left')
+					            ->join($this->tables['messes'].' as m ', 's.messid = m.id', 'left')
+					            ->join($this->tables['messtransactions'].' as mt ', 's.regno = mt.registration_number', 'left')
+								->limit(1)
+								->get($this->tables['students'].' as s ');
 		if($query->num_rows() > 0)
 		{
 			return $query->first_row('array');
@@ -342,7 +350,7 @@ class Studentmodel extends CI_Model {
 			return FALSE;
 	}
 
-
+	// deprecated
 	public function get_student_messtransactions($reg_no = '')
 	{
 		$this->hostel_db = $this->load->database('hostels', TRUE);
@@ -354,6 +362,76 @@ class Studentmodel extends CI_Model {
 			return $query->result('array');
 		else
 			return FALSE;
+	}
+
+
+
+
+	/**
+	 * get data from given table
+	 * 	
+	 * @return mixed 
+	 * @author Awachat
+	 *
+	 */
+
+	public function _get($input_column = array(), $table_name = 'students', $err_message = 'Some error occured. Data is not available.', $limit = FALSE, $json = FALSE, $array = TRUE, $output_column = '*', $order = '')
+	{
+		$this->db = $this->load->database('hostels', TRUE);
+		if(!empty($input_column))
+			$this->db->where($input_column);
+
+		if($limit != FALSE)
+			$this->db->limit('1');
+
+		if(!empty($order))
+		$this->db->order_by($order);
+
+		$this->db->select($output_column);
+
+		$query = $this->db->get($table_name);
+
+		if($query->num_rows() > 0)
+			if(!empty($limit) && $limit != FALSE)
+				if($json)
+					return json_encode($query->first_row());
+				else if($array)
+					return $query->first_row('array');
+				else
+					return $query->first_row();
+			else
+				if($json)
+					return json_encode($query->result());
+				else if($array)
+					return $query->result('array');
+				else
+					return $query->result();
+		else
+		{
+			$err = array();
+			$err['message'] = $err_message; 
+			// 0 stands for false;
+			$err['status'] = '0'; 
+			if($json)
+				return json_encode($err);
+			else
+				return $err_message;
+		}
+	}
+
+
+	/**
+	 * blocked status check
+	 * 
+	 * @return bool, false means not blocked
+	 * @author Awachat
+	 */
+
+	public function blocked_check($regno = '')
+	{
+		if(empty($regno))
+			return false; 
+		return $this->db->select('blocked')->get_where($this->tables['students'], array('regno'=> $regno),'1')->first_row()->blocked == '0' ? FALSE : TRUE;
 	}
 
 }

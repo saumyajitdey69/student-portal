@@ -12,6 +12,9 @@ class Audit extends MY_Controller {
 			redirect(base_url('audit/profile'), 'location', 301);
 			return false;
 		}
+		$image = 'assets/upload/thumbs/'.$this->session->userdata('registration_number').'.jpg';
+		 if(!file_exists($image))
+		 	redirect('upload');
 
 	}
 
