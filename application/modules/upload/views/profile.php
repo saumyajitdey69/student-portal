@@ -86,7 +86,7 @@
                     <i>How to resize image if it exceed maximum dimensions? Or How to reduce image size?</i>
                     <br>Please Google it!
                 </li>
-                <li><a href="#" target="_blank">Click here</a> for help & support to upload your profile picture on student portal.</li>
+                <!-- <li><a href="#" target="_blank">Click here</a> for help & support to upload your profile picture on student portal.</li> -->
             </ul>
             <form class="form" name="photo" enctype="multipart/form-data" action="<?php echo base_url('upload') ?>" method="post" id="crop-button">
               <div class="form-group">

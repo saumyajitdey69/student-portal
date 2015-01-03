@@ -1,4 +1,4 @@
-	var base = '/gitlab/student-portal/';
+	var base = '/student/';
 
 	$(document).on('click', function(argument) {
 	    clearSearchResult();
