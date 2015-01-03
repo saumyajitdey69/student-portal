@@ -13,7 +13,7 @@ class Radio extends MY_Controller {
 		$data['title'] = 'LAN Radio | Lan Radio Club';
 		$data['css'] = array('jplayer/skin/blue.monday/css/jplayer.blue.monday.css');
 		$data['scripts'] = array('jplayer/jquery.jplayer.min.js', 'jplayer/config.js');
-		$this->_render_page('radio/index', $data);
+		$this->_render_page('radio/home', $data);
 	}
 
 	public function indicator()
