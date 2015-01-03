@@ -897,9 +897,9 @@ class Ion_auth_model extends CI_Model
 		if(isset($id))
 		{
 			$data_array=array('userid' =>$id,
-				'username'=>$username,
+				// 'username'=>$username,
 				'name' =>$additional_data['first_name'].' '.$additional_data['last_name'],
-				'email'=>$email,
+				// 'email'=>$email,
 				'mobile'=>$additional_data['phone'],
 				'roll_number' =>$additional_data['roll_number'],
 				'registration_number'=>$additional_data['registration_number'] 
