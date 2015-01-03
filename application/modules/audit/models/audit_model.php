@@ -69,7 +69,9 @@ class Audit_model extends CI_Model {
 
 	public function update($userid, $details)
 	{
-		$query = $this->db->update($this->tables['student_data'], $details, array('userid' => $userid));
+		$student_data_array=$details;
+		unset($student_data_array['email']);
+		$query = $this->db->update($this->tables['student_data'], $student_data_array, array('userid' => $userid));
 		if ($this->db->affected_rows() >= 0) {
 			$this->db->update($this->tables['student_auth'], array('profile_edited' => 1,
 					'first_name'=>$details['name'],
