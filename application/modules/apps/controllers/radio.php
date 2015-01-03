@@ -16,6 +16,11 @@ class Radio extends MY_Controller {
 		$this->_render_page('radio/index', $data);
 	}
 
+	public function indicator()
+	{
+		echo '';
+	}
+
 	function _render_page($view, $data=null, $render=false)
 	{
 		$data['current_section'] = 'apps';
