@@ -121,8 +121,7 @@
 				</div>
 				<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 					<h4 style="margin:0"><b>National Institute of Technology, Warangal</b></h4>
-					<h5 style="margin:0">No dues 
-certificate, OMAHA Winter Session</h5>
+					<h5 style="margin:0">No dues certificate, OMAHA Winter Session</h5>
 					<br>
 				</div>
 				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
@@ -134,7 +133,7 @@ certificate, OMAHA Winter Session</h5>
 			</div>
 			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 				<br><br>
-				<img src="<?php echo asset_url(); ?>images/profile-img.png" height=144 width=144/>
+				<img src="<?php echo base_url('assets/upload/thumbs/'.$this->session->userdata('registration_number').'.jpg'); ?>" width="144px"/>
 			</div>
 			<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
 				<table class="table table-condensed google-table-extra-condensed table-striped">
