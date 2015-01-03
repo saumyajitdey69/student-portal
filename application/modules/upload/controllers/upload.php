@@ -58,7 +58,7 @@ class Upload extends MY_Controller {
 				->save($destination_thumbs . $file_name, $overwrite= TRUE) ;
 
 				if ($this->image_moo->errors) {
-					$data['error'] = $this->image_moo->display_errors() ;
+					$data['errors'] = $this->image_moo->display_errors() ;
 				}
 				else {
 					$data['thumb_photo_exists'] = "<img src=\"".base_url() . $destination_thumbs . $file_name."\" alt=\"Thumbnail Image\"/>";
