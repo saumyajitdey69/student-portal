@@ -22,22 +22,18 @@ class Upload extends MY_Controller {
 		if (!empty($_POST['upload'])) {
 
 			$config['overwrite']   = TRUE;
-			$config['maintain_ratio']    = TRUE;
+			//$config['maintain_ratio']    = TRUE;
 			$config['upload_path']  = $upload_path ;
 			$config['allowed_types']= 'jpg';
 			$config['max_size']     = '5000';
-			//$config['max_width']    = '1024';
-			//$config['max_height']   = '1000';
+			$config['max_width']    = '1500';
+			$config['max_height']   = '1500';
 			$config['file_name'] = $this->user_name;
-			
-
-
 
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload("image")) {
 				$img = $data['img']	 = $this->upload->data();
-				print_r($img);
 				$url = $data['large_photo_exists']  = "<img src=\"".base_url() . $upload_path.$data['img']['file_name']."\" alt=\"Large Image\"/>";
 			}
 		}
@@ -69,11 +65,30 @@ class Upload extends MY_Controller {
 
 		}
 
-			//echo "heo";
+
         $this->load->library('upload');
 		$data['img']  = $this->upload->data();
         $data['scripts'] = array('upload/jquery.imgareaselect.min.js', 'upload/jquery.imgpreview.js');
 		$this->_render_page('upload/profile',$data) ;
+
+ 
+		// Uploading the files the DB
+        $this->load->library('upload');
+        $data['img']  = $this->upload->data();
+        $file_name = $this->user_name.'.jpg';
+
+        if ($data['img']['file_name'] != NULL){
+        
+        $this->load->model("upload_model");
+		$newRow = array(
+			'Filename' => $this->user_name,
+            'RealImage' => $upload_path. $data['img']['file_name'] ,
+            'ThumbImage' => $destination_thumbs. $data['img']['file_name']
+		);
+
+		$this->upload_model->insert1($newRow);
+        }
+		
 		
 		
     }
