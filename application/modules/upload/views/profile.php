@@ -37,7 +37,7 @@
             </div>
             <br>
             <a href="<?php echo base_url('upload');?>"><button class="btn btn-lg btn-primary">Upload Again :(</button></a>
-            <span class="help-block">Trouble uploading profile picture? <br><i>Try to logout and then login or use another updated browser.</i></span>
+            <span class="help-block">Trouble uploading profile picture? <br><i>Try to logout and then login or use another updated browser. Sometime just refreshing the page might work.</i></span>
         <?php elseif($large_photo_exists && $thumb_photo_exists == NULL) :?>
 
             <?php
@@ -73,17 +73,17 @@
             <ul>
                 <li><strong>Upload your profile picture to avoid any inconvenience viewing results, attendance, filling feedback or generating no dues certificate</strong>.</li>
                 <li><span class="text-danger">Upload your profile picture. Invalid profile picture may lead to blocking of your results.</span></li>
-                <li>Please upload a clear scanned/photographed passport size profile picture.</li>
+                <li>Upload a clear scanned/photographed passport size profile picture.</li>
                 <li>Ensure that 70% of the profile picture </li>
                 <li>Only JPG format images are allowed.</li>
                 <li>Please note that maximum allowed file size is <strong>4.768 MB (4882.81 KB)</strong> for Microsoft Windows users & <strong>5 MB (5120 KB)</strong> for others.</li>
                 <li>Maximum width of picture is <strong>1500 px.</strong></li>
                 <li>Maximum height of picture is <strong>1500 px.</strong></li>
-                <li>Profile picture will be used to print new Institute Identity cards (RFID or smartcards), Alumni ID Cards, Mess Card & New TAPS (Traning & Placement Section) Web applications.</li>
+                <li>Profile picture will be used to print new Institute Identity cards (RFID or smartcards), Alumni ID Cards, Mess Card & New TAPS (Training & Placement Section) Web applications.</li>
                 <li>ID cards of first year B.Tech students will be replaced with new in next semester.</li>
                 <li>Final year students must upload the profile picture carefully, it may appear in some very important documents.</li>
                 <li>
-                    <i>How to resize image if it exceed maximum dimensions? or How to reduce image size?</i>
+                    <i>How to resize image if it exceed maximum dimensions? Or How to reduce image size?</i>
                     <br>Please Google it!
                 </li>
                 <li><a href="#" target="_blank">Click here</a> for help & support to upload your profile picture on student portal.</li>
