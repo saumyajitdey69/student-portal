@@ -17,7 +17,6 @@ if($this->session->flashdata('danger') == TRUE)
 	echo '<div class="alert alert-success"><a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>'.$message.'</div>';
 }
 ?>
-
 <div class="row">
 	<div class="col-xs-12 col-sm-8 col-md-9 col-lg-9 main">
 		<?php echo modules::run('enotice', 'academic-home') ?>

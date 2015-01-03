@@ -18,6 +18,10 @@ class Hostels extends MY_Controller {
         //     redirect(base_url('audit/profile'), 'location', 301);
         //     return false;
         // }
+        $image = 'assets/upload/thumbs/'.$this->session->userdata('registration_number').'.jpg';
+         if(!file_exists($image))
+            redirect('upload');
+
         $this->load->model('hostelmodel');
         $this->load->model('messmodel');
         $this->load->model('studentmodel');
