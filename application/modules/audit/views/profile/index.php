@@ -14,7 +14,9 @@ if($this->session->flashdata('danger') == TRUE)
 <?php
 if($submitted === '0')
 {
-  $invalid_details['name'] = set_value('name');
+  $invalid_details['first_name'] = set_value('first_name');
+  $invalid_details['middle_name'] = set_value('middle_name');
+  $invalid_details['last_name'] = set_value('last_name');
   $invalid_details['registration_number'] = set_value('registration_number');
   $invalid_details['roll_number'] = set_value('roll_number');
   $invalid_details['gender'] = set_value('gender');
@@ -48,9 +50,21 @@ else if(!empty($submitted))
   <div class="row">
     <div class="col-md-offset-1 col-xs-12 col-sm-12 col-md-6 col-lg-6">
       <div class="form-group">
-        <label for="inputName" class="col-sm-4 control-label">Name</label>
+        <label for="inputFirstName" class="col-sm-4 control-label">First Name</label>
         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
-          <input type="text" name="name" id="inputName" class="form-control input-sm" value="" required="required"  title="only alphabets" placeholder="full nam as on ID card">
+          <input type="text" name="first_name" id="inputFirstName" class="form-control input-sm" value="" required="required"  title="only alphabets" placeholder="Madatory">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputMiddleName" class="col-sm-4 control-label">Middle Name</label>
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
+          <input type="text" name="middle_name" id="inputMiddlName" class="form-control input-sm" value=""  title="only alphabets" placeholder="Optional">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputLastName" class="col-sm-4 control-label">Last Name</label>
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
+          <input type="text" name="last_name" id="inputLastName" class="form-control input-sm" value="" required="required"  title="only alphabets" placeholder="Mandatory">
         </div>
       </div>
       <div class="form-group well">
@@ -279,7 +293,9 @@ else if(!empty($submitted))
 </div>  <!-- /row-->
 </form>
 <script>
-  document.form_profile.name.value = '<?php echo $details->name; ?>';
+  document.form_profile.first_name.value = '<?php echo $details->first_name; ?>';
+  document.form_profile.last_name.value = '<?php echo $details->last_name; ?>';
+  document.form_profile.middle_name.value = '<?php echo $details->middle_name; ?>';
   document.form_profile.registration_number.value = '<?php echo $details->registration_number; ?>';
   document.form_profile.roll_number.value = '<?php echo $details->roll_number; ?>';
 // document.form_profile.registration_number1.value = '<?php echo $details->registration_number; ?>';

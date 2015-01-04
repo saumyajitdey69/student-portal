@@ -29,13 +29,3 @@
 	</li>
 	<i>- Chief Warden, NITW</i>
 </ul>
-
-<h4 class="text-primary">&nbsp; <strong>Google Apps for Education</strong></h4>
-<ul>
-	<li>Students must provide firstname & lastname to faculty advisor during registration.</li>
-	<!-- <li>NITW Student email id format <br>
-		<strong class="text-info"> &lt;last name's first letter&gt;&lt;firtst name&gt;@student.nitw.ac.in </strong> or <br><strong class="text-info">&lt;first name&gt;&lt;last name's first letter>@student.nitw.ac.in </strong>
-	</li> -->
-	<li>Email ids are automatically generated for the students. Login details and other information will be conveyed to you shortly.</li>
-	<li>For more details about "Google Apps for Education", <a href="http://www.google.com/edu" target="_blank">click here</a>.</li>
-</ul>

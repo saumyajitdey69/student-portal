@@ -19,7 +19,15 @@ if($this->session->flashdata('danger') == TRUE)
 ?>
 <div class="row">
 	<div class="col-xs-12 col-sm-8 col-md-9 col-lg-9 main">
-		<?php echo modules::run('enotice', 'academic-home') ?>
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<?php echo modules::run('enotice', 'google-apps-username') ?>
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<?php echo modules::run('enotice', 'academic-home') ?>
+		</div>
+	</div>
+		
 	</div>
 	<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 main" id="enotice">
 		<?php echo modules::run('enotice', 'academic-section'); ?>
