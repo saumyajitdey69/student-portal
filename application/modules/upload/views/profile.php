@@ -19,6 +19,7 @@
                 opacity: 0.6;
                 filter: alpha(opacity=50);
             }
+            
         </style>
 
         <h4 class="text-primary"><strong>Upload Profile Photo</strong></h4>
@@ -36,7 +37,7 @@
             
             </div>
             <br>
-            <a href="<?php echo base_url('upload');?>"><button class="btn btn-lg btn-primary">Upload Again :(</button></a>
+            <a href="<?php echo base_url('upload');?>"><button class="btn btn-lg btn-primary">Change Profile Picture</button></a>
             <hr>
             <span class="text-info">
 
@@ -82,10 +83,11 @@
             <ul>
                 <li><strong>Invalid profile pictures will be automatically deleted from the system without any prior notice. Students are requested to follow the instructions carefully and cooperate.</strong></li>
                 <li><strong>Upload your profile picture to avoid any inconvenience viewing results, attendance, filling feedback or generating no dues certificate</strong>.</li>
+                <li><span class="label label-danger">new</span> File extension must be '.jpg' in lowercase only.</li>
                 <li><span class="text-danger">Upload your profile picture. Invalid profile picture may lead to blocking of your results.</span></li>
                 <li>Upload a clear scanned/photographed coloured passport size profile picture. Ensure that plain background in image.</li>
-                <li>Ensure that 70% of the profile picture </li>
-                <li>Only JPG format images are allowed.</li>
+                <li>Ensure that 70% of the profile picture filled with your face. </li>
+                <li>Only jpg format images are allowed.</li>
                 <li>Please note that maximum allowed file size is <strong>4.768 MB (4882.81 KB)</strong> for Microsoft Windows users & <strong>5 MB (5120 KB)</strong> for others.</li>
                 <li>Maximum width of picture is <strong>1500 px. (recommended 1024 px)</strong></li>
                 <li>Maximum height of picture is <strong>1500 px. (recommended 789 px)</strong></li>
@@ -107,11 +109,16 @@
             </div>
         </form>
     <?php   endif ?>
+    <div style="display:none">
+        <?php var_dump($img); ?>
+    </div>
     <script type="text/javascript">
         var thumb_width    = <?php echo $thumb_width ;?> ;
         var thumb_height   = <?php echo $thumb_height ;?> ;
+        <?php if($img['image_width']!=""): ?>
         var image_width    = <?php echo $img['image_width'] ;?> 
         var image_height   = <?php echo $img['image_height'] ;?> 
+        <?php endif; ?>
     </script>
 </div>
 </div>

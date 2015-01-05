@@ -8,7 +8,7 @@
 
 <ul>
 	<li>NITW student email id format is username@student.nitw.ac.in.</li>
-	<li>All the students will receive an email  and/or SMS with new email id and OTP (One Time Password). Google Apps account will be activated tentatively by Jan, 2014 last week.</li>
+	<li>All the students will receive an email  and/or SMS with new email id and OTP (One Time Password). Google Apps account will be activated tentatively by Jan, 2015 last week.</li>
 	<li><a href="<?php echo base_url('audit/profile') ?>">Click here</a> to update email id, phone number, first name and last name.</li>
 </ul>
 

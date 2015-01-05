@@ -20,7 +20,7 @@ class Upload extends MY_Controller {
 
 
 		if (!empty($_POST['upload'])) {
-
+			$_FILES['upload']['name'] = strtolower($_FILES['upload']['name']); 
 			$config['overwrite']   = TRUE;
 			$config['maintain_ratio']    = TRUE;
 			$config['upload_path']  = $upload_path ;
