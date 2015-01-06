@@ -23,7 +23,7 @@ class Slip extends MY_Controller {
 		$userid=$this->user_id;
 		$roll = $this->feedback_model->get_roll($userid);
 		$data=$this->getSlipData($roll);
-		$this->_render_page('registration/slip_new',$data);
+		$this->_render_page('audit/registration/slip_new',$data);
 	}
 	public function even_sem14_15()
 	{
@@ -34,7 +34,7 @@ class Slip extends MY_Controller {
 
 		foreach ($data as  $value) {
 			$value['current_page'] = "slip_even";
-			$this->_render_page('registration/currentslip',$value);
+			$this->_render_page('audit/registration/currentslip',$value);
 		}	
 	}
 	public function getSlipDataNew($roll)

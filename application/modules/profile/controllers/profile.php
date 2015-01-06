@@ -32,7 +32,7 @@ class Profile extends MY_Controller {
 			redirect('profile');
 		}
 		$data['title'] = ucwords(strtolower($data['profile']['first_name']))." ".ucwords(strtolower($data['profile']['last_name']));
-		$this->_render_page('public_profile', $data);
+		$this->_render_page('profile/public_profile', $data);
 	}
 
 	function _render_page($view, $data=null, $render=false)

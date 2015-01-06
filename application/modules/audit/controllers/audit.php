@@ -48,6 +48,7 @@ class Audit extends MY_Controller {
 		$data['current_section'] = 'audit';
 		$data['current_page'] = "home";
 		$data['title'] = 'Student Portal | Academic Section ';
+		$data['scripts'] = array('home.js');
 		$this->_render_page('audit/home', $data);
 	}
 	

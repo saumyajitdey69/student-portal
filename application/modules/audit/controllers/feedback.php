@@ -171,7 +171,7 @@ class Feedback extends MY_Controller {
 		$data['feedback_status']=$feedback_status;
 		$data['students_courses']=$structure;
 		$data['userid']=$this->user_id;
-		$this->_render_page('feedback/feedback_view',$data);
+		$this->_render_page('audit/feedback/feedback_view',$data);
 	}
 
 
@@ -275,7 +275,7 @@ class Feedback extends MY_Controller {
 		$data['title'] = "CGPA - Feedback";
 		$data['current_page'] = 'feedback';
 
-		$this->_render_page('feedback/cgpa_form',$data);
+		$this->_render_page('audit/feedback/cgpa_form',$data);
 	}
 	public function setcgpa()
 	{

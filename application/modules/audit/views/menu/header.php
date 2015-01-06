@@ -17,7 +17,7 @@
           <a href="#">Attendance</a>
         </div>
 
-        <div id="attendance" class="collapse">
+        <div id="attendance" class="collapse in" style="height:auto;">
           <ul role="menu" class="list-group-item-menu">
             <li class="list-group-item">
               <div class="list-group-item-wrapper">
@@ -51,7 +51,7 @@
       <a href="#">Registration Slip</a>
     </div>
 
-    <div id="registration-slip" class="collapse">
+    <div id="registration-slip" class="collapse in" style="height: auto;">
       <ul role="menu" class="list-group-item-menu">
         <li class="list-group-item">
           <div class="list-group-item-wrapper">
