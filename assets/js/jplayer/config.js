@@ -8,10 +8,6 @@ $(document).ready(function() {
             });
         },
         errorAlerts: true,
-        error: function(event) {
-            console.log(event.jPlayer.error);
-            console.log(event.jPlayer.error.type);
-        },
         swfPath: "",
         supplied: "mp3",
         wmode: "window",
