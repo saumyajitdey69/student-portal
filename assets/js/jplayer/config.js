@@ -3,10 +3,14 @@ $(document).ready(function() {
     $("#jquery_jplayer_1").jPlayer({
         ready: function(event) {
             $(this).jPlayer("setMedia", {
-                title: "NITW LAN Radio",
-		mp3: "http://172.30.102.208:8000/stream/1/"
-                // mp3: "http://172.30.105.72:8000/stream/1/"
+                title: "NITW LAN Radio ",
+                mp3: "http://172.30.152.34:8000/stream/1/"
             });
+        },
+        errorAlerts: true,
+        error: function(event) {
+            console.log(event.jPlayer.error);
+            console.log(event.jPlayer.error.type);
         },
         swfPath: "",
         supplied: "mp3",

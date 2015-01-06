@@ -13,7 +13,7 @@ class Radio extends MY_Controller {
 		$data['title'] = 'LAN Radio | Lan Radio Club';
 		$data['css'] = array('jplayer/skin/blue.monday/css/jplayer.blue.monday.css');
 		$data['scripts'] = array('jplayer/jquery.jplayer.min.js', 'jplayer/config.js');
-		$this->_render_page('radio/home', $data);
+		$this->_render_page('apps/radio/home', $data);
 	}
 
 	public function indicator()
@@ -26,9 +26,9 @@ class Radio extends MY_Controller {
 		$data['current_section'] = 'apps';
 		$view_html = array(
 			$this->load->view('base/header', $data, $render),
-			$this->load->view('menu/header', $data, $render),
+			$this->load->view('apps/menu/header', $data, $render),
 			$this->load->view($view, $data, $render),
-			$this->load->view('menu/footer', $data, $render),
+			$this->load->view('apps/menu/footer', $data, $render),
 			$this->load->view('base/footer', $data, $render)
 			);
 		if (!$render) return $view_html;

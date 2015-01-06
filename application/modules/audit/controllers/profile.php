@@ -19,7 +19,7 @@ class Profile extends MY_Controller {
         $data['scripts'] = array('profile/profile.js');
         $data['title'] = "Profile";
         $data['current_page'] = "profile";
-        $this->_render_page('profile/index', $data);
+        $this->_render_page('audit/profile/home', $data);
     }
 
     public function validate()
@@ -106,7 +106,7 @@ class Profile extends MY_Controller {
             $data['details'] = $details = $this->profile_model->get(array('id' => $this->user_id), true, 'first_name, last_name, middle_name, registration_number, roll_number, gender, birthday, country, phone as mobile, email, emergency_contact, joining_year, course, branch, current_section, sbh_account, passport', false, false);
         }
 
-        $this->_render_page('profile/index', $data);
+        $this->_render_page('audit/profile/home', $data);
 
     }
 

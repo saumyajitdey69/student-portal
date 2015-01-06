@@ -112,7 +112,7 @@ class Attendance extends MY_Controller {
 		}
 		// var_dump($data);
 		//registered data processed
-		$this->_render_page('view',$data);
+		$this->_render_page('attendance/view',$data);
 	}
 	public function index()
 	{
@@ -204,7 +204,7 @@ class Attendance extends MY_Controller {
 		}
 		// var_dump($data);
 		//registered data processed
-		$this->_render_page('view',$data);
+		$this->_render_page('attendance/view',$data);
 	}
 	function _render_page($view, $data=null, $render=false)
 	{

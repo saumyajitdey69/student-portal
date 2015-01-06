@@ -117,8 +117,8 @@ class Hostels extends MY_Controller {
     $messdues = $this->messmodel->getMessDues($regno);
     // $data['messdues'] = ($messdues != FALSE) ? $messdues : 'N/A';
     $data['regno'] = $regno;
-    $this->_render_page('winter_home', $data);
-        // $this->_render_page('home2', $data);  // main omaha
+    $this->_render_page('hostels/winter_home', $data);
+        // $this->_render_page('hostels/home2', $data);  // main omaha
       //return $this->home();
 }
 
@@ -126,7 +126,7 @@ function  rules($session = 'main')
 {
  $data['title'] = 'Rules & Regulations | OMAHA';
  $data['current_page'] = 'rules';
- $this->_render_page('payment_procedure_'.$session, $data);
+ $this->_render_page('hostels/payment_procedure_'.$session, $data);
 }
 
 public function neft_check()
@@ -150,7 +150,7 @@ public function _is_neft()
 public function history()
 {
     $data['title'] = 'History';
-    $this->_render_page('history', $data);
+    $this->_render_page('hostels/history', $data);
 }
 
 public function details()
@@ -175,7 +175,7 @@ public function details()
     if(!empty($messes) && $messes != FALSE){
         $data['messes'] = $messes;
     }
-    $this->_render_page('details', $data);
+    $this->_render_page('hostels/details', $data);
 }
 
 public function Home () {
@@ -194,7 +194,7 @@ public function Home () {
     $data['allotment_detail']['hostel'] = $this->_is_alloted_hostel();
     $data['allotment_detail']['mess'] = $this->_is_alloted_mess();
 
-    $this->_render_page('winter_home', $data);
+    $this->_render_page('hostels/winter_home', $data);
 }
 public function _get_hostel_total(&$payment_detail){
     if($payment_detail['transactions']){
@@ -349,12 +349,12 @@ public function neft_check2()
             $data['messtransactions'] = $messtransactions;
             $data['current_page'] = 'slip';
             $data['title'] = 'Hostel/Mess allotment slip';
-            $this->_render_page('no_dues_certificate', $data);
+            $this->_render_page('hostels/no_dues_certificate', $data);
 
         // }
         // else
         // {
-        //     $this->_render_page('no-hostel', $data);
+        //     $this->_render_page('hostels/no-hostel', $data);
         // }
     }
 
@@ -376,7 +376,7 @@ public function hostel_slip(){
                 $data['details'] = $this->studentmodel->get_student_details($regno);
                         //$data['transactions'] = $this->studentmodel->get_student_transactions_slip($regno);
                 $data['messtransactions'] = $this->studentmodel->get_student_messtransactions($regno);
-                $this->_render_page('allotment_slip2', $data);
+                $this->_render_page('hostels/allotment_slip2', $data);
                 return 0;
             }
             if($data){
@@ -386,12 +386,12 @@ public function hostel_slip(){
                         // $alloted_mess = $this->_is_alloted_mess();
                         // $data['hostel'] = $alloted_hostel;
                         // $data['mess'] = $alloted_mess;
-                        // $this->_render_page('allotment_slip', $data);
+                        // $this->_render_page('hostels/allotment_slip', $data);
                     $this->load->model('studentmodel', TRUE);
                     $data['details'] = $this->studentmodel->get_student_details($regno);
                         //$data['transactions'] = $this->studentmodel->get_student_transactions_slip($regno);
                     $data['messtransactions'] = $this->studentmodel->get_student_messtransactions($regno);
-                    $this->_render_page('allotment_slip2', $data);
+                    $this->_render_page('hostels/allotment_slip2', $data);
                 }else{
                     echo "Please pay mess dues to generate slip.";
                 }
@@ -411,7 +411,7 @@ public function hostel_slip(){
                         $data['details'] = $this->studentmodel->get_student_details($regno);
                             //$data['transactions'] = $this->studentmodel->get_student_transactions_slip($regno);
                         $data['messtransactions'] = $this->studentmodel->get_student_messtransactions($regno);
-                        $this->_render_page('allotment_slip2', $data);
+                        $this->_render_page('hostels/allotment_slip2', $data);
                     }
                 }
             }else{
@@ -421,12 +421,12 @@ public function hostel_slip(){
                 $data['messtransactions'] = $this->studentmodel->get_student_messtransactions($regno);
                 $data['current_page'] = 'slip';
                 $data['title'] = 'Hostel/Mess allotment slip';
-                $this->_render_page('allotment_slip2', $data);
+                $this->_render_page('hostels/allotment_slip2', $data);
             }
 
         }
     }else{
-       $this->_render_page('no-hostel', $data);      
+       $this->_render_page('hostels/no-hostel', $data);      
    }
 }
 
@@ -585,7 +585,7 @@ public function allotment ($type='') {
         }
         $data['title'] = 'Online Room Allotment';
         $data['hostel_mess_detail'] = $hostel_mess;
-        $this->_render_page('hostels/allotment2', $data);
+        $this->_render_page('hostels/hostels/allotment2', $data);
     }
     if($type == "mess"){
         if(!$this->_is_alloted_hostel()){
@@ -594,7 +594,7 @@ public function allotment ($type='') {
         }
         $data['title'] = 'Online Mess Allotment';
         $data['hostel_mess_detail'] = $hostel_mess;
-        $this->_render_page('hostels/messallotment2', $data);
+        $this->_render_page('hostels/hostels/messallotment2', $data);
     }
 }
 
@@ -741,7 +741,7 @@ public function single_mess() {
         $data['scripts'] = array('hostel_group.js');
         $userId = $this->user_id;
         $data['group_info'] = $this->hostelmodel->fetch_group_info($userId);
-        $this->_render_page('hostel/group', $data);
+        $this->_render_page('hostels/hostel/group', $data);
     }
     public function create_group() {
         $userId = $this->user_id;
@@ -784,9 +784,9 @@ public function single_mess() {
         $this->viewdata = (empty($data)) ? $data: $data;
         $view_html = array( 
             $this->load->view('base/header', $data, $render),
-            $this->load->view('menu/header', $data, $render),
+            $this->load->view('hostels/menu/header', $data, $render),
             $this->load->view($view, $this->viewdata, $render),
-            $this->load->view('menu/footer', $data),
+            $this->load->view('hostels/menu/footer', $data),
             $this->load->view('base/footer', $data, $render)
             );
         if (!$render) return $view_html;

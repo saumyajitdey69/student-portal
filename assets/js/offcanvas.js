@@ -103,7 +103,7 @@
 
 	    var string = '<div class="media search-media list-group-item search-list-item">\
 		<a class="media-left" href="#">\
-		<img class="img img-circle google-search-progile-img" src="'+base+'/assets/upload/thumbs/'+data["registration_number"]+'.jpg" width="36" alt="profile_img">\
+		<img class="img img-circle google-search-progile-img" src="' + base + '/assets/upload/thumbs/' + data["registration_number"] + '.jpg" width="36" alt="profile_img">\
 		</a>\
 		<div class="media-body">\
 		<h5 class="media-heading">' +
@@ -204,11 +204,11 @@
 	    });
 	});
 
-// insert Routine Orders
+	 // insert Routine Orders
 	var x = $('table > tbody > tr > td > font > a');
 	var dates = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 	var newdates = [];
-	// Intitial setup
+	 // Intitial setup
 	if (x.length > 0) {
 	    $('#enotice>.list-group').append('<p class="list-group-item" id="ro-links"></p>');
 	    $('#ro-links').html('<strong> <span class="glyphicon glyphicon-list-alt"></span> Routine order (RO)</strong>');
@@ -226,4 +226,9 @@
 	    year = (year === undefined) ? '' : year;
 	    $('#ro-links').append('<li class="list-group-item"><a href="http://172.20.0.202/nitw_prm/' + y + '" target="_blank">' + day + ' ' + final_month + ' ' + year + '</a></li>');
 	}
-	  $('#ro-links').append('<small>** available only on campus network</small>');
+	$('#ro-links').append('<small>** available only on campus network</small>');
+
+
+	$(function() {
+	    $('[data-toggle="popover"]').popover()
+	})

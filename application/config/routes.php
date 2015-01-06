@@ -41,6 +41,10 @@
 $route['default_controller'] = "index";
 $route['404_override'] = 'index/_404';
 $route['auth/(:any)'] = "auth/$1";
-$route['sample/(:any)'] = "sample/$1";
+$route['audit/(:any)'] = "audit/$1";
+$route['audit/(:any)'] = "audit/$1";
+$route['hostels/(:any)'] = "hostels/$1";
+$route['attendance/(:any)'] = "attendance/$1";
+$route['apps/(:any)'] = "apps/$1";
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

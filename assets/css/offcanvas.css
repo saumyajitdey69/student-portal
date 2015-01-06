@@ -624,3 +624,15 @@ footer p{
 .google-table-extra-condensed>tbody>tr>td, .table-condensed>tfoot>tr>td {
   padding: 2px;
 }
+
+.google .google-main-menu .popover{
+  width:200px !important;
+}
+
+.google .google-main-menu .popover .popover-content{
+  padding: 0;
+}
+
+.google .google-main-menu .popover .popover-content .list-group{
+  margin-bottom: 0;
+}

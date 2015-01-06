@@ -42,38 +42,29 @@
 				<div class="col-md-10 google-mobile">
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse google-header-center navbar-ex1-collapse">
-					<?php if($this->ion_auth->is_admin()): ?>
-						<form onsubmit="return false;" class="navbar-form google-header-form col-md-6 col-xs-12" role="search">
-							<div class="has-feedback form-group">
-								<div class="input-group google-input-group">
-									<input type="search" class="form-control google-search-bar google-search-size" placeholder="Search students" id="search-item-input" oninput="OnInput(this.value)" autocomplete="off" name="search-item">
-									<span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
-									<span class="input-group-btn">
-										 <span class="glyphicon glyphicon-search"></span>
-									</span>
+						<?php if($this->ion_auth->is_admin()): ?>
+							<form onsubmit="return false;" class="hidden-xs navbar-form google-header-form col-md-6 col-xs-12" role="search">
+								<div class="has-feedback form-group">
+									<div class="input-group google-input-group">
+										<input type="search" class="form-control google-search-bar google-search-size" placeholder="Search students" id="search-item-input" oninput="OnInput(this.value)" autocomplete="off" name="search-item">
+										<span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+										<span class="input-group-btn">
+											<span class="glyphicon glyphicon-search"></span>
+										</span>
+									</div>
 								</div>
-							</div>
 
-							<div class="list-group search-result-box google-search-size" id="search-item-output" >
-							</div> 
-						</form>						
-					<?php endif; ?>
+								<div class="list-group search-result-box google-search-size" id="search-item-output" >
+								</div> 
+							</form>						
+						<?php endif; ?>
 						<ul class="nav navbar-nav navbar-right">
-							<li data-placement="bottom" class="tips <?php echo ($current_section === 'audit')?'active':''; ?>" title="Academic Audit : Results, Feedback, Registration">
-								<a href="<?php echo base_url('audit/home'); ?>">
-									<span class="glyphicon glyphicon-list-alt"></span> <span class="hidden-sm">Academic Section</span>
+							<li class="google-main-menu" >
+								<a tabindex="0" data-toggle="popover" data-trigger="focus"  data-content='<?php echo modules::run("enotice", "main-menu") ?>' data-html=true  data-placement="bottom">
+									<span class="glyphicon glyphicon-th-large"></span>
 								</a>
 							</li>
-							<li data-placement="bottom" class=" tips <?php echo ($current_section === 'hostels')?'active':''; ?>"  title="Online Hostel Allotment">
-								<a href="<?php echo base_url('hostels'); ?>">
-									<span class="glyphicon glyphicon-cutlery"></span> <span class="hidden-sm">OMAHA</span>
-								</a>
-							</li>
-						<!-- <li data-placement="bottom" class="tips <?php echo $current_page === "profile" ? "'active'" : ""?>" title="My Profile">
-							<a href="<?php echo base_url('audit/profile'); ?>">
-								Profile
-							</a>
-						</li> -->
+						
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle google-name-email" data-toggle="dropdown">
 								<?php echo $this->session->userdata('name'); ?>
@@ -87,9 +78,9 @@
 								<li><a href="<?php echo base_url('auth/logout') ?>"><span class="glyphicon glyphicon-off"></span> Logout</a> </li>
 							</ul>
 						</li>
-						<li class="google-profile-img">
+						<li class="google-profile-img hidden-xs hidden-print">
 							<!-- <a class="google-profile-img-container" href="<?php echo base_url('profile'); ?>"> -->
-								<img src="<?= base_url('assets/upload/thumbs/'.$this->session->userdata('registration_number').'.jpg')?>" alt="profil_img" class="img img-rounded img-responsive" width="50px" height="50px">
+							<img src="<?= base_url('assets/upload/thumbs/'.$this->session->userdata('registration_number').'.jpg')?>" alt="profil_img" class="img img-rounded img-responsive" width="50px" height="50px">
 							<!-- </a>		 -->
 						</li>
 

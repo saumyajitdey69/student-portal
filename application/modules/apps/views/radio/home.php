@@ -62,24 +62,34 @@ if($this->session->flashdata('danger') == TRUE)
 				<li role="presentation" class="active"><a href="#about" aria-controls="about" role="tab" data-toggle="tab">About LAN Radio</a></li>
 				<li role="presentation"><a href="#troubleshooting" aria-controls="troubleshooting" role="tab" data-toggle="tab">Troubleshooting</a></li>
 				<li role="presentation"><a href="#Contact" aria-controls="Contact" role="tab" data-toggle="tab">Contact Us</a></li>
+				<!-- <li role="presentation"><a href="#twitter" aria-controls="twitter" role="tab" data-toggle="tab">Live Feeds</a></li> -->
 			</ul>
 
 			<!-- Tab panes -->
 			<div class="tab-content">
 				<div role="tabpanel" class="tab-pane active" id="about">
 					<br>
-					<ul>
-						<li>Get enthralled in the chitchats, gossips, facts, happenings, of the college right away from your room.</li>
-						<li>Convey your wishes to your friends on their special occasions.</li>
-						<li>Listen to the interviews of adroit people.</li>
-						<li>Hark to your favorite songs.</li>
-						<li>Dedicate songs to your lovable one.</li>
-						<li>Open up your voice by coming out with your opinions on various issues so that college will listen to you through radio.</li>						
-					</ul>		
+					<div class="row">
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+							<ul>
+								<li>Get enthralled in the chitchats, gossips, facts, happenings, of the college right away from your room.</li>
+								<li>Convey your wishes to your friends on their special occasions.</li>
+								<li>Listen to the interviews of adroit people.</li>
+								<li>Hark to your favorite songs.</li>
+								<li>Dedicate songs to your lovable one.</li>
+								<li>Open up your voice by coming out with your opinions on various issues so that college will listen to you through radio.</li>						
+							</ul>		
 
-					<blockquote>
-						Dr. L. Anjaneyulu <small>Faculty Advisor, NITW LAN Radio Club</small>
-					</blockquote>			
+							<blockquote>
+								Dr. L. Anjaneyulu <small>Faculty Advisor, NITW LAN Radio Club</small>
+							</blockquote>		
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+							<a class="twitter-timeline" href="https://twitter.com/wsdcnitw" data-widget-id="552364665897242624">Tweets by @wsdcnitw</a>
+							<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+						</div>
+					</div>
+					
 				</div>
 				<div role="tabpanel" class="tab-pane" id="troubleshooting">
 					<br>
@@ -124,4 +134,3 @@ if($this->session->flashdata('danger') == TRUE)
 <script>
 	var url = "<?php echo base_url('apps/radio/indicator')?>";
 </script>
-
