@@ -8,7 +8,7 @@
         </a>
       </li> -->
       <li class="list-group-item <?php echo (isset($current_page) && $current_page === "lanradio")?"active":""; ?>">
-         <a href="<?php echo base_url("hostels/"); ?>">
+         <a href="<?php echo base_url("apps/radio"); ?>">
           Live LAN Radio
         </a>
       </li>
