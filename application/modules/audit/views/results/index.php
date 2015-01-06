@@ -7,7 +7,7 @@
 		</div>
 	<?php else: ?>
 		<div class="alert alert-warning hidden-print">
-			Your results are not yet uploaded. Please contact Academic Section.
+			Your results are not yet uploaded. Please contact Dean Academics(<a href="mailto:dean_acad@nitw.ac.in">dean_acad@nitw.ac.in</a>).
 		</div>
 	<?php endif; ?>
 <?php else: ?>

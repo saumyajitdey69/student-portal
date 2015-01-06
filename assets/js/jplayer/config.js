@@ -1,11 +1,16 @@
 $(document).ready(function() {
-
     $("#jquery_jplayer_1").jPlayer({
         ready: function(event) {
             $(this).jPlayer("setMedia", {
                 title: "NITW LAN Radio ",
                 mp3: "http://172.30.152.34:8000/stream/1/"
             });
+        },
+        seeking:function(event) {
+            Indicator(true);
+        },
+        error: function (event) {
+            Indicator(false);
         },
         errorAlerts: true,
         swfPath: "",
@@ -20,35 +25,35 @@ $(document).ready(function() {
     });
 });
 
-var uiBlocked = false;
+// var uiBlocked = false;
 
-window.onload = checkServer();
+// window.onload = Indicator(false);
 
-function checkServer() {
-    $.ajax({
-        cache: false,
-        type: 'GET',
-        url: url,
-        timeout: 1000,
-        success: function(data, textStatus, XMLHttpRequest) {
-            if (data != '') {
-                if (uiBlocked == false) {
-                    uiBlocked = true;
-                    Indicator(true);
-                }
-            } else {
-                if (uiBlocked == true) {
-                    uiBlocked = false;
-                    Indicator(false)
-                }
-            }
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-            Indicator(false);
-        }
-    })
+// function checkServer() {
+//     $.ajax({
+//         cache: false,
+//         type: 'GET',
+//         url: url,
+//         timeout: 1000,
+//         success: function(data, textStatus, XMLHttpRequest) {
+//             if (data != '') {
+//                 if (uiBlocked == false) {
+//                     uiBlocked = true;
+//                     Indicator(true);
+//                 }
+//             } else {
+//                 if (uiBlocked == true) {
+//                     uiBlocked = false;
+//                     Indicator(false)
+//                 }
+//             }
+//         },
+//         error: function(XMLHttpRequest, textStatus, errorThrown) {
+//             Indicator(false);
+//         }
+//     })
 
-};
+// };
 
 function Indicator(show) {
     if (show)

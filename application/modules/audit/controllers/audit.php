@@ -87,7 +87,7 @@ class Audit extends MY_Controller {
 		$this->_render_page('results/index', $data);
 	}
 
-	public function results()
+	public function results121()
 	{
 		$flag = '1';
 		$this->load->model('results_model');
@@ -107,7 +107,7 @@ class Audit extends MY_Controller {
 		}
 		if(isset($feedback['number']) and $feedback['number'] == '1')
 		{
-			$data['message'] .= '<p>You can not see your academic results<br> <strong>Contact Associate Dean Academic Audit <<a href="mailto:asd_aa@nitw.ac.in" target="_blank">asd_aa@nitw.ac.in</a>>  <br> Student should come to the college and pay the fine in order to fill the feedback and see the results. </strong><br>Do not contact any of the WSDC members regarding incomplete course feedback or exit feedback.<br> If you have completely filled the feedback and unable to see the results, drop an email to wsdc.nitw@gmail.com <br>WSDC Team will contact you within 72 hours<br> As per the institute RO last date of filling feedback was April 28, 2014</p>';
+			$data['message'] .= '<p>You can not see your academic results.<br> <strong>Contact Associate Dean Academic Audit <<a href="mailto:asd_aa@nitw.ac.in" target="_blank">asd_aa@nitw.ac.in</a>><br></p>';
 		}
 		// print_r($data['results']);
 		// if(empty($data['results']))
@@ -118,7 +118,7 @@ class Audit extends MY_Controller {
 		$data['title'] = "Academic Results";
 		$data['current_section'] = 'audit';
 		$data['current_page'] = 'result';
-		$this->_render_page('results/index', $data);
+		$this->_render_page('audit/results/index', $data);
 	}
 
 	public function calendar()

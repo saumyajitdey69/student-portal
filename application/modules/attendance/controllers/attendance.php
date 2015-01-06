@@ -51,9 +51,6 @@ class Attendance extends MY_Controller {
 				$data['backlog_courses']['reg_course_name'] = array();
 				$data['backlog_courses']['reg_course_credit'] = array();
 				$data['backlog_courses']['reg_study_exam'] = array();
-
-					
-					
 			    $data['roll_number'] = $raw_data['roll']; // this is required to delete, please do not rename the variable or do not remove it @awachat
 			    
 			    $data['reg_roll'] = $raw_data['roll'];

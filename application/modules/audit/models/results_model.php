@@ -8,7 +8,7 @@ class Results_model extends CI_Model {
 		//$this->load->config('results_config');
 		//$this->tables = $this->config->item('tables', 'results_config');
 		// $this->tables = array("results" => "results_odd_2013", "status" => "info_odd_2013", "subject_code" => "subjects_odd_2013", "feedback" =>"student_feedback", "student" =>"student_data"); 
-		$this->tables = array("results" => "results_even_2014", "status" => "info_even_2014", "subject_code" => "subjects_even_2014", "feedback" =>"student_feedback", "student" =>"student_data"); 
+		$this->tables = array("results" => "results_odd_2014", "status" => "info_odd_2014", "subject_code" => "subjects_odd_2014", "feedback" =>"wsdc_feedback_2014_15odd.student_feedback", "student" =>"student_data"); 
 	}
 	
 	public function list_all_results($rollno)
