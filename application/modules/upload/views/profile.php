@@ -31,13 +31,16 @@
         <?php endif ;?>
 
         <?php if($large_photo_exists && $thumb_photo_exists) :?>
+            <div class="alert alert-success">
+            Profile picture uploaded successfully.
+            </div>
             <?php echo $thumb_photo_exists; ?>
             <?php //echo $large_photo_exists."&nbsp;".$thumb_photo_exists; ?>
             <div class="clearfix">
             
             </div>
             <br>
-            <a href="<?php echo base_url('upload');?>"><button class="btn btn-lg btn-primary">Change Profile Picture</button></a>
+            For re-uploading the image <a href="<?php echo base_url('upload');?>"><button class="btn btn-sm btn-primary">click here</button></a>
             <hr>
             <span class="text-info">
 
@@ -109,9 +112,6 @@
             </div>
         </form>
     <?php   endif ?>
-    <div style="display:none">
-        <?php var_dump($img); ?>
-    </div>
     <script type="text/javascript">
         var thumb_width    = <?php echo $thumb_width ;?> ;
         var thumb_height   = <?php echo $thumb_height ;?> ;

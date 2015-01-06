@@ -5,6 +5,7 @@ $(document).ready(function() {
                 title: "NITW LAN Radio ",
                 mp3: "http://172.30.152.34:8000/stream/1/"
             });
+	 Indicator(true);
         },
         seeking:function(event) {
             Indicator(true);

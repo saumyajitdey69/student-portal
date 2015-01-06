@@ -69,13 +69,13 @@ class Upload extends MY_Controller {
 		}
 
 
-		$this->load->library('upload');
-		$data['img']  = $this->upload->data();
+		// $this->load->library('upload');
+		// $data['img']  = $this->upload->data();
 		$data['scripts'] = array('upload/jquery.imgareaselect.min.js', 'upload/jquery.imgpreview.js');
 		$this->_render_page('upload/profile',$data) ;
-		$this->load->library('upload');
-		$data['img']  = $this->upload->data();
-		$file_name = $this->session->userdata('registration_number').'.jpg';
+		// $this->load->library('upload');
+		// $data['img']  = $this->upload->data();
+		// $file_name = $this->session->userdata('registration_number').'.jpg';
 	}
 
 	function _render_page($view, $data=null, $render=false)

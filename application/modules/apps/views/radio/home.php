@@ -85,8 +85,9 @@
 								</blockquote>		
 							</div>
 							<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-								<a class="twitter-timeline" href="https://twitter.com/wsdcnitw" data-widget-id="552364665897242624">Tweets by @wsdcnitw</a>
-								<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+								            <a class="twitter-timeline"  href="https://twitter.com/NITWRADIO" data-widget-id="552418699941249027">Tweets by @NITWRADIO</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+          
 							</div>
 						</div>
 						
