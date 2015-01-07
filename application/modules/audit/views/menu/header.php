@@ -40,8 +40,8 @@
        Exit Feedback
      </a>
    </li> -->
-   <li title="Results are not yet announced" class=" tips list-group-item text-danger <?php echo $current_page === "result" ? "active" : ""?>">
-    <a href="<?php //echo base_url('audit/results') ?>">
+   <li title="2014-15 Odd Semester results declared" class=" tips list-group-item text-danger <?php echo $current_page === "result" ? "active" : ""?>">
+    <a href="<?php echo base_url('audit/results') ?>">
       Results
     </a>
   </li>

@@ -17,7 +17,7 @@
 		<button type="button" onclick="window.print()" class="btn btn-sm btn-default pull-right hidden-print">Print</button>
 		<div id="grade-column">
 		 <?php foreach($results as $result): ?>
-				<center><h4>- <?php echo $result['class'] ?></h4></center>
+				<center><h4>Academic Result</h4></center>
 				<?php if($result['publish_status'] === "0") : ?>
 					<center><h3 class="text-danger">Your results will be published shortly.</h3></center>		
 				<?php else: ?>
@@ -33,7 +33,7 @@
 							<td><b class="color">Roll no.</b></td>
 							<td><?php echo $result['RegNo']; ?></td>
 							<td><b class="color">Year/Sem</b></td>
-							<td><?php echo $result['semester']; ?>r</td>
+							<td><?php echo $result['semester']; ?></td>
 
 						</tr>
 						<tr>

@@ -18,7 +18,25 @@ class Audit extends MY_Controller {
 
 	}
 
-	 public function view($username = '')
+	/*Error*/
+	// public function correction()
+	// {
+	// 	if($this->ion_auth->is_admin())
+	// 	{
+	// 		$rollNumbers=$this->correction_model->getAllRollNumbers();
+	// 		foreach ($rollNumbers as $rollNumber) 
+	// 		{
+	// 			$userId=$this->correction_model->getUserId($rollNumber['roll']);
+	// 			$feedbackDetails=$this->correction_model->getFeedback();
+	// 			$count=count($feedbackDetails);
+	// 			$feedback="";
+	// 			for($i=0;$i<$count;$i++)
+	// 				$feedback+="1";
+	// 			$this->correction_model->insertFeedback($userId,$feedback);
+	// 		}
+	// 	}
+	// }
+	public function view($username = '')
     {
 		$this->load->library('form_validation');
     	
@@ -87,15 +105,15 @@ class Audit extends MY_Controller {
 		$this->_render_page('results/index', $data);
 	}
 
-	public function results121()
+	public function results()
 	{
 		$flag = '1';
 		$this->load->model('results_model');
 		$data = array();
 		$roll_number = $this->results_model->get_roll_number($this->user_id);
-		$old_user_id=$this->results_model->get_old_user_id($roll_number);
+		// $old_user_id=$this->results_model->get_old_user_id($roll_number);
 		$feedback =array();
-		$feedback = $this->results_model->check_feedback($old_user_id, $roll_number);
+		$feedback = $this->results_model->check_feedback($this->user_id, $roll_number);
 		if($feedback['code'] === TRUE)
 		{
 			$data['results'] = $this->results_model->list_all_results($roll_number);

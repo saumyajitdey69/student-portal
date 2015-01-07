@@ -46,6 +46,10 @@ class Results_model extends CI_Model {
 					$fcount++;
 				}
 			}
+			
+			$feedback_count=$old_db->get_where('wsdc_feedback_2014_15odd.feedback',array('rollno'=>$rollno));
+			$fcount2=$feedback_count->num_rows();
+			$fcount=$fcount2;
 			// if($this->_is_result_blocked($rollno) === TRUE)
 			// {
 			// 	$status['code'] = false;
@@ -80,6 +84,8 @@ class Results_model extends CI_Model {
 			}
 			$status['rcount']=$rcount;
 			$status['fcount']=$fcount;
+			// print_r($rcount);
+			// print_r($fcount);
 			if($rcount == $fcount)
 			{
 				if($final_year == '1')
