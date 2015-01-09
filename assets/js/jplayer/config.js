@@ -1,14 +1,14 @@
 $(document).ready(function() {
     $("#jquery_jplayer_1").jPlayer({
         ready: function(event) {
-            $(this).jPlayer("setMedia", {
+            console.log($(this).jPlayer("setMedia", {
                 title: "NITW LAN Radio ",
                 mp3: "http://172.30.152.34:8000/stream/1/"
-            });
-	 Indicator(true);
+            }));
+	 		Indicator(true);
         },
-        seeking:function(event) {
-            Indicator(true);
+        waiting: function(event) {
+            Indicator(false);
         },
         error: function (event) {
             Indicator(false);

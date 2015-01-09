@@ -13,8 +13,8 @@ class Audit extends MY_Controller {
 			return false;
 		}
 		$image = 'assets/upload/thumbs/'.$this->session->userdata('registration_number').'.jpg';
-		 if(!file_exists($image))
-		 	redirect('upload');
+		if(!file_exists($image))
+			redirect('upload');
 
 	}
 
@@ -37,18 +37,18 @@ class Audit extends MY_Controller {
 	// 	}
 	// }
 	public function view($username = '')
-    {
+	{
 		$this->load->library('form_validation');
-    	
-        $details = $this->audit_model->get_public_profile($username);
+
+		$details = $this->audit_model->get_public_profile($username);
         // var_dump($details);
-        $data['details'] = $details;
-        $data['submitted'] = '';
-        $data['scripts'] = array('profile/profile.js');
-        $data['title'] = "Profile";
-        $data['current_page'] = "profile";
-        $this->_render_page('profile/index', $data);
-    }
+		$data['details'] = $details;
+		$data['submitted'] = '';
+		$data['scripts'] = array('profile/profile.js');
+		$data['title'] = "Profile";
+		$data['current_page'] = "profile";
+		$this->_render_page('profile/index', $data);
+	}
 
 	public function getSearchData(){
 		$searchStr = $this->input->post('search-string');
@@ -70,15 +70,15 @@ class Audit extends MY_Controller {
 		$this->_render_page('audit/home', $data);
 	}
 	
-	public function resultsvma()
+	public function results()
 	{
 		$flag = '1';
 		$this->load->model('results_model');
 		$data = array();
 		$roll_number = $this->results_model->get_roll_number($this->user_id);
+		// $old_user_id=$this->results_model->get_old_user_id($roll_number);
 		$feedback =array();
 		$feedback = $this->results_model->check_feedback($this->user_id, $roll_number);
-
 		if($feedback['code'] === TRUE)
 		{
 			$data['results'] = $this->results_model->list_all_results($roll_number);
@@ -86,26 +86,64 @@ class Audit extends MY_Controller {
 		else
 		{
 			$data['results'] = null;
-			echo 'testing';
 			$data['message'] = $feedback['message'];
 		}
 		if(isset($feedback['number']) and $feedback['number'] == '1')
 		{
-			$data['message'] .= '<p>You can not see your academic results<br> <strong>Contact Associate Dean Academic Audit <<a href="mailto:asd_aa@nitw.ac.in" target="_blank">asd_aa@nitw.ac.in</a>>  <br> Student should pay the fine in order to fill the feedback and see the results. </strong><br>DO NOT CONTACT ANY OF THE WSDC MEMBERS REGARDING INCOMPLETE COURSE FEEDBACK OR EXIT FEEDBACK.<br> If you have completely filled the feedback and unable to see the results, drop an email to wsdc.nitw@gmail.com <br>WSDC Team will contact you within 72 hours<br> As per the institute RO last date of filling feedback was April 28, 2014 <br> - By Order Dean Academic	</p>';
+			$data['message'] .= '<p>You can not see your academic results.<br> <strong>Contact Associate Dean Academic Audit <<a href="mailto:asd_aa@nitw.ac.in" target="_blank">asd_aa@nitw.ac.in</a></strong><br></p>';
+			// get feedback status
+			$this->load->model('audit/feedback_model');
+			$feedback_status=$this->feedback_model->get_status($this->user_id);
+			$query=$this->feedback_model->get_feedback_courses($this->user_id);
+			$structure=array();
+			$j=0;
+			foreach ($query as $row)
+			{
+				$structure[$j]['branch']=$row['branch'];
+				$structure[$j]['sem']=$row['sem'];
+				$structure[$j]['session_id']=$row['session_id'];
+				$structure[$j]['class']=$row['class'];
+				$k=0;
+				$structure_id=$this->feedback_model->get_structure_id($structure[$j]);
+				// $structure_id=$row['structure_id'];
+				$structure[$j]['sec']=$row['sec'];
+				for($i=1;$i<=15;$i++)
+				{
+					$cid="c".$i;
+					$name="name".$i;
+					$credit="credit".$i;
+					$type="type".$i;
+					if(!is_null($row[$cid]) and $row[$type]!='e')
+					{
+						$structure[$j]['courses'][$k]['id']=$row[$cid];
+						$structure[$j]['courses'][$k]['name']=$row[$name];
+						$structure[$j]['courses'][$k]['credits']=$row[$credit];
+						$structure[$j]['courses'][$k]['type']=$row[$type];
+						$faculty_detail=$this->feedback_model->get_cfid
+						($structure_id,$row[$cid],$row['sec']);
+						if($faculty_detail!=FALSE)
+						{
+							$structure[$j]['courses'][$k]['cfid']=$faculty_detail->id;
+							$structure[$j]['courses'][$k]['faculty_id']=$faculty_detail->faculty_id;
+
+							$structure[$j]['courses'][$k]['faculty_name']=$faculty_detail->faculty_name;
+						}
+						$k++;
+					}
+				}
+
+				$j++;
+			}
+			$data['feedback_status']  = $feedback_status;
+			$data['students_courses'] = $structure;
 		}
-		// print_r($data['results']);
-		// if(empty($data['results']))
-		// {
-		// 	$this->session->set_flashdata('danger', 'Your results are not yet declare');
-		// 	redirect('audit/home');
-		// }
 		$data['title'] = "Academic Results";
 		$data['current_section'] = 'audit';
 		$data['current_page'] = 'result';
-		$this->_render_page('results/index', $data);
+		$this->_render_page('audit/results/index2', $data);
 	}
 
-	public function results()
+	public function resultsvma()
 	{
 		$flag = '1';
 		$this->load->model('results_model');
@@ -145,7 +183,7 @@ class Audit extends MY_Controller {
 		$data['title'] = "Academic Calender 2014-15";
 		$data['current_section'] = 'audit';
 		$data['current_page'] = 'calendar';
-		$this->_render_page('calendar/index', $data);
+		$this->_render_page('audit/calendar/index', $data);
 	}
 
 	function _render_page($view, $data=null, $render=false)

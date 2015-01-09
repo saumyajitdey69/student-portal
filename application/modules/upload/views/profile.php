@@ -83,10 +83,22 @@
 
             <hr />
         <?php   else : ?>
+        	<div class="alert alert-warning">
+        	    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        	    Few profile pictures are deleted (~200). If your profile picture is removed, please ensure the following points before uploading new one.
+        	    <ul>
+        	    	<li>Image must be sharp and clear.</li>
+        	    	<li>Image must be properly cropped after uploading.</li>
+        	    	<li>Image must maintain appropriate aspect ratio. Do not stretch or compress the dimensions of the image.</li>
+        	    	<li>Do not upload black & white image.</li>
+        	    	<li><strong>You profile picture will be used in all official documents including smart ID/Mess cards (RFID), mess dues, Alumni Cards, etc.</strong></li>
+        	    	<li>Read the below instructions carefully.</li>
+        	    </ul>
+        	</div>
             <ul>
                 <li><strong>Invalid profile pictures will be automatically deleted from the system without any prior notice. Students are requested to follow the instructions carefully and cooperate.</strong></li>
                 <li><strong>Upload your profile picture to avoid any inconvenience viewing results, attendance, filling feedback or generating no dues certificate</strong>.</li>
-                <li><span class="label label-danger">new</span> File extension must be '.jpg' in lowercase only.</li>
+                <!-- <li><span class="label label-danger">new</span> File extension must be '.jpg' in lowercase only.</li> -->
                 <li><span class="text-danger">Upload your profile picture. Invalid profile picture may lead to blocking of your results.</span></li>
                 <li>Upload a clear scanned/photographed coloured passport size profile picture. Ensure that plain background in image.</li>
                 <li>Ensure that 70% of the profile picture filled with your face. </li>
