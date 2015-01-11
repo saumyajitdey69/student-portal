@@ -47,9 +47,13 @@ class Results_model extends CI_Model {
 				}
 			}
 			$status['bits_count']=$fcount;
-			$feedback_count=$old_db->get_where('wsdc_feedback_2014_15odd.feedback',array('rollno'=>$rollno));
+			$feedback_count=$old_db->select()
+									->where(array('rollno'=>$rollno,'type !=' => 'e'))
+									->group_by(array('rollno','course_id'))
+									->get('wsdc_feedback_2014_15odd.feedback');
 			$fcount2=$feedback_count->num_rows();
 			$status['no_rows']=$fcount2;
+
 			$fcount= max($fcount2, $fcount);
 
 			// if($this->_is_result_blocked($rollno) === TRUE)
@@ -87,6 +91,10 @@ class Results_model extends CI_Model {
 
 			$status['rcount']=$rcount;
 			$status['fcount']=$fcount;
+			if($fcount2==$rcount)
+			{
+				$fcount=$rcount;
+			}
 			// print_r($rcount);
 			// print_r($fcount);
 			if($rcount == $fcount)

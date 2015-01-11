@@ -220,7 +220,14 @@ class Feedback_model extends CI_Model {
         //     'cgpa'=>$cgpa,
         //     'value'=>$value);
         // print_r($data);
-        return $db_feedback->insert($this->tables['feedback'],$data);
+        $query=$db_feedback->get_where($this->tables['feedback'],array('rollno'=>$data['rollno'],'course_id'=>$data['course_id']));
+        if($query->num_rows()==1)
+            return 4;
+        $db_feedback->insert($this->tables['feedback'],$data);
+        if($db_feedback->affected_rows()==1)
+            return TRUE;
+        else
+            return FALSE;
     }
     public function insert_feedback_comment($data)
     {
@@ -230,8 +237,14 @@ class Feedback_model extends CI_Model {
             //     'cgpa'=>$cgpa,
             //     'type'=>$type,
             //     'comment'=>$content);
-
-           return $db_feedback->insert($this->tables['feedback_comments'],$data);
+        $query=$db_feedback->get_where($this->tables['feedback_comments'],array('rollno'=>$data['rollno'],'course_id'=>$data['course_id']));
+        if($query->num_rows()==1)
+            return 4;
+        $db_feedback->insert($this->tables['feedback_comments'],$data);
+        if($db_feedback->affected_rows()==1)
+            return TRUE;
+        else
+            return FALSE;
     }
     public function update_feedback_status($userid,$status)
     {
@@ -240,7 +253,11 @@ class Feedback_model extends CI_Model {
             'feedback'=>$status
             );
         $db_feedback->where('userid',$userid);
-        return $db_feedback->update($this->tables['student_feedback'],$data);
+        $db_feedback->update($this->tables['student_feedback'],$data);
+        if($db_feedback->affected_rows()==1)
+            return TRUE;
+        else
+            return FALSE;
     }
     public function get_status($userid)
     {

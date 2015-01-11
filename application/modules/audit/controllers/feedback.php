@@ -288,7 +288,6 @@ class Feedback extends MY_Controller {
 	{
 		$this->load->model('audit/feedback_model');
 		$data=$this->input->post();
-//print_r('im here');
 		for($i=0;$i<35;$i++)
 		{
 			if($data['value'][$i]=='0')
@@ -297,16 +296,16 @@ class Feedback extends MY_Controller {
 				return;
 			}
 		}
-		 $value=$this->input->post('value');
-		 $cfid=$this->input->post('cfid');
+		$value=$this->input->post('value');
+		$cfid=$this->input->post('cfid');
 		$userid=$this->user_id;
-		 $comment=$this->input->post('comment');
-		 $status_bit=$this->input->post('status');
+		$comment=$this->input->post('comment');
+		$status_bit=$this->input->post('status');
 		$data['rollno']=$this->feedback_model->get_roll($userid);
 		$data['sec'] = $this->feedback_model->get_section($data['rollno']);
 		$status=$this->feedback_model->get_status($userid);
 		$data['cgpa']=$this->feedback_model->get_cgpa($userid);
-print_r($data);
+		// print_r($data);
 		if(isset($_POST['comment']))
 		{
 			$comment=$data['comment'];
@@ -315,10 +314,15 @@ print_r($data);
 		$status_bit=$data['status'];
 		$cfid=$data['cfid'];
 		unset($data['status']);
-		if($status[$status_bit]!='1')
+		if($status[$status_bit]=='0')
 		{
 			$status_comment=1;
 			$status_feedback=$this->feedback_model->insert_feedback($data);
+			if($status_feedback==4)
+			{
+				echo 3;
+				return;
+			}
 			if(isset($_POST['comment']))
 			{
 				unset($data['value']);
@@ -335,6 +339,8 @@ print_r($data);
 			if($status_feedback && $status_comment && $status)
 				echo 1;
 		}
+		else if($status[$status_bit]=='1')
+			echo 3;
 		else
 			echo 0;
 	}
