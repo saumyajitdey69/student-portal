@@ -31,7 +31,7 @@ class Wsdc_collect extends MY_Controller
 	    $messdues = $this->messmodel->getMessDues($regno);
 	    $data['regno'] = $regno;
 	    $data['scripts'] = array('bootstrap-datepicker.js','neft.js');
-	    $this->_render_page('wsdc_collect', $data);
+	    $this->_render_page('hostels/wsdc_collect', $data);
 	  //return $this->home();
 	}
 	public function neft_details(){
@@ -128,9 +128,9 @@ class Wsdc_collect extends MY_Controller
 	    $this->viewdata = (empty($data)) ? $data: $data;
 	    $view_html = array( 
 	        $this->load->view('base/header', $data, $render),
-	        $this->load->view('menu/header', $data, $render),
+	        $this->load->view('hostels/menu/header', $data, $render),
 	        $this->load->view($view, $this->viewdata, $render),
-	        $this->load->view('menu/footer', $data),
+	        $this->load->view('hostels/menu/footer', $data),
 	        $this->load->view('base/footer', $data, $render)
 	        );
 	    if (!$render) return $view_html;
