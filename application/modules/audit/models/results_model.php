@@ -97,7 +97,12 @@ class Results_model extends CI_Model {
 			}
 			// print_r($rcount);
 			// print_r($fcount);
-			if($rcount == $fcount)
+			if($rcount==0)
+			{
+				$status['code'] = true;
+				return $status;
+			}
+			else if($rcount == $fcount)
 			{
 				if($final_year == '1')
 				{
