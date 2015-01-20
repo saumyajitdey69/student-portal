@@ -1,7 +1,7 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Apps extends MX_Controller {
+class Hubs extends MY_Controller {
 
     function __construct()
     {
@@ -19,14 +19,15 @@ class Apps extends MX_Controller {
     //     }
     // }
 
-    public function hubs() {
+    public function index() {
         $data = array();       
-        $data['current_page'] = 'home';
+        $data['current_page'] = 'hubs';
         $this->load->model('hub_model', '', TRUE);
         $data['hub_list'] = $this->hub_model->get();
         $data['title'] = "DC++ Hubs (".count($data['hub_list']).")";
+        $data['css'] = array('dataTables.bootstrap.css');
         $data['scripts'] = array('auth/jquery.dataTables.min.js', 'auth/table.js');
-        $this->_render_page('hubs/index', $data);
+        $this->_render_page('apps/hubs/index', $data);
     }
 
 
@@ -34,7 +35,6 @@ class Apps extends MX_Controller {
         $token = $this->input->post('token');
         // $token ='rajakiaayegibarat';
         $hub_details = $this->input->post('content'); 
-        // $hub_details = '[ {"Name":"NITW e-Library Network - Testing Complete (Staging)","Users":"182","UpTime":"1 days, 11 hours, 2 minutes","Address":"172.30.107.112","Software":"PtokaX DC Hub 0.5.0.1 "},{"Name":"JoKeR","Users":"55","UpTime":"0 days, 14 hours, 28 minutes","Address":"172.30.103.116","Software":"PtokaX DC Hub 0.5.0.2 "} ]';
         $hub_details = json_decode($hub_details, true);
         $this->load->model('hub_model');
         // var_dump($hub_details);

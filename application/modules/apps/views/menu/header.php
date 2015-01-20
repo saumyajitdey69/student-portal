@@ -12,6 +12,11 @@
           Live LAN Radio
         </a>
       </li>
+      <li class="list-group-item <?php echo (isset($current_page) && $current_page === "hubs")?"active":""; ?>">
+         <a href="<?php echo base_url("apps/hubs"); ?>">
+          DC++ Hubs
+        </a>
+      </li>
   </ul>
 </div>
 <div class="clearfix visible-xs hidden-print"></div>
